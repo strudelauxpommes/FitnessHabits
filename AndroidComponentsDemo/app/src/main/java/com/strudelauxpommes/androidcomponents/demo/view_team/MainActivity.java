@@ -1,4 +1,4 @@
-package com.strudelauxpommes.androidcomponents.demo;
+package com.strudelauxpommes.androidcomponents.demo.view_team;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.strudelauxpommes.androidcomponents.demo.R;
 
 public class MainActivity extends AppCompatActivity {
 

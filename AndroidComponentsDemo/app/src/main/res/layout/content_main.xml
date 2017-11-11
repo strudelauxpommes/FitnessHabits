@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@android:color/holo_blue_light"
-    tools:context="com.strudelauxpommes.androidcomponents.demo.MainActivity"
+    tools:context="com.strudelauxpommes.androidcomponents.demo.view_team.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
