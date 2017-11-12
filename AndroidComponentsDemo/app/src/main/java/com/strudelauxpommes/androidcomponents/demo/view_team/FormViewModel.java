@@ -1,9 +1,12 @@
 package com.strudelauxpommes.androidcomponents.demo.view_team;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.ColorRes;
+
+import com.strudelauxpommes.androidcomponents.demo.data_team.UIDataRepository;
+import com.strudelauxpommes.androidcomponents.demo.data_team.model.UIData;
 
 /**
  * A ViewModel to hold the information and actions required by a view. It's the abstraction that
@@ -29,20 +32,27 @@ public class FormViewModel extends ViewModel {
         }
     }
 
-    private MutableLiveData<BackgroundColor> backgroundColor = new MutableLiveData<>();
-    private MutableLiveData<Integer> fontSize = new MutableLiveData<>();
+    // Data layer
+    private UIDataRepository repository;
+    private LiveData<UIData> uiDataLiveData;
+
+    // ViewModel live data
+    private LiveData<BackgroundColor> backgroundColor;
+    private LiveData<Integer> fontSize;
 
     public static final int minFontSize = 12;
     public static final int maxFontSize = 36;
 
-    public void init() {
-        init(BackgroundColor.blue, 24);
+    public void init(UIDataRepository repository) {
+        this.repository = repository;
+        // Get the data from the repository
+        this.uiDataLiveData = repository.loadUIData();
+        // Transform the Data layer LiveData to the ModelView live data
+        backgroundColor = Transformations.map(uiDataLiveData, UIData::getBackgroundColor);
+        fontSize = Transformations.map(uiDataLiveData, UIData::getFontSize);
     }
 
-    public void init(BackgroundColor backgroundColor, Integer fontSize) {
-        setBackgroundColor(backgroundColor);
-        setFontSize(fontSize);
-    }
+    // Only ViewModel LiveData should be exposed. The Data layer should not be exposed by the ViewModel.
 
     public LiveData<BackgroundColor> getBackgroundColor() {
         return backgroundColor;
@@ -53,10 +63,18 @@ public class FormViewModel extends ViewModel {
     }
 
     public void setBackgroundColor(BackgroundColor backgroundColor) {
-        this.backgroundColor.setValue(backgroundColor);
+        UIData currentUIData = uiDataLiveData.getValue();
+        if (currentUIData != null) {
+            currentUIData.setBackgroundColor(backgroundColor);
+            repository.saveUIData(currentUIData);
+        }
     }
 
     public void setFontSize(Integer fontSize) {
-        this.fontSize.setValue(fontSize);
+        UIData currentUIData = uiDataLiveData.getValue();
+        if (currentUIData != null) {
+            currentUIData.setFontSize(fontSize);
+            repository.saveUIData(currentUIData);
+        }
     }
 }

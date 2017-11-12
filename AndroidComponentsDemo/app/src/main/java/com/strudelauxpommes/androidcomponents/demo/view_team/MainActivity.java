@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
+import com.strudelauxpommes.androidcomponents.demo.DemoApplication;
+import com.strudelauxpommes.androidcomponents.demo.data_team.AppDatabase;
 import com.strudelauxpommes.androidcomponents.demo.view_team.FormViewModel;
 
 import com.strudelauxpommes.androidcomponents.demo.R;
@@ -43,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         buttonTextSizePicker.setMinValue(FormViewModel.minFontSize);
         buttonTextSizePicker.setMaxValue(FormViewModel.maxFontSize);
 
-        // Step 3: Get and init the ViewModel for this View
-        // Initialize ViewModel
+        // Step 3: Get and initialize the ViewModel for this View with the data repository
         viewModel = ViewModelProviders.of(this).get(FormViewModel.class);
-        viewModel.init();
+        viewModel.init(DemoApplication.application.getUIDataRepository());
 
         // Step 4: Bind the ViewModel values to the UI
         // Register to the changes of the models to update the UI automatically when needed
+
         // When the backgroundColor change, we should change the background color of our container
         viewModel.getBackgroundColor().observe(this, backgroundColor -> {
             if (backgroundColor != null) {
