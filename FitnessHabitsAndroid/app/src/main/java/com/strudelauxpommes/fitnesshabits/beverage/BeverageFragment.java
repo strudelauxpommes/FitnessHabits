@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.strudelauxpommes.fitnesshabits.BeverageDetailsActivity;
 import com.strudelauxpommes.fitnesshabits.R;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class BeverageFragment extends Fragment {
     static Button btnFav1, btnFav2, btnFav3, btnOthers;
     static TextView txtTotal;
     static ArrayList<Breuvage> breuvArray;
-    static int qtyBtn1, qtyBtn2, qtyBtn3;
+    int qtyBtn1, qtyBtn2, qtyBtn3;
 
     public BeverageFragment() {
         // Required empty public constructor
@@ -39,14 +40,14 @@ public class BeverageFragment extends Fragment {
         b1.setQuantite_ml(250);
 
         Breuvage b2 = new Breuvage();
-        b1.setName("Pepsi");
-        b1.setEstFavoris(true);
-        b1.setQuantite_ml(250);
+        b2.setName("Pepsi");
+        b2.setEstFavoris(true);
+        b2.setQuantite_ml(250);
 
         Breuvage b3 = new Breuvage();
-        b1.setName("Café");
-        b1.setEstFavoris(true);
-        b1.setQuantite_ml(250);
+        b3.setName("Café");
+        b3.setEstFavoris(true);
+        b3.setQuantite_ml(125);
 
         ArrayList<Breuvage> listBr = new ArrayList<Breuvage>();
         listBr.add(b1);
@@ -101,7 +102,7 @@ public class BeverageFragment extends Fragment {
         });
 
         btnOthers =(Button) rootView.findViewById(R.id.btn_bevSummaryOthers);
-        layoutHeader.setOnClickListener(new View.OnClickListener(){
+        btnOthers.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startBeverageDetails();
@@ -122,9 +123,9 @@ public class BeverageFragment extends Fragment {
 
 
     private void startBeverageDetails(){
-        //Intent myIntent = new Intent(getActivity(), BeverageDetailsActivity.class);
+        Intent myIntent = new Intent(getActivity(), BeverageDetailsActivity.class);
         //myIntent.putExtra("key", value); //Optional parameters
-        //getActivity().startActivity(myIntent);
+        getActivity().startActivity(myIntent);
     }
 
 
