@@ -12,7 +12,7 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
 public class ParamRecord {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    int id;
 
     String name;
 
@@ -23,8 +23,6 @@ public class ParamRecord {
     Gender gender;
 
     CalendarDate currentViewDate;
-    
-    private int id; //TODO: Implement model
 
     public int getId() {
         return id;
