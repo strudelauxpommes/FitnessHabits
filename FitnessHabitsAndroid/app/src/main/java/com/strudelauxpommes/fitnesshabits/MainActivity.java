@@ -1,15 +1,17 @@
 package com.strudelauxpommes.fitnesshabits;
 
+import android.content.Intent;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
-
+import com.strudelauxpommes.fitnesshabits.parameters.ParameterActivity;
 import java.text.DateFormat;
 import java.util.Calendar;
 
@@ -62,5 +64,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
         viewModel.setDate(calendar);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.param) {
+
+            startActivity(new Intent(this, ParameterActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
