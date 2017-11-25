@@ -21,7 +21,6 @@
             android:id="@+id/txt_bevSummaryTitle"
             android:layout_width="100dp"
             android:layout_height="40.25dp"
-            android:background="@android:color/black"
             android:text="Beverage"
             android:textColor="@android:color/white"/>
 
@@ -36,9 +35,7 @@
             android:id="@+id/txt_bevTotal"
             android:layout_width="40dp"
             android:layout_height="40.25dp"
-            android:layout_toRightOf="@id/img_bevTitle"
-            android:background="@android:color/black"
-            android:text="TextView" />
+            android:layout_toRightOf="@id/img_bevTitle" />
 
     </LinearLayout>
 
@@ -48,7 +45,6 @@
         android:layout_height="32.5dp"
         android:layout_above="@+id/btn_bevSummaryFav2"
         android:layout_alignParentLeft="true"
-        android:background="@android:color/black"
         android:text="Beverage"
         android:textColor="@android:color/white" />
 
@@ -58,7 +54,6 @@
         android:layout_height="32.5dp"
         android:layout_above="@+id/btn_bevSummaryFav3"
         android:layout_alignParentLeft="true"
-        android:background="@android:color/black"
         android:text="Beverage"
         android:textColor="@android:color/white" />
 
@@ -68,7 +63,6 @@
         android:layout_height="32.5dp"
         android:layout_above="@+id/btn_bevSummaryOthers"
         android:layout_alignParentLeft="true"
-        android:background="@android:color/black"
         android:text="Beverage"
         android:textColor="@android:color/white" />
 
@@ -78,7 +72,6 @@
         android:layout_height="32.5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="@android:color/holo_blue_bright"
         android:text="Beverage"
         android:textColor="@android:color/white" />
 
