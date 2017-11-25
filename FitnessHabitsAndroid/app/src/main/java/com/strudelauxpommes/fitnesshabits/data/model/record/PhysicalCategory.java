@@ -13,7 +13,7 @@ public class PhysicalCategory {
     private int id; //TODO: Implement model
     private String categoryName;;
     private int intensity;
-    private int isFavorite;
+    private boolean isFavorite;
 
     // Getters
     public int getId() {
@@ -24,7 +24,7 @@ public class PhysicalCategory {
         return intensity;
     }
 
-    public int getIsFavorite() {
+    public boolean getIsFavorite() {
         return isFavorite;
     }
 
@@ -46,7 +46,7 @@ public class PhysicalCategory {
         this.intensity = intensity;
     }
 
-    public void setIsFavorite(int isFavorite) {
+    public void setIsFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
     }
 }
