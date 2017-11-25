@@ -8,6 +8,7 @@
 
     <TextView
         android:text="Sommeil"
+        android:clickable="true"
         android:layout_width="fill_parent"
         android:layout_height="15dp"
         />
@@ -63,12 +64,14 @@
                 android:layout_width="fill_parent"
                 />
             <EditText
+                android:inputType="number"
                 android:id="@+id/visitorHits"
 
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 />
             <EditText
+                android:inputType="number"
                 android:id="@+id/visitor_Input"
 
                 android:layout_height="wrap_content"
@@ -84,18 +87,21 @@
 
         <TableRow android:layout_height="wrap_content">
             <EditText
+                android:inputType="number"
                 android:id="@+id/visitorRuns2"
 
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 />
             <EditText
+                android:inputType="number"
                 android:id="@+id/visitorHits2"
 
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 />
             <EditText
+                android:inputType="number"
                 android:id="@+id/visitor_Input3"
 
                 android:layout_height="wrap_content"
