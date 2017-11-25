@@ -15,25 +15,25 @@
         <fragment
             android:id="@+id/physicalActivityFragment"
             android:layout_width="match_parent"
-            android:layout_height="170.25dp"
+            android:layout_height="182.5dp"
             android:name="com.strudelauxpommes.fitnesshabits.physicalactivity.PhisicalActivityFragment"
             />
         <fragment
             android:id="@+id/supplementFragment"
             android:layout_width="match_parent"
-            android:layout_height="136.25dp"
+            android:layout_height="148.5dp"
             android:name="com.strudelauxpommes.fitnesshabits.supplement.SupplementFragment"
             />
         <fragment
             android:id="@+id/sleepFragment"
             android:layout_width="match_parent"
-            android:layout_height="102.25dp"
+            android:layout_height="114.5dp"
             android:name="com.strudelauxpommes.fitnesshabits.sleep.SleepFragment"
             />
         <fragment
             android:id="@+id/weightFragment"
             android:layout_width="match_parent"
-            android:layout_height="102.25dp"
+            android:layout_height="114.5dp"
             android:name="com.strudelauxpommes.fitnesshabits.weight.WeightFragment"
             />
     </LinearLayout>
@@ -45,19 +45,19 @@
         <fragment
             android:id="@+id/foodFragment"
             android:layout_width="match_parent"
-            android:layout_height="170.25dp"
+            android:layout_height="186.25dp"
             android:name="com.strudelauxpommes.fitnesshabits.food.FoodFragment"
             />
         <fragment
             android:id="@+id/beverageFragment"
             android:layout_width="match_parent"
-            android:layout_height="170.25dp"
+            android:layout_height="186.25dp"
             android:name="com.strudelauxpommes.fitnesshabits.beverage.BeverageFragment"
             />
         <fragment
             android:id="@+id/alcoholFragment"
             android:layout_width="match_parent"
-            android:layout_height="170.25dp"
+            android:layout_height="188dp"
             android:name="com.strudelauxpommes.fitnesshabits.alcohol.AlcoholFragment"
             />
     </LinearLayout>
