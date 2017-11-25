@@ -8,6 +8,7 @@ import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
 import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.WeightRepository;
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 /**
@@ -20,6 +21,7 @@ public class FitnessHabitsApplication extends Application {
     private PhysicalRepository physicalRepository;
     private AlcoolRepository alcoolRepository;
     private ParamRepository paramRepository;
+    private WeightRepository weightRepository;
 
     @Override
     public void onCreate() {
@@ -61,6 +63,15 @@ public class FitnessHabitsApplication extends Application {
         return paramRepository;
     }
 
+
+
+    @MainThread
+    public WeightRepository getWeightRepository() {
+        if (weightRepository == null) {
+            weightRepository = new WeightRepository(getDatabase().weightRecordDao());
+        }
+        return weightRepository;
+    }
 
 
 
