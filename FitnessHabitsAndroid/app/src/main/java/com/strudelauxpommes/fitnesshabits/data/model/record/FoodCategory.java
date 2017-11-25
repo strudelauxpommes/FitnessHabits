@@ -11,4 +11,12 @@ import android.arch.persistence.room.PrimaryKey;
 public class FoodCategory {
     @PrimaryKey(autoGenerate = true)
     private int categoryId; //TODO: Implement model
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 }
