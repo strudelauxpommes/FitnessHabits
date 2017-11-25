@@ -4,4 +4,7 @@
     <string name="export">Exporter</string>
     <string name="param">Paramètres</string>
     <string name="objectif">Objectifs</string>
+    <string name="parameters_title_tab">Préférences</string>
+    <string name="profile_title_tab">Profil</string>
+    <string name="username_input">Votre nom</string>
 </resources>
