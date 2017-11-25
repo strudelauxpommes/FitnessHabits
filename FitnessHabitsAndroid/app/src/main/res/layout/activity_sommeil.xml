@@ -125,18 +125,63 @@
                 android:layout_width="fill_parent"
                 />
         </TableRow>
+
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns4"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits5"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input11"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+                android:id="@+id/visitor_Input10"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+        </TableRow>
         <TableRow android:layout_height="wrap_content">
             <Button
                 android:id="@+id/button_id"
                 android:layout_height="50dp"
 
                 android:layout_width="20dp"
-                android:text="+"
+                android:text="OK"
 
                 />
         </TableRow>
 
     </TableLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"/>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>
+
+
 
