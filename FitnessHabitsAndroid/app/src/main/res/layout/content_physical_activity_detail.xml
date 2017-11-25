@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.strudelauxpommes.fitnesshabits.physicalactivity.PhysicalActivityDetail"
     tools:showIn="@layout/activity_physical_detail">
@@ -16,7 +17,47 @@
             android:id="@+id/table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/editText3"
+                    android:layout_width="73dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Favority"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/editText6"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Activity" />
+
+                <TextView
+                    android:id="@+id/editText7"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Duration" />
+
+                <TextView
+                    android:id="@+id/editText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Intensity" />
+
+            </TableRow>
         </TableLayout>
 
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>
