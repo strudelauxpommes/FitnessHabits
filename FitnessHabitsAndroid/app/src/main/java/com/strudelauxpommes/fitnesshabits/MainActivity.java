@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == R.id.datepicker) {
             Calendar currentDate = viewModel.getDate().getValue();
             if (currentDate != null) {
@@ -67,23 +66,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 return true;
             }
         } else if (item.getItemId() == R.id.param) {
-
             startActivity(new Intent(this, ParameterActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.objectif) {
+            return true;
+        } else if (item.getItemId() == R.id.objectif) {
             // activité temporaire, pour expérimenter. à enlever seulement à la fin de la journée
             Intent intent = new Intent(this, TestActivity.class);
             this.startActivity(intent);
+            return true;
         }
-
-        return false;
-
+        return super.onOptionsItemSelected(item);
     }
 }

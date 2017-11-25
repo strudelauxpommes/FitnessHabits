@@ -25,7 +25,6 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
         ParamRecord.class,
         DrinkCategory.class,
         DrinkEntry.class,
-        SleepCategory.class,
         SleepEntry.class,
         WeightEntry.class,
         SupplementCategory.class,
