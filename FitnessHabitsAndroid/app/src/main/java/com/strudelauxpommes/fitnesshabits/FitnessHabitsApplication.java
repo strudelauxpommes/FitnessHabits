@@ -13,7 +13,7 @@ import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
  */
 
 public class FitnessHabitsApplication extends Application {
-    public static Application application;
+    public static FitnessHabitsApplication application;
     private AppDatabase database;
     private PhysicalRepository physicalRepository;
     private AlcoolRepository alcoolRepository;
