@@ -1,15 +1,53 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/alcohol_fragment"
+    android:layout_width="180dp"
+    android:layout_height="188dp"
     tools:context="com.strudelauxpommes.fitnesshabits.alcohol.AlcoholFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_green_dark"
-        android:textColor="@android:color/white"
-        android:text="Alcohol" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/alcohol_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Alcohol" />
+
+            <ImageView
+                android:id="@+id/alcohol_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_local_drink_black_24dp" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="j: 7 | s: 10" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/alcohol_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_bar"
+            android:scrollbars="none">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </FrameLayout>
