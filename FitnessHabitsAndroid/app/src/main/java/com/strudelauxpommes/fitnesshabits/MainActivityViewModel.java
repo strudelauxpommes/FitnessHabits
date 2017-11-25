@@ -1,12 +1,14 @@
 package com.strudelauxpommes.fitnesshabits;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 
+import com.strudelauxpommes.fitnesshabits.data.model.record.ParamRecord;
+import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
+import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by Marc-Antoine Sauvé on 11/25/17.
@@ -14,11 +16,14 @@ import java.util.GregorianCalendar;
 
 class MainActivityViewModel extends ViewModel {
 
-    MutableLiveData<Calendar> date;
+    private ParamRepository paramRepository;
 
-    public MainActivityViewModel() {
-        date = new MutableLiveData<>();
-        date.postValue(Calendar.getInstance());
+    private LiveData<Calendar> date;
+
+    public void init(ParamRepository paramRepository) {
+        this.paramRepository = paramRepository;
+        date = Transformations.map(paramRepository.param().currentViewDate().liveData(),
+                CalendarDate::getCalendardate);
     }
 
     public LiveData<Calendar> getDate() {
@@ -26,6 +31,6 @@ class MainActivityViewModel extends ViewModel {
     }
 
     public void setDate(Calendar date) {
-        this.date.postValue(date);
+        paramRepository.param().currentViewDate().setValue(new CalendarDate(date));
     }
 }
