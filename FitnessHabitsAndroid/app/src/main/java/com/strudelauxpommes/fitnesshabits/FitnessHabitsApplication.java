@@ -8,6 +8,7 @@ import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
 import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
+import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 /**
  * Created by thomas on 2017-11-25.
@@ -24,6 +25,7 @@ public class FitnessHabitsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         FitnessHabitsApplication.application = this;
+        getParamRepository().param().currentViewDate().setValue(CalendarDate.now());
     }
 
     @MainThread

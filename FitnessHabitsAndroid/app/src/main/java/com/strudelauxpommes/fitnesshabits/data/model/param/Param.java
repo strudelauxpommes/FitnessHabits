@@ -94,5 +94,31 @@ public abstract class Param<Type> extends BaseObject {
 
 
 
+    static public class CurrentViewDate extends Param<CalendarDate> {
+
+
+        @Override
+        public void setValueOnRecord(ParamRecord record, CalendarDate name) {
+            record.currentViewDate = name;
+        }
+
+        @Override
+        public CalendarDate getValueOnRecord(ParamRecord record) {
+            return record.currentViewDate;
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
