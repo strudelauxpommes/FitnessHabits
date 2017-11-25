@@ -12,6 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="114.5dp"
         android:layout_weight="0">
+
         <TableRow>
             <TextView
                 android:text="Sommeil"

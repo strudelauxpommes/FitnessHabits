@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".sleep.SleepActivity">
+        <activity android:name=".sleep.SleepActivity"
+            android:label="SOMMEIL">
         </activity>
         <activity
             android:name=".parameters.ParameterActivity"
