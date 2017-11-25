@@ -2,6 +2,9 @@ package com.strudelauxpommes.fitnesshabits.data.model.record;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 /**
  * Created by thomas on 2017-11-25.
@@ -9,14 +12,8 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class DrinkEntry {
-    @PrimaryKey(autoGenerate = true)
-    private int id; //TODO: Implement model
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @NonNull
+    private CalendarDate date; //TODO: Implement model
+    private int categoryId;
+    private int duration;
 }
