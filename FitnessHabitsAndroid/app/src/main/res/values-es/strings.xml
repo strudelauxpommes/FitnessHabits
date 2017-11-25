@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Fitness Habits</string>
+    <string name="export">Exportar</string>
+    <string name="param">Parámetros</string>
+    <string name="objectif">Objetivos</string>
 </resources>

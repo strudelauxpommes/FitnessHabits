@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Fitness Habits</string>
     <string name="export">Export</string>
-    <string name="param">Paramètre</string>
-    <string name="objectif">Objectif</string>
+    <string name="param">Parameters</string>
+    <string name="objectif">Objectives</string>
     <string name="parameters_title_tab">Preferences</string>
     <string name="profile_title_tab">Profile</string>
     <string name="username_input">Your name</string>
+
 </resources>
