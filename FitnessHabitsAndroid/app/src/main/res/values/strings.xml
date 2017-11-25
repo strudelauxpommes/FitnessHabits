@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fitness Habits</string>
-    <string name="export">Export</string>
-    <string name="param">Paramètre</string>
-    <string name="objectif">Objectif</string>
+    <string name="food_right"> \u003e </string>
+    <string name="food_left"> \u003c </string>
+    <string name="food_meal">Repas</string>
+    <string name="food_name">Nourriture</string>
 </resources>
