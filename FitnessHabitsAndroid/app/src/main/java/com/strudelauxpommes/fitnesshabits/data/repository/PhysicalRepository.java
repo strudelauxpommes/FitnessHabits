@@ -40,7 +40,7 @@ public class PhysicalRepository {
                 }
             }.getAsLiveData();;
         }
-        return null;
+        return listPhysicalLiveData;
     }
 
     @SuppressLint("StaticFieldLeak")

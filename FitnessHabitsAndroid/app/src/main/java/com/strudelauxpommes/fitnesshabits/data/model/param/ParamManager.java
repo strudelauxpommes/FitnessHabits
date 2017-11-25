@@ -56,6 +56,11 @@ public class ParamManager {
     }
 
 
+    public Param.CurrentViewDate currentViewDate() {
+        Param.CurrentViewDate param = new Param.CurrentViewDate();
+        param.init(this);
+        return param;
+    }
 
 
     @SuppressLint("StaticFieldLeak")

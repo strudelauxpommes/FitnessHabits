@@ -18,6 +18,11 @@ public class CalendarDate extends BaseObject {
         return new CalendarDate(Calendar.getInstance());
     }
 
+    public Calendar getCalendarDate() {
+        // pour le UI.
+        return date;
+    }
+
     public static CalendarDate fromYearMonthDay(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
