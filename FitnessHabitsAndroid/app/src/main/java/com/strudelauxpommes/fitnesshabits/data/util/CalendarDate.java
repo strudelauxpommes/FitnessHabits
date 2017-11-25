@@ -29,6 +29,10 @@ public class CalendarDate extends BaseObject {
         return new CalendarDate(calendar);
     }
 
+    public Calendar getCalendardate() {
+        return date;
+    }
+
     public long getTimeInMillis() {
         // utilité: pour la méthode CalendarView::setDate()
         return date.getTimeInMillis();

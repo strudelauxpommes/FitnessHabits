@@ -2,14 +2,7 @@ package com.strudelauxpommes.fitnesshabits;
 
 import android.content.Intent;
 import android.app.DatePickerDialog;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.support.annotation.Nullable;
-import android.app.DialogFragment;
-import android.arch.persistence.room.Room;
-import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_main);
 
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel.init(FitnessHabitsApplication.application.getParamRepository());
     }
 
     @Override
@@ -37,13 +31,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         final MenuItem dateItem = menu.findItem(R.id.datepicker);
-        viewModel.getDate().observe(this, new Observer<Calendar>() {
-            @Override
-            public void onChanged(@Nullable Calendar calendar) {
-                if (calendar != null) {
-                    DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-                    dateItem.setTitle(dateFormat.format(calendar.getTime()));
-                }
+        viewModel.getDate().observe(this, calendar -> {
+            if (calendar != null) {
+                DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+                dateItem.setTitle(dateFormat.format(calendar.getTime()));
             }
         });
         return true;
