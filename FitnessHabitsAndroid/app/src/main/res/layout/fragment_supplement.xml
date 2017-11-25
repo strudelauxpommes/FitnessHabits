@@ -49,7 +49,7 @@
                     app:srcCompat="@drawable/supp_morning"/>
 
                 <ImageView
-                    android:id="@+id/btnSuppCheck1"
+                    android:id="@+id/btnSuppCheckMorning"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -69,7 +69,7 @@
 
 
                 <ImageView
-                    android:id="@+id/btnSuppCheck2"
+                    android:id="@+id/btnSuppCheckNoon"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -95,7 +95,7 @@
                     app:srcCompat="@drawable/supp_supper" />
 
                 <ImageView
-                    android:id="@+id/btnSuppCheck3"
+                    android:id="@+id/btnSuppCheckEvening"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -114,7 +114,7 @@
                     app:srcCompat="@drawable/supp_night" />
 
                 <ImageView
-                    android:id="@+id/btnSuppCheck4"
+                    android:id="@+id/btnSuppCheckNight"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
