@@ -42,7 +42,7 @@
     <Button
         android:id="@+id/btn_bevSummaryFav1"
         android:layout_width="180dp"
-        android:layout_height="32.5dp"
+        android:layout_height="36dp"
         android:layout_above="@+id/btn_bevSummaryFav2"
         android:layout_alignParentLeft="true"
         android:text="Beverage"
@@ -51,7 +51,7 @@
     <Button
         android:id="@+id/btn_bevSummaryFav2"
         android:layout_width="180dp"
-        android:layout_height="32.5dp"
+        android:layout_height="36dp"
         android:layout_above="@+id/btn_bevSummaryFav3"
         android:layout_alignParentLeft="true"
         android:text="Beverage"
@@ -60,7 +60,7 @@
     <Button
         android:id="@+id/btn_bevSummaryFav3"
         android:layout_width="180dp"
-        android:layout_height="32.5dp"
+        android:layout_height="36dp"
         android:layout_above="@+id/btn_bevSummaryOthers"
         android:layout_alignParentLeft="true"
         android:text="Beverage"
@@ -69,7 +69,7 @@
     <Button
         android:id="@+id/btn_bevSummaryOthers"
         android:layout_width="180dp"
-        android:layout_height="32.5dp"
+        android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:text="Beverage"
