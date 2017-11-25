@@ -13,6 +13,7 @@
     <string name="weight_imc">IMC:</string>
     <string name="weight_gras_pct">% Gras</string>
     <string name="weight_lbs">Lbs</string>
+    <string name="supplements_title">Suppléments</string>
     <string name="parameters_title_tab">Preferences</string>
     <string name="profile_title_tab">Profile</string>
     <string name="username_input">Your name</string>
