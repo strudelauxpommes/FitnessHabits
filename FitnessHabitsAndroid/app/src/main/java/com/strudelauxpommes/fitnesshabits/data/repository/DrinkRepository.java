@@ -8,13 +8,9 @@ import android.support.annotation.NonNull;
 
 import com.strudelauxpommes.fitnesshabits.data.DatabaseResource;
 import com.strudelauxpommes.fitnesshabits.data.dao.DrinkDataDAO;
-import com.strudelauxpommes.fitnesshabits.data.dao.PhysicalDataDAO;
 import com.strudelauxpommes.fitnesshabits.data.model.DrinkData;
-import com.strudelauxpommes.fitnesshabits.data.model.PhysicalData;
 import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkCategory;
 import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +20,7 @@ import java.util.List;
  */
 
 public class DrinkRepository {
-    private LiveData<List<DrinkData>> listDrinkDataAlcool;
+    private LiveData<List<DrinkData>> listDrinkData;
     private DrinkDataDAO drinkDataDAO;
 
     public DrinkRepository(DrinkDataDAO drinkDataDAO) {
@@ -32,20 +28,19 @@ public class DrinkRepository {
     }
 
     public LiveData<List<DrinkData>> loadDailyData() {
-        if (listDrinkDataAlcool == null) {
+        if (listDrinkData == null) {
             DrinkData defaultData = new DrinkData(1, "Mock", 5, 2, false);
             List<DrinkData> list = new ArrayList<>();
             list.add(defaultData);
-            listDrinkDataAlcool = new DatabaseResource<List<DrinkData>>(list) {
+            listDrinkData = new DatabaseResource<List<DrinkData>>(list) {
                 @NonNull
                 @Override
                 protected LiveData<List<DrinkData>> loadFromDb() {
                     return drinkDataDAO.getDrinkToday();
                 }
             }.getAsLiveData();
-            ;
         }
-        return null;
+        return listDrinkData;
     }
 
     @SuppressLint("StaticFieldLeak")
