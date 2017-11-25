@@ -11,4 +11,12 @@ import android.arch.persistence.room.PrimaryKey;
 public class PhysicalEntry {
     @PrimaryKey(autoGenerate = true)
     private int id; //TODO: Implement model
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

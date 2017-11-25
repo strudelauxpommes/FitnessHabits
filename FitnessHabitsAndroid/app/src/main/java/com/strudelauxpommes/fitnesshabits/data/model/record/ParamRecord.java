@@ -23,8 +23,15 @@ public class ParamRecord {
     Gender gender;
 
     CalendarDate currentViewDate;
+    
+    private int id; //TODO: Implement model
 
+    public int getId() {
+        return id;
+    }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }
