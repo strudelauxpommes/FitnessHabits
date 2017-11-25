@@ -6,20 +6,21 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:text="Sommeil"
-        android:clickable="true"
-        android:layout_width="fill_parent"
-        android:layout_height="15dp"
-        />
+
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id = "@+id/RHE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:layout_marginTop="30dp"
-        android:padding="5dp">
-
+        android:layout_width="fill_parent"
+        android:layout_height="114.5dp"
+        android:layout_weight="0">
+        <TableRow>
+            <TextView
+                android:text="Sommeil"
+                android:clickable="true"
+                android:layout_width="fill_parent"
+                android:layout_height="15dp"
+                android:textStyle="bold"
+                />
+        </TableRow>
         <TableRow android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/runLabel"
@@ -55,7 +56,7 @@
                 <!--/>-->
         </TableRow>
 
-        <TableRow android:layout_height="wrap_content">
+        <TableRow android:layout_height="10dp">
             <EditText
                 android:inputType="number"
                 android:id="@+id/visitorRuns"
@@ -77,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 />
+
             <!--<EditText-->
                 <!--android:id="@+id/visitor_Input2"-->
 
@@ -84,36 +86,16 @@
                 <!--android:layout_width="fill_parent"-->
                 <!--/>-->
         </TableRow>
-
-        <TableRow android:layout_height="wrap_content">
-            <EditText
-                android:inputType="number"
-                android:id="@+id/visitorRuns2"
-
+        <TableRow>
+            <Button
+                android:id="@+id/button_id"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                />
-            <EditText
-                android:inputType="number"
-                android:id="@+id/visitorHits2"
+                android:text="OK"
 
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
                 />
-            <EditText
-                android:inputType="number"
-                android:id="@+id/visitor_Input3"
-
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                />
-            <!--<EditText-->
-                <!--android:id="@+id/visitor_Input4"-->
-
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--/>-->
         </TableRow>
+
     </TableLayout>
 
 
