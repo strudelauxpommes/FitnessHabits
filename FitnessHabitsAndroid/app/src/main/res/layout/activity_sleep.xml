@@ -7,13 +7,24 @@
     android:layout_height="match_parent"
     tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepActivity"
     android:orientation="horizontal">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+        <TableRow>
+            <TextView
+                android:id="@+id/whiteBed"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_local_hotel_white_24dp" />
+            <TextView
+                android:text="25/11/2017"
+                android:textAlignment="center"
+                android:paddingLeft="100dp"/>
+        </TableRow>
 
-        <TextView
-            android:id="@+id/whiteBed"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_local_hotel_white_24dp" />
+    </TableLayout>
+
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id = "@+id/RHE2"
@@ -49,7 +60,7 @@
                 />
             <TextView
             android:id="@+id/tempsLabel"
-            android:text="Temps"
+            android:text="Durée"
             android:layout_height="wrap_content"
             android:layout_width="75dp"
             android:layout_marginRight="20dp"
