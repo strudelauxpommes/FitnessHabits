@@ -16,49 +16,56 @@ public abstract class Param<Type> extends BaseObject {
         this.manager = manager;
     }
 
+
     public LiveData<Type> liveData() {
-        assertThat(false);
-        return null;
+        return Transformations.map(manager.paramRecordLiveData, record -> getValueOnRecord(record));
     }
+
+    public abstract void setValueOnRecord(ParamRecord record, Type type);
+    public abstract Type getValueOnRecord(ParamRecord record);
 
 
     public void setValue(Type value) {
-        assertThat(false);
+
+        ParamRecord record = manager.paramRecordLiveData.getValue();
+
+        // pourquoi ça pourrait être "null"?
+        if (record != null) {
+            setValueOnRecord(record, value);
+            manager.saveParamRecord(record);
+        }
+
     }
 
-
-
-
     // ==============================================================
-
 
     static public class UserName extends Param<String> {
 
         @Override
-        public void setValue(String value) {
-
-
-            ParamRecord record = manager.paramRecordLiveData.getValue();
-
-            // pourquoi ça pourrait être "null"?
-            if (record != null) {
-                record.userName = value;
-                manager.saveParamRecord(record);
-            }
-
+        public void setValueOnRecord(ParamRecord record, String name) {
+            record.userName = name;
         }
 
         @Override
-        public LiveData<String> liveData() {
-            return Transformations.map(manager.paramRecordLiveData, record -> record.userName);
+        public String getValueOnRecord(ParamRecord record) {
+            return record.userName;
         }
-
 
     }
 
 
 
     static public class UserHeight extends Param<Float> {
+
+        @Override
+        public void setValueOnRecord(ParamRecord record, Float name) {
+            record.userHeight = name;
+        }
+
+        @Override
+        public Float getValueOnRecord(ParamRecord record) {
+            return record.userHeight;
+        }
 
     }
 
@@ -68,8 +75,13 @@ public abstract class Param<Type> extends BaseObject {
 
 
         @Override
-        public LiveData<CalendarDate> liveData() {
-            return Transformations.map(manager.paramRecordLiveData, record -> record.userBirthDate);
+        public void setValueOnRecord(ParamRecord record, CalendarDate name) {
+            record.userBirthDate = name;
+        }
+
+        @Override
+        public CalendarDate getValueOnRecord(ParamRecord record) {
+            return record.userBirthDate;
         }
 
 

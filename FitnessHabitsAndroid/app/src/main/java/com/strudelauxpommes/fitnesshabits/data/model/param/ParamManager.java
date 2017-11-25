@@ -1,8 +1,13 @@
 package com.strudelauxpommes.fitnesshabits.data.model.param;
 
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
+import android.support.annotation.MainThread;
+import android.support.annotation.NonNull;
 
+import com.strudelauxpommes.fitnesshabits.data.DatabaseResource;
 import com.strudelauxpommes.fitnesshabits.data.dao.ParamRecordDao;
 import com.strudelauxpommes.fitnesshabits.data.model.record.ParamRecord;
 
@@ -13,8 +18,24 @@ public class ParamManager {
 
     public ParamManager(ParamRecordDao paramRecordDao) {
         this.paramRecordDao = paramRecordDao;
-        this.paramRecordLiveData = paramRecordDao.loadRecordLiveData();
+        this.paramRecordLiveData = loadParamRecordLiveData();
     };
+
+
+    public LiveData<ParamRecord> loadParamRecordLiveData() {
+
+        ParamRecord defaultRecord = new ParamRecord();
+
+        return new DatabaseResource<ParamRecord>(defaultRecord) {
+            @NonNull
+            @Override
+            protected LiveData<ParamRecord> loadFromDb() {
+                return paramRecordDao.loadRecordLiveData();
+            }
+        }.getAsLiveData();
+
+    }
+
 
     public Param.UserName userName() {
         Param.UserName param = new Param.UserName();
@@ -35,7 +56,23 @@ public class ParamManager {
     }
 
 
+
+
+    @SuppressLint("StaticFieldLeak")
+    @MainThread
     public void saveParamRecord(ParamRecord record) {
-        paramRecordDao.saveParamRecord(record);
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                paramRecordDao.saveParamRecord(record);
+                return null;
+            }
+        }.execute();
+
+
     }
+
+
+
 }

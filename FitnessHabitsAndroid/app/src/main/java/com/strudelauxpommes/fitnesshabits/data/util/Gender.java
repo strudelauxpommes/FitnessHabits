@@ -6,13 +6,13 @@ public enum Gender {
     FEMALE(222),
     OTHER(333);
 
-    int value;
+    Integer value;
 
     Gender(int value) {
         this.value = value;
     }
 
-    public static Gender decodeFromInt(int value) {
+    public static Gender decodeFromInt(Integer value) {
 
         // TODO: trouver le moyen d'enlever cette horreur!!!!!!!!!!!!!!
 
@@ -33,7 +33,7 @@ public enum Gender {
         return null;
     }
 
-    public int encodeToInt() {
+    public Integer encodeToInt() {
         return value;
     }
 

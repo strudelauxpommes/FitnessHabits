@@ -17,7 +17,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        //experim();
+        experim();
 
 
     }
@@ -37,8 +37,7 @@ public class TestActivity extends AppCompatActivity {
         repo.param().userName().liveData().observe(this, name -> testInput.setText(name));
         testButton.setOnClickListener(button -> repo.param().userName().setValue(testInput.getText().toString()));
 
-
-
+        
     }
 
 
