@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.strudelauxpommes.androidcomponents.demo.view_team.MainActivity">
+    <item
+        android:id="@+id/datepicker"
+        android:checkable="false"
+        android:enabled="true"
+        android:onClick="changeDate"
+        android:title=""
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/param"
+        android:title="@string/param"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/export"
+        android:title="@string/export" />
+    <item
+        android:id="@+id/objectif"
+        android:title="@string/objectif" />
+</menu>
