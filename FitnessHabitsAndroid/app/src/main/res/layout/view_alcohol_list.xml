@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/ic_star_border_black_24dp" />
+
+    <EditText
+        android:id="@+id/alcohol_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/favorite"
+        android:layout_toEndOf="@+id/favorite"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Alcohol Data" />
+
+    <Button
+        android:id="@+id/decrement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/consumption"
+        android:layout_toLeftOf="@+id/consumption"
+        android:text="—"
+        android:minWidth="8dp"/>
+
+    <EditText
+        android:id="@+id/consumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/increment"
+        android:layout_toLeftOf="@id/increment"
+        android:ems="2"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/increment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="+"
+        android:minWidth="8dp"/>
+
+
+
+
+</RelativeLayout>
