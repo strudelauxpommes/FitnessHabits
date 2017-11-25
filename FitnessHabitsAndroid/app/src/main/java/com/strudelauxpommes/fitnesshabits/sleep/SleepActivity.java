@@ -15,4 +15,5 @@ public class SleepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sommeil);
         this.sleepViewModel = ViewModelProviders.of(this).get(SleepViewModel.class);
     }
+
 }

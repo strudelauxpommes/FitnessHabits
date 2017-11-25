@@ -30,12 +30,12 @@
                 android:textStyle="bold"
                 />
         </TableRow>
-        <TableRow android:layout_height="wrap_content">
+        <TableRow android:layout_height="fill_parent">
             <TextView
                 android:id="@+id/runLabel2"
                 android:text="Debut"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
+                android:layout_width="75dp"
                 android:layout_marginRight="10dp"
                 android:textAlignment="center"
                 />
@@ -43,7 +43,7 @@
                 android:id="@+id/hitLabel2"
                 android:text="Fin"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
+                android:layout_width="75dp"
                 android:layout_marginRight="20dp"
                 android:textAlignment="center"
                 />
@@ -51,7 +51,7 @@
                 android:id="@+id/errorLabel"
                 android:text="#Reveil"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
+                android:layout_width="75dp"
                 android:layout_marginRight="20dp"
                 android:textAlignment="center"
                 />
@@ -59,13 +59,14 @@
             android:id="@+id/tempsLabel"
             android:text="temps"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="75dp"
             android:layout_marginRight="20dp"
             android:textAlignment="center"
             />
         </TableRow>
 
-        <TableRow android:layout_height="10dp">
+        <TableRow android:layout_height="10dp"
+            android:layout_width="match_parent">
             <EditText
                 android:inputType="number"
                 android:id="@+id/visitorRuns2"
