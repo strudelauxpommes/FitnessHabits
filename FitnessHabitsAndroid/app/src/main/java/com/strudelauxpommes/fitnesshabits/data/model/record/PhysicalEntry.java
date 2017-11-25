@@ -16,7 +16,6 @@ import java.sql.Date;
  */
 
 @Entity(primaryKeys = {"date","categoryId"})
-@TypeConverters(CalendarDateConverter.class)
 public class PhysicalEntry {
     @NonNull
     private CalendarDate date; //TODO: Implement model

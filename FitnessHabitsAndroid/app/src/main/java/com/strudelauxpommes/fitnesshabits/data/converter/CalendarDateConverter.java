@@ -4,9 +4,6 @@ import android.arch.persistence.room.TypeConverter;
 
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
-/**
- * Created by thomas on 2017-11-25.
- */
 
 public class CalendarDateConverter {
 

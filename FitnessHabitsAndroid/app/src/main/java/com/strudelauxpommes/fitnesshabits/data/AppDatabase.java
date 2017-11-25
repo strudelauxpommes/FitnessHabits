@@ -2,20 +2,16 @@ package com.strudelauxpommes.fitnesshabits.data;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 
-import com.strudelauxpommes.fitnesshabits.data.dao.PhysicalDataDAO;
-import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.FoodCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.FoodEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.ParamRecord;
-import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.SleepCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.SleepEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.SupplementCategory;
-import com.strudelauxpommes.fitnesshabits.data.model.record.SupplementEntry;
-import com.strudelauxpommes.fitnesshabits.data.model.record.WeightEntry;
+import com.strudelauxpommes.fitnesshabits.data.*;
+import com.strudelauxpommes.fitnesshabits.data.converter.*;
+import com.strudelauxpommes.fitnesshabits.data.dao.*;
+import com.strudelauxpommes.fitnesshabits.data.model.*;
+import com.strudelauxpommes.fitnesshabits.data.model.param.*;
+import com.strudelauxpommes.fitnesshabits.data.model.record.*;
+import com.strudelauxpommes.fitnesshabits.data.repository.*;
+import com.strudelauxpommes.fitnesshabits.data.util.*;
 
 /**
  * Created by thomas on 2017-11-25.
@@ -35,6 +31,7 @@ import com.strudelauxpommes.fitnesshabits.data.model.record.WeightEntry;
         SupplementCategory.class,
         SupplementEntry.class
 }, version = 1)
+@TypeConverters({CalendarDateConverter.class, GenderConverter.class})
 public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
 }
