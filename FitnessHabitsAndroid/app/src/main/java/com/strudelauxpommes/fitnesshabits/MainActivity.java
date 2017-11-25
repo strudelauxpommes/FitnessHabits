@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.datepicker) {
-            Calendar currentDate = viewModel.getDate().getValue();
+            Calendar currentDate = Calendar.getInstance();
             if (currentDate != null) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
