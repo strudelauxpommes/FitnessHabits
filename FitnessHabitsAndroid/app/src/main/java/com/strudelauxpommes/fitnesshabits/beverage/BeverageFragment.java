@@ -30,7 +30,8 @@ public class BeverageFragment extends Fragment {
         // Required empty public constructor
 
     }
-    public ArrayList<Breuvage> getFavorites(){
+
+    /**public ArrayList<Breuvage> getFavorites(){
 
         Breuvage b1 = new Breuvage();
         b1.setName("Eau");
@@ -53,10 +54,11 @@ public class BeverageFragment extends Fragment {
         listBr.add(b3);
 
         return  listBr;
-    }
+    }*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /**
         txtTotal = (TextView) getView().findViewById(R.id.txt_bevTotal);
 
         breuvArray = getFavorites();
@@ -107,23 +109,26 @@ public class BeverageFragment extends Fragment {
             public void onClick(View v){
                 startBeverageDetails();
             }
-        });
+        });*/
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_beverage, container, false);
     }
+
+
     private void startBeverageDetails(){
-        Intent myIntent = new Intent(getActivity(), BeverageDetailsActivity.class);
+        //Intent myIntent = new Intent(getActivity(), BeverageDetailsActivity.class);
         //myIntent.putExtra("key", value); //Optional parameters
-        getActivity().startActivity(myIntent);
+        //getActivity().startActivity(myIntent);
     }
 
+    /**
     private void setNameBtn(Button btn, Breuvage b, int qty){
         btn.setText(b.getName()+"-"+b.getQuantite_ml()+"ml    "+ qty);
-    }
+    }*/
 
-    private void setTotalTitle(){
+    /**private void setTotalTitle(){
         //add others
          txtTotal.setText( (qtyBtn1+qtyBtn2+qtyBtn3) +"ml");
-    }
+    }*/
 }
