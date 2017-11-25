@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepActivity"
+    android:orientation="horizontal">
+
+    <TextView
+        android:text="Sommeil"
+        android:id="@+id/click2"
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"
+        android:textStyle="bold"
+        />
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id = "@+id/RHE2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0">
+        <TableRow>
+            <TextView
+                android:text="Sommeil"
+                android:clickable="true"
+                android:id="@+id/click3"
+                android:layout_width="fill_parent"
+                android:layout_height="15dp"
+                android:textStyle="bold"
+                />
+        </TableRow>
+        <TableRow android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/runLabel2"
+                android:text="Debut"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/hitLabel2"
+                android:text="Fin"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/errorLabel"
+                android:text="#Reveil"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+            android:id="@+id/tempsLabel"
+            android:text="temps"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            />
+        </TableRow>
+
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input7"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+            android:id="@+id/visitor_Input8"
+
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            />
+        </TableRow>
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns3"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits4"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input5"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+                android:id="@+id/visitor_Input6"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+        </TableRow>
+        <TableRow android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button_id"
+                android:layout_height="50dp"
+
+                android:layout_width="20dp"
+                android:text="+"
+
+                />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
+
