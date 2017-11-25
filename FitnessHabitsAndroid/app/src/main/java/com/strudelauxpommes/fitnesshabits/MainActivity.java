@@ -3,6 +3,7 @@ package com.strudelauxpommes.fitnesshabits;
 import android.app.DialogFragment;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,5 +36,19 @@ public class MainActivity extends AppCompatActivity {
         if (mi.getItemId() == R.id.datepicker) {
 
         }
+    }
+
+    @Override
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.objectif) {
+            // activité temporaire, pour expérimenter. à enlever seulement à la fin de la journée
+            Intent intent = new Intent(this, TestActivity.class);
+            this.startActivity(intent);
+        }
+
+        return false;
+
     }
 }

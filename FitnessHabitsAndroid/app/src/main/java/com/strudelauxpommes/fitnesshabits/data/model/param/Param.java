@@ -2,11 +2,13 @@ package com.strudelauxpommes.fitnesshabits.data.model.param;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Transformations;
 
 import com.strudelauxpommes.fitnesshabits.data.model.record.ParamRecord;
+import com.strudelauxpommes.fitnesshabits.data.util.BaseObject;
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
-public abstract class Param<Type> {
+public abstract class Param<Type> extends BaseObject {
 
     ParamManager manager;
 
@@ -15,64 +17,63 @@ public abstract class Param<Type> {
     }
 
     public LiveData<Type> liveData() {
+        assertThat(false);
         return null;
     }
 
 
     public void setValue(Type value) {
-
+        assertThat(false);
     }
 
-    abstract Type getValue(ParamRecord record);
+
 
 
     // ==============================================================
 
 
-    static class Name extends Param<String> {
+    static public class UserName extends Param<String> {
 
         @Override
-        public String getValue(ParamRecord record) {
-            return null;
+        public void setValue(String value) {
+
+
+            ParamRecord record = manager.paramRecordLiveData.getValue();
+
+            // pourquoi ça pourrait être "null"?
+            if (record != null) {
+                record.userName = value;
+                manager.saveParamRecord(record);
+            }
+
         }
 
         @Override
         public LiveData<String> liveData() {
-            return null;
+            return Transformations.map(manager.paramRecordLiveData, record -> record.userName);
         }
+
 
     }
 
 
 
-    static class Height extends Param<Float> {
+    static public class UserHeight extends Param<Float> {
 
-        @Override
-        public Float getValue(ParamRecord record) {
-            return null;
-        }
-
-        @Override
-        public LiveData<Float> liveData() {
-            return null;
-        }
     }
 
 
 
-    static class BirthDate extends Param<CalendarDate> {
+    static public class UserBirthDate extends Param<CalendarDate> {
 
-        @Override
-        public CalendarDate getValue(ParamRecord record) {
-            return null;
-        }
 
         @Override
         public LiveData<CalendarDate> liveData() {
-            return null;
+            return Transformations.map(manager.paramRecordLiveData, record -> record.userBirthDate);
         }
-    }
 
+
+    }
 
 
 

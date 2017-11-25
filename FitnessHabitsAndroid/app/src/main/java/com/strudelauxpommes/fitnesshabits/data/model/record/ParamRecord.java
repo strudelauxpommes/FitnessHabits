@@ -11,25 +11,17 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
 @Entity
 public class ParamRecord {
 
-    @PrimaryKey(autoGenerate = true)
-    int id;
+    @PrimaryKey
+    public int id = 0;
 
-    String name;
+    public String userName;
 
-    Float height;
+    public Float userHeight;
 
-    CalendarDate birthDate;
+    public CalendarDate userBirthDate;
 
-    Gender gender;
+    public Gender userGender;
 
-    CalendarDate currentViewDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public CalendarDate currentViewDate;
 
 }
