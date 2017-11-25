@@ -375,7 +375,7 @@
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:background="@drawable/editTextBackground"
+                    android:background="@drawable/edit_text_background"
                     android:inputType="textMultiLine" />
             </LinearLayout>
         </LinearLayout>
