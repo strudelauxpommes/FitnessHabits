@@ -12,17 +12,17 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/param"
-        android:icon="@drawable/ic_settings_black_24dp"
+        android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/param"
         app:showAsAction="always" />
     <item
         android:id="@+id/export"
-        android:icon="@drawable/ic_file_upload_black_24dp"
+        android:icon="@drawable/ic_export_white_24dp"
         android:title="@string/export"
         app:showAsAction="always" />
     <item
         android:id="@+id/objectif"
-        android:icon="@drawable/ic_my_location_black_24dp"
+        android:icon="@drawable/ic_objectives_white_24dp"
         android:title="@string/objectif"
         app:showAsAction="always" />
 </menu>
