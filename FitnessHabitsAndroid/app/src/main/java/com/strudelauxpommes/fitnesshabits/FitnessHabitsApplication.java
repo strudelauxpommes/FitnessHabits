@@ -6,28 +6,38 @@ import android.support.annotation.MainThread;
 
 import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
 import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.DrinkRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.FoodDataRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.SleepRepository;
+import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 /**
  * Created by thomas on 2017-11-25.
  */
 
 public class FitnessHabitsApplication extends Application {
-    public static Application application;
+    public static FitnessHabitsApplication application;
     private AppDatabase database;
     private PhysicalRepository physicalRepository;
     private AlcoolRepository alcoolRepository;
+    private ParamRepository paramRepository;
+    private DrinkRepository drinkRepository;
+    private SleepRepository sleepRepository;
+    private FoodDataRepository foodDataRepository;
 
     @Override
     public void onCreate() {
         super.onCreate();
         FitnessHabitsApplication.application = this;
+        getParamRepository().param().currentViewDate().setValue(CalendarDate.now());
     }
 
     @MainThread
     public AppDatabase getDatabase() {
-        if (database==null){
-            database = Room.databaseBuilder(this, AppDatabase.class,"FitnessHabits-database").fallbackToDestructiveMigration().build(); //TODO: remove fallback destroy
+        if (database == null) {
+            database = Room.databaseBuilder(this, AppDatabase.class, "FitnessHabits-database").fallbackToDestructiveMigration().build(); //TODO: remove fallback destroy
         }
         return database;
     }
@@ -47,5 +57,37 @@ public class FitnessHabitsApplication extends Application {
             alcoolRepository = new AlcoolRepository(getDatabase().drinkDataDAO());
         }
         return alcoolRepository;
+    }
+
+    @MainThread
+    public ParamRepository getParamRepository() {
+        if (paramRepository == null) {
+            paramRepository = new ParamRepository(getDatabase().paramRecordDao());
+        }
+        return paramRepository;
+    }
+
+    @MainThread
+    public FoodDataRepository getFoodRepository() {
+        if (foodDataRepository == null) {
+            foodDataRepository = new FoodDataRepository(getDatabase().foodDataDao());
+        }
+        return foodDataRepository;
+    }
+
+    @MainThread
+    public DrinkRepository getDrinkRepository() {
+        if (drinkRepository == null) {
+            drinkRepository = new DrinkRepository(getDatabase().drinkDataDAO());
+        }
+        return drinkRepository;
+    }
+
+    @MainThread
+    public SleepRepository getSleepRepository() {
+        if(sleepRepository == null) {
+            sleepRepository = new SleepRepository(getDatabase().sleepEntryDAO());
+        }
+        return sleepRepository;
     }
 }

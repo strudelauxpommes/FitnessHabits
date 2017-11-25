@@ -25,14 +25,16 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
         ParamRecord.class,
         DrinkCategory.class,
         DrinkEntry.class,
-        SleepCategory.class,
         SleepEntry.class,
         WeightEntry.class,
         SupplementCategory.class,
         SupplementEntry.class
-}, version = 1)
+}, version = 3)
 @TypeConverters({CalendarDateConverter.class, GenderConverter.class})
 public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
     public abstract DrinkDataDAO drinkDataDAO();
+    public abstract ParamRecordDao paramRecordDao();
+    public abstract SleepEntryDAO sleepEntryDAO();
+    public abstract FoodDataDao foodDataDao();
 }

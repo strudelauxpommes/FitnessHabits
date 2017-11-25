@@ -1,15 +1,88 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="180dp"
+    android:layout_height="170.25dp"
+    android:background="@color/colorPrimary"
     tools:context="com.strudelauxpommes.fitnesshabits.beverage.BeverageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@android:color/white"
-        android:text="Beverage" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/layout_bevSumHeader"
+        android:layout_width="match_parent"
+        android:layout_height="40.25dp"
+        android:clickable="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_bevSummaryTitle"
+            android:layout_width="100dp"
+            android:layout_height="40.25dp"
+            android:background="@android:color/black"
+            android:text="Beverage"
+            android:textColor="@android:color/white"/>
+
+        <ImageView
+            android:id="@+id/img_bevTitle"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txt_bevSummaryTitle"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/txt_bevTotal"
+            android:layout_width="40dp"
+            android:layout_height="40.25dp"
+            android:layout_toRightOf="@id/img_bevTitle"
+            android:background="@android:color/black"
+            android:text="TextView" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_bevSummaryFav1"
+        android:layout_width="180dp"
+        android:layout_height="32.5dp"
+        android:layout_above="@+id/btn_bevSummaryFav2"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/black"
+        android:text="Beverage"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_bevSummaryFav2"
+        android:layout_width="180dp"
+        android:layout_height="32.5dp"
+        android:layout_above="@+id/btn_bevSummaryFav3"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/black"
+        android:text="Beverage"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_bevSummaryFav3"
+        android:layout_width="180dp"
+        android:layout_height="32.5dp"
+        android:layout_above="@+id/btn_bevSummaryOthers"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/black"
+        android:text="Beverage"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_bevSummaryOthers"
+        android:layout_width="180dp"
+        android:layout_height="32.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/holo_blue_bright"
+        android:text="Beverage"
+        android:textColor="@android:color/white" />
+
+
+
+
+</RelativeLayout>
