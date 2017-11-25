@@ -44,7 +44,7 @@ public class AlcoolRepository {
                 }
             }.getAsLiveData();;
         }
-        return null;
+        return listDrinkDataAlcool;
     }
 
     @SuppressLint("StaticFieldLeak")

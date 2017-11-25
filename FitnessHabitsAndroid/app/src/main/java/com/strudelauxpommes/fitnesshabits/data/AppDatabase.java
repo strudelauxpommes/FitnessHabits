@@ -35,5 +35,5 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
     public abstract DrinkDataDAO drinkDataDAO();
     public abstract ParamRecordDao paramRecordDao();
-
+    public abstract SleepEntryDAO sleepEntryDAO();
 }
