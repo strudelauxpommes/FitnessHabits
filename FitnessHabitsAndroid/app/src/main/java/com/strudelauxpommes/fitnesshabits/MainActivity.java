@@ -5,6 +5,11 @@ import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
+import android.app.DialogFragment;
+import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -66,5 +71,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             startActivity(new Intent(this, ParameterActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.objectif) {
+            // activité temporaire, pour expérimenter. à enlever seulement à la fin de la journée
+            Intent intent = new Intent(this, TestActivity.class);
+            this.startActivity(intent);
+        }
+
+        return false;
+
     }
 }

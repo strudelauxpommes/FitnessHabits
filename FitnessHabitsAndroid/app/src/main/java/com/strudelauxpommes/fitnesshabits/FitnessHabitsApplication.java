@@ -6,6 +6,7 @@ import android.support.annotation.MainThread;
 
 import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
 import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
 
 /**
@@ -17,6 +18,7 @@ public class FitnessHabitsApplication extends Application {
     private AppDatabase database;
     private PhysicalRepository physicalRepository;
     private AlcoolRepository alcoolRepository;
+    private ParamRepository paramRepository;
 
     @Override
     public void onCreate() {
@@ -48,4 +50,16 @@ public class FitnessHabitsApplication extends Application {
         }
         return alcoolRepository;
     }
+
+    @MainThread
+    public ParamRepository getParamRepository() {
+        if (paramRepository == null) {
+            paramRepository = new ParamRepository(getDatabase().paramRecordDao());
+        }
+        return paramRepository;
+    }
+
+
+
+
 }
