@@ -13,8 +13,9 @@ public class AlcoholSummaryAdapter extends RecyclerView.Adapter<AlcoholSummaryAd
     @Override
     public AlcoholSummaryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        ViewHolder viewHolder = new ViewHolder(TODO);
-        return viewHolder;
+        //ViewHolder viewHolder = new ViewHolder();
+        //return viewHolder;
+        return null;
     }
 
     @Override
