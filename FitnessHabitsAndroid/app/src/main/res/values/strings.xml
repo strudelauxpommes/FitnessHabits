@@ -9,4 +9,5 @@
     <string name="username_input">Your name</string>
     <string name="title_activity_beverage_details">BeverageDetailsActivity</string>
     <string name="title_activity_physical_detail">physicalActivityDetail</string>
+    <string name="title_activity_physical_fragment">PhysicalActivityFragment</string>
 </resources>
