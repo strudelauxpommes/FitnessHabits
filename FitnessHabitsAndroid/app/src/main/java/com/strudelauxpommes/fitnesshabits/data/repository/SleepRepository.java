@@ -1,12 +1,16 @@
 package com.strudelauxpommes.fitnesshabits.data.repository;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 
 import com.strudelauxpommes.fitnesshabits.data.DatabaseResource;
 import com.strudelauxpommes.fitnesshabits.data.dao.SleepEntryDAO;
 import com.strudelauxpommes.fitnesshabits.data.model.DrinkData;
 import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkCategory;
+import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkEntry;
 import com.strudelauxpommes.fitnesshabits.data.model.record.SleepEntry;
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
@@ -42,5 +46,17 @@ public class SleepRepository {
             }.getAsLiveData();
         }
         return listSleepEntry;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    @MainThread
+    public void saveDrinkEntry(SleepEntry entry) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                sleepEntryDAO.insertNewEntry(entry);
+                return null;
+            }
+        }.execute();
     }
 }
