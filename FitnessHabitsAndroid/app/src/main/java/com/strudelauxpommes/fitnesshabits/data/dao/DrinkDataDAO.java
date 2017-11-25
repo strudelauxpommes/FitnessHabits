@@ -16,9 +16,9 @@ import java.util.List;
  */
 
 public interface DrinkDataDAO {
-    @Query("select PhysicalCategory.id, PhysicalCategory.categoryName, PhysicalCategory.intensity, PhysicalCategory.isFavorite " +
-            "from PhysicalCategory " +
-            "left join (select PhysicalEntry.duration from PhysicalEntry where PhysicalEntry.date = 'NOW') as CategoryData on PhysicalCategory.id = CategoryData.categoryId ")
+    @Query("select DrinkCategory.id, DrinkCategory.categoryName, DrinkCategory.quantity, DrinkCategory.isFavorite, DrinkData.consumed " +
+            "from DrinkCategory " +
+            "left join (select DrinkEntry.consumed from DrinkEntry where DrinkEntry.date = 'NOW') as DrinkData on DrinkCategory.id = DrinkData.categoryId ")
     LiveData<List<PhysicalData>> getToday();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
