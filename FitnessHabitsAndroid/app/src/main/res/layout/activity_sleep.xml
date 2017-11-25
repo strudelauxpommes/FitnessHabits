@@ -8,19 +8,22 @@
     tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepActivity"
     android:orientation="horizontal">
 
-    <TextView
-        android:text="Sommeil"
-        android:id="@+id/click2"
-        android:layout_width="fill_parent"
-        android:layout_height="15dp"
-        android:textStyle="bold"
-        />
+        <TextView
+            android:id="@+id/whiteBed"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_local_hotel_white_24dp" />
+
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id = "@+id/RHE2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="0">
-        <TableRow>
+        android:layout_weight="0"
+        android:layout_marginTop="50dp">
+
+        <TableRow
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="20dp">
             <TextView
                 android:text="Sommeil"
                 android:clickable="true"

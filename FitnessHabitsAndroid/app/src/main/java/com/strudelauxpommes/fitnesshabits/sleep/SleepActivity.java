@@ -12,8 +12,7 @@ public class SleepActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sommeil);
+        setContentView(R.layout.activity_sleep);
         this.sleepViewModel = ViewModelProviders.of(this).get(SleepViewModel.class);
     }
-
 }
