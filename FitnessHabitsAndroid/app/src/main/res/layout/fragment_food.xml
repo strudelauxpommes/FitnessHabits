@@ -11,6 +11,7 @@
         android:layout_height="170.25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:paddingBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +27,7 @@
                 android:id="@+id/btnHeader"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="24dp"
                 android:capitalize="none"
                 android:padding="0dp"
                 android:text="Nourriture"
@@ -40,7 +41,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button6"
+                    android:id="@+id/btnLeft"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
                     android:text="@string/food_left" />
 
                 <TextView
-                    android:id="@+id/btnRepas"
+                    android:id="@+id/txtNomRepas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -59,7 +60,7 @@
                     android:textAlignment="center" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/btnRight"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                     app:srcCompat="@drawable/food_proteines" />
 
                 <TextView
-                    android:id="@+id/btnPortions1"
+                    android:id="@+id/txtPortions1"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -104,7 +105,7 @@
                     app:srcCompat="@drawable/food_legumes" />
 
                 <TextView
-                    android:id="@+id/btnPortions2"
+                    android:id="@+id/txtPortions2"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -130,7 +131,7 @@
                     app:srcCompat="@drawable/food_glucides" />
 
                 <TextView
-                    android:id="@+id/btnPortions3"
+                    android:id="@+id/txtPortions3"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -149,7 +150,7 @@
                     app:srcCompat="@drawable/food_fruits" />
 
                 <TextView
-                    android:id="@+id/btnPortions4"
+                    android:id="@+id/txtPortions4"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -175,7 +176,7 @@
                     app:srcCompat="@drawable/food_gras" />
 
                 <TextView
-                    android:id="@+id/btnPortions5"
+                    android:id="@+id/txtPortions5"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
