@@ -20,7 +20,11 @@ import java.util.List;
 public interface PhysicalDataDAO {
     @Query("select PhysicalCategory.id, PhysicalCategory.categoryName, PhysicalCategory.intensity, PhysicalCategory.isFavorite, CategoryData.duration " +
             "from PhysicalCategory " +
-            "left join (select PhysicalEntry.duration, PhysicalEntry.categoryId from PhysicalEntry where PhysicalEntry.date = 'NOW') as CategoryData on PhysicalCategory.id = CategoryData.categoryId ")
+            "left join (select PhysicalEntry.duration, PhysicalEntry.categoryId " +
+            "from PhysicalEntry where PhysicalEntry.date = " +
+            "(select currentViewDate from ParamRecord limit 1)) " +
+            "as CategoryData " +
+            "on PhysicalCategory.id = CategoryData.categoryId ")
     LiveData<List<PhysicalData>> getToday();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
