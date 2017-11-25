@@ -6,4 +6,60 @@
     android:layout_height="match_parent"
     tools:context="com.strudelauxpommes.fitnesshabits.MainActivity">
 
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="15"
+        >
+        <fragment
+            android:id="@+id/physicalActivityFragment"
+            android:layout_width="match_parent"
+            android:layout_height="182.5dp"
+            android:name="com.strudelauxpommes.fitnesshabits.physicalactivity.PhisicalActivityFragment"
+            />
+        <fragment
+            android:id="@+id/supplementFragment"
+            android:layout_width="match_parent"
+            android:layout_height="148.5dp"
+            android:name="com.strudelauxpommes.fitnesshabits.supplement.SupplementFragment"
+            />
+        <fragment
+            android:id="@+id/sleepFragment"
+            android:layout_width="match_parent"
+            android:layout_height="114.5dp"
+            android:name="com.strudelauxpommes.fitnesshabits.sleep.SleepFragment"
+            />
+        <fragment
+            android:id="@+id/weightFragment"
+            android:layout_width="match_parent"
+            android:layout_height="114.5dp"
+            android:name="com.strudelauxpommes.fitnesshabits.weight.WeightFragment"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <fragment
+            android:id="@+id/foodFragment"
+            android:layout_width="match_parent"
+            android:layout_height="186.25dp"
+            android:name="com.strudelauxpommes.fitnesshabits.food.FoodFragment"
+            />
+        <fragment
+            android:id="@+id/beverageFragment"
+            android:layout_width="match_parent"
+            android:layout_height="186.25dp"
+            android:name="com.strudelauxpommes.fitnesshabits.beverage.BeverageFragment"
+            />
+        <fragment
+            android:id="@+id/alcoholFragment"
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:name="com.strudelauxpommes.fitnesshabits.alcohol.AlcoholFragment"
+            />
+    </LinearLayout>
+
 </LinearLayout>
