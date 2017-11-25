@@ -13,11 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
+import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static MainActivity application;
-    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +36,4 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
-    @MainThread
-    public AppDatabase getDatabase() {
-        if (database==null){
-            database = Room.databaseBuilder(this, AppDatabase.class,"FitnessHabits-database").fallbackToDestructiveMigration().build(); //TODO: remove fallback destroy
-        }
-        return database;
-    }
-
-    //TODO, repository access HERE
-
 }
