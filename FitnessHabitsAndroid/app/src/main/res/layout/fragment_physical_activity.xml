@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl"
     tools:context="com.strudelauxpommes.fitnesshabits.physicalactivity.PhysicalActivityFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -24,8 +25,8 @@
         android:layout_marginTop="24dp"
         android:backgroundTint="@android:color/transparent"
         android:ems="11"
-        android:padding="0dp"
         android:onClick="openNewActivity"
+        android:padding="0dp"
         android:text="Activites" />
 
 
@@ -33,54 +34,54 @@
         android:id="@+id/edtAct1"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvActHeader"
-        android:ems="4"
         android:backgroundTint="@android:color/transparent"
         android:clickable="false"
+        android:ems="4"
         android:focusable="false"
         android:inputType="none"
+        android:padding="0dp"
         android:text="Poids" />
 
     <EditText
         android:id="@+id/edtAct2"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edtAct1"
-        android:ems="4"
         android:backgroundTint="@android:color/transparent"
         android:clickable="false"
+        android:ems="4"
         android:focusable="false"
         android:inputType="none"
+        android:padding="0dp"
         android:text="Karate" />
 
     <EditText
         android:id="@+id/edtAct3"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edtAct2"
-        android:ems="4"
         android:backgroundTint="@android:color/transparent"
         android:clickable="false"
+        android:ems="4"
         android:focusable="false"
         android:inputType="none"
+        android:padding="0dp"
         android:text="Jogging" />
 
     <TextView
-        android:id="@+id/edtOtherFooter"
+        android:id="@+id/tvOtherFooter"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edtAct3"
         android:backgroundTint="@android:color/transparent"
         android:ems="11"
-        android:padding="0dp"
         android:onClick="openNewActivity"
+        android:padding="0dp"
         android:text="Autre" />
 
     <EditText
@@ -91,61 +92,63 @@
         android:layout_toEndOf="@+id/edtAct1"
         android:backgroundTint="@android:color/transparent"
         android:ems="2"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:imeOptions="actionDone"
         android:text="3:00" />
 
     <EditText
         android:id="@+id/edtDur2"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
         android:layout_alignBottom="@+id/edtAct2"
         android:layout_alignStart="@+id/edtDur1"
         android:backgroundTint="@android:color/transparent"
         android:ems="2"
-        android:inputType="number"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:padding="0dp"
         android:text="0:00" />
 
     <EditText
         android:id="@+id/edtDur3"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
         android:layout_alignStart="@+id/edtDur2"
         android:layout_below="@+id/edtAct2"
         android:backgroundTint="@android:color/transparent"
         android:ems="2"
-        android:inputType="number"
         android:imeOptions="actionDone"
+        android:inputType="number"
+        android:padding="0dp"
         android:text="5:00" />
 
     <EditText
         android:id="@+id/edtDurTot"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_alignBottom="@+id/edtOtherFooter"
+        android:layout_alignBottom="@+id/tvOtherFooter"
+        android:layout_margin="0dp"
         android:layout_toEndOf="@+id/edtAct3"
         android:backgroundTint="@android:color/transparent"
-        android:ems="2"
-        android:padding="0dp"
-        android:layout_margin="0dp"
         android:clickable="false"
+        android:ems="2"
         android:focusable="false"
         android:inputType="none"
+        android:padding="0dp"
         android:text="0:30" />
 
     <EditText
         android:id="@+id/edtInten1"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_above="@+id/edtInten2"
+        android:layout_below="@+id/tvActHeader"
+        android:layout_marginStart="11dp"
         android:layout_toEndOf="@+id/edtDur1"
         android:backgroundTint="@android:color/transparent"
         android:ems="1"
         android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
         android:text="2" />
@@ -154,62 +157,93 @@
         android:id="@+id/edtInten2"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_above="@+id/edtInten3"
-        android:layout_toEndOf="@+id/edtDur2"
+        android:layout_alignStart="@+id/edtInten1"
+        android:layout_below="@+id/edtInten1"
         android:backgroundTint="@android:color/transparent"
         android:ems="1"
+        android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:gravity="center"
         android:text="10" />
 
     <EditText
         android:id="@+id/edtInten3"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:padding="0dp"
-        android:gravity="center"
-        android:layout_below="@+id/edtAct2"
-        android:layout_toEndOf="@+id/edtDur2"
+        android:layout_alignStart="@+id/edtInten2"
+        android:layout_below="@+id/edtInten2"
         android:backgroundTint="@android:color/transparent"
         android:ems="1"
+        android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="number"
+        android:padding="0dp"
         android:text="0" />
 
     <EditText
         android:id="@+id/edtIntenTot"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_alignTop="@+id/edtDurTot"
-        android:layout_margin="0dp"
-        android:layout_toEndOf="@+id/edtDur3"
+        android:layout_alignStart="@+id/edtInten3"
+        android:layout_below="@+id/edtInten3"
         android:backgroundTint="@android:color/transparent"
-        android:ems="1"
-        android:gravity="center"
         android:clickable="false"
+        android:ems="1"
         android:focusable="false"
+        android:gravity="center"
         android:inputType="none"
         android:padding="0dp"
         android:text="4" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tvDur"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edtOtherFooter"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="14dp"
-        android:layout_toEndOf="@+id/edtOtherFooter"
-        android:text="Text" />
+        android:layout_height="24dp"
+        android:layout_alignBaseline="@+id/tvActHeader"
+        android:layout_alignBottom="@+id/tvActHeader"
+        android:layout_marginEnd="6dp"
+        android:layout_toStartOf="@+id/tvInten"
+        android:clickable="false"
+        android:focusable="false"
+        android:inputType="none"
+        android:padding="0dp"
+        android:text="Duree" />
+
+    <TextView
+        android:id="@+id/tvInten"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignBaseline="@+id/tvActHeader"
+        android:layout_alignBottom="@+id/tvActHeader"
+        android:layout_toEndOf="@+id/edtDur1"
+        android:clickable="false"
+        android:focusable="false"
+        android:inputType="none"
+        android:padding="0dp"
+        android:text="Intensite"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <TextView
+        android:id="@+id/tvDurTotWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignEnd="@+id/tvActHeader"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="12dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:inputType="none"
+        android:padding="0dp"
+        android:text="S: 10:00" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="180dp"
         android:layout_height="170.25dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/constraintLayout">
-
+        android:layout_alignParentTop="true">
     </android.support.constraint.ConstraintLayout>
-
 
 </RelativeLayout>
