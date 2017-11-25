@@ -10,6 +10,7 @@ import com.strudelauxpommes.fitnesshabits.data.repository.DrinkRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.FoodDataRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.WeightRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.SleepRepository;
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
@@ -23,6 +24,7 @@ public class FitnessHabitsApplication extends Application {
     private PhysicalRepository physicalRepository;
     private AlcoolRepository alcoolRepository;
     private ParamRepository paramRepository;
+    private WeightRepository weightRepository;
     private DrinkRepository drinkRepository;
     private SleepRepository sleepRepository;
     private FoodDataRepository foodDataRepository;
@@ -84,10 +86,20 @@ public class FitnessHabitsApplication extends Application {
     }
 
     @MainThread
+    public WeightRepository getWeightRepository() {
+        if (weightRepository == null) {
+            weightRepository = new WeightRepository(getDatabase().weightRecordDao());
+        }
+        return weightRepository;
+    }
+
+
+
     public SleepRepository getSleepRepository() {
         if(sleepRepository == null) {
             sleepRepository = new SleepRepository(getDatabase().sleepEntryDAO());
         }
         return sleepRepository;
     }
+
 }

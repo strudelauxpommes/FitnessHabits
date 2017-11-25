@@ -24,4 +24,7 @@ public class ParamRepository {
         return this.paramManager;
     }
 
+    public CalendarDate _getCurrentViewDate() {
+        return this.paramRecordDao.loadRecordDirectData().currentViewDate;
+    }
 }

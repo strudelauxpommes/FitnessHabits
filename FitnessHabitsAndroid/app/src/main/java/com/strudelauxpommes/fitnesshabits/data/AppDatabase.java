@@ -26,7 +26,7 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
         DrinkCategory.class,
         DrinkEntry.class,
         SleepEntry.class,
-        WeightEntry.class,
+        WeightRecord.class,
         SupplementCategory.class,
         SupplementEntry.class,
         CommentData.class
@@ -37,5 +37,6 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract DrinkDataDAO drinkDataDAO();
     public abstract ParamRecordDao paramRecordDao();
     public abstract SleepEntryDAO sleepEntryDAO();
+    public abstract WeightRecordDao weightRecordDao();
     public abstract FoodDataDao foodDataDao();
 }
