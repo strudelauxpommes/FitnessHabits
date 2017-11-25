@@ -1,6 +1,7 @@
 package com.strudelauxpommes.fitnesshabits.food;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,12 @@ public class FoodFragment extends Fragment {
 
     public FoodFragment() {
         // Required empty public constructor
+    }
+
+    public void openDetail(View v)
+    {
+        Intent intent = new Intent(v.getContext(), FoodDetailedActivity.class);
+        startActivity(intent);
     }
 
 
