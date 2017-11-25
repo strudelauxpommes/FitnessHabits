@@ -1,6 +1,7 @@
 package com.strudelauxpommes.fitnesshabits.data.model.record;
 
 import android.arch.persistence.room.Entity;
+import android.support.annotation.NonNull;
 
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
@@ -10,6 +11,7 @@ import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 @Entity(primaryKeys = {"date","category"})
 public class CommentData {
+    @NonNull
     private CalendarDate date;
     private int category;
     private String comment;
