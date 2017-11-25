@@ -7,4 +7,10 @@
     <string name="param">Nourriture</string>
     <string name="export">Nourriture</string>
     <string name="objectif">Nourriture</string>
+
+
+    <string name="weight_name">Poids</string>
+    <string name="weight_imc">IMC:</string>
+    <string name="weight_gras_pct">% Gras</string>
+    <string name="weight_lbs">Lbs</string>
 </resources>
