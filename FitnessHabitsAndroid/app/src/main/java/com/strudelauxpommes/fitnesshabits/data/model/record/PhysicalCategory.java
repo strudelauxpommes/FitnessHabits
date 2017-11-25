@@ -11,12 +11,42 @@ import android.arch.persistence.room.PrimaryKey;
 public class PhysicalCategory {
     @PrimaryKey(autoGenerate = true)
     private int id; //TODO: Implement model
+    private String categoryName;;
+    private int intensity;
+    private int isFavorite;
 
+    // Getters
     public int getId() {
         return id;
     }
 
+    public int getIntensity() {
+        return intensity;
+    }
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    // Setters
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setIntensity(int intensity) {
+        this.intensity = intensity;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }
