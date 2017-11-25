@@ -47,21 +47,22 @@ public class PhysicalActivityDetail extends AppCompatActivity {
             dure.setText("Dure");
             EditText intensive = new EditText(this);
             intensive.setText("Intensive");
-            //et.setLayoutParams(params);
+            Button b = new Button(this);
+            b.setText("Dynamic Button");
 
             TableLayout tl = (TableLayout) findViewById(R.id.table);
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            Button b = new Button(this);
-            b.setText("Dynamic Button");
             b.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             et.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             dure.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             intensive.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
             tr.addView(et);
             tr.addView(dure);
             tr.addView(intensive);
             tr.addView(b);
+
             /* Add row to TableLayout. */
             //tr.setBackgroundResource(R.drawable.sf_gradient_03);
             tl.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
