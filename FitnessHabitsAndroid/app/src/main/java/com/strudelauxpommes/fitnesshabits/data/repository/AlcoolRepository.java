@@ -65,7 +65,7 @@ public class AlcoolRepository {
      */
     @SuppressLint("StaticFieldLeak")
     @MainThread
-    public void saveDrinkCategory(DrinkCategory category) {
+    public void saveAlcoolDrinkCategory(DrinkCategory category) {
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
