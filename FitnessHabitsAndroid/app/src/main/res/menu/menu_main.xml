@@ -7,17 +7,22 @@
         android:checkable="false"
         android:enabled="true"
         android:onClick="changeDate"
-        android:title=""
+        android:title="10/10/2017"
         android:visible="true"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/param"
+        android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/param"
-        app:showAsAction="withText" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/export"
-        android:title="@string/export" />
+        android:icon="@drawable/ic_file_upload_black_24dp"
+        android:title="@string/export"
+        app:showAsAction="always" />
     <item
         android:id="@+id/objectif"
-        android:title="@string/objectif" />
+        android:icon="@drawable/ic_my_location_black_24dp"
+        android:title="@string/objectif"
+        app:showAsAction="always" />
 </menu>
