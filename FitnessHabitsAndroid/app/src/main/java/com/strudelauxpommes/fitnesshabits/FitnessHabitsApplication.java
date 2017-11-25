@@ -6,9 +6,12 @@ import android.support.annotation.MainThread;
 
 import com.strudelauxpommes.fitnesshabits.data.AppDatabase;
 import com.strudelauxpommes.fitnesshabits.data.repository.AlcoolRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.DrinkRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.FoodDataRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.PhysicalRepository;
 import com.strudelauxpommes.fitnesshabits.data.repository.WeightRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.SleepRepository;
 import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
 
 /**
@@ -22,6 +25,9 @@ public class FitnessHabitsApplication extends Application {
     private AlcoolRepository alcoolRepository;
     private ParamRepository paramRepository;
     private WeightRepository weightRepository;
+    private DrinkRepository drinkRepository;
+    private SleepRepository sleepRepository;
+    private FoodDataRepository foodDataRepository;
 
     @Override
     public void onCreate() {
@@ -32,8 +38,8 @@ public class FitnessHabitsApplication extends Application {
 
     @MainThread
     public AppDatabase getDatabase() {
-        if (database==null){
-            database = Room.databaseBuilder(this, AppDatabase.class,"FitnessHabits-database").fallbackToDestructiveMigration().build(); //TODO: remove fallback destroy
+        if (database == null) {
+            database = Room.databaseBuilder(this, AppDatabase.class, "FitnessHabits-database").fallbackToDestructiveMigration().build(); //TODO: remove fallback destroy
         }
         return database;
     }
@@ -63,7 +69,21 @@ public class FitnessHabitsApplication extends Application {
         return paramRepository;
     }
 
+    @MainThread
+    public FoodDataRepository getFoodRepository() {
+        if (foodDataRepository == null) {
+            foodDataRepository = new FoodDataRepository(getDatabase().foodDataDao());
+        }
+        return foodDataRepository;
+    }
 
+    @MainThread
+    public DrinkRepository getDrinkRepository() {
+        if (drinkRepository == null) {
+            drinkRepository = new DrinkRepository(getDatabase().drinkDataDAO());
+        }
+        return drinkRepository;
+    }
 
     @MainThread
     public WeightRepository getWeightRepository() {
@@ -74,5 +94,12 @@ public class FitnessHabitsApplication extends Application {
     }
 
 
+
+    public SleepRepository getSleepRepository() {
+        if(sleepRepository == null) {
+            sleepRepository = new SleepRepository(getDatabase().sleepEntryDAO());
+        }
+        return sleepRepository;
+    }
 
 }
