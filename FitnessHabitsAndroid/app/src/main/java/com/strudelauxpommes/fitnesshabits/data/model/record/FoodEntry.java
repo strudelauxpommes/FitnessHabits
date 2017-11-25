@@ -1,22 +1,63 @@
 package com.strudelauxpommes.fitnesshabits.data.model.record;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import com.strudelauxpommes.fitnesshabits.data.util.CalendarDate;
+
+import static android.arch.persistence.room.ForeignKey.NO_ACTION;
 
 /**
  * Created by thomas on 2017-11-25.
  */
 
-@Entity
+@Entity(primaryKeys = {"date","repas"},
+        foreignKeys = @ForeignKey(entity = FoodCategory.class,
+                parentColumns = "id",
+                childColumns = "categoryId",
+                onDelete = NO_ACTION,
+                onUpdate = NO_ACTION))
 public class FoodEntry {
-    @PrimaryKey(autoGenerate = true)
-    private int id; //TODO: Implement model
+    @NonNull
+    private CalendarDate date;
+    @NonNull
+    private String repas;
+    private int categoryId;
+    private double portions;
 
-    public int getId() {
-        return id;
+    // Getters
+    public CalendarDate getDate() {
+        return date;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public double getPortions() {
+        return portions;
+    }
+
+    public String getRepas() {
+        return repas;
+    }
+
+    // Setters
+    public void setDate(CalendarDate date) {
+        this.date = date;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setPortions(double portions) {
+        this.portions = portions;
+    }
+
+    public void setRepas(String repas) {
+        this.repas = repas;
     }
 }
