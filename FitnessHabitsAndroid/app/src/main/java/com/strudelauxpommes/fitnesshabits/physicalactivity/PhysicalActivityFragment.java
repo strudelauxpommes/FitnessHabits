@@ -56,9 +56,6 @@ public class PhysicalActivityFragment extends Fragment {
         edtInten3 = fragmentView.findViewById(R.id.edtInten3);
         edtIntenTot = fragmentView.findViewById(R.id.edtIntenTot);
 
-        // TODO Jean-Pierre 11/25/2017
-        // get default parameters values for text values and set on the appropriate id
-
         setMarginsListeners();
         setEditTextListeners();
 
@@ -103,16 +100,13 @@ public class PhysicalActivityFragment extends Fragment {
         edtDur1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                int current_value = Integer.parseInt(view.getText().toString());
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     validateInput(view);
                     hideKeyboard(edtDur1);
                     edtDur1.clearFocus();
                     return true;
-                } else {
-                    edtDur1.setText(String.valueOf(current_value));
-                    return false;
                 }
+                return false;
             }
         });
         edtDur2.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +145,7 @@ public class PhysicalActivityFragment extends Fragment {
                 return false;
             }
         });
+
         edtInten1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,9 +164,11 @@ public class PhysicalActivityFragment extends Fragment {
                 return false;
             }
         });
+
         edtInten2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 edtInten2.getText().clear();
             }
         });

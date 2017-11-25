@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.strudelauxpommes.fitnesshabits.physicalactivity.PhysicalActivityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -238,12 +237,14 @@
         android:padding="0dp"
         android:text="S: 10:00" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="180dp"
-        android:layout_height="170.25dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-    </android.support.constraint.ConstraintLayout>
+
+    <NumberPicker
+        android:id="@+id/np"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="43dp"
+        android:visibility="gone"
+        android:layout_toEndOf="@+id/tvInten" />
 
 </RelativeLayout>
