@@ -34,4 +34,5 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
 @TypeConverters({CalendarDateConverter.class, GenderConverter.class})
 public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
+    public abstract DrinkDataDAO drinkDataDAO();
 }
