@@ -10,17 +10,20 @@
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp">
-        <TableRow>
+        <TableRow android:paddingTop="10dp">
             <TextView
                 android:id="@+id/whiteBed"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/ic_local_hotel_white_24dp" />
             <TextView
                 android:text="25/11/2017"
-                android:textAlignment="center"
-                android:paddingLeft="100dp"/>
+                android:paddingStart="100dp"/>
+            <TextView
+                android:text="Total: 0"
+                android:textAllCaps="true"
+                android:paddingStart="60dp"/>
         </TableRow>
 
     </TableLayout>
@@ -31,7 +34,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="0"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="60dp">
 
         <TableRow android:layout_height="fill_parent">
             <TextView
