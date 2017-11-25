@@ -9,13 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -53,12 +50,8 @@ public class PhysicalActivityDetail extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
 
 
-            EditText activity = new EditText(this);
-            activity.setText("Activity");
-
-
-            final EditText et = new EditText(this);
-            et.setText("");
+            final EditText activity = new EditText(this);
+            activity.setText("");
             final EditText dure = new EditText(this);
             dure.setText("");
             EditText intensive = new EditText(this);
@@ -75,10 +68,12 @@ public class PhysicalActivityDetail extends AppCompatActivity {
             dure.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             intensive.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-            et.setInputType(InputType.TYPE_CLASS_TEXT);
-            et.setEms(7);
-            et.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            activity.setInputType(InputType.TYPE_CLASS_TEXT);
+            activity.setEms(4);
+            activity.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            activity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
                 @Override
                 public boolean onEditorAction(TextView view, int actionId, KeyEvent keyEvent) {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -87,16 +82,16 @@ public class PhysicalActivityDetail extends AppCompatActivity {
                     return false;
                 }
             });
-            et.setOnLongClickListener(new View.OnLongClickListener() {
+            activity.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    et.getText().clear();
+                    activity.getText().clear();
                     return false;
                 }
             });
 
             dure.setInputType(InputType.TYPE_CLASS_NUMBER);
-            dure.setEms(4);
+            dure.setEms(3);
             dure.setImeOptions(EditorInfo.IME_ACTION_DONE);
             dure.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
@@ -137,7 +132,7 @@ public class PhysicalActivityDetail extends AppCompatActivity {
             b.setEms(2);
 
 
-            tr.addView(et);
+            tr.addView(activity);
             tr.addView(dure);
             tr.addView(intensive);
 
