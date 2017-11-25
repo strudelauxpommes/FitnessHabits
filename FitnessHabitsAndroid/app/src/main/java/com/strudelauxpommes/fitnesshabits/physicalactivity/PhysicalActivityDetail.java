@@ -51,13 +51,13 @@ public class PhysicalActivityDetail extends AppCompatActivity {
 
 
             final EditText activity = new EditText(this);
-            activity.setText("");
             final EditText dure = new EditText(this);
-            dure.setText("");
             EditText intensive = new EditText(this);
             intensive.setText("");
             Button b = new Button(this);
             b.setText("Fav");
+            Button fav = new Button(this);
+            fav.setText("Fav");
 
 
             TableLayout tl = (TableLayout) findViewById(R.id.table);

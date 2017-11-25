@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="Activites" />
+            android:text="@string/pref_activity_activities" />
 
         <TextView
             android:id="@+id/textJour"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
-            android:text="valeurJour" />
+            android:text="" />
 
         <TextView
             android:id="@+id/textSemaine"
@@ -50,7 +50,7 @@
             android:id="@+id/valeurSemaine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="valeurSemaine" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -67,14 +67,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
-            android:text="Fitness Habits" />
+            android:text="@string/app_name" />
 
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="username"
+            android:text="@string/pref_default_display_name"
             android:textAlignment="viewEnd" />
 
 
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:ems="5"
             android:inputType="textPersonName"
-            android:text="Favority"
+            android:text="@string/pref_activity_favorites"
             android:visibility="visible" />
 
         <TextView
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:ems="5"
             android:inputType="textPersonName"
-            android:text="Activity" />
+            android:text="@string/pref_title_activity" />
 
         <TextView
             android:id="@+id/duration"
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:ems="5"
             android:inputType="textPersonName"
-            android:text="Duration" />
+            android:text="@string/pref_activity_duration" />
 
         <TextView
             android:id="@+id/intensite"
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:ems="5"
             android:inputType="textPersonName"
-            android:text="Intensity" />
+            android:text="@string/pref_activity_intensity" />
 
 
     </LinearLayout>
