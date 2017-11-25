@@ -10,12 +10,23 @@ import com.strudelauxpommes.fitnesshabits.data.util.Gender;
 public class GenderConverter {
 
     @TypeConverter
-    public Gender fromInt(int value) {
+    public Gender fromInt(Integer value) {
+
+
+        if(value == null) {
+            return null;
+        }
+
         return Gender.decodeFromInt(value);
     }
 
     @TypeConverter
-    public int toInt(Gender value) {
+    public Integer toInt(Gender value) {
+
+        if(value == null) {
+            return null;
+        }
+
         return value.encodeToInt();
     }
 

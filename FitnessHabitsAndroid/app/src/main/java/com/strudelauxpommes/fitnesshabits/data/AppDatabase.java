@@ -35,4 +35,6 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
 public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
     public abstract DrinkDataDAO drinkDataDAO();
+    public abstract ParamRecordDao paramRecordDao();
+
 }

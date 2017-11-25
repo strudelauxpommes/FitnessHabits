@@ -1,15 +1,21 @@
 package com.strudelauxpommes.fitnesshabits;
 
+import android.content.Intent;
 import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
+import android.app.DialogFragment;
+import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
-
+import com.strudelauxpommes.fitnesshabits.parameters.ParameterActivity;
 import java.text.DateFormat;
 import java.util.Calendar;
 
@@ -44,7 +50,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        viewModel.setDate(calendar);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (item.getItemId() == R.id.datepicker) {
             Calendar currentDate = viewModel.getDate().getValue();
             if (currentDate != null) {
@@ -52,15 +66,24 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 datePickerDialog.show();
                 return true;
             }
-        }
+        } else if (item.getItemId() == R.id.param) {
 
-        return false;
+            startActivity(new Intent(this, ParameterActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, dayOfMonth);
-        viewModel.setDate(calendar);
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.objectif) {
+            // activité temporaire, pour expérimenter. à enlever seulement à la fin de la journée
+            Intent intent = new Intent(this, TestActivity.class);
+            this.startActivity(intent);
+        }
+
+        return false;
+
     }
 }
