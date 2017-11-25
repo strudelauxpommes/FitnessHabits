@@ -14,17 +14,15 @@ public class ParamRecord {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    String name;
+    //String name;
 
-    Float height;
+    //Float height;
 
-    CalendarDate birthDate;
+    //CalendarDate birthDate;
 
-    Gender gender;
+    //Gender gender;
 
-    CalendarDate currentViewDate;
-    
-    private int id; //TODO: Implement model
+    //CalendarDate currentViewDate;
 
     public int getId() {
         return id;

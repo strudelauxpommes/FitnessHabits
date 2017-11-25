@@ -3,6 +3,7 @@ package com.strudelauxpommes.fitnesshabits.data;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
+import com.strudelauxpommes.fitnesshabits.data.dao.PhysicalDataDAO;
 import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkCategory;
 import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkEntry;
 import com.strudelauxpommes.fitnesshabits.data.model.record.FoodCategory;
@@ -35,5 +36,5 @@ import com.strudelauxpommes.fitnesshabits.data.model.record.WeightEntry;
         SupplementEntry.class
 }, version = 1)
 public abstract class AppDatabase extends RoomDatabase{
-
+    public abstract PhysicalDataDAO physicalDataDAO();
 }
