@@ -5,11 +5,105 @@
     tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_green_light"
-        android:textColor="@android:color/white"
-        android:text="Sleep" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id = "@+id/RHE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:padding="5dp">
+
+        <TableRow android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/runLabel"
+                android:text="Debut"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/hitLabel"
+                android:text="Fin"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/errorLabel"
+                android:text="#Reveil"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/tempsLabel"
+                android:text="temps"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+        </TableRow>
+
+        <TableRow android:layout_height="wrap_content">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitorHits"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitor_Input"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitor_Input2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+        </TableRow>
+
+        <TableRow android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/visitorRuns2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitorHits2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitor_Input3"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+            <EditText
+                android:id="@+id/visitor_Input4"
+
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                />
+        </TableRow>
+    </TableLayout>
+
+
 
 </FrameLayout>
