@@ -6,8 +6,6 @@
         android:id="@+id/datepicker"
         android:checkable="false"
         android:enabled="true"
-        android:onClick="changeDate"
-        android:title="10/10/2017"
         android:visible="true"
         app:showAsAction="always" />
     <item
