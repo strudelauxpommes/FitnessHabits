@@ -43,15 +43,21 @@ public class PhysicalActivityDetail extends AppCompatActivity {
         */
 
         ArrayList<PhysicalActivity> ListItemTable = new ArrayList<PhysicalActivity>();
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 4; i++) {
 
 
             EditText activity = new EditText(this);
             activity.setText("Activity");
+
+
             EditText dure = new EditText(this);
             dure.setText("Dure");
+
+
             EditText intensive = new EditText(this);
             intensive.setText("Intensive");
+
+
             Button b = new Button(this);
             b.setText("Fav");
 
