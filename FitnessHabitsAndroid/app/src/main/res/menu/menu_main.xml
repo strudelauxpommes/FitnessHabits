@@ -6,8 +6,6 @@
         android:id="@+id/datepicker"
         android:checkable="false"
         android:enabled="true"
-        android:onClick="changeDate"
-        android:title="10/10/2017"
         android:visible="true"
         app:showAsAction="always" />
     <item
@@ -19,10 +17,10 @@
         android:id="@+id/export"
         android:icon="@drawable/ic_export_white_24dp"
         android:title="@string/export"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/objectif"
         android:icon="@drawable/ic_objectives_white_24dp"
         android:title="@string/objectif"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

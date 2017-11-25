@@ -1,32 +1,70 @@
 package com.strudelauxpommes.fitnesshabits;
 
-import android.app.DialogFragment;
+import android.content.Intent;
+import android.app.DatePickerDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
+import com.strudelauxpommes.fitnesshabits.parameters.ParameterActivity;
+import java.text.DateFormat;
+import java.util.Calendar;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-public class MainActivity extends AppCompatActivity {
+    MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel.init(FitnessHabitsApplication.application.getParamRepository());
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        final MenuItem dateItem = menu.findItem(R.id.datepicker);
+        viewModel.getDate().observe(this, calendar -> {
+            if (calendar != null) {
+                DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+                dateItem.setTitle(dateFormat.format(calendar.getTime()));
+            }
+        });
         return true;
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        viewModel.setDate(calendar);
+    }
 
-    public void changeDate(MenuItem mi) {
-        if (mi.getItemId() == R.id.datepicker) {
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.datepicker) {
+            Calendar currentDate = Calendar.getInstance();
+            if (currentDate != null) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+                return true;
+            }
+        } else if (item.getItemId() == R.id.param) {
+            startActivity(new Intent(this, ParameterActivity.class));
+            return true;
+        } else if (item.getItemId() == R.id.objectif) {
+            // activité temporaire, pour expérimenter. à enlever seulement à la fin de la journée
+            Intent intent = new Intent(this, TestActivity.class);
+            this.startActivity(intent);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
