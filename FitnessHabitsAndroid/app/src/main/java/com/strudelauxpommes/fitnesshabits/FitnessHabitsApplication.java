@@ -44,7 +44,7 @@ public class FitnessHabitsApplication extends Application {
     @MainThread
     public AlcoolRepository getAlcoolRepository() {
         if (alcoolRepository == null) {
-            alcoolRepository = new AlcoolRepository(getDatabase().physicalDataDAO());
+            alcoolRepository = new AlcoolRepository(getDatabase().drinkDataDAO());
         }
         return alcoolRepository;
     }

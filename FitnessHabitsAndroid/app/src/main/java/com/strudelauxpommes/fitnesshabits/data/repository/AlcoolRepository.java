@@ -7,8 +7,12 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 
 import com.strudelauxpommes.fitnesshabits.data.DatabaseResource;
+import com.strudelauxpommes.fitnesshabits.data.dao.DrinkDataDAO;
 import com.strudelauxpommes.fitnesshabits.data.dao.PhysicalDataDAO;
+import com.strudelauxpommes.fitnesshabits.data.model.DrinkData;
 import com.strudelauxpommes.fitnesshabits.data.model.PhysicalData;
+import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkCategory;
+import com.strudelauxpommes.fitnesshabits.data.model.record.DrinkEntry;
 import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalCategory;
 import com.strudelauxpommes.fitnesshabits.data.model.record.PhysicalEntry;
 
@@ -20,23 +24,23 @@ import java.util.List;
  */
 
 public class AlcoolRepository {
-    private LiveData<List<PhysicalData>> listPhysicalLiveData;
-    private PhysicalDataDAO physicalDataDAO;
+    private LiveData<List<DrinkData>> listDrinkDataAlcool;
+    private DrinkDataDAO drinkDataDAO;
 
-    public AlcoolRepository(PhysicalDataDAO physicalDataDAO) {
-        this.physicalDataDAO = physicalDataDAO;
+    public AlcoolRepository(DrinkDataDAO drinkDataDAO) {
+        this.drinkDataDAO = drinkDataDAO;
     }
 
-    public LiveData<List<PhysicalData>> loadDailyData() {
-        if (listPhysicalLiveData == null) {
-            PhysicalData defaultData = new PhysicalData(1,"Mock",5,2, false);
-            List<PhysicalData> list = new ArrayList<>();
+    public LiveData<List<DrinkData>> loadDailyData() {
+        if (listDrinkDataAlcool == null) {
+            DrinkData defaultData = new DrinkData(1,"Mock",5,2, false);
+            List<DrinkData> list = new ArrayList<>();
             list.add(defaultData);
-            listPhysicalLiveData = new DatabaseResource<List<PhysicalData>>(list){
+            listDrinkDataAlcool = new DatabaseResource<List<DrinkData>>(list){
                 @NonNull
                 @Override
-                protected LiveData<List<PhysicalData>> loadFromDb() {
-                    return physicalDataDAO.getToday();
+                protected LiveData<List<DrinkData>> loadFromDb() {
+                    return drinkDataDAO.getAlcoolToday();
                 }
             }.getAsLiveData();;
         }
@@ -45,23 +49,28 @@ public class AlcoolRepository {
 
     @SuppressLint("StaticFieldLeak")
     @MainThread
-    public void savePhysicalEntry(PhysicalEntry entry) {
+    public void saveAlcoolDrinkEntry(DrinkEntry entry) {
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                physicalDataDAO.insetOrReplacePhysicalEntry(entry);
+                drinkDataDAO.insetOrReplaceDrinkEntry(entry);
                 return null;
             }
         }.execute();
     }
 
+    /**
+     * Create a new alcool category
+     * @param category (category.type is not required, it will be set anyways)
+     */
     @SuppressLint("StaticFieldLeak")
     @MainThread
-    public void savePhysicalCategory(PhysicalCategory category) {
+    public void saveDrinkCategory(DrinkCategory category) {
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                physicalDataDAO.insetOrReplacePhysicalCategory(category);
+                category.setType(0);
+                drinkDataDAO.insetOrReplaceDrinkCategory(category);
                 return null;
             }
         }.execute();
