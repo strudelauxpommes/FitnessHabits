@@ -29,7 +29,7 @@ import com.strudelauxpommes.fitnesshabits.data.util.*;
         WeightEntry.class,
         SupplementCategory.class,
         SupplementEntry.class
-}, version = 1)
+}, version = 2)
 @TypeConverters({CalendarDateConverter.class, GenderConverter.class})
 public abstract class AppDatabase extends RoomDatabase{
     public abstract PhysicalDataDAO physicalDataDAO();
