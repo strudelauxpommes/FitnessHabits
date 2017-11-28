@@ -5,11 +5,101 @@
     tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_green_light"
-        android:textColor="@android:color/white"
-        android:text="Sleep" />
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id = "@+id/RHE"
+        android:layout_width="fill_parent"
+        android:layout_height="114.5dp"
+        android:layout_weight="0">
+
+        <TableRow>
+            <TextView
+                android:text="Sommeil"
+                android:clickable="true"
+                android:id="@+id/click"
+                android:layout_width="fill_parent"
+                android:layout_height="15dp"
+                android:textStyle="bold"
+                />
+        </TableRow>
+        <TableRow android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/runLabel"
+                android:text="Debut"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/hitLabel"
+                android:text="Fin"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/errorLabel"
+                android:text="#Reveil"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <!--<TextView-->
+                <!--android:id="@+id/tempsLabel"-->
+                <!--android:text="temps"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:textAlignment="center"-->
+                <!--/>-->
+        </TableRow>
+
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <!--<EditText-->
+                <!--android:id="@+id/visitor_Input2"-->
+
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--/>-->
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:text="OK"
+
+                />
+        </TableRow>
+
+    </TableLayout>
+
+
 
 </FrameLayout>
