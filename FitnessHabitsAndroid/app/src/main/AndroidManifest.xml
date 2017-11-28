@@ -28,6 +28,8 @@
             android:name=".BeverageDetailsActivity"
             android:label="@string/title_activity_beverage_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".food.FoodDetailedActivity" android:windowSoftInputMode="stateHidden" android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
