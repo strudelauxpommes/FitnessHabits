@@ -4,11 +4,9 @@
     <string name="food_left"> \u003c </string>
     <string name="food_meal">Repas</string>
     <string name="food_name">Nourriture</string>
-    <string name="param">Nourriture</string>
-    <string name="export">Nourriture</string>
-    <string name="objectif">Nourriture</string>
-
-
+    <string name="param">Paramètre</string>
+    <string name="export">Export</string>
+    <string name="objectif">Objectif</string>
     <string name="weight_name">Poids</string>
     <string name="weight_imc">IMC:</string>
     <string name="weight_gras_pct">% Gras</string>
