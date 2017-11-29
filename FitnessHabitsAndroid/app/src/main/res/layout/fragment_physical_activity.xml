@@ -41,7 +41,7 @@
         android:focusable="false"
         android:inputType="none"
         android:padding="0dp"
-        android:text="Poids" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtAct2"
@@ -55,7 +55,7 @@
         android:focusable="false"
         android:inputType="none"
         android:padding="0dp"
-        android:text="Karate" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtAct3"
@@ -69,7 +69,7 @@
         android:focusable="false"
         android:inputType="none"
         android:padding="0dp"
-        android:text="Jogging" />
+        android:text="" />
 
     <TextView
         android:id="@+id/tvOtherFooter"
@@ -94,7 +94,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="3:00" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtDur2"
@@ -107,7 +107,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="0:00" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtDur3"
@@ -120,7 +120,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="5:00" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtDurTot"
@@ -135,7 +135,7 @@
         android:focusable="false"
         android:inputType="none"
         android:padding="0dp"
-        android:text="0:30" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtInten1"
@@ -150,7 +150,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="2" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtInten2"
@@ -164,7 +164,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="10" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtInten3"
@@ -178,7 +178,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:padding="0dp"
-        android:text="0" />
+        android:text="" />
 
     <EditText
         android:id="@+id/edtIntenTot"
@@ -193,7 +193,7 @@
         android:gravity="center"
         android:inputType="none"
         android:padding="0dp"
-        android:text="4" />
+        android:text="" />
 
     <TextView
         android:id="@+id/tvDur"
@@ -228,14 +228,13 @@
         android:id="@+id/tvDurTotWeek"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_alignEnd="@+id/tvActHeader"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="12dp"
+        android:layout_toStartOf="@+id/edtInten2"
         android:clickable="false"
         android:focusable="false"
         android:inputType="none"
         android:padding="0dp"
-        android:text="S: 10:00" />
+        android:text="S:" />
 
 
     <NumberPicker
