@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".sleep.SleepActivity"
+            android:label="SOMMEIL">
+        </activity>
         <activity
 
             android:name=".parameters.ParameterActivity"
@@ -37,6 +40,8 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.strudelauxpommes.fitnesshabits.MainActivity" />
+        </activity>
+        <activity android:name=".food.FoodDetailedActivity" android:windowSoftInputMode="stateHidden" android:parentActivityName=".MainActivity">
         </activity>
     </application>
 

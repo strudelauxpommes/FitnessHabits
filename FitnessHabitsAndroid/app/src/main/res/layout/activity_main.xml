@@ -61,5 +61,4 @@
             android:name="com.strudelauxpommes.fitnesshabits.alcohol.AlcoholFragment"
             />
     </LinearLayout>
-
 </LinearLayout>

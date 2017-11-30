@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">Fitness Habits</string>
-    <string name="export">Export</string>
+    <string name="food_right"> \u003e </string>
+    <string name="food_left"> \u003c </string>
+    <string name="food_meal">Repas</string>
+    <string name="food_name">Nourriture</string>
     <string name="param">Paramètre</string>
+    <string name="export">Export</string>
     <string name="objectif">Objectif</string>
+    <string name="weight_name">Poids</string>
+    <string name="weight_imc">IMC:</string>
+    <string name="weight_gras_pct">% Gras</string>
+    <string name="weight_lbs">Lbs</string>
     <string name="supplements_title">Suppléments</string>
     <string name="parameters_title_tab">Preferences</string>
     <string name="profile_title_tab">Profile</string>

@@ -23,4 +23,7 @@ public interface ParamRecordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveParamRecord(ParamRecord record);
 
+    @Query("SELECT * FROM ParamRecord LIMIT 1")
+    ParamRecord loadRecordDirectData();
+
 }

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.strudelauxpommes.fitnesshabits.sleep.SleepActivity"
+    android:orientation="horizontal">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+        <TableRow android:paddingTop="10dp">
+            <TextView
+                android:id="@+id/whiteBed"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_local_hotel_white_24dp" />
+            <TextView
+                android:text="25/11/2017"
+                android:paddingStart="100dp"/>
+            <TextView
+                android:text="Total: 0"
+                android:textAllCaps="true"
+                android:paddingStart="60dp"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id = "@+id/RHE2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0"
+        android:layout_marginTop="60dp">
+
+        <TableRow android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/runLabel2"
+                android:text="Debut"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/hitLabel2"
+                android:text="Fin"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/errorLabel"
+                android:text="# Réveil(s)"
+                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_marginRight="20dp"
+                android:textAlignment="center"
+                />
+            <TextView
+            android:id="@+id/tempsLabel"
+            android:text="Durée"
+            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            />
+        </TableRow>
+
+        <TableRow android:layout_height="10dp"
+            android:layout_width="match_parent">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits2"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input7"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+            android:id="@+id/visitor_Input8"
+
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            />
+        </TableRow>
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns3"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits4"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input5"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+                android:id="@+id/visitor_Input6"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+        </TableRow>
+
+        <TableRow android:layout_height="10dp">
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorRuns4"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitorHits5"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/visitor_Input11"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+
+            <EditText
+                android:id="@+id/visitor_Input10"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                />
+        </TableRow>
+
+    </TableLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="200dp">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:hint="Entrez vos commentaires ici" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+

@@ -6,12 +6,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.strudelauxpommes.fitnesshabits.data.repository.ParamRepository;
+import com.strudelauxpommes.fitnesshabits.data.repository.WeightRepository;
 
 public class TestActivity extends AppCompatActivity {
 
     Button testButton;
     TextView testInput;
-    ParamRepository repo;
+    WeightRepository repo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +31,20 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-        repo = FitnessHabitsApplication.application.getParamRepository();
 
+        repo = FitnessHabitsApplication.application.getWeightRepository();
 
-        repo.param().userName().liveData().observe(this, name -> testButton.setText(name));
-        repo.param().userName().liveData().observe(this, name -> testInput.setText(name));
-        testButton.setOnClickListener(button -> repo.param().userName().setValue(testInput.getText().toString()));
+        repo.fatForCurrentDate().liveData().observe(this, name -> testButton.setText("" + name));
+        repo.fatForCurrentDate().liveData().observe(this, name -> testInput.setText("" + name));
+        testButton.setOnClickListener(button -> repo.fatForCurrentDate().setValue(Float.parseFloat(testInput.getText().toString())));
 
-        
     }
 
 
     void onButton() {
 
     }
+
 
 
 }
