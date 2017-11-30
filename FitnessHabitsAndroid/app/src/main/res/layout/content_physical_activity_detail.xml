@@ -74,7 +74,7 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pref_default_display_name"
+            android:text="@string/username_input"
             android:textAlignment="viewEnd" />
 
 
