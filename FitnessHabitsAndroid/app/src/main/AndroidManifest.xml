@@ -23,6 +23,7 @@
             android:label="SOMMEIL">
         </activity>
         <activity
+
             android:name=".parameters.ParameterActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
@@ -31,6 +32,15 @@
             android:name=".BeverageDetailsActivity"
             android:label="@string/title_activity_beverage_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".physicalactivity.PhysicalActivityDetail"
+            android:label="@string/title_activity_physical_detail"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.strudelauxpommes.fitnesshabits.MainActivity" />
+        </activity>
         <activity android:name=".food.FoodDetailedActivity" android:windowSoftInputMode="stateHidden" android:parentActivityName=".MainActivity">
         </activity>
     </application>

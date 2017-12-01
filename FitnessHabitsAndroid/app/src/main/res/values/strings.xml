@@ -16,4 +16,13 @@
     <string name="profile_title_tab">Profile</string>
     <string name="username_input">Your name</string>
     <string name="title_activity_beverage_details">BeverageDetailsActivity</string>
+    <string name="title_activity_physical_detail">physicalActivityDetail</string>
+    <string name="title_activity_physical_fragment">PhysicalActivityFragment</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_activity_intensity">Intensity</string>
+    <string name="pref_activity_duration">Duration</string>
+    <string name="pref_activity_activities">Activities</string>
+    <string name="pref_title_activity">Physical Activity</string>
+    <string name="pref_activity_other">Other</string>
+    <string name="pref_activity_favorites">Favorites</string>
 </resources>
