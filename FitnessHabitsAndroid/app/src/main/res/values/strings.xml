@@ -12,9 +12,6 @@
     <string name="weight_gras_pct">% Gras</string>
     <string name="weight_lbs">Lbs</string>
     <string name="supplements_title">Suppléments</string>
-    <string name="parameters_title_tab">Preferences</string>
-    <string name="profile_title_tab">Profile</string>
-    <string name="username_input">Your name</string>
     <string name="title_activity_beverage_details">BeverageDetailsActivity</string>
     <string name="title_activity_physical_detail">physicalActivityDetail</string>
     <string name="title_activity_physical_fragment">PhysicalActivityFragment</string>
@@ -25,4 +22,25 @@
     <string name="pref_title_activity">Physical Activity</string>
     <string name="pref_activity_other">Other</string>
     <string name="pref_activity_favorites">Favorites</string>
+    <string name="parameters_title_tab">Preferences</string>
+    <string name="profile_title_tab">Profile</string>
+    <string name="username_input">User name</string>
+    <string name="txt_birthday">Birthday</string>
+    <string name="txt_sex">Sex</string>
+    <string name="txt_height">Taille</string>
+    <string name="women">Women</string>
+    <string name="men">Men</string>
+    <string name="other">Other</string>
+    <string name="measurement_unit_labels">Measurements Units</string>
+    <string name="measurement_unit_weight">Weight</string>
+    <string name="measurement_unit_height">Height</string>
+    <string name="measurement_unit_drinks">Drinks details</string>
+    <string name="measurement_unit_beverage_total">Beverage total</string>
+    <string name="measurement_unit_beverage_detail">Beverage details</string>
+    <string-array name="unit_system">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+
+
 </resources>

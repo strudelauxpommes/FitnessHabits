@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="username_input">Nom de l\'utilisateur</string>
+    <string name="txt_birthday">Date de naissance</string>
+    <string name="txt_sex">Genre</string>
+    <string name="txt_height">Height</string>
+    <string name="women">Femme</string>
+    <string name="men">Homme</string>
+    <string name="other">Autre</string>
+
+
+</resources>
