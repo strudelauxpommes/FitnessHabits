@@ -1,9 +1,11 @@
-import {Foo} from './Dal'
+import { Dal } from './Dal'
 
 describe('Dal', function() {
-    it('should show the testing configuration working', function() {
-        const instance = new Foo();
-        const actual = instance.bar();
-        expect(actual).toBe(42);
+    it('should show the testing configuration working', async function() {
+        const instance = new Dal();
+        instance.setItem();
+        const actual = await instance.getItem();
+        instance.clear();
+        expect(actual).toStrictEqual({ 'value': 'Max' });
     });
 });
