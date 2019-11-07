@@ -30,6 +30,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-react": "^4.1.0",
     "typescript": "~3.6.3"
   },
   "scripts": {
