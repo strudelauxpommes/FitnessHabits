@@ -1,48 +1,63 @@
 /**
  Data access layer
+
+ The application needs a central data storage to persist value over
+ time. The DAL imposes no restriction upon the key format. However,
+ using namespace for the keys should help to prevent collision.
+
+ For instance, the profile module with name and age data could look
+ like this: profile/name "John Smith", profile/age 42.
  */
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
 
 export class Dal {
-    // JSON "set" example
-    async setObject() {
-        await Storage.set({
-            key: 'user',
-            value: JSON.stringify({
-                id: 1,
-                name: 'Max'
-            })
-        });
+    /*
+      As far as I am concerned, I believe NodeJS only has atomic operations
+      because it works on a single thread model. However, Ionic generates
+      code to different platforms that may or may not have the same threading
+      model. Therefore, I am unsure whether or not the set operation is atomic.
+      TODO: "proove" with unit test(s),
+            search (Ionic Storage module unit tests or stack overflow)
+            peer review.
+    */
+
+    async setItem(key, value) {
+        const timestampMs = Date.now();
+        const lastValue = await this._getItems(key);
+        lastValue.push({ timestampMs, value });
+        await Storage.set({ key, value: JSON.stringify(lastValue) });
     }
 
-    // JSON "get" example
-    async getObject() {
-        const ret = await Storage.get({ key: 'user' });
-        const user = JSON.parse(ret.value);
+    async _getItems(key) {
+        const { value } = await Storage.get({ key });
+        if (value === undefined || value === null) {
+            return [];
+        } else {
+            return JSON.parse(value);
+        }
     }
 
-    async setItem() {
-        await Storage.set({
-            key: 'name',
-            value: 'Max'
-        });
-    }
-
-    async getItem() {
-        const value = await Storage.get({ key: 'name' });
-        console.log('Got item: ', value);
+    /**
+       Retieve the latest time stamped item under a key
+     */
+    async getItem(key) {
+        const items = await this._getItems(key);
+        if (items.length === 0) {
+            return undefined;
+        }
+        const { value } = items[items.length - 1];
         return value;
     }
 
-    async removeItem() {
-        await Storage.remove({ key: 'name' });
+    async removeItem(key) {
+        await Storage.remove({ key });
     }
 
     async keys() {
-        const keys = await Storage.keys();
-        console.log('Got keys: ', keys);
+        const { keys } = await Storage.keys();
+        return keys;
     }
 
     async clear() {
