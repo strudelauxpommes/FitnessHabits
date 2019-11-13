@@ -4,6 +4,5 @@
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
-  "cordova": {},
-  "linuxAndroidStudioPath": "/home/jean/android-studio/bin/studio.sh"
+  "cordova": {}
 }
