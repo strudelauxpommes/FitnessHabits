@@ -1,0 +1,7 @@
+{
+  "name": "FitnessHabits",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

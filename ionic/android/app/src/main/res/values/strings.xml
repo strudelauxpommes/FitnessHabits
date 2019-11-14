@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FitnessHabits</string>
+    <string name="title_activity_main">FitnessHabits</string>
+    <string name="package_name">ca.uqam.strudelauxpommes.FitnessHabits</string>
+    <string name="custom_url_scheme">ca.uqam.strudelauxpommes.FitnessHabits</string>
+</resources>
