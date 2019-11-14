@@ -23,14 +23,14 @@ export class Dal {
             peer review.
     */
 
-    async setItem(key, value) {
+    async setItem(key: any, value: any) {
         const timestampMs = Date.now();
         const lastValue = await this.getItems(key);
         lastValue.push({ timestampMs, value });
         await Storage.set({ key, value: JSON.stringify(lastValue) });
     }
 
-    async getItems(key) {
+    async getItems(key: any) {
         const { value } = await Storage.get({ key });
         if (value === undefined || value === null) {
             return [];
@@ -42,7 +42,7 @@ export class Dal {
     /**
        Retieve the latest time stamped item under a key
      */
-    async getItem(key) {
+    async getItem(key: any) {
         const items = await this.getItems(key);
         if (items.length === 0) {
             return undefined;
@@ -51,7 +51,7 @@ export class Dal {
         return value;
     }
 
-    async removeItem(key) {
+    async removeItem(key: any) {
         await Storage.remove({ key });
     }
 

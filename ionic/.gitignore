@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# Capacitor local config
+/capacitor.config.json
+
 # testing
 /coverage
 

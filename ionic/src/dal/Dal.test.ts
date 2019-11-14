@@ -44,7 +44,7 @@ describe('Dal', function() {
             const timestamp = Date.now();
             const items = await instance.getItems("foo");
             expect(items.length).toStrictEqual(3);
-            const timestamps = items.map((x) => x.timestampMs);
+            const timestamps = items.map((x: any) => x.timestampMs);
             for (let actual of timestamps) {
                 expect(actual).toBeGreaterThanOrEqual(timestamp);
             }
@@ -54,7 +54,7 @@ describe('Dal', function() {
             const timestamp = Date.now();
             const items = await instance.getItems("foo");
             expect(items.length).toStrictEqual(3);
-            const values = items.map((x) => x.value);
+            const values = items.map((x: any) => x.value);
             expect(values[0]).toBe("bar");
             expect(values[1]).toBe("bie");
             expect(values[2]).toBe("ber");
