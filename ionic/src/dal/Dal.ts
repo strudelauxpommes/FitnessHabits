@@ -24,13 +24,26 @@ export class Dal {
     */
 
     async setItem(key: any, value: any) {
-        const timestampMs = Date.now();
-        const lastValue = await this.getItems(key);
-        lastValue.push({ timestampMs, value });
-        await Storage.set({ key, value: JSON.stringify(lastValue) });
+        await this.setItemByDate(key, value, new Date());
     }
 
-    async getItems(key: any) {
+    async setItemByDate(key: any, value: any, date: Date) {
+        let items = await this.getAllItems(key);
+        items = this._updateItem(items, date, value);
+        await Storage.set({ key, value: JSON.stringify(items) });
+    }
+
+    private _updateItem(items: any, date: Date, value: any) {
+        const timestampMs = date.getTime();
+        items = items.filter((x: any) => {
+            let dateToFilter = new Date(x.timestampMs);
+            return dateToFilter.toLocaleDateString() !== date.toLocaleDateString();
+        });
+        items.push({ timestampMs, value });
+        return items.sort((x: any,y: any) => x.timestampMs-y.timestampMs);
+    }
+
+    async getAllItems(key: any) {
         const { value } = await Storage.get({ key });
         if (value === undefined || value === null) {
             return [];
@@ -39,15 +52,43 @@ export class Dal {
         }
     }
 
+    async getItems(key: any, begin: Date, end: Date) {
+        let items = await this.getAllItems(key);
+        items = items.filter(
+                    (x: any) => {
+                        let dateToFilter = new Date(x.timestampMs);
+                        return dateToFilter.toLocaleDateString() === begin.toLocaleDateString() 
+                            || dateToFilter.toLocaleDateString() === end.toLocaleDateString()
+                            || (dateToFilter > begin && dateToFilter < end);
+                    }
+                );
+        return items;
+    }
+
     /**
        Retieve the latest time stamped item under a key
      */
-    async getItem(key: any) {
-        const items = await this.getItems(key);
+    async getLastItem(key: any) {
+        const items = await this.getAllItems(key);
         if (items.length === 0) {
             return undefined;
         }
         const { value } = items[items.length - 1];
+        return value;
+    }
+
+    async getItem(key: any, date: Date) {
+        let items = await this.getAllItems(key);
+        items = items.filter(
+                (x: any) => {
+                    let dateToFilter = new Date(x.timestampMs);
+                    return dateToFilter.toLocaleDateString() === date.toLocaleDateString();
+                }
+            );
+        if (items.length === 0) {
+            return undefined;
+        }
+        const { value } = items[0];
         return value;
     }
 
