@@ -52,11 +52,14 @@ Run
 
 Tests
 -----
-
-Please, visit the following link [watcher limit] should you face an error looking like:
-
+* To run unit tests :
+    ```sh
+    $ npm test
+    ```
+* Please, visit the following link [watcher limit] should you face an error looking like:
+    ```
     ENOSPC: System limit for number of file watchers reached, watch 'path/to/project'
-
+    ```
 
 References
 ----------
