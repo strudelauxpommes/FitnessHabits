@@ -7,6 +7,15 @@ Prerquisites
     ```sh
     $ npm install -g ionic
     ```
+---
+**NOTE**
+
+Be carefull, if installing `ionic` or other modules needs permissions, you may 
+attempted to use `sudo` (i.e. `sudo npm instal ...`). Read [Don’t Use `sudo` with `npm`]
+to know how to avoid this.
+
+---
+
 * The project can run under [Android Studio] for android smartphone simulations. 
 
 
@@ -43,11 +52,14 @@ Run
 
 Tests
 -----
-
-Please, visit the following link [watcher limit] should you face an error looking like:
-
+* To run unit tests :
+    ```sh
+    $ npm test
+    ```
+* Please, visit the following link [watcher limit] should you face an error looking like:
+    ```
     ENOSPC: System limit for number of file watchers reached, watch 'path/to/project'
-
+    ```
 
 References
 ----------
@@ -55,6 +67,7 @@ References
 - [Android Studio] and how to add [new virtual device]
 - [Capacitor] and [Capacitor configurations]
 - [watcher limit]
+- [Don’t Use `sudo` with `npm`]
 
 [Ionic]: https://ionicframework.com/docs/installation/cli/
 [Android Studio]: https://developer.android.com/studio/install
@@ -62,3 +75,4 @@ References
 [Capacitor configurations]: https://capacitor.ionicframework.com/docs/basics/configuring-your-app/
 [new virtual device]: https://developer.android.com/studio/run/managing-avds
 [watcher limit]: https://github.com/gatsbyjs/gatsby/issues/11406#issuecomment-458769756
+[Don’t Use `sudo` with `npm`]: https://medium.com/@ExplosionPills/dont-use-sudo-with-npm-still-66e609f5f92
