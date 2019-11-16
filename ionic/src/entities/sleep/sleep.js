@@ -13,20 +13,22 @@ class Sleep {
     /**
      * [constructor description]
      *
-     * @param   {obj{"start", "end"}}  obj  [object with start, end keys]
+     * @param   {object}  sleep  [a valid json object]
+     * 
+     * Note: for the validation rules: check ./sleep.schema.json
      */
-    constructor(obj) {
-        this.id = obj['id']
-        this.start = moment.parseZone(obj['start'])
-        this.end = moment.parseZone(obj['end'])
-        this.numberOfInteruptions = obj['numberOfInteruptions']
-        this.comment = obj["comment"]
+    constructor(sleep) {
+        this.id = sleep['id']
+        this.start = moment.parseZone(sleep['start'])
+        this.end = moment.parseZone(sleep['end'])
+        this.numberOfInteruptions = sleep['numberOfInteruptions']
+        this.comment = sleep["comment"]
     }
 
     /**
      * [getId description]
      *
-     * @return  {Integer}  [return description]
+     * @return  {Integer} 
      */
     getId() {
         return this.id
@@ -37,7 +39,7 @@ class Sleep {
      *
      * @param   {string}  format  [a valid date format]
      *
-     * @return  {string}          [a formatted start date]
+     * @return  {string}        
      */
     getStartDate(format = 'MM/DD/YYYY') {
         return this.start.format(format)
@@ -48,7 +50,7 @@ class Sleep {
      *
      * @param   {string}  format  [a valid time format]
      *
-     * @return  {string}          [a formatted time]
+     * @return  {string}         
      */
     getStartTime(format = "HH:mm") {
         return this.start.format(format)
@@ -57,9 +59,9 @@ class Sleep {
     /**
      * [Get end date  formatted]
      *
-     * @param   {[type]}  format  [format description]
+     * @param   {string}  format  [format description]
      *
-     * @return  {[type]}          [return description]
+     * @return  {string}         
      */
     getEndDate(format = 'MM/DD/YYYY') {
         return this.end.format(format)
@@ -70,7 +72,7 @@ class Sleep {
  *
  * @param   {string}  format  [format description]
  *
- * @return  {string}          [return description]
+ * @return  {string}         
  */
     getEndTime(format = 'HH:mm') {
         return this.end.format(format)
@@ -98,45 +100,34 @@ class Sleep {
         return duration.asMinutes()
     }
 
+    /**
+     * [Get the number of interuptions]
+     *
+     * @return  {Integer}  
+     */
     getNumberOfInteruptions() {
         return this.numberOfInteruptions
     }
 
     /**
-     * [getInterval description]
+     * [Get the interval]
+     * 
+     * e.g: 23:00 - 06:00
      *
-     * @return  {[type]}  [return description]
+     * @return  {String}  
      */
     getInterval() {
         return `${this.getStartTime() - this.getEndTime()}`
     }
-
-    /**
-     * [Validate sleep arguments]
-     *
-     * Rules: 
-     *  - start must be a valid moment object
-     *  - end must be a valid moment object
-     *  - end - start > 0
-     *  - 
-     * 
-     * 
-     * @return  {boolean}  [return true if not valid]
-     */
-    isNotValid() {
-        //@todo: implement rules 
-        return false
-    }
 }
 
 /**
- * [Collection to manipulate the sleeps object.]
- * 
+ * [A collection to manipulate a list of sleeps object.]
  * 
  */
 class SleepCollection {
     /**
-     * @param   {json list of sleep entites}  datas  [datas description]
+     * @param   {json list of sleep entites}  datas  
      */
     constructor(datas) {
         this.list = []
@@ -149,13 +140,12 @@ class SleepCollection {
     /**
      * [Add a list of sleep from a json]
      *
-     * @param   {[obj]}  listObj  [a list of json objects ]
-     * 
-     * e.g: [{"start": "2016-11-23T23:00:00-05:00", "end": "2016-11-24T07:00:00-05:00"}]
+     * @param   {[obj]}  listSleeps  [a valid list of json sleep objects ]
      *
+     * Note: for the validation rules: check ./sleep_collection.schema.json
      */
-    addSleepList(listObj) {
-        listObj.forEach(sleep => {
+    addSleepList(listSleeps) {
+        listSleeps.forEach(sleep => {
             this.addSleep(new Sleep(sleep))
         });
     }
@@ -244,16 +234,6 @@ class SleepCollection {
 
         return totalMinutes;
     }
-
-    getTotalAverageSleep() {
-        //@todo
-    }
-
-    getAverageSleepByDays(nbrDays = 7) {
-        //@todo
-    }
-
-    // Any 
 }
 
 export { Sleep, SleepCollection };

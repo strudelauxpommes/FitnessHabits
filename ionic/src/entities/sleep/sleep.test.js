@@ -41,15 +41,6 @@ test('parse a json, create a sleep collection and check the size of the collecti
     expect(sleepCollection.size()).toEqual(3)
 })
 
-test('validate a sleep entity', () => {
-    var json = {
-        'start': '2016-11-23T23:15:00-05:00',
-        'end': '2016-11-24T07:00:00-05:00'
-    }
-
-    const sleep = new Sleep(json)
-    expect(sleep.isNotValid()).toBeFalsy()
-})
 
 test('Get list of sleeps between 2 dates', () => {
     const sleepCollection = new SleepCollection();
@@ -86,7 +77,7 @@ test('sort sleep entites by ascending order', () => {
 
     sleepCollection.addSleep(new Sleep({'start': '2016-11-23T23:00:00-05:00', 'end': '2016-11-24T07:00:00-05:00'}))
 
-    //@todo
+
 })
 
 test('Calculate total amount of sleep', () => {
