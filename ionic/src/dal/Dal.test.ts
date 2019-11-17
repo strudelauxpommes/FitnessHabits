@@ -36,14 +36,14 @@ describe('Dal', function() {
             await instance.setItemByDate("foo", "ber", new Date("01/02/2019"));
             await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
             let actual = await instance.getLastItem("foo");
-            expect(actual).toStrictEqual("ber");
-            await instance.setItemByDate("foo", "beer", new Date("01/02/2019"));
+            expect(actual).toStrictEqual("bar");
+            await instance.setItemByDate("foo", "bie", new Date("01/02/2019"));
             actual = await instance.getLastItem("foo");
-            expect(actual).toStrictEqual("beer");
+            expect(actual).toStrictEqual("bie");
         });
     });
 
-    describe('getItems', function() {
+    describe('getAllItems', function() {
         beforeEach(async function() {
             await instance.clear();
             await instance.setItemByDate("foo", "bar", new Date("2019-01-01"));
@@ -58,17 +58,16 @@ describe('Dal', function() {
 
         // TODO: Date.now is not monotonic, but is good enough for now.
         it('should use monotonic timestamp', async function() {
-            const timestamp = Date.now();
+            const currentDateTime = Date.now();
             const items = await instance.getAllItems("foo");
             expect(items.length).toStrictEqual(3);
-            const timestamps = items.map((x: any) => x.timestampMs);
-            for (let actual of timestamps) {
-                expect(actual).toBeLessThanOrEqual(timestamp);
+            const dateTimes = items.map((x: any) => x.dateTime);
+            for (let actual of dateTimes) {
+                expect(actual).toBeLessThanOrEqual(currentDateTime);
             }
         });
 
         it('should retrieve all values under a key', async function() {
-            const timestamp = Date.now();
             const items = await instance.getAllItems("foo");
             expect(items.length).toStrictEqual(3);
             const values = items.map((x: any) => x.value);
@@ -139,7 +138,7 @@ describe('Dal', function() {
         });
     });
 
-    describe('getItemsBetween', function() {
+    describe('getItems', function() {
         beforeEach(async function() {
             await instance.clear();
             await instance.setItemByDate("foo", "bar", new Date("2019-01-01"));
@@ -177,6 +176,47 @@ describe('Dal', function() {
             items = await instance.getItems("foo", begin, begin);
             expect(items.length).toStrictEqual(1);
             values = items.map((x: any) => x.value);
+            expect(values[0]).toBe("bar");
+        });
+    });
+
+    describe('getItems2', function() {
+        beforeEach(async function() {
+            await instance.clear();
+            await instance.setItemByDate("foo", "bar", new Date("2019-01-02"));
+            await instance.setItemByDate("foo", "bie", new Date("2019-01-03"));
+            await instance.setItemByDate("foo", "ber", new Date("2019-01-04"));
+        });
+
+        it('should return an empty array if begin date is after the last date', async function() {
+            const begin = new Date("2019-01-05");
+            let items = await instance.getItems2("foo", begin, new Date());
+            expect(items).toStrictEqual([]);
+        });
+
+        it('should return an empty array if end date is before the first date', async function() {
+            const end = new Date("2018-01-05");
+            let items = await instance.getItems2("foo", new Date(0), end);
+            expect(items).toStrictEqual([]);
+        });
+
+        it('should retrieve all values between two dates', async function() {
+            const begin = new Date("2019-01-02");
+            const middle = new Date("2019-01-03");
+            const end = new Date("2019-01-04");
+            let items = await instance.getItems2("foo", begin, end);
+            expect(items.length).toStrictEqual(3);
+            let values = items.map((x: any) => x.value);
+            expect(values[0]).toBe("bar");
+            expect(values[1]).toBe("bie");
+            expect(values[2]).toBe("ber");
+        });
+
+        it('should retrieve all values between one date', async function() {
+            const begin = new Date("2019-01-02");
+            let items = await instance.getItems2("foo", begin, begin);
+            expect(items.length).toStrictEqual(1);
+            let values = items.map((x: any) => x.value);
             expect(values[0]).toBe("bar");
         });
     });
