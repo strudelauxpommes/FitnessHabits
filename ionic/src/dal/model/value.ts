@@ -1,3 +1,1 @@
-export default interface Value {
-    innerValue: string | number | boolean | null;
-}
+export type Value = string | number | boolean | null;

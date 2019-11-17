@@ -9,7 +9,8 @@
  like this: profile/name "John Smith", profile/age 42.
  */
 import Item from './model/item';
-import Value from './model/value';
+import { Value } from './model/value';
+
 
 export default interface Dal {
 

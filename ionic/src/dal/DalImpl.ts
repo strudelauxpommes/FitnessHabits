@@ -1,11 +1,10 @@
 import { Plugins } from '@capacitor/core';
-import Item from './model/item';
-import DateWrapper from './model/dateWrapper';
 import Dal from './Dal';
-import Value from './model/value';
+import { Value } from './model/value';
 
 const { Storage } = Plugins;
 
+// type Value = string | number | boolean | null;
 export class DalImpl implements Dal {
     /*
       As far as I am concerned, I believe NodeJS only has atomic operations
@@ -30,8 +29,7 @@ export class DalImpl implements Dal {
     private _updateItem(items: any, date: Date, value: Value) {
         const dateTime = date.getTime();
         const timestampMs = Date.now();
-        const innerValue = value.innerValue;
-        items.push({ timestampMs, dateTime, innerValue });
+        items.push({ timestampMs, dateTime, value });
         return items;
     }
 
