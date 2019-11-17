@@ -2,6 +2,7 @@ import { Plugins } from '@capacitor/core';
 import Item from './model/item';
 import DateWrapper from './model/dateWrapper';
 import Dal from './Dal';
+import Value from './model/value';
 
 const { Storage } = Plugins;
 
@@ -16,33 +17,34 @@ export class DalImpl implements Dal {
             peer review.
     */
 
-    async setItem(key: any, value: any) {
+    async setItem(key: string, value: Value) {
         await this.setItemByDate(key, value, new Date());
     }
 
-    async setItemByDate(key: any, value: any, date: Date) {
+    async setItemByDate(key: string, value: Value, date: Date) {
         let items = await this.getAllItems(key);
         items = this._updateItem(items, date, value);
         await Storage.set({ key, value: JSON.stringify(items) });
     }
 
-    private _updateItem(items: any, date: Date, value: any) {
+    private _updateItem(items: any, date: Date, value: Value) {
         const dateTime = date.getTime();
         const timestampMs = Date.now();
-        items.push({ timestampMs, dateTime, value });
+        const innerValue = value.innerValue;
+        items.push({ timestampMs, dateTime, innerValue });
         return items;
     }
 
-    async getAllItems(key: any) {
-        const { value } = await Storage.get({ key });
-        if (value === undefined || value === null) {
+    async getAllItems(key: string) {
+        const { value: items } = await Storage.get({ key });
+        if (items === undefined || items === null) {
             return [];
         } else {
-            return JSON.parse(value);
+            return JSON.parse(items);
         }
     }
 
-    async getItems(key: any, begin: Date, end: Date) {
+    async getItems(key: string, begin: Date, end: Date) {
         let items = await this.getAllItems(key);
         items = items.filter(
                     (x: any) => this._betweenDates(new Date(x.dateTime), begin, end)
@@ -57,7 +59,7 @@ export class DalImpl implements Dal {
 
     }
 
-    async getLatestItems(key: any, begin: Date, end: Date) {
+    async getLatestItems(key: string, begin: Date, end: Date) {
         let items = await this.getItems(key, begin, end);
         let res: any = [];
         let endLimit = new Date(end.getTime());
@@ -79,7 +81,7 @@ export class DalImpl implements Dal {
         return date1.toLocaleDateString() === date2.toLocaleDateString();
     }
 
-    async getLastItem(key: any) {
+    async getLastItem(key: string) {
         const items = await this.getAllItems(key);
         if (items.length === 0) {
             return undefined;
@@ -88,7 +90,7 @@ export class DalImpl implements Dal {
         return value;
     }
 
-    async getItem(key: any, date: Date) {
+    async getItem(key: string, date: Date) {
         let items = await this.getAllItems(key);
         items = items.filter(
                 (x: any) => {
@@ -103,7 +105,7 @@ export class DalImpl implements Dal {
         return value;
     }
 
-    async removeItem(key: any) {
+    async removeItem(key: string) {
         await Storage.remove({ key });
     }
 

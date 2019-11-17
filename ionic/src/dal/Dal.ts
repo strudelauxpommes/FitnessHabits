@@ -9,6 +9,7 @@
  like this: profile/name "John Smith", profile/age 42.
  */
 import Item from './model/item';
+import Value from './model/value';
 
 export default interface Dal {
 
@@ -21,7 +22,7 @@ export default interface Dal {
      * @param key
      * @param value
      */
-    setItem(key: any, value: any): Promise<void>;
+    setItem(key: string, value: Value): Promise<void>;
 
     /**
      * Set an item (key, {timestamp, date, value}) for a given (key, date, value)
@@ -33,13 +34,13 @@ export default interface Dal {
      * @param value
      * @param date
      */
-    setItemByDate(key: any, value: any, date: Date): Promise<void>;
+    setItemByDate(key: string, value: Value, date: Date): Promise<void>;
 
     /**
      * Get all items with their timestamp related to the given key
      * @param key
      */
-    getAllItems(key: any): Promise<Array<Item>>;
+    getAllItems(key: string): Promise<Array<Item>>;
 
     /**
      * Get all items with their timestamp related to the given key and between
@@ -48,7 +49,7 @@ export default interface Dal {
      * @param begin
      * @param end
      */
-    getItems(key: any, begin: Date, end: Date): Promise<Array<Item>>;
+    getItems(key: string, begin: Date, end: Date): Promise<Array<Item>>;
 
     /**
      * Get all latest items (by the mean of their timestamp) related to the given 
@@ -59,26 +60,26 @@ export default interface Dal {
      * @param begin
      * @param end
      */
-    getLatestItems(key: any, begin: Date, end: Date): Promise<Array<Item>>;
+    getLatestItems(key: string, begin: Date, end: Date): Promise<Array<Item>>;
 
     /**
      * Retrieve the latest time stamped item under a key regardless its date.
      * @param key
      */
-    getLastItem(key: any): Promise<Item>;
+    getLastItem(key: string): Promise<Item>;
 
     /**
      * Retrieve the latest time stamped item under a key for a given date
      * @param key
      * @param date
      */
-    getItem(key: any, date: Date): Promise<Item>;
+    getItem(key: string, date: Date): Promise<Item>;
 
     /**
      * Remove all items for the given key
      * @param keyq
      */
-    removeItem(key: any): Promise<void>;
+    removeItem(key: string): Promise<void>;
 
     /**
      * Return all keys.
