@@ -1,39 +1,31 @@
 import { Plugins } from '@capacitor/core';
 import Dal from './Dal';
+import Item from './model/item';
 import { Value } from './model/value';
 
 const { Storage } = Plugins;
 
-// type Value = string | number | boolean | null;
 export class DalImpl implements Dal {
-    /*
-      As far as I am concerned, I believe NodeJS only has atomic operations
-      because it works on a single thread model. However, Ionic generates
-      code to different platforms that may or may not have the same threading
-      model. Therefore, I am unsure whether or not the set operation is atomic.
-      TODO: "proove" with unit test(s),
-            search (Ionic Storage module unit tests or stack overflow)
-            peer review.
-    */
 
     async setItem(key: string, value: Value) {
         await this.setItemByDate(key, value, new Date());
     }
 
     async setItemByDate(key: string, value: Value, date: Date) {
-        let items = await this.getAllItems(key);
+        let items: Item[] = await this.getAllItems(key);
         items = this._updateItem(items, date, value);
         await Storage.set({ key, value: JSON.stringify(items) });
     }
 
-    private _updateItem(items: any, date: Date, value: Value) {
+    private _updateItem(items: Item[], date: Date, value: Value): Item[] {
         const dateTime = date.getTime();
         const timestampMs = Date.now();
-        items.push({ timestampMs, dateTime, value });
+        let item: Item = { timestampMs, dateTime, value };
+        items.push(item);
         return items;
     }
 
-    async getAllItems(key: string) {
+    async getAllItems(key: string): Promise<Item[]> {
         const { value: items } = await Storage.get({ key });
         if (items === undefined || items === null) {
             return [];
@@ -43,7 +35,7 @@ export class DalImpl implements Dal {
     }
 
     async getItems(key: string, begin: Date, end: Date) {
-        let items = await this.getAllItems(key);
+        let items: Item[] = await this.getAllItems(key);
         items = items.filter(
                     (x: any) => this._betweenDates(new Date(x.dateTime), begin, end)
                 );
@@ -71,7 +63,6 @@ export class DalImpl implements Dal {
                 res.push(filteredItems[filteredItems.length-1]);
             }
         }
-        // res.sort((x: any,y: any) => (x.timestampMs-y.timestampMs));
         return res;
     }
 
@@ -79,7 +70,7 @@ export class DalImpl implements Dal {
         return date1.toLocaleDateString() === date2.toLocaleDateString();
     }
 
-    async getLastItem(key: string) {
+    async getLastValue(key: string) {
         const items = await this.getAllItems(key);
         if (items.length === 0) {
             return undefined;
@@ -88,7 +79,7 @@ export class DalImpl implements Dal {
         return value;
     }
 
-    async getItem(key: string, date: Date) {
+    async getValue(key: string, date: Date) {
         let items = await this.getAllItems(key);
         items = items.filter(
                 (x: any) => {

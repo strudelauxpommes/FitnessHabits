@@ -41,7 +41,7 @@ export default interface Dal {
      * Get all items with their timestamp related to the given key
      * @param key
      */
-    getAllItems(key: string): Promise<Array<Item>>;
+    getAllItems(key: string): Promise<Item[]>;
 
     /**
      * Get all items with their timestamp related to the given key and between
@@ -49,8 +49,9 @@ export default interface Dal {
      * @param key
      * @param begin
      * @param end
+     * @returns a promise of Item[] ordered by Item.timestampMs
      */
-    getItems(key: string, begin: Date, end: Date): Promise<Array<Item>>;
+    getItems(key: string, begin: Date, end: Date): Promise<Item[]>;
 
     /**
      * Get all latest items (by the mean of their timestamp) related to the given 
@@ -60,32 +61,35 @@ export default interface Dal {
      * @param key
      * @param begin
      * @param end
+     * @returns a promise of Item[] ordered by Item.dateTime
      */
-    getLatestItems(key: string, begin: Date, end: Date): Promise<Array<Item>>;
+    getLatestItems(key: string, begin: Date, end: Date): Promise<Item[]>;
 
     /**
-     * Retrieve the latest time stamped item under a key regardless its date.
+     * Retrieve the latest time stamped value under a key regardless its date.
      * @param key
+     * @returns Value or 'undefined' if there is no such value.
      */
-    getLastItem(key: string): Promise<Item>;
+    getLastValue(key: string): Promise<Value | undefined>;
 
     /**
-     * Retrieve the latest time stamped item under a key for a given date
+     * Retrieve the latest time stamped value under a key for a given date
      * @param key
      * @param date
+     * @returns Value or 'undefined' if there is no such value.
      */
-    getItem(key: string, date: Date): Promise<Item>;
+    getValue(key: string, date: Date): Promise<Value | undefined>;
 
     /**
      * Remove all items for the given key
-     * @param keyq
+     * @param key
      */
     removeItem(key: string): Promise<void>;
 
     /**
      * Return all keys.
      */
-    keys(): Promise<Array<string>>;
+    keys(): Promise<string[]>;
 
     /**
      * Clear all items.
