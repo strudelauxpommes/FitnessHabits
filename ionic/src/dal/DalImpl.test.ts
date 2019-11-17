@@ -33,7 +33,7 @@ describe('Dal', function() {
             expect(actual).toStrictEqual("bar");
         });
 
-        it('get last item by date', async function() {
+        it('get last value by date', async function() {
             await instance.setItemByDate("foo", "ber", new Date("01/02/2019"));
             await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
             let actual = await instance.getLastValue("foo");
@@ -78,7 +78,7 @@ describe('Dal', function() {
         });
     });
 
-    describe('getItem', function() {
+    describe('getValue', function() {
         it('should return undefined value upon an empty item', async function() {
             const actual = await instance.getValue("foo", new Date());
             expect(actual).toStrictEqual(undefined);
@@ -123,13 +123,13 @@ describe('Dal', function() {
             expect(actual).toStrictEqual("bar");
         });
 
-        it('Update value for a given date', async function() {
+        it('should update value for a given date', async function() {
             await instance.setItemByDate("foo", "beer", new Date("01/02/2019"));
             const actual = await instance.getValue("foo", new Date("01/02/2019"));
             expect(actual).toStrictEqual("beer");
         });
 
-        it('Update value for a given date regardless its time', async function() {
+        it('should update value for a given date regardless its time', async function() {
             await instance.setItemByDate("foo", "beer", new Date("11/14/2019, 8:00:00 PM"));
             let actual = await instance.getValue("foo", new Date("11/14/2019"));
             expect(actual).toStrictEqual("beer");
@@ -159,7 +159,7 @@ describe('Dal', function() {
             expect(items).toStrictEqual([]);
         });
 
-        it('should retrieve all values between two dates', async function() {
+        it('should retrieve all items between two dates', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
             let items = await instance.getItems("foo", begin, end);
@@ -170,7 +170,7 @@ describe('Dal', function() {
             expect(values[2]).toBe("ber");
         });
 
-        it('should retrieve all values between one date', async function() {
+        it('should retrieve all items between one date', async function() {
             const begin = new Date("2019-01-01");
             let items = await instance.getItems("foo", begin, begin);
             expect(items.length).toStrictEqual(1);
@@ -178,7 +178,7 @@ describe('Dal', function() {
             expect(values[0]).toBe("bar");
         });
 
-        it('should retrieve all values between two dates', async function() {
+        it('should retrieve all items between two dates', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
             await instance.setItemByDate("foo", "bob", new Date("2019-01-01"));
@@ -223,7 +223,7 @@ describe('Dal', function() {
             expect(items).toStrictEqual([]);
         });
 
-        it('should retrieve all last values between two dates', async function() {
+        it('should retrieve all last items between two dates', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
             let items = await instance.getLatestItems("foo", begin, end);
@@ -234,7 +234,7 @@ describe('Dal', function() {
             expect(values[2]).toBe("ber");
         });
 
-        it('should retrieve all last values between two dates, ordered by date and not timestamp', async function() {
+        it('should retrieve all last items between two dates, ordered by date and not timestamp', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
             await instance.setItemByDate("foo", "bob", new Date("2019-01-01"));
@@ -249,7 +249,7 @@ describe('Dal', function() {
             expect(values[2]).toBe("tundra");
         });
 
-        it('should retrieve all values between one date', async function() {
+        it('should retrieve all items between one date', async function() {
             const begin = new Date("2019-01-01");
             let items = await instance.getLatestItems("foo", begin, begin);
             expect(items.length).toStrictEqual(1);
