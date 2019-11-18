@@ -29,12 +29,12 @@ const Import: React.FC = () => {
         <IonList>
           <IonRadioGroup>
             <IonItem>
-              <IonLabel>Importer dans un format .csv</IonLabel>
+              <IonLabel>.csv</IonLabel>
               <IonRadio slot="start" value="csv" checked />
             </IonItem>
 
             <IonItem>
-              <IonLabel>Importer dans un format .json</IonLabel>
+              <IonLabel>.json</IonLabel>
               <IonRadio slot="start" value="json" />
             </IonItem>
           </IonRadioGroup>
@@ -45,6 +45,7 @@ const Import: React.FC = () => {
               <IonSelectOption value="usb" selected>USB</IonSelectOption>
               <IonSelectOption value="cardSD">Card SD</IonSelectOption>
               <IonSelectOption value="email">Gmail</IonSelectOption>
+              <IonSelectOption value="file">FileSystem</IonSelectOption>
             </IonSelect>
           </IonItem>
           <IonRow>
