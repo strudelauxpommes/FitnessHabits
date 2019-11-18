@@ -54,13 +54,6 @@ export class DalImpl implements Dal {
         return items;
     }
 
-    // private _betweenDates(date: Date, begin: Date, end: Date) {
-    //     return this._sameDate(date, begin) 
-    //         || this._sameDate(date, end)
-    //         || (date > begin && date < end);
-
-    // }
-
     async getLatestItems(key: string, begin: Date, end: Date) {
         let items = await this.getItems(key, begin, end);
         let res: any = this._filterLatestItemsBetweenDates(items, begin, end);
@@ -87,10 +80,6 @@ export class DalImpl implements Dal {
         return res;
     }
 
-    // private _sameDate(date1: Date, date2: Date) {
-    //     return date1.toLocaleDateString() === date2.toLocaleDateString();
-    // }
-
     async getLastValue(key: string) {
         const items = await this.getAllItems(key);
         if (items.length === 0) {
@@ -111,7 +100,6 @@ export class DalImpl implements Dal {
     }
 
     private _filterItemsSameDate(items: Item[], date: Date) {
-        // items = items.filter((x: any) => this._sameDate(new Date(x.dateTime), date));
         items = items.filter(
             (x: Item) => {
                 let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));

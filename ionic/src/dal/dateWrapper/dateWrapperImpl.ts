@@ -15,7 +15,6 @@ export class DateWrapperImpl implements DateWrapper {
     }
 
     public isSameDate(date2: Date): boolean {
-        // return this._date.toLocaleDateString() === date2.toLocaleDateString();
         return this._date.getFullYear() === date2.getFullYear()
             && this._date.getMonth() === date2.getMonth()
             && this._date.getDate() === date2.getDate();
