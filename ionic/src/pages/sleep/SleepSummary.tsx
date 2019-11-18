@@ -10,7 +10,6 @@ import {
   IonButton,
   IonPage,
   IonContent,
-  IonHeader,
   IonAlert,
 } from '@ionic/react';
 
@@ -142,7 +141,7 @@ export default class SleepSummary extends Component<Props, State> {
       <IonPage>
         <IonContent>
           <IonCard class="ion-card">
-            <a href="/sleep-detail">
+            <a href="/sleep-detail" id="sleep-summary-a">
               <IonCardTitle class="sleep-summary-card-title">
                 <IonIcon icon={moon} />SOMMEIL<IonIcon icon={moon} />
               </IonCardTitle>

@@ -1,6 +1,6 @@
 import { IonItem, IonLabel, IonGrid, IonRow, IonCol, IonCard, IonTextarea, IonCardContent, IonCardTitle } from '@ionic/react';
 import React from 'react';
-import { Sleep } from '../entities/sleep.js';
+import { Sleep } from '../../entities/sleep/sleep.js';
 
 import { Accordion, AccordionItem } from 'react-sanfona';
 

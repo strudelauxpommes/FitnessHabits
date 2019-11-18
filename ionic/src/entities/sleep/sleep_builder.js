@@ -1,5 +1,5 @@
-import { Sleep } from '../entities/sleep';
-import { activeDate } from '../App';
+import { Sleep } from './sleep';
+import { activeDate } from '../../App'
 import moment from 'moment';
 
 class SleepBuilder {

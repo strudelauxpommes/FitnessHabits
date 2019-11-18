@@ -1,9 +1,9 @@
 import { IonList, IonItem, IonLabel, IonButton, IonInput, IonSelect, IonSelectOption, IonTextarea, IonPage, IonContent, IonHeader, IonCard, IonCardContent } from '@ionic/react';
 import React from 'react';
-import { HeaderToolBarWithImage } from './Home';
+import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
 import { moon } from 'ionicons/icons';
-import SleepService from '../services/SleepService';
-import { Sleep } from '../entities/sleep';
+import SleepService from '../../services/sleep/SleepService';
+import { Sleep } from '../../entities/sleep/sleep';
 import { RouteComponentProps } from 'react-router';
 
 type Props = {

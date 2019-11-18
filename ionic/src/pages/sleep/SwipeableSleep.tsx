@@ -1,7 +1,7 @@
 import { IonIcon, IonItemSliding, IonItemOption, IonItemOptions } from '@ionic/react';
 import { trash, informationCircle } from 'ionicons/icons';
 import React from 'react';
-import { Sleep } from '../entities/sleep.js';
+import { Sleep } from '../../entities/sleep/sleep.js';
 import { HistoricInformationItemCell } from "./HistoricInformationItemCell";
 
 export function SwipeableSleep(props: {
