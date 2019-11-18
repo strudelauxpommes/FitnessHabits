@@ -21,7 +21,7 @@ const Export: React.FC = () => {
           <IonTitle>Exporter les données</IonTitle>
         </IonToolbar>
       </IonHeader>
-
+      <IonContent>
       <IonList>
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
@@ -64,8 +64,6 @@ const Export: React.FC = () => {
         <IonButton color="secondary" expand="block">Toutes les données</IonButton>
       </IonList>
 
-      <IonContent>
-
         <div className="about-header"></div>
         <div className="about-info">
           <h4 className="ion-padding-start">Format des données</h4>
@@ -74,12 +72,12 @@ const Export: React.FC = () => {
         <IonList>
           <IonRadioGroup>
             <IonItem>
-              <IonLabel>Exporter dans un format .csv</IonLabel>
+              <IonLabel>.csv</IonLabel>
               <IonRadio slot="start" value="csv" checked />
             </IonItem>
 
             <IonItem>
-              <IonLabel>Exporter dans un format .json</IonLabel>
+              <IonLabel>.json</IonLabel>
               <IonRadio slot="start" value="json" />
             </IonItem>
           </IonRadioGroup>
@@ -96,7 +94,6 @@ const Export: React.FC = () => {
           </IonRow>
         </IonList>
       </IonContent>
-
     </IonPage>
   );
 };
