@@ -44,23 +44,22 @@ export class DalImpl implements Dal {
     }
 
     private _filterBetweenDates(items: Item[], begin: Date, end: Date) {
-        items = items.filter((x: any) => this._betweenDates(new Date(x.dateTime), begin, end)
-            // (x: any) => {
-            //     let dateWrapper = new DateWrapperImpl(new Date());
-            //     dateWrapper.setDateTime(x.dateTime);
-            //     dateWrapper.setTimestampMs(x.timestampMs);
-            //     dateWrapper.isBetweenDates(begin, end);
-            // }
+        items = items.filter(
+            (x: any) => {
+                let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));
+                dateWrapper.setTimestampMs(x.timestampMs);
+                return dateWrapper.isBetweenDates(begin, end);
+            }
         );
         return items;
     }
 
-    private _betweenDates(date: Date, begin: Date, end: Date) {
-        return this._sameDate(date, begin) 
-            || this._sameDate(date, end)
-            || (date > begin && date < end);
+    // private _betweenDates(date: Date, begin: Date, end: Date) {
+    //     return this._sameDate(date, begin) 
+    //         || this._sameDate(date, end)
+    //         || (date > begin && date < end);
 
-    }
+    // }
 
     async getLatestItems(key: string, begin: Date, end: Date) {
         let items = await this.getItems(key, begin, end);
@@ -69,11 +68,18 @@ export class DalImpl implements Dal {
     }
 
     private _filterLatestItemsBetweenDates(items: Item[], begin: Date, end: Date  ) {
-        let res: any = [];
+        let res: Item[] = [];
         let endLimit = new Date(end.getTime());
         endLimit.setDate(endLimit.getDate() + 1);
+
         for (let iterDate = begin; iterDate <= endLimit; iterDate.setDate(iterDate.getDate() + 1)) {
-            let filteredItems = items.filter((x: any) => this._sameDate(new Date(x.dateTime), iterDate));
+            let filteredItems = items.filter(
+                (x: Item) => {
+                    let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));
+                    dateWrapper.setTimestampMs(x.timestampMs);
+                    return dateWrapper.isSameDate(iterDate);
+                }
+            );
             if (filteredItems.length !== 0) {
                 res.push(filteredItems[filteredItems.length - 1]);
             }
@@ -81,9 +87,9 @@ export class DalImpl implements Dal {
         return res;
     }
 
-    private _sameDate(date1: Date, date2: Date) {
-        return date1.toLocaleDateString() === date2.toLocaleDateString();
-    }
+    // private _sameDate(date1: Date, date2: Date) {
+    //     return date1.toLocaleDateString() === date2.toLocaleDateString();
+    // }
 
     async getLastValue(key: string) {
         const items = await this.getAllItems(key);
@@ -105,7 +111,14 @@ export class DalImpl implements Dal {
     }
 
     private _filterItemsSameDate(items: Item[], date: Date) {
-        items = items.filter((x: any) => this._sameDate(new Date(x.dateTime), date));
+        // items = items.filter((x: any) => this._sameDate(new Date(x.dateTime), date));
+        items = items.filter(
+            (x: Item) => {
+                let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));
+                dateWrapper.setTimestampMs(x.timestampMs);
+                return dateWrapper.isSameDate(date);
+            }
+        );
         return items;
     }
 
