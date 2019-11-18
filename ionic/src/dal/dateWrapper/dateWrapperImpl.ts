@@ -15,7 +15,7 @@ export class DateWrapperImpl implements DateWrapper {
     }
 
     public isSameDate(date2: Date): boolean {
-        //return this._date.toLocaleDateString() === date2.toLocaleDateString();
+        // return this._date.toLocaleDateString() === date2.toLocaleDateString();
         return this._date.getFullYear() === date2.getFullYear()
             && this._date.getMonth() === date2.getMonth()
             && this._date.getDate() === date2.getDate();
@@ -32,7 +32,7 @@ export class DateWrapperImpl implements DateWrapper {
         return this._date.getTime();
     }
     public setDateTime(dateTime: number) {
-        this._date = new Date(dateTime);
+        this._date.setTime(dateTime);
     }
 
 }
