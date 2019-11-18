@@ -14,10 +14,35 @@ export class DateWrapperImpl implements DateWrapper {
 
     }
 
-    public isSameDate(date2: Date): boolean {
-        return this._date.getFullYear() === date2.getFullYear()
-            && this._date.getMonth() === date2.getMonth()
-            && this._date.getDate() === date2.getDate();
+    public isSameDate(date: Date): boolean {
+        // return this._date.toLocaleDateString === date.toLocaleDateString;
+        return this._date.getFullYear() === date.getFullYear()
+            && this._date.getMonth() === date.getMonth()
+            && this._date.getDate() === date.getDate();
+    }
+
+    public isGreaterThan(date: Date): boolean {
+        return this._date > date;
+    }
+
+    public isGreaterThanOrEqual(date: Date): boolean {
+        return this._date >= date;
+    }
+
+    public isLesserThan(date: Date): boolean {
+        return this._date < date;
+    }
+
+    public isLesserThanOrEqual(date: Date): boolean {
+        return this._date <= date;
+    }
+
+    public incrementDays(numberOfDays: number):void {
+        this._date.setDate(this._date.getDate() + numberOfDays);
+    }
+
+    public decrementDays(numberOfDays: number):void {
+        this._date.setDate(this._date.getDate() - numberOfDays);
     }
 
     public getTimestampMs(): number {

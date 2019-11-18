@@ -45,7 +45,7 @@ export class DalImpl implements Dal {
 
     private _filterBetweenDates(items: Item[], begin: Date, end: Date) {
         items = items.filter(
-            (x: any) => {
+            (x: Item) => {
                 let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));
                 dateWrapper.setTimestampMs(x.timestampMs);
                 return dateWrapper.isBetweenDates(begin, end);
@@ -56,22 +56,18 @@ export class DalImpl implements Dal {
 
     async getLatestItems(key: string, begin: Date, end: Date) {
         let items = await this.getItems(key, begin, end);
-        let res: any = this._filterLatestItemsBetweenDates(items, begin, end);
+        let res: Item[] = this._filterLatestItemsBetweenDates(items, begin, end);
         return res;
     }
 
-    private _filterLatestItemsBetweenDates(items: Item[], begin: Date, end: Date  ) {
+    private _filterLatestItemsBetweenDates(items: Item[], begin: Date, end: Date) {
         let res: Item[] = [];
         let endLimit = new Date(end.getTime());
         endLimit.setDate(endLimit.getDate() + 1);
 
-        for (let iterDate = begin; iterDate <= endLimit; iterDate.setDate(iterDate.getDate() + 1)) {
+        for (let iterDate = new DateWrapperImpl(begin); iterDate.isLesserThan(endLimit); iterDate.incrementDays(1)) {
             let filteredItems = items.filter(
-                (x: Item) => {
-                    let dateWrapper = new DateWrapperImpl(new Date(x.dateTime));
-                    dateWrapper.setTimestampMs(x.timestampMs);
-                    return dateWrapper.isSameDate(iterDate);
-                }
+                (x: Item) => iterDate.isSameDate(new Date(x.dateTime))
             );
             if (filteredItems.length !== 0) {
                 res.push(filteredItems[filteredItems.length - 1]);
