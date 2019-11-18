@@ -61,11 +61,10 @@ export class DalImpl implements Dal {
     }
 
     private _filterLatestItemsBetweenDates(items: Item[], begin: Date, end: Date) {
+        const beginDW  = new DateWrapperImpl(begin);
         let res: Item[] = [];
-        let endLimit = new Date(end.getTime());
-        endLimit.setDate(endLimit.getDate() + 1);
 
-        for (let iterDate = new DateWrapperImpl(begin); iterDate.isLesserThan(endLimit); iterDate.incrementDays(1)) {
+        for (let iterDate = beginDW; iterDate.isLesserThanOrEqual(end); iterDate.incrementDays(1)) {
             let filteredItems = items.filter(
                 (x: Item) => iterDate.isSameDate(new Date(x.dateTime))
             );
