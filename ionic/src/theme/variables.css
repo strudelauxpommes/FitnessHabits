@@ -75,3 +75,13 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+.jourActif {
+	background-color: #33CCCC;
+	color: white;
+}
+
+.jourInactif {
+	background-color: grey;
+	color: white;
+}

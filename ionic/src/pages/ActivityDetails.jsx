@@ -7,7 +7,7 @@ const ActivityDetails = () => {
   let dates = [
     {
       id : 1,
-      jour : "2019/11/17",
+      jour : "2019/11/19",
       activites : [
         {
           id : 1,
@@ -35,8 +35,8 @@ const ActivityDetails = () => {
       activites : [
         {
           id : 4,
-          titre : "Gem",
-          duree : 40,
+          titre : "Gym",
+          duree : 60,
           intensite : 6
         },
         {
@@ -55,7 +55,7 @@ const ActivityDetails = () => {
     },
     {
       id : 3,
-      jour : "2019/11/19",
+      jour : "2019/11/17",
       activites : [
         {
           id : 7,
@@ -87,7 +87,7 @@ const ActivityDetails = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-no-padding">
         <IonRow>
           <IonCol size="8">Nom</IonCol>
           <IonCol size="2">Durée</IonCol>
@@ -97,7 +97,7 @@ const ActivityDetails = () => {
         {
             dates.map(d => {
               return (
-                <IonItem key={d['id']}>
+                <IonItem className="ion-no-padding" lines="none" key={d['id']}>
                   <DateRow jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
                 </IonItem>
               );

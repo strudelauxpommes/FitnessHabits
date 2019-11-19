@@ -4,6 +4,8 @@ import ActivityRow from './ActivityRow';
 import moment from 'moment';
 import 'moment/locale/fr';
 
+var classNames = require('classnames');
+
 export default class DateRow extends React.Component {
   getFormattedDate() {
     moment.locale('fr');
@@ -30,7 +32,7 @@ export default class DateRow extends React.Component {
   render() {
     return (
       <IonCol>
-        <IonRow>
+		<IonRow className={ classNames({jourActif: this.props.index === 0, jourInactif: this.props.index > 0})}>
           <IonCol>{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
           <IonCol>{this.getTotalDuration()}</IonCol>
           <IonCol>{this.getIntensityAverage()}</IonCol>
@@ -39,7 +41,7 @@ export default class DateRow extends React.Component {
           {
             this.props.activites.map(a => {
               return (
-                <IonItem key={a['id']}>
+                <IonItem class="ion-no-padding" lines="none" key={a['id']}>
                   <ActivityRow titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
                 </IonItem>
               );
