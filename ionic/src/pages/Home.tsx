@@ -31,11 +31,11 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           <IonLabel></IonLabel>
         </IonTabButton>
         <IonTabButton tab="export" href="/tabs/export">
-          <IonIcon icon={download} />
+          <IonIcon icon={arrowRoundForward} />
           <IonLabel></IonLabel>
         </IonTabButton>
         <IonTabButton tab="import" href="/tabs/import">
-          <IonIcon icon={arrowRoundForward} />
+          <IonIcon icon={download} />
           <IonLabel></IonLabel>
         </IonTabButton>
         <IonTabButton tab="settings" href="/tabs/settings">

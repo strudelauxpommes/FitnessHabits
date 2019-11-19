@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 
 const Purge: React.FC = () => {
   const [showToast1, setShowToast] = useState(false);
+  const [showToast2, setShowToast2] = useState(false);
   return (
     <IonPage id="export-import-list" color="#b3b3b3">
       <IonHeader>
@@ -19,22 +20,29 @@ const Purge: React.FC = () => {
           <IonTitle>Suppression des données</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <div className="about-header"></div>
+        <div className="about-info">
+          <h4 className="ion-padding-start">Supprimer les données jusqu’à</h4>
+        </div>
       <IonContent>
         <IonList>
           <IonItem>
             <IonIcon icon={calendar} slot="start"></IonIcon>
             <IonLabel position="stacked">Indiquez une date valide</IonLabel>
-            <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={null}></IonDatetime>
+            <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value="2019-08-18"></IonDatetime>
           </IonItem>
           <IonRow>
             <IonCol>
-              <IonButton color="light" onClick={() => setShowToast(true)} expand="block">Supprimer</IonButton>
-              <IonToast
-                isOpen={showToast1}
-                onDidDismiss={() => setShowToast(false)}
-                message="Vos données ont été bien supprimées."
-                duration={400}
-              />
+            <IonButton color="light" onClick={() => setShowToast2(true)} expand="block">Supprimer</IonButton>
+            <IonToast
+        isOpen={showToast2}
+        onDidDismiss={() => setShowToast2(false)}
+        message="Vos anciennes données allant jusqu'au Aug 18, 2019 ont bien été supprimées"
+        position="middle"
+        
+
+      />
+
             </IonCol>
           </IonRow>
         </IonList>
