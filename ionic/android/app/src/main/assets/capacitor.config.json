@@ -1,8 +1,0 @@
-{
-  "appId": "ca.uqam.strudelauxpommes.FitnessHabits",
-  "appName": "FitnessHabits",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
-  "cordova": {}
-}
