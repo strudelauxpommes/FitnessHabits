@@ -93,6 +93,7 @@ export default interface Dal {
 
     /**
      * Clear all items.
+     * Use carefully !
      */
     clear(): Promise<void>;
 }
