@@ -3,13 +3,29 @@ import { IonRow, IonCol, IonList, IonItem } from '@ionic/react';
 import ActivityRow from './ActivityRow';
 
 export default class DateRow extends React.Component {
+  getTotalDuration() {
+    let total = 0;
+    this.props.activites.forEach(a => {
+      total += a.duree;
+    });
+    return total;
+  }
+
+  getIntensityAverage() {
+    let total = 0;
+    this.props.activites.forEach(a => {
+      total += a.intensite;
+    });
+    return Math.round(total / this.props.activites.length);
+  }
+
   render() {
     return (
       <IonCol>
         <IonRow>
           <IonCol>{this.props.jour}</IonCol>
-          <IonCol>{this.props.activites[0].id}</IonCol>
-          <IonCol>{this.props.activites[0].duree}</IonCol>
+          <IonCol>{this.getTotalDuration()}</IonCol>
+          <IonCol>{this.getIntensityAverage()}</IonCol>
         </IonRow>
         <IonList>
           {
