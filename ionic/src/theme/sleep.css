@@ -16,7 +16,7 @@
     color: black;
     margin: auto;
     vertical-align: middle;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 #sleep-card-header-first-col {
@@ -37,7 +37,7 @@
 
 .sleep-input {
     border: lightgray solid 1px;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .sleep-text {
