@@ -76,7 +76,7 @@ const ActivityDetails = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
           <IonTitle>Activité(s)</IonTitle>
           <IonButtons slot="end">
             <IonButton>
