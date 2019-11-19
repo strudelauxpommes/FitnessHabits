@@ -73,6 +73,8 @@ const ActivityDetails = () => {
     }
   ]
 
+  let dayIndex = 0;
+
   return (
     <IonPage>
       <IonHeader>
@@ -96,7 +98,7 @@ const ActivityDetails = () => {
             dates.map(d => {
               return (
                 <IonItem key={d['id']}>
-                  <DateRow jour={d['jour']} activites={d['activites']}></DateRow>
+                  <DateRow jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
                 </IonItem>
               );
             })

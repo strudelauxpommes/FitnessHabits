@@ -1,8 +1,16 @@
 import React from 'react';
 import { IonRow, IonCol, IonList, IonItem } from '@ionic/react';
 import ActivityRow from './ActivityRow';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 export default class DateRow extends React.Component {
+  getFormattedDate() {
+    moment.locale('fr');
+    let date = new moment(this.props.jour);
+    return date.locale('fr').format('D MMMM');
+  }
+
   getTotalDuration() {
     let total = 0;
     this.props.activites.forEach(a => {
@@ -23,7 +31,7 @@ export default class DateRow extends React.Component {
     return (
       <IonCol>
         <IonRow>
-          <IonCol>{this.props.jour}</IonCol>
+          <IonCol>{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
           <IonCol>{this.getTotalDuration()}</IonCol>
           <IonCol>{this.getIntensityAverage()}</IonCol>
         </IonRow>

@@ -9,6 +9,7 @@
     "@ionic/react-router": "^4.11.0",
     "cordova-sqlite-storage": "^3.4.0",
     "ionicons": "^4.6.3",
+    "moment": "^2.24.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router": "^5.1.0",
