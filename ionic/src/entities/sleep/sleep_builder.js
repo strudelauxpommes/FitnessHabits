@@ -35,7 +35,7 @@ class SleepBuilder {
         if (this.isValidTime(startInput)) {
             this.startMoment = this.convertSleepInputToMoment(String(startInput));
         } else {
-            this.errorFields.push("Début");
+            this.errorFields.push("Endormi à");
         }
 
         return this;
@@ -52,7 +52,7 @@ class SleepBuilder {
         if (this.isValidTime(endInput)) {
             this.endMoment = this.convertSleepInputToMoment(String(endInput));
         } else {
-            this.errorFields.push("Fin");
+            this.errorFields.push("Réveillé à");
         }
 
         return this;
@@ -69,7 +69,7 @@ class SleepBuilder {
         if (this.isValidNumber(numberOfInteruptionsInput, true)) {
             this.numberOfInteruptions = numberOfInteruptionsInput
         } else {
-            this.errorFields.push("Réveils");
+            this.errorFields.push("Nb réveils");
         }
 
         return this;
@@ -117,12 +117,11 @@ class SleepBuilder {
             });
         }
 
+        this.errorMessage = "<ul>"
         this.errorFields.forEach(
-            field => this.errorMessage
-                += "Le champ <strong>"
-                + field
-                + "</strong> est invalide.\n"
+            field => this.errorMessage += "<li>" + field + "</li>"
         )
+        this.errorMessage += "</ul>"
 
         return {
             sleep: this.sleep,
