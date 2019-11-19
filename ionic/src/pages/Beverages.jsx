@@ -12,6 +12,7 @@ class Beverages extends Component {
             beverages: [],
             total: 0
         }
+        this.onIncrease=this.onIncrease.bind(this);
     }
 
     async componentDidMount() {
@@ -21,8 +22,13 @@ class Beverages extends Component {
         }
     }
 
-    onIncrease = (data) => {
-        
+    async onIncrease (data) {
+        await this.setState(prevState => ({
+            beverages: prevState.beverages.map(
+                el => el.name === data.name? { ...el, quantity: el.quantity+1 }: el
+            )
+        }))
+        this.setState({total: this.state.total+data.volume})
     }
 
     render() {
@@ -32,7 +38,7 @@ class Beverages extends Component {
         }
         return (
             <IonPage>
-                <IonContent className="ion-padding">
+                <IonContent>
                     <IonCard>
                         <IonCardHeader style={{backgroundColor: '#99b3ff'}}>
                             <IonCardTitle> 
@@ -47,8 +53,8 @@ class Beverages extends Component {
                                 </IonRow>
                             </IonCardTitle>
                         </IonCardHeader>
-                        <IonCardContent>
-                            <IonGrid style={{textAlign:'center'}}>
+                        <IonCardContent style={{textAlign:'center'}}>
+                            <IonGrid>
                                 <IonRow>
                                     {beveragesRender}
                                 </IonRow>
