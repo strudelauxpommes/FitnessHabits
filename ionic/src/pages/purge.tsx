@@ -29,7 +29,7 @@ const Purge: React.FC = () => {
           <IonItem>
             <IonIcon icon={calendar} slot="start"></IonIcon>
             <IonLabel position="stacked">Indiquez une date valide</IonLabel>
-            <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value="2019-08-18"></IonDatetime>
+            <IonDatetime displayFormat="MMM DD, YYYY" max={new Date().toISOString()} value={new Date().toISOString()}></IonDatetime>
           </IonItem>
           <IonRow>
             <IonCol>

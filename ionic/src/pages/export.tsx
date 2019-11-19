@@ -10,7 +10,7 @@ import { calendar, logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
 
 const Export: React.FC = () => {
-  const [showToast1, setShowToast] = useState(false);
+const [showToast1, setShowToast] = useState(false);
 
   return (
     <IonPage id="export-import-list" color="#b3b3b3">
@@ -32,7 +32,7 @@ const Export: React.FC = () => {
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
           <IonLabel position="stacked">Jusqu'à </IonLabel>
-          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value="2019-12-19"></IonDatetime>
+          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={new Date().toISOString()}></IonDatetime>
         </IonItem>
       </IonList>
 
@@ -43,7 +43,7 @@ const Export: React.FC = () => {
             <IonButton color="light" expand="block">Nourriture</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton color="light" expand="block">Boissons</IonButton>
+            <IonButton color="light" expand="block">Breuvages</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
@@ -51,7 +51,7 @@ const Export: React.FC = () => {
             <IonButton color="light" expand="block">Suppléments</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton color="light" expand="block">Someil</IonButton>
+            <IonButton color="light" expand="block">Sommeil</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
@@ -60,6 +60,14 @@ const Export: React.FC = () => {
           </IonCol>
           <IonCol>
             <IonButton expand="full" color="light" >Activités physiques</IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton color="light" expand="full" >Alcool</IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton expand="full" color="light" >Glycémie</IonButton>
           </IonCol>
         </IonRow>
         <IonButton color="secondary" expand="block">Toutes les données</IonButton>
@@ -99,7 +107,7 @@ const Export: React.FC = () => {
                 isOpen={showToast1}
                 position="middle"
                 onDidDismiss={() => setShowToast(false)}
-                message="Les données ne sont pas exportées à cause d'une erreur"
+                message="L'éxportation des données a échoué"
                 duration={40000}
               />
             </IonCol>
