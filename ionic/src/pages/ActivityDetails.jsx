@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonList, IonItem } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonList, IonItem, IonCol, IonRow } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React from 'react';
 import DateRow from '../components/DateRow';
@@ -86,6 +86,11 @@ const ActivityDetails = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
+        <IonRow>
+          <IonCol size="8">Nom</IonCol>
+          <IonCol size="2">Durée</IonCol>
+          <IonCol size="2">Intensité</IonCol>
+        </IonRow>
         <IonList>
         {
             dates.map(d => {
