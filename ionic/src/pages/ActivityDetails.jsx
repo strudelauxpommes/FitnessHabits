@@ -6,7 +6,6 @@ import DateRow from '../components/DateRow';
 const ActivityDetails = () => {
   let dates = [
     {
-      id : 1,
       jour : "2019/11/19",
       activites : [
         {
@@ -30,7 +29,6 @@ const ActivityDetails = () => {
       ]
     },
     {
-      id : 2,
       jour : "2019/11/18",
       activites : [
         {
@@ -54,7 +52,6 @@ const ActivityDetails = () => {
       ]
     },
     {
-      id : 3,
       jour : "2019/11/17",
       activites : [
         {
@@ -97,7 +94,7 @@ const ActivityDetails = () => {
           {
             dates.map(d => {
               return (
-                  <DateRow key={d['id']} jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
+                  <DateRow key={d['jour']} jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
               );
             })
           }
