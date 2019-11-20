@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { IonRow, IonCol, IonButton } from '@ionic/react';
 
-export class Beverage extends Component {
+export class FavoriteBeverage extends Component {
     constructor(props) {
         super(props);
         
@@ -30,4 +30,4 @@ export class Beverage extends Component {
     }
 }
 
-export default Beverage
+export default FavoriteBeverage

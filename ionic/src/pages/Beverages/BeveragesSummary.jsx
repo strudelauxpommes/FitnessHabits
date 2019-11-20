@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent } from '@ionic/react';
 import data from './data.json';
 import { cafe } from 'ionicons/icons';
-import Beverage from './Beverage';
+import FavoriteBeverage from './FavoriteBeverage';
 
-class Beverages extends Component {
+class BeveragesSummary extends Component {
 
     constructor() {
         super();
@@ -34,7 +34,7 @@ class Beverages extends Component {
     render() {
         let beveragesRender = [];
         for (let beverage of this.state.beverages) {
-            beveragesRender.push(<Beverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></Beverage>);
+            beveragesRender.push(<FavoriteBeverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></FavoriteBeverage>);
         }
         return (
             <IonPage>
@@ -67,4 +67,4 @@ class Beverages extends Component {
     }
 }
 
-export default Beverages;
+export default BeveragesSummary;
