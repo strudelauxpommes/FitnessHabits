@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonRow, IonCol, IonList, IonItem } from '@ionic/react';
+import { IonRow, IonCol, IonGrid } from '@ionic/react';
 import ActivityRow from './ActivityRow';
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -31,24 +31,20 @@ export default class DateRow extends React.Component {
 
   render() {
     return (
-      <IonCol>
+      <IonGrid>
 		<IonRow className={ classNames({jourActif: this.props.index === 0, jourInactif: this.props.index > 0})}>
-          <IonCol>{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
-          <IonCol>{this.getTotalDuration()}</IonCol>
-          <IonCol>{this.getIntensityAverage()}</IonCol>
+          <IonCol size="6">{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
+          <IonCol size="3">{this.getTotalDuration()} min</IonCol>
+          <IonCol size="3">{this.getIntensityAverage()}</IonCol>
         </IonRow>
-        <IonList>
           {
             this.props.activites.map(a => {
               return (
-                <IonItem class="ion-no-padding" lines="none" key={a['id']}>
-                  <ActivityRow titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
-                </IonItem>
+                  <ActivityRow key={a['id']} titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
               );
             })
           }
-        </IonList>
-      </IonCol>
+      </IonGrid>
     )
   }
 }

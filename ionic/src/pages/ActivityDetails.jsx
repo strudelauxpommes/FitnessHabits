@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonList, IonItem, IonCol, IonRow } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonCol, IonRow, IonGrid } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React from 'react';
 import DateRow from '../components/DateRow';
@@ -87,23 +87,21 @@ const ActivityDetails = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-no-padding">
-        <IonRow>
-          <IonCol size="8">Nom</IonCol>
-          <IonCol size="2">Durée</IonCol>
-          <IonCol size="2">Intensité</IonCol>
-        </IonRow>
-        <IonList>
-        {
+      <IonContent no-padding>
+	    <IonGrid class="test" className="ion-no-padding ion-no-margin" no-padding>
+          <IonRow className="ion-no-padding" no-padding>
+            <IonCol size="6">Nom</IonCol>
+            <IonCol size="3">Durée</IonCol>
+            <IonCol size="3">Intensité</IonCol>
+          </IonRow>
+          {
             dates.map(d => {
               return (
-                <IonItem className="ion-no-padding" lines="none" key={d['id']}>
-                  <DateRow jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
-                </IonItem>
+                  <DateRow key={d['id']} jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
               );
             })
           }
-        </IonList>
+	    </IonGrid>
       </IonContent>
     </IonPage>
   );
