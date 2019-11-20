@@ -6,7 +6,7 @@ export function HeaderToolBarWithImage(props: {
 }) {
     return (<IonToolbar>
         <IonTitle><h1>{props.title}</h1></IonTitle>
-        <IonIcon icon={props.imageName} slot='end' class='icon-header'></IonIcon>
+        <IonIcon icon={props.imageName} slot='end' class='sleep-icon-header'></IonIcon>
         <IonButtons slot="start">
             <IonBackButton defaultHref="/sleep-summary" />
         </IonButtons>

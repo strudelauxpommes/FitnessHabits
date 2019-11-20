@@ -1,6 +1,5 @@
 import {
   IonCard,
-  IonCardTitle,
   IonIcon,
   IonCardContent,
   IonInput,
@@ -17,7 +16,6 @@ import React, { Component } from 'react';
 import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
-import { GeneralInformationItemCell } from './GeneralInformationItemCell';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
 
 type Props = {
@@ -140,24 +138,28 @@ export default class SleepSummary extends Component<Props, State> {
     return (
       <IonPage>
         <IonContent>
-          <IonCard class="ion-card">
-            <a href="/sleep-detail" id="sleep-summary-a">
-              <IonCardTitle class="sleep-summary-card-title">
-                <IonIcon icon={moon} />SOMMEIL<IonIcon icon={moon} />
-              </IonCardTitle>
-            </a>
+          <IonCard class="sleep-ion-card sleep-text">
             <IonCardContent>
-              <GeneralInformationItemCell
-                labelTitle="Durée totale de sommeil"
-                labelSubtitle=""
-                labelValue={(parseFloat(this.state.totalSleepTimeToday) / 60).toFixed(2)}
-              />
+            <a href="/sleep-detail" id="sleep-summary-a">
+
+              <IonGrid id="sleep-card-header">
+                <IonRow>
+                  <IonCol size='9' id="sleep-card-header-first-col">
+                  <IonIcon icon={moon} /> SOMMEIL
+                  </IonCol>
+                  <IonCol size='3'>
+                    {(parseFloat(this.state.totalSleepTimeToday) / 60).toFixed(2)} heures
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+              </a>
+
               <form>
                 <IonGrid class="sleep-grid">
                   <IonRow>
-                    <IonCol><strong>Début</strong></IonCol>
-                    <IonCol><strong>Fin</strong></IonCol>
-                    <IonCol><strong>Réveils</strong></IonCol>
+                    <IonCol><strong>Endormi à</strong></IonCol>
+                    <IonCol><strong>Réveillé à</strong></IonCol>
+                    <IonCol><strong>Nb réveils</strong></IonCol>
                     <IonCol></IonCol>
                   </IonRow>
                   <IonRow>
@@ -216,7 +218,7 @@ export default class SleepSummary extends Component<Props, State> {
             </IonCardContent>
           </IonCard>
         </IonContent>
-      </IonPage>
+      </IonPage >
     );
   }
 }
