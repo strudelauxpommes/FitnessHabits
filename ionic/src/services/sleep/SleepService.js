@@ -54,5 +54,7 @@ export default class SleepService{
 
     getActiveDate(){
         //@todo: David ou PhilB ou Alex
+        //Method to return the active date from this.persist
+        //Ask persistence team to add interface
     }
 }

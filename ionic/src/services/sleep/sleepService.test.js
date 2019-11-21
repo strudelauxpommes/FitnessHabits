@@ -94,5 +94,5 @@ test('save a collection of sleep for one moment', async () => {
 
 test('delete a sleep', async () => {
     //@todo: PhilB ou Alex
-    //check test above as exemple
+    //check test above as exemple.
 });
