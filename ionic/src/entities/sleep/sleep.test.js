@@ -56,6 +56,7 @@ test('Get list of sleeps between 2 dates', () => {
 
     const result = sleepCollection.filterSleepByDates(start, end)
     expect(result).toHaveLength(2)
+    expect(result.map(sleep => sleep.id)).toEqual([2,3])
 })
 
 test('Get average of sleep between 2 dates', () => {
@@ -72,12 +73,48 @@ test('Get average of sleep between 2 dates', () => {
     expect(result.toString()).toEqual("PT7H58M")
 })
 
-test('sort sleep entites by ascending order', () => {
+test('sort sleep entites by ascending order order', () => {
     const sleepCollection = new SleepCollection();
+    sleepCollection.addSleep(new Sleep({'id': 3, 'start': '2016-11-05T23:30:00-05:00', 'end': '2016-11-06T07:06:15-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 4, 'start': '2016-11-06T23:45:00-05:00', 'end': '2016-11-07T07:25:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 6, 'start': '2016-11-08T23:00:00-05:00', 'end': '2016-11-09T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-01T23:00:00-05:00', 'end': '2016-11-02T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 2, 'start': '2016-11-02T23:15:00-05:00', 'end': '2016-11-03T07:06:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 5, 'start': '2016-11-07T23:00:00-05:00', 'end': '2016-11-08T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    
+    sleepCollection.sortByAscendingStartDate()
 
-    sleepCollection.addSleep(new Sleep({'start': '2016-11-23T23:00:00-05:00', 'end': '2016-11-24T07:00:00-05:00'}))
+    expect(sleepCollection.list.map(s => s.id)).toEqual([1,2,3,4,5,6])
+})
 
+test('sort sleep entites by descending order order', () => {
+    const sleepCollection = new SleepCollection();
+    sleepCollection.addSleep(new Sleep({'id': 3, 'start': '2016-11-05T23:30:00-05:00', 'end': '2016-11-06T07:06:15-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 4, 'start': '2016-11-06T23:45:00-05:00', 'end': '2016-11-07T07:25:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 6, 'start': '2016-11-08T23:00:00-05:00', 'end': '2016-11-09T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-01T23:00:00-05:00', 'end': '2016-11-02T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 2, 'start': '2016-11-02T23:15:00-05:00', 'end': '2016-11-03T07:06:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 5, 'start': '2016-11-07T23:00:00-05:00', 'end': '2016-11-08T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    
+    sleepCollection.sortByDescendingStartDate()
 
+    expect(sleepCollection.list.map(s => s.id)).toEqual([6,5,4,3,2,1])
+})
+
+test('get min start date', () => {
+    const sleepCollection = new SleepCollection();
+    sleepCollection.addSleep(new Sleep({'id': 3, 'start': '2016-11-05T23:30:00-05:00', 'end': '2016-11-06T07:06:15-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 4, 'start': '2016-11-06T23:45:00-05:00', 'end': '2016-11-07T07:25:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 6, 'start': '2016-11-08T23:00:00-05:00', 'end': '2016-11-09T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-01T23:00:00-05:00', 'end': '2016-11-02T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 2, 'start': '2016-11-02T23:15:00-05:00', 'end': '2016-11-03T07:06:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    sleepCollection.addSleep(new Sleep({'id': 5, 'start': '2016-11-07T23:00:00-05:00', 'end': '2016-11-08T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+    
+    const result = sleepCollection.getMinStartDate();
+
+    const expected = moment.parseZone('2016-11-01T23:00:00-05:00')
+
+    expect(result).toEqual(expected)
 })
 
 test('Calculate total amount of sleep', () => {

@@ -193,8 +193,44 @@ class SleepCollection {
      *
      * @return  {[Sleep]}  [return list of sleeps]
      */
-    sortDescByEndDate() {
-        return this.list
+    sortByAscendingStartDate() {
+        return this.list.sort((s1, s2) => {
+            const start1 = s1.start.format("X")
+            const start2 = s2.start.format("X")
+
+            if(start1 < start2){
+                return -1
+            } else if(start1 > start2){
+                return 1
+            }
+
+            return 0;
+        });
+    }
+
+    /**
+     * [sortByDescendingStartDate]
+     *
+     * @return  undefined
+     */
+    sortByDescendingStartDate(){
+        this.sortByAscendingStartDate()
+
+        this.list.reverse()
+    }
+
+    /**
+     * [getMinStartDate]
+     *
+     * @return  {moment}  [get the ]
+     */
+    getMinStartDate(){
+        if(this.size() > 0){
+            this.sortByAscendingStartDate()
+            return this.list[0].start;
+        }
+
+        throw "Sleep collection is empty"
     }
 
     /**
