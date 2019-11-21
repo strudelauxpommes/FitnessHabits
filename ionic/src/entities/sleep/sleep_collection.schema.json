@@ -40,7 +40,7 @@
                     "type": "string",
                     "error": "fitnessHabit.sleep.comment.error"
                 },
-                "moon": {
+                "mood": {
                     "type": "string",
                     "minLength": 1
                 }
@@ -51,7 +51,7 @@
                 "end",
                 "numberOfInteruptions",
                 "comment",
-                "moon"
+                "mood"
             ]
         }
     }

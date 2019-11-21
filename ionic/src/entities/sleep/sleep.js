@@ -23,7 +23,7 @@ class Sleep {
         this.end = moment.parseZone(sleep['end'])
         this.numberOfInteruptions = sleep['numberOfInteruptions']
         this.comment = sleep["comment"]
-        this.moon = sleep["moon"]
+        this.mood = sleep["mood"]
     }
 
     /**
@@ -122,12 +122,12 @@ class Sleep {
     }
 
     /**
-     * [Get moon]
+     * [Get mood]
      *
      * @return  {String} 
      */
     getMoon(){
-        return this.moon
+        return this.mood
     }
 }
 

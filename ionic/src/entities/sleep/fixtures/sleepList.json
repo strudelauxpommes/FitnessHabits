@@ -4,20 +4,20 @@
         "end": "2016-11-24T07:00:00-05:00",
         "numberOfInteruptions": 2,
         "comment": "",
-        "moon": "Neutre"
+        "mood": "Neutre"
     },
     {
         "start": "2016-11-21T23:00:00-05:00",
         "end": "2016-11-22T08:00:00-05:00",
         "numberOfInterupti,ons": 2,
         "comment": "",
-        "moon": "Neutre"
+        "mood": "Neutre"
     },
     {
         "start": "2016-11-20T22:00:00-05:00",
         "end": "2016-11-21T06:00:00-05:00",
         "numberOfInteruptions": 2,
         "comment": "",
-        "moon": "Neutre"
+        "mood": "Neutre"
     }
 ]

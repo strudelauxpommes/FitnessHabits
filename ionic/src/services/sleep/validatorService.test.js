@@ -10,7 +10,7 @@ test('Validator service: valid', () => {
         'end': '2016-11-02T07:05:00-05:00', 
         'numberOfInteruptions': 1, 
         'comment': '',
-        'moon': 'neutre'
+        'mood': 'neutre'
     }
 
     const result = service.validateSleepJson(sleepJson)
@@ -27,7 +27,7 @@ test('Validator service: fails', () => {
         "end": "2016-11-24T07:00:00-05:00",
         "numberOfInteruptions": 2,
         "comment": "",
-        "moon": ""
+        "mood": ""
     }
 
     const result = service.validateSleepJson(sleepJson)
@@ -37,5 +37,5 @@ test('Validator service: fails', () => {
     expect(errors).toHaveLength(3)
     expect(errors[0].dataPath).toEqual(".id")
     expect(errors[1].dataPath).toEqual(".start")
-    expect(errors[2].dataPath).toEqual(".moon")
+    expect(errors[2].dataPath).toEqual(".mood")
 })

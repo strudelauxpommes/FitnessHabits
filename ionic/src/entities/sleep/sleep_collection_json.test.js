@@ -17,7 +17,7 @@ test('a valid json sleep collection', () => {
             "end": "2016-11-24T07:00:00-05:00",
             "numberOfInteruptions": 2,
             "comment": "",
-            "moon": "neutre"
+            "mood": "neutre"
         },
         { 
             "id": 2,
@@ -25,7 +25,7 @@ test('a valid json sleep collection', () => {
             "end": "2016-11-22T08:00:00-05:00",
             "numberOfInteruptions": 2,
             "comment": "",
-            "moon": "neutre"
+            "mood": "neutre"
         },
         {
             "id": 3,
@@ -33,7 +33,7 @@ test('a valid json sleep collection', () => {
             "end": "2016-11-21T06:00:00-05:00",
             "numberOfInteruptions": 2,
             "comment": "",
-            "moon": "neutre"
+            "mood": "neutre"
         }
     ]
 
