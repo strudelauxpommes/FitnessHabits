@@ -212,8 +212,8 @@ class SleepCollection {
     /**
      * [Calculate the average sleep between a date and x days before description]
      *
-     * @param   {[type]}  date          [date to end with]
-     * @param   {[type]}  numberOfDays  [number of days]
+     * @param   {moment}  date          [date to end with]
+     * @param   {integer}  numberOfDays  [number of days]
      *
      * @return  {double}                [number of hours]
      */

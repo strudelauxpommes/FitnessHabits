@@ -5,7 +5,6 @@ import ValidatorService from './ValidatorService';
  * Service to fetch sleep entities from the persistence
  */
 export default class SleepService{
-    
     constructor(){
         this.persist = new DalImpl();
         this.validatorService = new ValidatorService()
@@ -59,11 +58,7 @@ export default class SleepService{
      * Delete a SleepItem from the sleepArray
      */
     deleteSleep(key){
-        sleepArray = sleepArray.filter(
-            (item) => {
-                return item.id !== key
-            }
-        );
+        //@todo
     }
 
     /**
