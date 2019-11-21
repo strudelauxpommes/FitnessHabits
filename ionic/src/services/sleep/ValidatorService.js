@@ -11,7 +11,8 @@ export default class ValidatorService{
         const schemaFile = fs.readFileSync(schemaPath)
         this.schema = JSON.parse(schemaFile)
         
-        this.ajv = Ajv()
+        this.ajv = Ajv({allErrors: true})
+        this.validate;
     }   
 
     /**

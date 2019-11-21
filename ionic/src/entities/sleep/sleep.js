@@ -23,6 +23,7 @@ class Sleep {
         this.end = moment.parseZone(sleep['end'])
         this.numberOfInteruptions = sleep['numberOfInteruptions']
         this.comment = sleep["comment"]
+        this.moon = sleep["moon"]
     }
 
     /**
@@ -118,6 +119,15 @@ class Sleep {
      */
     getInterval() {
         return `${this.getStartTime() - this.getEndTime()}`
+    }
+
+    /**
+     * [Get moon]
+     *
+     * @return  {String} 
+     */
+    getMoon(){
+        return this.moon
     }
 }
 

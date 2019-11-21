@@ -32,6 +32,10 @@
         "comment": {
             "type": "string",
             "error": "fitnessHabit.sleep.comment.error"
+        },
+        "moon":{
+            "type": "string",
+            "minLength": 1
         }
     },
     "required": [
@@ -39,6 +43,7 @@
         "start",
         "end",
         "numberOfInteruptions",
-        "comment"
+        "comment",
+        "moon"
     ]
 }
