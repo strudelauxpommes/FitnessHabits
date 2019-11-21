@@ -2,7 +2,7 @@ import { IonList, IonItem, IonLabel, IonButton, IonInput, IonSelect, IonSelectOp
 import React from 'react';
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
 import { moon } from 'ionicons/icons';
-import SleepService from '../../services/sleep/SleepService';
+// import SleepService from '../../services/sleep/SleepService';
 import { Sleep } from '../../entities/sleep/sleep';
 import { RouteComponentProps } from 'react-router';
 
@@ -24,10 +24,17 @@ export class AddSleepLineForm extends React.Component<RouteComponentProps, State
   constructor(props: RouteComponentProps) {
     super(props);
     
-    const key = props.location.state.key;
-    const sleepService = SleepService();
+    // const key = props.location.state.key;
+    // const sleepService = new SleepService();
 
-    const currentItem:Sleep = sleepService.fetch().list.find((item:Sleep) => { return item.id === key});
+    const currentItem : Sleep = new Sleep({
+      "id": 1,
+      "start": "2016-11-23T23:00:00-05:00",
+      "end": "2016-11-24T07:00:00-05:00",
+      "numberOfInteruptions": 2,
+      "comment": "",
+      "mood": "Neutre"
+    })
 
     if(!currentItem){
       //Todo: return empty item, because we'll be creating one

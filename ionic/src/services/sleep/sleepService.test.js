@@ -91,3 +91,8 @@ test('save a collection of sleep for one moment', async () => {
     const result = await service.save(activeDate)
     expect(result.list).toHaveLength(3)
 })
+
+test('delete a sleep', async () => {
+    //@todo: PhilB ou Alex
+    //check test above as exemple
+});

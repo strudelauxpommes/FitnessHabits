@@ -17,6 +17,7 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import moment from 'moment'
 
 type Props = {
   activeDate: Date;
@@ -36,17 +37,28 @@ export default class SleepSummary extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    var sleepList = SleepService().fetch();
+  
+    var sleepList = new SleepCollection([])
     this.state = {
       sleeps: sleepList,
-      sleepTimeBegin: "",
-      sleepTimeEnd: "",
+      sleepTimeBegin: "2300",
+      sleepTimeEnd: "0400",
       wakeUpCount: "",
       totalSleepTimeToday: String(sleepList.calculateTotalSleep()),
       hasSubmitError: false,
       errorMessage: "",
     }
   }
+
+  async componentDidMount(){
+    const sleepService = new SleepService();
+    const activeDate = moment("2019-10-10")
+    const sleepCollection = await sleepService.fetch(activeDate)
+
+    this.setState({
+      sleeps: sleepCollection
+    })
+}
 
   /**
    * [Handles the submit event. Adds sleep to collection and updates the state]
@@ -85,15 +97,21 @@ export default class SleepSummary extends Component<Props, State> {
    * 
    * @param sleep sleep object to add
    */
-  addSleepItem(sleep: any) {
-    this.state.sleeps.addSleep(sleep);
+  async addSleepItem(sleep: any) {
+    const sleepService = new SleepService();
+
+    let collection = this.state.sleeps
+    collection.addSleep(sleep);
+
+    const activeDate = moment("2019-10-10")
+    collection = await sleepService.save(activeDate, collection)
+
     this.setState({
       sleeps: this.state.sleeps,
       sleepTimeBegin: "",
       sleepTimeEnd: "",
       wakeUpCount: "",
-      totalSleepTimeToday: String(parseInt(this.state.totalSleepTimeToday)
-        + sleep.getDurationAsMinutes()),
+      totalSleepTimeToday: collection.calculateTotalSleep().toString()
     });
   }
 
@@ -103,6 +121,7 @@ export default class SleepSummary extends Component<Props, State> {
    * @param sleep sleep object to remove
    */
   removeSleepItem(sleep: Sleep) {
+    //@todo: Alex
     this.state.sleeps.removeSleep(sleep);
     this.setState({
       sleeps: this.state.sleeps,

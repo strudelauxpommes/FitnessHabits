@@ -19,27 +19,32 @@ import { RouteComponentProps } from 'react-router';
 
 import moment from 'moment'
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
+// import { any } from 'prop-types';
 
 type State = {
     sleepCollection: SleepCollection;
     averageSleep: number
 }
 
-const sleepService = SleepService()
-
 export default class SleepDetail extends Component<RouteComponentProps, State> {
-
     constructor(props: RouteComponentProps) {
         super(props);
 
-        const sleepCollection = sleepService.fetch()
-        const now = '2019-11-01T06:00:00-05:00' //Dans le futur cette info proviendra de la config 
-        const sleepAverageLast7Days = sleepCollection.getAverageSleep(moment.parseZone(now), 7)
-
         this.state = {
-            sleepCollection: sleepCollection,
-            averageSleep: sleepAverageLast7Days.as('milliseconds')
+            sleepCollection: new SleepCollection([]),
+            averageSleep: moment.duration(0).as('milliseconds')
         }
+    }
+
+    async componentDidMount(){
+        const sleepService = new SleepService();
+        const activeDate = moment("2019-10-10")
+        const sleepCollection = await sleepService.fetch(activeDate)
+
+        this.setState({
+            sleepCollection: sleepCollection,
+            averageSleep: sleepCollection.getAverageSleep(activeDate as any, 7 as any)
+        })
     }
 
     displaySleepEdit(e: any) {
@@ -47,18 +52,20 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         this.props.history.push("/home");
     }
 
-    saveNewSleepItem(e: any) {
-        console.log(e);
-        sleepService.save();
-        const newCollection = sleepService.fetch();
-        console.log(newCollection);
-        this.setState({ sleepCollection: newCollection });
+    saveNewSleepItem(e: any) {     
+        //@todo: PhilB   
+        // console.log(e);
+        // sleepService.save();
+        // const newCollection = sleepService.fetch();
+        // console.log(newCollection);
+        // this.setState({ sleepCollection: newCollection });
     }
 
     deleteSleepItemWithKey(key: any) {
-        sleepService.delete(key);
-        console.log(sleepService.fetch());
-        this.setState({ sleepCollection: sleepService.fetch() });
+        //@todo: PhilB
+        // sleepService.delete(key);
+        // console.log(sleepService.fetch());
+        // this.setState({ sleepCollection: sleepService.fetch() });
     }
 
     render() {
