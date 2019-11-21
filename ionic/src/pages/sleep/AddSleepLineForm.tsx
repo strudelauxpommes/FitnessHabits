@@ -25,16 +25,9 @@ export class AddSleepLineForm extends React.Component<RouteComponentProps, State
     super(props);
     
     const key = props.location.state.key;
-    const sleepService = new SleepService();
+    const sleepService = SleepService();
 
-    const currentItem:Sleep = new Sleep({
-        "id": 1,
-        "start": "2016-11-23T23:00:00-05:00",
-        "end": "2016-11-24T07:00:00-05:00",
-        "numberOfInteruptions": 2,
-        "comment": "",
-        "mood": "Neutre"
-    });
+    const currentItem:Sleep = sleepService.fetch().list.find((item:Sleep) => { return item.id === key});
 
     if(!currentItem){
       //Todo: return empty item, because we'll be creating one

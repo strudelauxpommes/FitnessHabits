@@ -12,6 +12,7 @@ export default class ValidatorService{
         this.schema = JSON.parse(schemaFile)
         
         this.ajv = Ajv({allErrors: true})
+        this.validate;
     }   
 
     /**

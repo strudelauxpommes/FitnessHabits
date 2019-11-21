@@ -15,7 +15,7 @@ import {
 import React, { Component } from 'react';
 import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
-// import SleepService from '../../services/sleep/SleepService';
+import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
 
 type Props = {
@@ -36,7 +36,7 @@ export default class SleepSummary extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    var sleepList = new SleepCollection([]);
+    var sleepList = SleepService().fetch();
     this.state = {
       sleeps: sleepList,
       sleepTimeBegin: "",

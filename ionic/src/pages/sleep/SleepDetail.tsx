@@ -25,16 +25,14 @@ type State = {
     averageSleep: number
 }
 
+const sleepService = SleepService()
 
 export default class SleepDetail extends Component<RouteComponentProps, State> {
 
     constructor(props: RouteComponentProps) {
         super(props);
 
-        // const sleepService = new SleepService();
-
-        const sleepCollection = new SleepCollection([])
-        // console.log(sleepCollection)
+        const sleepCollection = sleepService.fetch()
         const now = '2019-11-01T06:00:00-05:00' //Dans le futur cette info proviendra de la config 
         const sleepAverageLast7Days = sleepCollection.getAverageSleep(moment.parseZone(now), 7)
 
@@ -50,17 +48,17 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
     }
 
     saveNewSleepItem(e: any) {
-        // console.log(e);
-        // this.sleepService.save();
-        // const newCollection = sleepService.fetch();
-        // console.log(newCollection);
-        // this.setState({ sleepCollection: newCollection });
+        console.log(e);
+        sleepService.save();
+        const newCollection = sleepService.fetch();
+        console.log(newCollection);
+        this.setState({ sleepCollection: newCollection });
     }
 
     deleteSleepItemWithKey(key: any) {
-        // sleepService.delete(key);
-        // console.log(sleepService.fetch());
-        // this.setState({ sleepCollection: sleepService.fetch() });
+        sleepService.delete(key);
+        console.log(sleepService.fetch());
+        this.setState({ sleepCollection: sleepService.fetch() });
     }
 
     render() {
