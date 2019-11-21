@@ -51,4 +51,8 @@ export default class SleepService{
         //@todo: PhilB ou Alex
         // return sleepArray.length;
     }
+
+    getActiveDate(){
+        //@todo: David ou PhilB ou Alex
+    }
 }
