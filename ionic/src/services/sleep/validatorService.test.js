@@ -34,8 +34,7 @@ test('Validator service: fails', () => {
     const errors = service.getErrors()
 
     expect(result).toBeFalsy()
-    expect(errors).toHaveLength(3)
-    expect(errors[0].dataPath).toEqual(".id")
-    expect(errors[1].dataPath).toEqual(".start")
-    expect(errors[2].dataPath).toEqual(".mood")
+    expect(errors).toHaveLength(2)
+    expect(errors[0].dataPath).toEqual(".start")
+    expect(errors[1].dataPath).toEqual(".mood")
 })

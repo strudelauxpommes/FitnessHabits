@@ -24,7 +24,7 @@ test('a valid json sleep', () => {
     expect(result).toBeTruthy
 })
 
-test('invalid json sleep:  id field', () => {
+test.skip('invalid json sleep:  id field', () => {
     const schemaPath = path.join(__dirname, SLEEP_SCHEMA_FILE)
     const schemaFile = fs.readFileSync(schemaPath)
     const schema = JSON.parse(schemaFile)

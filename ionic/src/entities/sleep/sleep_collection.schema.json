@@ -46,7 +46,6 @@
                 }
             },
             "required": [
-                "id",
                 "start",
                 "end",
                 "numberOfInteruptions",
