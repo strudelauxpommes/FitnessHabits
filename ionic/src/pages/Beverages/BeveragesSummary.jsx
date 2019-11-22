@@ -49,7 +49,7 @@ class BeveragesSummary extends Component {
             <IonPage>
                 <IonContent>
                     <IonCard>
-                        <IonCardHeader style={{backgroundColor: '#99b3ff'}}>
+                        <IonCardHeader class="new-beverages-style">
                             <IonCardTitle> 
                                 <IonRow>
                                     <IonCol>
@@ -57,7 +57,7 @@ class BeveragesSummary extends Component {
                                         <p style={{display:'inline'}}>&nbsp; Breuvages</p>
                                     </IonCol>
                                     <IonCol style={{textAlign:'right'}}>
-                                        <IonLabel>{this.state.total}</IonLabel>
+                                        <IonLabel>{this.state.total + this.state.unit}</IonLabel>
                                     </IonCol>
                                 </IonRow>
                             </IonCardTitle>

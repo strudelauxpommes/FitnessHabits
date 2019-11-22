@@ -5,7 +5,9 @@ export class FavoriteBeverage extends Component {
     constructor(props) {
         super(props);
         
-        
+        this.state = {
+            unit: "ml"
+        }
         this.increment=this.increment.bind(this);
     }
     
@@ -17,13 +19,13 @@ export class FavoriteBeverage extends Component {
         return (
             <IonCol>
                 <IonRow style={{justifyContent: 'center'}}>
-                    <IonButton onClick={this.increment}>{this.props.beverage.quantity}</IonButton>
+                    <IonButton class="new-beverages-style" onClick={this.increment}>{this.props.beverage.quantity}</IonButton>
                 </IonRow>
                 <IonRow style={{justifyContent: 'center'}}>
                     {this.props.beverage.name}
                 </IonRow>
                 <IonRow style={{justifyContent: 'center'}}>
-                    {this.props.beverage.volume}
+                    {this.props.beverage.volume + this.state.unit}
                 </IonRow>
             </IonCol>
         )
