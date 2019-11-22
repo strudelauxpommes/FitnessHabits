@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { IonRow, IonCol, IonButton } from '@ionic/react';
+import Dal from '../../dal/Dal'
 
 export class FavoriteBeverage extends Component {
     constructor(props) {

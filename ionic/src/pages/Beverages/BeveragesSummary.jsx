@@ -12,7 +12,7 @@ class BeveragesSummary extends Component {
         this.state = {
             beverages: [],
             total: 0,
-            unit: "mL",
+            unit: "L",
             unitConverter:1
         }
         this.onIncrease=this.onIncrease.bind(this);
