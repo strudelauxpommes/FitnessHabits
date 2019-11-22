@@ -140,10 +140,13 @@ class SleepCollection {
      * @param   {json list of sleep entites}  datas  
      */
     constructor(datas) {
+
+        this.activeDate = moment(datas.activeDate)
+
         this.list = []
 
-        if (datas) {
-            this.addSleepList(datas)
+        if (datas.list) {
+            this.addSleepList(datas.list)
         }
     }
 
