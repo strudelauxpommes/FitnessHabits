@@ -42,17 +42,49 @@ export default class SleepService{
         const begin = new Date(startMoment.format("YYYY-MM-DD"));
         const end = new Date(activeMoment.format("YYYY-MM-DD"));
         let items = await this.persist.getItems("sleep", begin, end);
+        
+        
+        //we define a groupby function to group all sleepcollection in separate arrays
+        const groupBy = (array, fn) => array.reduce((result, item) => {
+            const key = fn(item);
+            if (!result[key]) result[key] = [];
+                result[key].push(item);
+            return result;
+        }, {});
+
+        //we use the groupby
+        const tempGroup = groupBy(items,i => i.dateTime)
+        
+        //we get the key of all the element in the resulting object
+        const allCollectionKeys = Object.keys(tempGroup)
+
+
+        const finalCollection = []
+
+        //for each group of collection we sort according to the timestamp and take the first
+        //still need to verify if the sorting order is good
+        allCollectionKeys.forEach( (collection) => {
+            const temp = tempGroup[collection]
+            temp.sort((a,b) => {
+                return a.timestampMS - b.timestampMs
+            })
+            //once we have the latest value we push it to the finalCollection array
+            finalCollection.push(temp[0])
+        })
+        
 
         const result = []
-
-        items.forEach(item => {
-            const value = item.value
-            const json = JSON.parse(value)
-            result.push(new SleepCollection(json))
+        
+        finalCollection.forEach(item => {
+                const value = item.value
+                const json = JSON.parse(value)
+                result.push(new SleepCollection(json))
         })
 
         return result
     }
+
+    
 
     /**
      * Save a new sleep to the persistance layer
@@ -61,7 +93,7 @@ export default class SleepService{
         const json = JSON.stringify(sleepCollection)
 
         const activeDate = await this.getActiveDate()
-
+    
         await this.persist.setValueByDate("sleep", json, activeDate); 
     }
 
@@ -93,6 +125,6 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return new Date("2019-10-10");
+        return new Date("2019-10-09");
     }
 }
