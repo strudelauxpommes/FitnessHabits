@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent } from '@ionic/react';
+import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent, IonLabel } from '@ionic/react';
 import data from './data.json';
 import { cafe } from 'ionicons/icons';
 import FavoriteBeverage from './FavoriteBeverage';
+import Dal from '../../dal/Dal'
 
 class BeveragesSummary extends Component {
 
@@ -10,22 +11,30 @@ class BeveragesSummary extends Component {
         super();
         this.state = {
             beverages: [],
-            total: 0
+            total: 0,
+            unit: "mL",
+            unitConverter:1
         }
         this.onIncrease=this.onIncrease.bind(this);
     }
 
     async componentDidMount() {
         await this.setState({beverages: data.items})
+        //ici: setstate this.state.unit en allant chercher le parametre 
+        //
+        if (this.state.unit==="on") {
+            this.setState({unitConverter:0.033814})
+        } 
         for (let beverage of this.state.beverages) {
-            await this.setState({total: this.state.total + beverage.quantity * beverage.volume});
+            await this.setState({total: this.state.unitConverter*(this.state.total + beverage.quantity * beverage.volume)});
         }
+        
     }
 
     async onIncrease (data) {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
-                el => el.name === data.name? { ...el, quantity: el.quantity+1 }: el
+                el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
             )
         }))
         this.setState({total: this.state.total+data.volume})
@@ -48,7 +57,7 @@ class BeveragesSummary extends Component {
                                         <p style={{display:'inline'}}>&nbsp; Breuvages</p>
                                     </IonCol>
                                     <IonCol style={{textAlign:'right'}}>
-                                        {this.state.total}
+                                        <IonLabel>{this.state.total}</IonLabel>
                                     </IonCol>
                                 </IonRow>
                             </IonCardTitle>
