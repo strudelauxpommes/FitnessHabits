@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "A sleep collection entity",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/sleep"
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "sleep": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "error": "fitnessHabit.sleep.id.error"
+                },
+                "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "[^Z]$",
+                    "mode": "full",
+                    "error": "fitnessHabit.sleep.start.error",
+                    "description": "Format supported: 2016-11-1T23:00:00-05:00 - No ISO support: 1996-10-15T00:05:32.000Z"
+                },
+                "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "[^Z]$",
+                    "mode": "full",
+                    "error": "fitnessHabit.sleep.end.error",
+                    "description": "Format supported: 2016-11-1T23:00:00-05:00 - No ISO support: 1996-10-15T00:05:32.000Z"
+                },
+                "numberOfInteruptions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "error": "fitnessHabit.sleep.number_of_interuptions.error"
+                },
+                "comment": {
+                    "type": "string",
+                    "error": "fitnessHabit.sleep.comment.error"
+                }
+            },
+            "required": [
+                "id",
+                "start",
+                "end",
+                "numberOfInteruptions",
+                "comment"
+            ]
+        }
+    }
+}

@@ -15,30 +15,30 @@ describe('Dal', function() {
         });
 
         it('should add a new key', async function() {
-            await instance.setItem("foo", "bar");
+            await instance.setValue("foo", "bar");
             const actuals = await instance.keys();
             expect(actuals.length).toStrictEqual(1);
         });
 
         it('should add only one key', async function() {
-            await instance.setItem("foo", "bar");
-            await instance.setItem("foo", "ber");
+            await instance.setValue("foo", "bar");
+            await instance.setValue("foo", "ber");
             const actuals = await instance.keys();
             expect(actuals.length).toStrictEqual(1);
         });
 
         it('should add a value under a key', async function() {
-            await instance.setItem("foo", "bar");
+            await instance.setValue("foo", "bar");
             const actual = await instance.getLastValue("foo");
             expect(actual).toStrictEqual("bar");
         });
 
         it('get last value by date', async function() {
-            await instance.setItemByDate("foo", "ber", new Date("01/02/2019"));
-            await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "ber", new Date("01/02/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
             let actual = await instance.getLastValue("foo");
             expect(actual).toStrictEqual("bar");
-            await instance.setItemByDate("foo", "bie", new Date("01/02/2019"));
+            await instance.setValueByDate("foo", "bie", new Date("01/02/2019"));
             actual = await instance.getLastValue("foo");
             expect(actual).toStrictEqual("bie");
         });
@@ -47,9 +47,9 @@ describe('Dal', function() {
     describe('getAllItems', function() {
         beforeEach(async function() {
             await instance.clear();
-            await instance.setItemByDate("foo", "bar", new Date("2019-01-01"));
-            await instance.setItemByDate("foo", "bie", new Date("2019-01-02"));
-            await instance.setItemByDate("foo", "ber", new Date("2019-01-03"));
+            await instance.setValueByDate("foo", "bar", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "bie", new Date("2019-01-02"));
+            await instance.setValueByDate("foo", "ber", new Date("2019-01-03"));
         });
 
         it('should return an empty array upon an empty items', async function() {
@@ -85,55 +85,55 @@ describe('Dal', function() {
         });
 
         it('should add a new key', async function() {
-            await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
             const actuals = await instance.keys();
             expect(actuals.length).toStrictEqual(1);
         });
 
         it('should not add a new key', async function() {
-            await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
-            await instance.setItemByDate("foo", "beer", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "beer", new Date("01/01/2019"));
             const actuals = await instance.keys();
             expect(actuals.length).toStrictEqual(1);
         });
 
         it('should return undefined value if there is no item with the same date',
             async function() {
-                await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
+                await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
                 const actual = await instance.getValue("foo", new Date());
                 expect(actual).toStrictEqual(undefined);
             }
         );
 
         it('should add a value under a key', async function() {
-            await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
             const actual = await instance.getValue("foo", new Date("01/01/2019"));
             expect(actual).toStrictEqual("bar");
         });
 
         it('should retrieve values by date', async function() {
-            await instance.setItemByDate("foo", "bar", new Date("01/01/2019"));
-            await instance.setItemByDate("foo", "ber", new Date("01/02/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/01/2019"));
+            await instance.setValueByDate("foo", "ber", new Date("01/02/2019"));
             let actual = await instance.getValue("foo", new Date("01/01/2019"));
             expect(actual).toStrictEqual("bar");
             actual = await instance.getValue("foo", new Date("01/02/2019"));
             expect(actual).toStrictEqual("ber");
-            await instance.setItemByDate("foo", "bar", new Date("01/02/2019"));
+            await instance.setValueByDate("foo", "bar", new Date("01/02/2019"));
             actual = await instance.getValue("foo", new Date("01/02/2019"));
             expect(actual).toStrictEqual("bar");
         });
 
         it('should update value for a given date', async function() {
-            await instance.setItemByDate("foo", "beer", new Date("01/02/2019"));
+            await instance.setValueByDate("foo", "beer", new Date("01/02/2019"));
             const actual = await instance.getValue("foo", new Date("01/02/2019"));
             expect(actual).toStrictEqual("beer");
         });
 
         it('should update value for a given date regardless its time', async function() {
-            await instance.setItemByDate("foo", "beer", new Date("11/14/2019, 8:00:00 PM"));
+            await instance.setValueByDate("foo", "beer", new Date("11/14/2019, 8:00:00 PM"));
             let actual = await instance.getValue("foo", new Date("11/14/2019"));
             expect(actual).toStrictEqual("beer");
-            await instance.setItemByDate("foo", "bar", new Date("11/14/2019, 1:00:00 AM"));
+            await instance.setValueByDate("foo", "bar", new Date("11/14/2019, 1:00:00 AM"));
             actual = await instance.getValue("foo", new Date("11/14/2019"));
             expect(actual).toStrictEqual("bar");
         });
@@ -142,9 +142,9 @@ describe('Dal', function() {
     describe('getItems', function() {
         beforeEach(async function() {
             await instance.clear();
-            await instance.setItemByDate("foo", "bar", new Date("2019-01-01"));
-            await instance.setItemByDate("foo", "bie", new Date("2019-01-02"));
-            await instance.setItemByDate("foo", "ber", new Date("2019-01-03"));
+            await instance.setValueByDate("foo", "bar", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "bie", new Date("2019-01-02"));
+            await instance.setValueByDate("foo", "ber", new Date("2019-01-03"));
         });
 
         it('should return an empty array if begin date is after the last date', async function() {
@@ -181,10 +181,10 @@ describe('Dal', function() {
         it('should retrieve all items between two dates', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
-            await instance.setItemByDate("foo", "bob", new Date("2019-01-01"));
-            await instance.setItemByDate("foo", "alice", new Date("2019-01-02"));
-            await instance.setItemByDate("foo", "tundra", new Date("2019-01-03"));
-            await instance.setItemByDate("foo", "montreal", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "bob", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "alice", new Date("2019-01-02"));
+            await instance.setValueByDate("foo", "tundra", new Date("2019-01-03"));
+            await instance.setValueByDate("foo", "montreal", new Date("2019-01-01"));
             let items = await instance.getItems("foo", begin, end);
             expect(items.length).toStrictEqual(7);
             let values = items.map((x: any) => x.value);
@@ -201,9 +201,9 @@ describe('Dal', function() {
     describe('getLastItems', function() {
         beforeEach(async function() {
             await instance.clear();
-            await instance.setItemByDate("foo", "bar", new Date("2019-01-01"));
-            await instance.setItemByDate("foo", "bie", new Date("2019-01-02"));
-            await instance.setItemByDate("foo", "ber", new Date("2019-01-03"));
+            await instance.setValueByDate("foo", "bar", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "bie", new Date("2019-01-02"));
+            await instance.setValueByDate("foo", "ber", new Date("2019-01-03"));
         });
 
         it('should return an empty array if begin date is after the last date', async function() {
@@ -237,10 +237,10 @@ describe('Dal', function() {
         it('should retrieve all last items between two dates, ordered by date and not timestamp', async function() {
             const begin = new Date("2019-01-01");
             const end = new Date("2019-01-03");
-            await instance.setItemByDate("foo", "bob", new Date("2019-01-01"));
-            await instance.setItemByDate("foo", "alice", new Date("2019-01-02"));
-            await instance.setItemByDate("foo", "tundra", new Date("2019-01-03"));
-            await instance.setItemByDate("foo", "montreal", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "bob", new Date("2019-01-01"));
+            await instance.setValueByDate("foo", "alice", new Date("2019-01-02"));
+            await instance.setValueByDate("foo", "tundra", new Date("2019-01-03"));
+            await instance.setValueByDate("foo", "montreal", new Date("2019-01-01"));
             let items = await instance.getLatestItems("foo", begin, end);
             expect(items.length).toStrictEqual(3);
             let values = items.map((x: any) => x.value);

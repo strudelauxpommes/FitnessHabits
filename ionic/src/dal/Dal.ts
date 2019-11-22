@@ -23,7 +23,7 @@ export default interface Dal {
      * @param key
      * @param value
      */
-    setItem(key: string, value: Value): Promise<void>;
+    setValue(key: string, value: Value): Promise<void>;
 
     /**
      * Set an item (key, {timestamp, date, value}) for a given (key, date, value)
@@ -35,7 +35,7 @@ export default interface Dal {
      * @param value
      * @param date
      */
-    setItemByDate(key: string, value: Value, date: Date): Promise<void>;
+    setValueByDate(key: string, value: Value, date: Date): Promise<void>;
 
     /**
      * Get all items with their timestamp related to the given key
@@ -65,6 +65,34 @@ export default interface Dal {
      */
     getLatestItems(key: string, begin: Date, end: Date): Promise<Item[]>;
 
+
+    /**
+     * Get all values (like getAllItems) related to the given key
+     * @param key
+     */
+    getAllValues(key: string): Promise<Value[]>;
+
+    /**
+     * Get all values  (like getItems)  related to the given key and between
+     * the begin date to the end date inclusively.
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.timestampMs
+     */
+    getValues(key: string, begin: Date, end: Date): Promise<Value[]>;
+
+    /**
+     * Get all latest values (like getLatesItems) related to the given
+     * key and between the begin date to the end date inclusively.
+     * A Value is the latest if its item is the "latest".
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.dateTime
+     */
+    getLatestValues(key: string, begin: Date, end: Date): Promise<Value[]>;
+
     /**
      * Retrieve the latest time stamped value under a key regardless its date.
      * @param key
@@ -93,7 +121,7 @@ export default interface Dal {
 
     /**
      * Clear all items.
-     * Use carefully !
+     * Warning : use carefully !!
      */
     clear(): Promise<void>;
 }

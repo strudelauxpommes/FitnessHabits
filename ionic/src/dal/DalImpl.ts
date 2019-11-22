@@ -9,11 +9,11 @@ const { Storage } = Plugins;
 
 export class DalImpl implements Dal {
 
-    async setItem(key: string, value: Value) {
-        await this.setItemByDate(key, value, new Date());
+    async setValue(key: string, value: Value) {
+        await this.setValueByDate(key, value, new Date());
     }
 
-    async setItemByDate(key: string, value: Value, date: Date) {
+    async setValueByDate(key: string, value: Value, date: Date) {
         let items: Item[] = await this.getAllItems(key);
         items = this._updateItem(items, date, value);
         await Storage.set({ key, value: JSON.stringify(items) });
@@ -73,6 +73,22 @@ export class DalImpl implements Dal {
             }
         }
         return res;
+    }
+
+    async getAllValues(key: string): Promise<Value[]> {
+        let items: Item[] = await this.getAllItems(key);
+        let values: Value[] = items.map((x: any) => x.value);
+        return values;
+    }
+    async getValues(key: string, begin: Date, end: Date): Promise<Value[]> {
+        let items: Item[] = await this.getItems(key, begin, end);
+        let values: Value[] = items.map((x: any) => x.value);
+        return values;
+    }
+    async getLatestValues(key: string, begin: Date, end: Date): Promise<Value[]> {
+        let items: Item[] = await this.getLatestItems(key, begin, end);
+        let values: Value[] = items.map((x: any) => x.value);
+        return values;
     }
 
     async getLastValue(key: string) {
