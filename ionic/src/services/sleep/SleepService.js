@@ -8,43 +8,49 @@ import moment from 'moment'
 export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
-        this.persist.clear()
+
         this.validatorService = new ValidatorService()
     }    
 
     getKey (moment){
-        return `sleep/${moment.format("YYYY-MM-DD")}`
+        // return `sleep/${moment.format("YYYY-MM-DD")}`
+        return 'sleep'
     }
 
     /**
      * Fetch the list of sleeps from the persistance layer
      */
-    async fetch (moment) {
-        const key = this.getKey(moment)
-        const result = await this.persist.getValue(key)
-        console.log(result)
+    async fetchActiveDate () {
+        const activeDate = await this.getActiveDate()
+        const actual = await this.persist.getValue(this.getKey(), activeDate)
 
-        const sleepCollection = new SleepCollection(result); 
-
-        const actuals = await this.persist.keys();
-        console.log(actuals) //temporary debug
+        if(actual === undefined){
+            const sleepCollection = new SleepCollection({'activeDate': '2019-10-10', 'list': []})
+            return sleepCollection
+        } 
+            
+        const actualParsed = JSON.parse(actual)
+        const sleepCollection = new SleepCollection(actualParsed); 
 
         return sleepCollection
     }
 
+    // async fetchHistory(){
+    //     const active = this.getActiveDate();
+    //     const seven = "" // calcul
+
+    //     this.persist.getB
+    // }
+
     /**
      * Save a new sleep to the persistance layer
      */
-    async save(activeMoment, sleepCollection){
-        const key = this.getKey(activeMoment)
-
-        //Persistence does not support json (LOL)
+    async saveActiveDate(sleepCollection){
         const json = JSON.stringify(sleepCollection)
-        console.log(json)
 
-        await this.persist.setValue(key, json)
+        const activeDate = await this.getActiveDate()
 
-        return this.fetch(activeMoment)
+        await this.persist.setValueByDate("sleep", json, activeDate); 
     }
 
     /**
@@ -64,10 +70,17 @@ export default class SleepService{
         // return sleepArray.length;
     }
 
+    async getActiveMoment(){
+        // Waiting for ocean team to complete active date persistence
+        // const activeDate = await this.persist.getValue('active-date')
+        
+        return moment('2019-10-10T00:00:00-05:00');
+    }
+
     async getActiveDate(){
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2016-11-23T23:00:00-05:00');
+        return new Date("2019-10-11");
     }
 }

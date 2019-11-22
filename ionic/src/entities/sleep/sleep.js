@@ -150,6 +150,10 @@ class SleepCollection {
         }
     }
 
+    getActiveDate(){
+        return this.activeDate.toDate()
+    }
+
     /**
      * [Add a list of sleep from a json]
      *

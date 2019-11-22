@@ -51,8 +51,7 @@ export default class SleepSummary extends Component<Props, State> {
 
   async componentDidMount(){
     const sleepService = new SleepService()
-    const activeDate = await sleepService.getActiveDate()
-    const sleepCollection = await sleepService.fetch(activeDate)
+    const sleepCollection = await sleepService.fetchActiveDate()
 
     console.log(sleepCollection)
 
@@ -65,7 +64,8 @@ export default class SleepSummary extends Component<Props, State> {
    * [Handles the submit event. Adds sleep to collection and updates the state]
    */
   async onSubmit() {
-    const activeDate = await new SleepService().getActiveDate()
+    const activeDate = await new SleepService().getActiveMoment()
+
     var builder = (
       new SleepBuilder(activeDate)
         .buildStart(this.state.sleepTimeBegin)
@@ -106,9 +106,8 @@ export default class SleepSummary extends Component<Props, State> {
 
     let collection = this.state.sleeps
     collection.addSleep(sleep);
-
-    const activeDate = await sleepService.getActiveDate()
-    collection = await sleepService.save(activeDate, collection)
+    
+    await sleepService.saveActiveDate(collection)
 
     this.setState({
       sleeps: this.state.sleeps,
