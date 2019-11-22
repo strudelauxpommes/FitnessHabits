@@ -43,7 +43,7 @@ export default class SleepSummary extends Component<Props, State> {
       sleepTimeBegin: "2300",
       sleepTimeEnd: "0400",
       wakeUpCount: "",
-      totalSleepTimeToday: String(sleepList.calculateTotalSleep()),
+      totalSleepTimeToday: "",
       hasSubmitError: false,
       errorMessage: "",
     }
@@ -53,10 +53,9 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
 
-    console.log(sleepCollection)
-
     this.setState({
-      sleeps: sleepCollection
+      sleeps: sleepCollection,
+      totalSleepTimeToday: sleepCollection.calculateTotalSleep().toString(),
     })
 }
 
@@ -123,15 +122,15 @@ export default class SleepSummary extends Component<Props, State> {
    * 
    * @param sleep sleep object to remove
    */
-  removeSleepItem(sleep: Sleep) {
-    //@todo: Alex
-    console.log(sleep)
+  async removeSleepItem(sleep: Sleep) {
+    this.state.sleeps.removeSleep(sleep);
+    const sleepService = new SleepService();
+    await sleepService.saveActiveDate(this.state.sleeps)
 
-    // this.state.sleeps.removeSleep(sleep);
-    // this.setState({
-    //   sleeps: this.state.sleeps,
-    //   totalSleepTimeToday: String(parseInt(this.state.totalSleepTimeToday) - sleep.getDurationAsMinutes()),
-    // });
+    this.setState({
+      sleeps: this.state.sleeps,
+      totalSleepTimeToday: this.state.sleeps.calculateTotalSleep().toString(),
+    });
   }
 
   onSleepTimeBeginChange(e: any) {

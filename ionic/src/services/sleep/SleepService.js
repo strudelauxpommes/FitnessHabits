@@ -12,8 +12,7 @@ export default class SleepService{
         this.validatorService = new ValidatorService()
     }    
 
-    getKey (moment){
-        // return `sleep/${moment.format("YYYY-MM-DD")}`
+    getKey (){
         return 'sleep'
     }
 
@@ -25,7 +24,7 @@ export default class SleepService{
         const actual = await this.persist.getValue(this.getKey(), activeDate)
 
         if(actual === undefined){
-            const sleepCollection = new SleepCollection({'activeDate': '2019-10-10', 'list': []})
+            const sleepCollection = new SleepCollection({'activeDate': activeDate.toISOString().split('T')[0], 'list': []})
             return sleepCollection
         } 
             
@@ -74,13 +73,13 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2019-10-10T00:00:00-05:00');
+        return moment('2019-10-11T00:00:00-05:00');
     }
 
     async getActiveDate(){
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return new Date("2019-10-11");
+        return new Date("2019-10-12");
     }
 }

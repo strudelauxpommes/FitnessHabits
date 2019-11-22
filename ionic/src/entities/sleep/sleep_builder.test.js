@@ -49,7 +49,6 @@ test('Create invalid sleep (invalid start, end and interruption)', () => {
 })
 
 test('generate a unique id from a moment (SHA1).', () => {
-    
     const builder = new SleepBuilder(moment('2016-11-23T23:00:00-05:00'))
     const id = builder.generateId("2016-11-23T23:00:00-05:00")
     const expected = "0241d8c099edf0ce12738ef6d702cb5396f8b303"
