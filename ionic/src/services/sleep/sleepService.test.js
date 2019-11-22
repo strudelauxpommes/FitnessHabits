@@ -51,7 +51,7 @@ test('fetch a collection of sleep for one moment', async () => {
         }
     ]
     const mockInstance = DalImpl.mock.instances[0]
-    mockInstance.getAllValues.mockResolvedValue(response)
+    mockInstance.getAllValues.mockResolvedValue(JSON.stringify(response))
 
     const result = await service.fetch(activeDate)
     expect(result.list).toHaveLength(3)
@@ -86,9 +86,10 @@ test('save a collection of sleep for one moment', async () => {
     ]
 
     const mockInstance = DalImpl.mock.instances[0]
-    mockInstance.getAllValues.mockResolvedValue(response)
+    mockInstance.getAllValues.mockResolvedValue(JSON.stringify(response))
     
     const result = await service.save(activeDate)
+
     expect(result.list).toHaveLength(3)
 })
 

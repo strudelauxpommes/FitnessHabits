@@ -1,12 +1,14 @@
 import { SleepCollection } from '../../entities/sleep/sleep'
 import { DalImpl } from '../../dal/DalImpl'
 import ValidatorService from './ValidatorService';
+import moment from 'moment'
 /**
  * Service to fetch sleep entities from the persistence
  */
 export default class SleepService{
     constructor(){
-        this.persist = new DalImpl();
+        this.persist = new DalImpl()
+        this.persist.clear()
         this.validatorService = new ValidatorService()
     }    
 
@@ -18,8 +20,14 @@ export default class SleepService{
      * Fetch the list of sleeps from the persistance layer
      */
     async fetch (moment) {
-        const result = await this.persist.getAllValues(this.getKey(moment))
+        const key = this.getKey(moment)
+        const result = await this.persist.getValue(key)
+        console.log(result)
+
         const sleepCollection = new SleepCollection(result); 
+
+        const actuals = await this.persist.keys();
+        console.log(actuals) //temporary debug
 
         return sleepCollection
     }
@@ -30,7 +38,11 @@ export default class SleepService{
     async save(activeMoment, sleepCollection){
         const key = this.getKey(activeMoment)
 
-        await this.persist.setValue(key, sleepCollection)
+        //Persistence does not support json (LOL)
+        const json = JSON.stringify(sleepCollection)
+        console.log(json)
+
+        await this.persist.setValue(key, json)
 
         return this.fetch(activeMoment)
     }
@@ -52,9 +64,10 @@ export default class SleepService{
         // return sleepArray.length;
     }
 
-    getActiveDate(){
-        //@todo: David ou PhilB ou Alex
-        //Method to return the active date from this.persist
-        //Ask persistence team to add interface
+    async getActiveDate(){
+        // Waiting for ocean team to complete active date persistence
+        // const activeDate = await this.persist.getValue('active-date')
+        
+        return moment('2016-11-23T23:00:00-05:00');
     }
 }

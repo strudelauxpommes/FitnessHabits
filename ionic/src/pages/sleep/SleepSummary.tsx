@@ -17,7 +17,6 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
-import moment from 'moment'
 
 type Props = {
   activeDate: Date;
@@ -51,9 +50,11 @@ export default class SleepSummary extends Component<Props, State> {
   }
 
   async componentDidMount(){
-    const sleepService = new SleepService();
-    const activeDate = moment("2019-10-10")
+    const sleepService = new SleepService()
+    const activeDate = await sleepService.getActiveDate()
     const sleepCollection = await sleepService.fetch(activeDate)
+
+    console.log(sleepCollection)
 
     this.setState({
       sleeps: sleepCollection
@@ -63,21 +64,24 @@ export default class SleepSummary extends Component<Props, State> {
   /**
    * [Handles the submit event. Adds sleep to collection and updates the state]
    */
-  onSubmit() {
-    var sleepBuilderInstance = (
-      new SleepBuilder()
+  async onSubmit() {
+    const activeDate = await new SleepService().getActiveDate()
+    var builder = (
+      new SleepBuilder(activeDate)
         .buildStart(this.state.sleepTimeBegin)
         .buildEnd(this.state.sleepTimeEnd)
         .buildNumberOfInteruptions(this.state.wakeUpCount)
+        .buildComment("")
+        .buildMood()
         .createInstance()
     );
 
-    if (sleepBuilderInstance.isValid) {
-      this.addSleepItem(sleepBuilderInstance.sleep);
+    if (builder.isValid) {
+      this.addSleepItem(builder.sleep);
     } else {
       this.setState({
         hasSubmitError: true,
-        errorMessage: sleepBuilderInstance.errorMessage,
+        errorMessage: builder.errorMessage,
       })
     }
   }
@@ -103,7 +107,7 @@ export default class SleepSummary extends Component<Props, State> {
     let collection = this.state.sleeps
     collection.addSleep(sleep);
 
-    const activeDate = moment("2019-10-10")
+    const activeDate = await sleepService.getActiveDate()
     collection = await sleepService.save(activeDate, collection)
 
     this.setState({
@@ -122,11 +126,13 @@ export default class SleepSummary extends Component<Props, State> {
    */
   removeSleepItem(sleep: Sleep) {
     //@todo: Alex
-    this.state.sleeps.removeSleep(sleep);
-    this.setState({
-      sleeps: this.state.sleeps,
-      totalSleepTimeToday: String(parseInt(this.state.totalSleepTimeToday) - sleep.getDurationAsMinutes()),
-    });
+    console.log(sleep)
+
+    // this.state.sleeps.removeSleep(sleep);
+    // this.setState({
+    //   sleeps: this.state.sleeps,
+    //   totalSleepTimeToday: String(parseInt(this.state.totalSleepTimeToday) - sleep.getDurationAsMinutes()),
+    // });
   }
 
   onSleepTimeBeginChange(e: any) {
@@ -160,7 +166,6 @@ export default class SleepSummary extends Component<Props, State> {
           <IonCard class="sleep-ion-card sleep-text">
             <IonCardContent>
             <a href="/sleep-detail" id="sleep-summary-a">
-
               <IonGrid id="sleep-card-header">
                 <IonRow>
                   <IonCol size='9' id="sleep-card-header-first-col">
@@ -224,10 +229,10 @@ export default class SleepSummary extends Component<Props, State> {
                       />
                     </IonCol>
                   </IonRow>
-                  {this.state.sleeps.list.map((sleep: Sleep) =>
+                  {this.state.sleeps.list.map((sleep: Sleep, index: any) =>
                     <SleepItem
                       onClick={() => this.removeSleepItem(sleep)}
-                      key={sleep.getId()}
+                      key={"sleep-" + index}
                       sleepDateBegin={sleep.getStartTime()}
                       sleepDateEnd={sleep.getEndTime()}
                       wakeUpCount={sleep.getNumberOfInteruptions()} />

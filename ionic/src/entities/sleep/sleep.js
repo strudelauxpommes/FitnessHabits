@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { now } from 'moment';
 
 //Important - Overide the format when jsonifying a moment object
 moment.fn.toJSON = function () { return this.format(); }
@@ -230,7 +230,7 @@ class SleepCollection {
             return this.list[0].start;
         }
 
-        throw "Sleep collection is empty"
+        return now()
     }
 
     /**
