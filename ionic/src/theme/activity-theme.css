@@ -1,0 +1,114 @@
+
+/*****************************************************
+********************ACTIVITÉ DÉTAILLÉ*****************
+******************************************************/
+.jourActif {
+	background-color: #33CCCC;
+	color: white;
+}
+
+.jourInactif {
+	background-color: grey;
+	color: white;
+}
+
+ion-grid {
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.as-back-icon {
+    margin: 0 0 0 10px;
+    fill:white;
+    font-size:24px;
+}
+
+/*****************************************************
+******************* ACTIVITÉ SOMMAIRE ****************
+******************************************************/
+
+/*********************** HEADER **********************/
+.as-header-container {
+    height: 50px;
+    display:flex;
+    align-items: center;
+    background-color: var(--ion-color-primary)
+}
+
+.as-header-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size:12px;
+    font-weight: 600;
+    color:white;
+}
+
+.as-col-title {
+    display: flex;
+    align-items: center;
+}
+
+#as-title {
+    font-weight: 600;
+    font-size:20px;
+    color:white;
+    margin:0 0 0 10px;
+}
+
+.as-temps-total:hover, .as-intensite-moy:hover {
+    cursor:pointer;
+}
+
+.as-icon-time {
+    font-size:20px;
+    width: 24px;
+    filter: brightness(0) invert(1)
+}
+
+.as-icon-intensity {
+    font-size:20px;
+    width: 24px;
+    filter: brightness(0) invert(1)
+}
+
+.as-total-temps {
+    font-size:12px;
+}
+
+/********************** CONTENT **********************/
+
+#as-grid-container {
+    background-color: var(--ion-color-primary);
+}
+
+.as-bubble-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    flex-direction: column;
+}
+
+.as-title-activity {
+    color:white;
+    font-size:14px;
+    font-weight: 600;
+}
+
+.as-bubble {
+    width:60px;
+    height:60px;
+    background-color: white;
+    border-radius:50%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.as-bubble p {
+
+}
