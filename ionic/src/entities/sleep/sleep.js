@@ -140,13 +140,15 @@ class SleepCollection {
      * @param   {json list of sleep entites}  datas  
      */
     constructor(datas) {
-
-        this.activeDate = moment(datas.activeDate)
-
         this.list = []
+        if(datas){
+            this.activeDate = moment(datas.activeDate)
 
-        if (datas.list) {
-            this.addSleepList(datas.list)
+            
+    
+            if (datas.list) {
+                this.addSleepList(datas.list)
+            }
         }
     }
 
@@ -174,7 +176,22 @@ class SleepCollection {
      *
      */
     addSleep(sleep) {
-        this.list.push(sleep)
+        //Set active date if undefined
+        if(this.activeDate === undefined || sleep.start.isBefore(this.activeDate)){
+            this.activeDate = sleep.start.clone()
+        }
+
+        let result = true
+
+        this.list.forEach(s => {
+            result = result && ! sleep.start.isBetween(s.start, s.end) && !sleep.end.isBetween(s.start, s.end)
+        })
+
+        if(result){
+            this.list.push(sleep)
+        }
+ 
+        return result
     }
 
     /**

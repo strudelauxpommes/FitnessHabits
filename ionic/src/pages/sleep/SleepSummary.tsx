@@ -54,7 +54,6 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepCollection = await sleepService.fetchActiveDate()
 
     const test = await sleepService.fetchHistory()
-    console.log(test)
 
     this.setState({
       sleeps: sleepCollection,
@@ -66,6 +65,7 @@ export default class SleepSummary extends Component<Props, State> {
    * [Handles the submit event. Adds sleep to collection and updates the state]
    */
   async onSubmit() {
+    const sleepService = new SleepService();
     const activeDate = await new SleepService().getActiveMoment()
 
     var builder = (
@@ -78,8 +78,18 @@ export default class SleepSummary extends Component<Props, State> {
         .createInstance()
     );
 
-    if (builder.isValid) {
-      this.addSleepItem(builder.sleep);
+    const collection = this.state.sleeps
+
+    if (builder.isValid && collection.addSleep(builder.sleep as Sleep)) {
+      await sleepService.saveActiveDate(collection)
+
+      this.setState({
+          sleeps: collection,
+          sleepTimeBegin: "",
+          sleepTimeEnd: "",
+          wakeUpCount: "",
+          totalSleepTimeToday: collection.calculateTotalSleep().toString()
+        });
     } else {
       this.setState({
         hasSubmitError: true,
@@ -107,17 +117,16 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService();
 
     let collection = this.state.sleeps
-    collection.addSleep(sleep);
     
-    await sleepService.saveActiveDate(collection)
+    // await sleepService.saveActiveDate(collection)
 
-    this.setState({
-      sleeps: this.state.sleeps,
-      sleepTimeBegin: "",
-      sleepTimeEnd: "",
-      wakeUpCount: "",
-      totalSleepTimeToday: collection.calculateTotalSleep().toString()
-    });
+    // this.setState({
+    //   sleeps: this.state.sleeps,
+    //   sleepTimeBegin: "",
+    //   sleepTimeEnd: "",
+    //   wakeUpCount: "",
+    //   totalSleepTimeToday: collection.calculateTotalSleep().toString()
+    // });
   }
 
   /**

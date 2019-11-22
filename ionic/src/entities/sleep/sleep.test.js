@@ -59,6 +59,21 @@ test('Get list of sleeps between 2 dates', () => {
     expect(result.map(sleep => sleep.id)).toEqual([2,3])
 })
 
+test('add sleep invalid', () => {
+    const sleepCollection = new SleepCollection();
+    sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-09T22:10:00-05:00', 'end': '2016-11-10T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
+   
+    let newSleep = new Sleep({'id': 1, 'start': '2016-11-09T23:00:00-05:00', 'end': '2016-11-09T23:01:00-05:00', 'numberOfInteruptions': 1, 'comments': ''})
+    let result = sleepCollection.addSleep(newSleep)
+    
+    expect(result).toBeFalsy()
+
+    newSleep = new Sleep({'id': 1, 'start': '2016-11-09T22:00:00-05:00', 'end': '2016-11-09T22:01:00-05:00', 'numberOfInteruptions': 1, 'comments': ''})
+    result = sleepCollection.addSleep(newSleep)
+
+    expect(result).toBeTruthy()
+})
+
 test('Get average of sleep between 2 dates', () => {
     const sleepCollection = new SleepCollection();
     sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-01T23:00:00-05:00', 'end': '2016-11-02T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
