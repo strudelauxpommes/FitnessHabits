@@ -38,8 +38,9 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
 
     async componentDidMount(){
         const sleepService = new SleepService();
+        sleepService.getActiveDate()
         const activeDate = moment("2019-10-10")
-        const sleepCollection = await sleepService.fetch(activeDate)
+        const sleepCollection = new SleepCollection({'activeDate': '2019-10-10', 'list':[]});
 
         this.setState({
             sleepCollection: sleepCollection,
