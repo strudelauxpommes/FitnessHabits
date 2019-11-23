@@ -1,7 +1,5 @@
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Preference from './pages/parameters/Preference';
-import Profil from './pages/parameters/Profil';
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -34,31 +32,19 @@ import Profil from './pages/parameters/Profil';
 import "./theme/variables.css";
 import Dal from './dal/Dal';
 import { DalImpl } from './dal/DalImpl';
-import Parameters from './pages/parameters/Parameters'
 
-
-// Init language
-init();
-
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
-/* Theme variables */
-import './theme/variables.css';
-import './theme/sleep.css';
-/* Sleep Imports */
 import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
-import './services/parameters/InitializeParameters.js'
+import './services/parameters/InitializeParameters.js';
 import moment from 'moment';
 import React from 'react';
 import { Route, Redirect } from 'react-router';
 import Home from './pages/Home';
+
+
+// Init language
+init();
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
