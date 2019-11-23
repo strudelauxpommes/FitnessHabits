@@ -14,16 +14,23 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
 import moment from 'moment';
-import React from 'react';
+import { default as React } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import FoodAdd from "./pages/nourriture/FoodAdd";
+import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
+import FoodList from './pages/nourriture/FoodList';
+/* Food import */
+import FoodSummary from "./pages/nourriture/FoodSummary";
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
 /* Sleep Imports */
 import SleepDetail from './pages/sleep/SleepDetail';
+import SleepSummary from "./pages/sleep/SleepSummary";
 import { init } from './services/i18n/i18n';
 import './theme/sleep.css';
 /* Theme variables */
 import './theme/variables.css';
+
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
@@ -37,6 +44,16 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/food-summary" component={FoodSummary} />
+        <Route path="/food-list/:period" component={FoodList} />
+        <Route
+          exact
+          path="/food"
+          render={() => <Redirect to="/food-summary" />}
+        />
+        <Route path="/food-daily-intake" component={FoodDailyIntake} />
+        <Route path="/food-add" component={FoodAdd} />
+        <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
       </IonRouterOutlet>
