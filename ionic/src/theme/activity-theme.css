@@ -104,6 +104,18 @@ ion-grid {
     text-align: center;
 }
 
+.ad-hidden-comment, .ad-hidden-comment .native-textarea.sc-ion-textarea-md{
+    height:0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    transition:1s;
+}
+
+.ad-show-comment, .ad-show-comment .native-textarea.sc-ion-textarea-md{
+    height:80px;
+    transition:1s;
+}
+
 /*****************************************************
 ******************* ACTIVITÉ SOMMAIRE ****************
 ******************************************************/
@@ -188,6 +200,27 @@ ion-grid {
     align-items:center;
 }
 
-.as-bubble p {
+/********************** INTENSITÉ **********************/
+.intensiteFaible {
+  background-color: #55FF55;
+  color: #000000;
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 4px;
+}
 
+.intensiteMoyenne {
+  background-color: #FFFF55;
+  color: #000000;
+  border-style: solid;
+  border-color: #FFFF00;
+  border-width: 4px;
+}
+
+.intensiteForte {
+  background-color: #FF5555;
+  color: #000000;
+  border-style: solid;
+  border-color: #FF0000;
+  border-width: 4px;
 }

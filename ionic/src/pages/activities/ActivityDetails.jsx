@@ -3,67 +3,28 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
 import { add } from 'ionicons/icons';
 import React, { useState } from 'react';
 import DateRow from '../../components/DateRow';
+import moment from 'moment';
+import { ActivityService } from '../../services/ActivityService';
 import AddActivityForm from '../../components/AddActivityForm';
 
 const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
-  let dates = [
-    {
-      day : "2019/11/19",
-      activities : [
-        {
-          title : "Yoga",
-          duration : "0:60:0",
-          intensity : 2
-        },
-        {
-          title : "Vélo",
-          duration : "0:40:0",
-          intensity : 5
-        },
-        {
-          title : "Soccer",
-          duration : "0:45:0",
-          intensity : 8
-        }
-      ]
-    },
-    {
-      day : "2019/11/18",
-      activities : [
-        {
-          title : "Gym",
-          duration : "0:60:0",
-          intensity : 6
-        },
-        {
-          title : "Vélo",
-          duration : "0:40:0",
-          intensity : 5
-        },
-        {
-          title : "Tennis",
-          duration : "0:40:0",
-          intensity : 8
-        }
-      ]
-    },
-    {
-      day : "2019/11/17",
-      activities : [
-        {
-          title : "Vélo",
-          duration : "0:40:0",
-          intensity : 4
-        },
-        {
-          title : "Soccer",
-          duration : "0:40:0",
-          intensity : 7
-        }
-      ]
-    }
-  ]
+  const [dates, setDates] = useState();
+  const activityService = new ActivityService();
+
+  let today = moment();
+  let aWeekAgo = today.clone().subtract(7, 'days');
+  let fetchedData = false;
+
+  if (!fetchedData) {
+    setInterval(() => {
+      activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
+        fetchedData = true;
+        console.log(result);
+        setDates(result);
+      });
+    }, 3000);
+  }
 
   return (
     <IonPage>
@@ -100,11 +61,14 @@ const ActivityDetails = () => {
             <IonCol className="ad-data-col" size="3">Intensité</IonCol>
           </IonRow>
           {
-            dates.map((d, index) => {
-              return (
-                  <DateRow key={d['day']} jour={d['day']} activities={d['activities']} index={index}></DateRow>
-              );
-            })
+            dates !== null && dates !== undefined
+              ? dates.map((d, index) => {
+                let json = JSON.parse(d);
+                return (
+                    <DateRow key={index} jour={json['day']} activities={json['activities']} index={index}></DateRow>
+                );
+              })
+              : null
           }
 	    </IonGrid>
       </IonContent>
