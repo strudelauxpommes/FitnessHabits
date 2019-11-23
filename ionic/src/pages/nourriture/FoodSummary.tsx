@@ -19,9 +19,11 @@ import {
   IonIcon,
   IonCard,
   IonCardHeader,
-  IonCardContent
+  IonCardContent,
+  IonTitle
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
+import { FoodHome } from './FoodHome';
 
 
 export default class FoodSummary extends Component {
@@ -35,7 +37,7 @@ export default class FoodSummary extends Component {
         <IonContent className="ion-padding">
           <IonCard>
             <IonCardHeader>
-              <h4>Sommaire</h4>
+            <IonTitle>Sommaire</IonTitle>
             </IonCardHeader>
 
             <IonCardContent>
@@ -104,7 +106,7 @@ export default class FoodSummary extends Component {
                           href="/food-daily-intake"
                           expand="block"
                           color="dark"
-                          fill="outline"
+                          fill="solid"
                         >
                           Bilan de la journee
                         </IonButton>
