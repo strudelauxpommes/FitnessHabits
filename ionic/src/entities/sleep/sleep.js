@@ -308,9 +308,6 @@ class SleepCollection {
         for (let i = 0; i < numberOfDays; i++) {
             sleepCollections.push(await sleepService.fetchActiveDate(date))
         }
-
-        console.log("avg sleepCOllectons")
-        console.log("avg sleepCollections",sleepCollections);
     }
 
 

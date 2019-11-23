@@ -12,12 +12,11 @@ import {
   IonAlert,
 } from '@ionic/react';
 
-import React, { Component } from 'react';
-import { moon, remove, add } from 'ionicons/icons';
-import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
-import SleepService from '../../services/sleep/SleepService';
-import { SleepBuilder } from '../../entities/sleep/sleep_builder';
-import { activeDate } from 'src/App';
+import React, { Component } from 'react'
+import { moon, remove, add } from 'ionicons/icons'
+import { Sleep, SleepCollection } from '../../entities/sleep/sleep'
+import SleepService from '../../services/sleep/SleepService'
+import { SleepBuilder } from '../../entities/sleep/sleep_builder'
 
 type Props = {
   activeDate: Date;
@@ -64,7 +63,6 @@ export default class SleepSummary extends Component<Props, State> {
     sleepCollection.getAverageSleep(sleepService.getActiveDate() as any, 7 as any)
 
     const test = await sleepService.fetchHistory_v2()
-    console.log(test)
 
     this.setState({
       sleeps: sleepCollection,
@@ -102,13 +100,12 @@ export default class SleepSummary extends Component<Props, State> {
 
     const collection = this.state.sleeps
 
-    const test = builder.sleep
-
-    if(test){
-      console.log(test.getStartDate(), test.getEndDate())
+    if(collection.addSleep(builder.sleep as Sleep) === false){
+      builder.isValid = false
+      builder.errorMessage += "<ul><li>Sommeil invalide: les dates se chevauchent!</li></ul>"
     }
 
-    if (builder.isValid && collection.addSleep(builder.sleep as Sleep)) {
+    if (builder.isValid) {
       await sleepService.saveActiveDate(collection)
 
       this.setState({

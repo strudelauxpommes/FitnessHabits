@@ -9,7 +9,7 @@ import moment from 'moment'
 export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
-        //this.persist.clear()
+        // this.persist.clear()
         this.validatorService = new ValidatorService()
     }    
 
@@ -22,7 +22,6 @@ export default class SleepService{
      */
     async fetchActiveDate () {
             const activeDate = await this.getActiveDate()
-        
         
         const parsedDate = activeDate.getUTCFullYear()+"-"+(activeDate.getMonth()+1)+"-"+activeDate.getDate()
         const actual = await this.persist.getValue(this.getKey(), activeDate)
@@ -91,11 +90,8 @@ export default class SleepService{
             let actual = await this.persist.getValue(this.getKey(), historyDates[i])
             if(actual === undefined){
                 actual = {'activeDate': historyDates[i], 'list': []}
-            } else {
-                console.log(actual)
-            }
-                
-            // const actualParsed = JSON.parse(actual)
+            } 
+
             const sleepCollection = new SleepCollection(actual); 
             result.push(sleepCollection)
         }
@@ -186,7 +182,7 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2019-10-11T00:00:00-05:00');
+        return moment('2019-10-11T00:00:00-04:00');
     }
 
     async getHistoryDate(){
@@ -194,7 +190,7 @@ export default class SleepService{
         const historyDates = []
         for(var i =0; i <= 6;i++){
             //eventually change the moment for the activate
-            var temp = moment('2019-10-11T00:00:00-05:00');
+            var temp = moment('2019-10-11T00:00:00-04:00');
             temp = temp.subtract(i,"days")
             temp = temp.format("MM-DD-YYYY")
             historyDates.push(new Date(temp))

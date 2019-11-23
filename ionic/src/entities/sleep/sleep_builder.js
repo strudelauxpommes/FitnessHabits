@@ -55,7 +55,6 @@ class SleepBuilder {
      * @return this
      */
     buildEnd(endInput) {
-
         if (this.isValidTime(endInput)) {
             this.endMoment = this.convertSleepInputToMoment(String(endInput))
         } else {
@@ -195,17 +194,11 @@ class SleepBuilder {
     convertSleepInputToMoment(input) {
         const time = this.getTimeFromSleepString(input);
 
-        const momentObj = {
-            year: this.activeDate.year(),
-            month: this.activeDate.month(),
-            day: this.activeDate.day(),
-            hour: time.hour,
-            minute: time.minute,
-            second: 0,
-            milliseconds: 0,
-        }
+        const localMoment = this.activeDate.clone()
+        localMoment.hour(time.hour)
+        localMoment.minute(time.minute)
 
-        return moment(momentObj);
+        return localMoment;
     }
 
     /**

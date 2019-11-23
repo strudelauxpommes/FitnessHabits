@@ -71,12 +71,7 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
     }
 
     saveNewSleepItem(e: any) {     
-        //@todo: PhilB   
-        // console.log(e);
-        // sleepService.save();
-        // const newCollection = sleepService.fetch();
-        // console.log(newCollection);
-        // this.setState({ sleepCollection: newCollection });
+
     }
 
     deleteSleepItemWithKey(key: Sleep) {
