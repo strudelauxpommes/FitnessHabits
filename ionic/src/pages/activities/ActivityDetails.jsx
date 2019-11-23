@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
 import { add } from 'ionicons/icons';
 import React, { useState } from 'react';
 import DateRow from '../../components/DateRow';
-import AddActivityForm from '../../components/ActivityRow';
+import AddActivityForm from '../../components/AddActivityForm';
 
 const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
@@ -81,7 +81,7 @@ const ActivityDetails = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent no-padding>
-          <AddActivityForm ></AddActivityForm>
+
         <div className="ad-overlay-modal-form" onClick={() => setShowModal(false)}></div>
         <IonModal className="ad-modal-add-activity-form" isOpen={showModal}>
           <div className="ad-nav-bar-modal-activity-form">Ajouter une activité
@@ -89,6 +89,7 @@ const ActivityDetails = () => {
               <IonIcon className="ad-close-icon" icon={add}></IonIcon>
             </div>
           </div>
+          <AddActivityForm ></AddActivityForm>
         </IonModal>
         
 
