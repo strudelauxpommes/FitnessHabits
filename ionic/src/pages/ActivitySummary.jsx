@@ -1,8 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonCol, IonRow, IonGrid } from '@ionic/react';
-import { add } from 'ionicons/icons';
+import { IonContent, IonHeader, IonPage,IonCol, IonRow, IonGrid } from '@ionic/react';
 import React from 'react';
-import DateRow from '../components/DateRow';
-import ActivityModal from 'src/components/ActivityModal';
 
 const ActivitySommary = () => {
 
