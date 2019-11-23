@@ -21,6 +21,10 @@ import moment from 'moment'
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
 // import { any } from 'prop-types';
 
+type Prop = {
+    
+}
+
 type State = {
     sleepCollection: SleepCollection;
     averageSleep: number
@@ -40,7 +44,7 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         const sleepService = new SleepService();
         sleepService.getActiveDate()
         const activeDate = moment("2019-10-10")
-        const sleepCollection = new SleepCollection({'activeDate': '2019-10-10', 'list':[]});
+        const sleepCollection = await sleepService.fetchHistory()
 
         this.setState({
             sleepCollection: sleepCollection,

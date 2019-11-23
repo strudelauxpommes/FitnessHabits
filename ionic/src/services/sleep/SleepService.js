@@ -87,7 +87,7 @@ export default class SleepService{
             mergedCollection.addSleepList(result[i].list)
         }
         
-        return result
+        return mergedCollection
     }
 
     /**
