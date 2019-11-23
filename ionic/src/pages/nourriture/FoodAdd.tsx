@@ -2,13 +2,13 @@ import { Component } from 'react';
 import React from 'react';
 import { IonApp, IonHeader, IonContent, IonText } from '@ionic/react';
 
-export default class NourritureList extends Component {
+export default class FoodAdd  extends Component {
 
     render() {
         return (
           <IonApp>
             <IonHeader>
-                <IonText> NourritureList</IonText>
+                <IonText> FoodAdd </IonText>
             </IonHeader>
             <IonContent>
       
