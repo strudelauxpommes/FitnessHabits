@@ -1,9 +1,7 @@
-import Preference from './Preference';
-import renderer from 'react-test-renderer';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {DalImpl} from '../../dal/DalImpl';
-import Dal from '../../dal/Dal';
+import Preference from '../parameters/Preference';
+import { DalImpl } from '../../dal/DalImpl';
+import Dal  from '../../dal/Dal';
+
 /*
 it('renders correctly', () => {
     const tree = renderer.create(<Home />).toJSON();
