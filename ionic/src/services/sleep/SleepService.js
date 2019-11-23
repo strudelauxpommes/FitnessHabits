@@ -173,8 +173,6 @@ export default class SleepService{
         })
 
         const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
-
-        console.log(momentValue.toDate())
         
         return new Date("2019-10-07");
     }
