@@ -4,8 +4,21 @@ import { add, calendar, download, settings, trash, home, redo } from 'ionicons/i
 import '../../theme/parameters.css';
 const Preference: React.FC = () => {
   return (
-
+    <IonPage>
       <IonContent>
+      <IonHeader>
+        <IonToolbar slot="top" className="toolbarName ion-text-center">
+          <IonTitle>Paule Levasseur</IonTitle>
+        </IonToolbar>
+        <IonTabBar slot="top">
+        <IonTabButton tab="profil" href="/profil">
+        <div className="ion-text-center"><h4>Profil</h4></div>
+        </IonTabButton>
+        <IonTabButton tab="preference" href="/preference">
+        <div className="ion-text-center" ><h4>Preference</h4></div>
+        </IonTabButton>
+      </IonTabBar>
+      </IonHeader>
         <IonContent>
         <IonText>
           <h4>Unite de mesure</h4>
@@ -105,6 +118,30 @@ const Preference: React.FC = () => {
         
         </IonContent>
       </IonContent>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/home">
+          <IonIcon icon={home} />
+          <IonLabel></IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="export" href="/">
+          <IonIcon icon={redo} />
+          <IonLabel></IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="import" href="/">
+          <IonIcon icon={download} />
+          <IonLabel></IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="delete" href="/">
+          <IonIcon icon={trash} />
+          <IonLabel></IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="settings" href="/Parameters">
+          <IonIcon icon={settings} />
+          <IonLabel></IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </IonPage>
+      
   );
 };
 
