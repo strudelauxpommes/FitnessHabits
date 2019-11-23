@@ -1,6 +1,6 @@
 import { DalImpl } from '../../dal/DalImpl'
 import Dal from '../../dal/Dal';
-
+import { init, load } from '../i18n/i18n'
 const bd: Dal = new DalImpl();
 export default class ParametersService {
     
@@ -22,6 +22,7 @@ export default class ParametersService {
             bd.setValue("preferences/listeRepas", "['dejeuner', 'collationAM', 'dîner', 'collationPM', 'souper','collationSoir']"),
             bd.setValue("preferences/listeHumeurs", "['Super','bonne humeur', 'Neutre', 'Grognon', 'Fatigué','Dépressif']")
        ]);
+       load("en");
     };
 }
 
