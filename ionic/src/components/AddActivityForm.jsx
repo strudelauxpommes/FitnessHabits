@@ -7,7 +7,7 @@ import {
   IonLabel,
   IonButton
 } from '@ionic/react';
-// import { ActivityService } from '../../services/ActivityService';
+import { ActivityService } from '../services/ActivityService';
 
 const AddActivityForm = () => {
   const [ name, setName ] = useState('');
@@ -16,6 +16,7 @@ const AddActivityForm = () => {
   const [ comment, setComment ] = useState('');
   const [ favorite, setFavorite ] = useState('');
   const [ formErrors, setFormErrors ] = useState('');
+  const activityService = new ActivityService();
 
   const submit = async () => {
     if (name.length === 0 || time.length === 0 || intensity.length === 0) {
@@ -42,8 +43,8 @@ const AddActivityForm = () => {
   }
 
   return (
-    <IonContent>
-      <form onSubmit={(e) => { e.preventDefault(); submit();}}>
+    <IonContent className="ad-activity-form-content">
+      <form className="ad-form-activity" onSubmit={(e) => { e.preventDefault(); submit();}}>
         <IonList>
           <IonItem>
             <IonLabel>Name</IonLabel>
