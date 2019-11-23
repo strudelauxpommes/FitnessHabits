@@ -2,7 +2,6 @@ import { SleepCollection } from '../../entities/sleep/sleep'
 import { DalImpl } from '../../dal/DalImpl'
 import ValidatorService from './ValidatorService';
 import moment from 'moment'
-// import ajv from 'ajv';
 /**
  * Service to fetch sleep entities from the persistence
  */
@@ -204,16 +203,6 @@ export default class SleepService{
     async getActiveDate(){
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
-        const values = [7, 10, 2019]
-        const str = values.map(s => {
-            if(s < 10){
-                return `0${s}`
-            }
-
-            return `${s}`
-        })
-
-        //const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
         
         return new Date("2019-10-11");
     }

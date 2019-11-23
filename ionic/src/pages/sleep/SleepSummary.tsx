@@ -68,8 +68,6 @@ export default class SleepSummary extends Component<Props, State> {
 
     sleepCollection.getAverageSleep(sleepService.getActiveDate() as any, 7 as any)
 
-    const test = await sleepService.fetchHistory_v2()
-
     this.setState({
       sleeps: sleepCollection,
       totalSleepTimeToday: sleepCollection.showTotalSleep(),

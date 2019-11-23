@@ -1,6 +1,5 @@
 import moment, { now } from 'moment';
 import SleepService from 'src/services/sleep/SleepService';
-import { number } from 'prop-types';
 
 //Important - Overide the format when jsonifying a moment object
 moment.fn.toJSON = function () { return this.format(); }

@@ -49,8 +49,6 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
     async componentDidMount(){
         const sleepService = new SleepService();
         sleepService.getActiveDate()
-
-        const activeDate = sleepService.getActiveDate()
     
         const backEndCollection = await sleepService.fetchHistory_v2()
         const displaySleepCollection = await sleepService.fetchHistory()
@@ -59,7 +57,6 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         if(displaySleepCollection){
             this.setState({
                 sleepCollection: displaySleepCollection,
-                //averageSleep: displaySleepCollection.getAverageSleep(activeDate as any, 7 as any)
                 averageSleep:12,
                 backEndCollection:backEndCollection
             })

@@ -1,5 +1,4 @@
 import { Sleep } from './sleep';
-import moment from 'moment';
 import Crypto from 'crypto-js'
 
 
