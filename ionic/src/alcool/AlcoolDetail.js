@@ -20,8 +20,10 @@ export default class AlcoolDetail extends React.Component {
         super(props);
         this.getDateFromParameters = this.getDateFromParameters.bind(this);
         this.setShowModal = this.setShowModal.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.state = {
-            showModal: false
+            showModal: false,
+            Alcools: {}
         }
     }
 
@@ -37,13 +39,27 @@ export default class AlcoolDetail extends React.Component {
         });
     }
 
+    onSubmit(name, volume) {
+        debugger;
+        if (!this.state.Alcools[`${name}`]) {
+            var newStateObj = this.state;
+            newStateObj.Alcools[`${name}`] = {};
+            newStateObj.Alcools[`${name}`].quantity = volume;
+            console.log(newStateObj);
+            debugger;
+            this.setState(newStateObj);
+        }
+    }
+
     render() {
         this.getDateFromParameters();
         return (
             <IonPage>
                 <IonContent>
                     <IonModal isOpen={this.state.showModal}>
-                        <AlcoolDetailAddForm setShowModal={this.setShowModal} />
+                        <AlcoolDetailAddForm
+                            setShowModal={this.setShowModal}
+                            onSubmit={this.onSubmit} />
                     </IonModal>
                     <AlcoolDetailHeader date={this.getDateFromParameters()} />
                     <IonFab vertical="bottom" horizontal="center" slot="fixed">
