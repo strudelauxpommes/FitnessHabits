@@ -45,7 +45,6 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
     async componentDidMount(){
         const sleepService = new SleepService();
         sleepService.getActiveDate()
-        const activeDate = sleepService.getActiveDate()
     
         const backEndCollection = await sleepService.fetchHistory_v2()
         const displaySleepCollection = await sleepService.fetchHistory()

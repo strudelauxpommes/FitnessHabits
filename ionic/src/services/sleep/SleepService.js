@@ -2,7 +2,6 @@ import { SleepCollection } from '../../entities/sleep/sleep'
 import { DalImpl } from '../../dal/DalImpl'
 import ValidatorService from './ValidatorService';
 import moment from 'moment'
-import { thisExpression } from '@babel/types';
 // import ajv from 'ajv';
 /**
  * Service to fetch sleep entities from the persistence
@@ -22,8 +21,8 @@ export default class SleepService{
      * Fetch the list of sleeps from the persistance layer
      */
     async fetchActiveDate () {
+            const activeDate = await this.getActiveDate()
         
-        const activeDate = await this.getActiveDate()
         
         const parsedDate = activeDate.getUTCFullYear()+"-"+(activeDate.getMonth()+1)+"-"+activeDate.getDate()
         const actual = await this.persist.getValue(this.getKey(), activeDate)
@@ -209,8 +208,8 @@ export default class SleepService{
             return `${s}`
         })
 
-        const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
+        //const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
         
-        return new Date("2019-10-11");
+        return new Date("2019-10-11T00:00:00");
     }
 }

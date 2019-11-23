@@ -1,5 +1,6 @@
 import moment, { now } from 'moment';
-import { timingSafeEqual } from 'crypto';
+import SleepService from 'src/services/sleep/SleepService';
+import { number } from 'prop-types';
 
 //Important - Overide the format when jsonifying a moment object
 moment.fn.toJSON = function () { return this.format(); }
@@ -184,7 +185,7 @@ class SleepCollection {
 
         this.list.forEach(s => {
             result = result && ! sleep.start.isBetween(s.start, s.end) && !sleep.end.isBetween(s.start, s.end) &&
-            sleep.start.diff(s.start) != 0 && sleep.end.diff(s.end) != 0
+            sleep.start.diff(s.start) !== 0 && sleep.end.diff(s.end) !== 0
         })
 
         if(result){
@@ -281,18 +282,18 @@ class SleepCollection {
      *
      * @return  {double}                [number of hours]
      */
-    getAverageSleep(date, numberOfDays) {
-        const end = date.clone()
-        const start = date.subtract(numberOfDays, 'days')
-        const list = this.filterSleepByDates(start, end)
+    async getAverageSleep(date, numberOfDays) {
+        const sleepService = new SleepService()
+        let sleepCollections = []
 
-        if (list.length === 0) {
-            return moment.duration(0, 'h')
+        for (let i = 0; i < numberOfDays; i++) {
+            sleepCollections.push(await sleepService.fetchActiveDate(date))
         }
 
-        const totalHours = list.reduce((acc, curr) => acc + curr.getDurationAsHours(), 0)
-        return moment.duration(totalHours / list.length, 'h')
+        console.log("avg sleepCOllectons")
+        console.log("avg sleepCollections",sleepCollections);
     }
+
 
     /**
      * [Calculates total amount of sleep in the list as minutes]

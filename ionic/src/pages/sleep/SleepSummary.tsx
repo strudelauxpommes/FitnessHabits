@@ -17,6 +17,7 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import { activeDate } from 'src/App';
 
 type Props = {
   activeDate: Date;
@@ -59,6 +60,8 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
     const moodObjects = await sleepService.fetchMoods()
+
+    sleepCollection.getAverageSleep(sleepService.getActiveDate() as any, 7 as any)
 
     const test = await sleepService.fetchHistory_v2()
     console.log(test)
