@@ -134,7 +134,7 @@ export default class SleepService{
      */
     async saveActiveDate(sleepCollection){
         const activeDate = await this.getActiveDate()
-        
+
         await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
     }
 

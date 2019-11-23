@@ -106,7 +106,7 @@ export default class SleepSummary extends Component<Props, State> {
 
     const collection = this.state.sleeps
 
-    if(collection.addSleep(builder.sleep as Sleep) === false){
+    if(builder.isValid && collection.addSleep(builder.sleep as Sleep) === false){
       builder.isValid = false
       builder.errorMessage += "<ul><li>Sommeil invalide: les dates se chevauchent!</li></ul>"
     }
