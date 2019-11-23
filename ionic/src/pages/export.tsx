@@ -18,9 +18,9 @@ function getAllData() {
   var d = document.getElementById("debut") 
   console.log(d);
 }
-function changeColor(){
-  var btn = document.getElementById("allData") 
-  btn!.style.backgroundColor = "red";
+function changeColor(id:string){
+  var btn = document.getElementById(id) 
+  btn!.setAttribute("color", "primary")
 }
   return (
     <IonPage id="export-import-list" color="#b3b3b3">
@@ -50,34 +50,34 @@ function changeColor(){
 
         <IonRow>
           <IonCol>
-            <IonButton id="allData" onClick={() => changeColor()} color="light" expand="block">Nourriture</IonButton>
+            <IonButton id="food" onClick={() => changeColor("food")} color="light" expand="block">Nourriture</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton color="light" expand="block">Breuvages</IonButton>
-          </IonCol>
-        </IonRow>
-        <IonRow>
-          <IonCol>
-            <IonButton color="light" expand="block">Suppléments</IonButton>
-          </IonCol>
-          <IonCol>
-            <IonButton color="light" expand="block">Sommeil</IonButton>
+            <IonButton id="beverage" onClick={() => changeColor("beverage")} color="light" expand="block">Breuvages</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="full" >Poids</IonButton>
+            <IonButton id="" color="light" expand="block">Suppléments</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton expand="full" color="light" >Activités physiques</IonButton>
+            <IonButton id="sleep" onClick={() => changeColor("sleep")}  color="light" expand="block">Sommeil</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="full" >Alcool</IonButton>
+            <IonButton id="profil/poids" onClick={() => changeColor("profil/poids")} color="light" expand="full" >Poids</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton expand="full" color="light" >Glycémie</IonButton>
+            <IonButton id="Activites"  onClick={() => changeColor("Activites")} expand="full" color="light" >Activités physiques</IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonButton id="alcohol" onClick={() => changeColor("alcohol")}  color="light" expand="full" >Alcool</IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton id="profil/glycemie" onClick={() => changeColor("profil/glycemie")} expand="full" color="light" >Glycémie</IonButton>
           </IonCol>
         </IonRow>
         <IonButton onClick={() => getAllData()} color="secondary" expand="block">Toutes les données</IonButton>
