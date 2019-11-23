@@ -5,14 +5,10 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
 import Alcool from "../alcool/AlcoolSommaire";
-<<<<<<< HEAD
 import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
-import SleepSummary from "./sleep/SleepSummary";
-=======
 import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
->>>>>>> 30fc2205a219c5363844be63b3d2856aaef35573
 
 import Poids from '../entities/poids/Poids'
 
@@ -65,15 +61,12 @@ class Home extends Component<RouteComponentProps, State> {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-<<<<<<< HEAD
           <FoodSummary />
           <Poids />
-=======
           <FoodHome />
           <BeveragesSummary
             activeDate={new Date("2019-10-31T21:00:00-05:00")}
           />
->>>>>>> 30fc2205a219c5363844be63b3d2856aaef35573
         </IonContent>
 
         <IonTabBar slot="bottom">
