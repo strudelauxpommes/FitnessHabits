@@ -13,16 +13,38 @@ import {
 import React, {Component} from 'react';
 import {stopwatch} from 'ionicons/icons';
 import '../../theme/glycemie.css';
+import {DalImpl} from '../../dal/DalImpl'
 class Glycemie extends Component {
-	state = {
-        glycemie: 0,
-		errors : ""
+	constructor(props) {
+        super(props);
+        this.persist = new DalImpl()
+        this.state = {
+	 glycemie: 0,
+	 errors: "",
+	 uniteGlycemie: "mmol/L"
+        };
     };
+
+	apicall = async() => {
+
+		if(await this.persist.getLastValue("profil/glycemie") != null) {
+			this.setState({glycemie: this.persist.getLastValue("profil/glycemie")});
+		}
+		if(await this.persist.getLastValue("preferences/uniteGlycemie") != null) {
+			this.setState({uniteGlycemie: this.persist.getLastValue("preferences/uniteGlycemie")});
+		}
+		else if(await this.persist.getLastValue("preferences/uniteGlycemie") == null) {
+			this.setState({uniteGlycemie: "mmol/L"});
+		}
+		
+    
+    }
+
 	validateInput() {
 		let glycemie = this.state.glycemie;
 		let errors = "";
 		let InputIsValid = true;
-		if(!String(glycemie).match(/^\d{1,2}([\,\.]\d{1})?$/)){
+		if(!String(glycemie).match(/^\d{1,2}([\,\.]\d{1})?$/) && String(glycemie).length != 0){
 			InputIsValid = false;
 			errors = "*Veuillez respecter ce format: 99.9";
 		}
@@ -31,7 +53,8 @@ class Glycemie extends Component {
 		});
 		return InputIsValid;	
 	 }
-    glycemie = (event) => {
+    glycemie = async(event) => {
+		await this.apicall();
 		var timeout = null;
 		var input = document.getElementById('glycemie');
 		var msgslot = document.getElementById('msg');
@@ -42,6 +65,7 @@ class Glycemie extends Component {
 			timeout = setTimeout( ()=> {
 				
 				this.setState({glycemie: input.value});
+				this.persist.setValue("profil/glycemie",this.state.glycemie)
 				if(input.value != 0){	
 					if(input.value < 4){
 						msgslot.innerHTML = '<IonTitle id="msg">&#x1F489 Sucre </IonTitle>';
@@ -77,7 +101,7 @@ class Glycemie extends Component {
                 <IonCardContent>
                     <IonItem text-center="text-center">
                         <IonInput type="number" id="glycemie" name ="glycemie" pattern="^[0-9]{2-4}" ng-model="vm.onlyNumbers" stacked="stacked" onIonChange={this.glycemie}></IonInput>
-						<IonLabel>mmol/L</IonLabel>
+		<IonLabel>{ this.state.uniteGlycemie }</IonLabel>
                     </IonItem>
 					<div className="errorMsg">{this.state.errors}</div>
                 </IonCardContent>

@@ -96,7 +96,7 @@ class Poids extends Component {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 this.setState({poids: input.value});
-                this.persist.setValue("profil/poids",JSON.stringify(this.state.poids));
+                this.persist.setValue("profil/poids",this.state.poids);
 				if(this.validateInput1()){
 					if (this.state.poids != 0) {
 						imc = Math.round((this.state.poids / (taille * taille)) * 100) / 100;
