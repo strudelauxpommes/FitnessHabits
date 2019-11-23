@@ -2,8 +2,8 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
   IonButton, IonIcon, IonCol, IonRow, IonGrid, IonModal } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React, { useState } from 'react';
-import DateRow from '../components/DateRow';
-import AddActivityForm from '../components/AddActivityForm';
+import DateRow from '../../components/DateRow';
+import AddActivityForm from '../../components/ActivityRow';
 
 const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
