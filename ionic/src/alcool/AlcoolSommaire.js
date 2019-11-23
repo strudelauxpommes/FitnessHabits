@@ -64,12 +64,22 @@ export default class AlcoolSommaire extends React.Component {
           quantity={this.state.Alcools[key].quantity}
           volume={this.state.Alcools[key].volume}
           addAlcool={this.addAlcool}
+<<<<<<< HEAD
         />
       );
     }
     return list;
   }
   render() {
+=======
+          key={key}
+        />)
+    }
+    return list;
+  }
+
+render() {
+>>>>>>> mainpage
     return (
       <IonCard>
         <IonCardHeader color="alcool">
@@ -85,10 +95,18 @@ export default class AlcoolSommaire extends React.Component {
 
         <IonCardContent>
           <IonGrid>
+<<<<<<< HEAD
             <IonRow></IonRow>
           </IonGrid>
         </IonCardContent>
       </IonCard>
+=======
+            <IonRow>
+            </IonRow>
+          </IonGrid>
+        </IonCardContent>
+      </IonCard >
+>>>>>>> mainpage
     );
   }
 }
