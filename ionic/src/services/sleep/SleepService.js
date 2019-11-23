@@ -91,7 +91,9 @@ export default class SleepService{
         for(let i = 0; i < historyDates.length; i++){
             let actual = await this.persist.getValue(this.getKey(), historyDates[i])
             if(actual === undefined){
-                actual = {'activeDate': 'ttt', 'list': []}
+
+                actual = {'activeDate': historyDates[i], 'list': []}
+                console.log(actual)
             } else {
                 console.log(actual)
             }
@@ -161,10 +163,10 @@ export default class SleepService{
             //eventually change the moment for the activate
             var temp = moment('2019-10-11T00:00:00-05:00');
             temp = temp.subtract(i,"days")
-            temp = temp.format("DD-MM-YYYY")
+            temp = temp.format("MM-DD-YYYY")
             historyDates.push(new Date(temp))
         }
-
+        
         return historyDates
         //return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
         //return [new Date('2019-09-11'), new Date('2019-09-10'),new Date('2019-09-09'), new Date('2019-09-08'), new Date('2019-09-07'), new Date('2019-09-06'), new Date('2019-09-05')]
