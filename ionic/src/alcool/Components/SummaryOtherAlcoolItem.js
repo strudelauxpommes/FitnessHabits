@@ -21,7 +21,7 @@ import {
       </IonRow>
       <IonRow className="ion-text-center">
         <IonCol>
-          <IonButton href='/AlcoolDetail' className="summary__round" shape='round' color='alcool'>
+          <IonButton href='/alcool-detail' className="summary__round" shape='round' color='alcool'>
             <IonText>1</IonText>
           </IonButton>
         </IonCol>
