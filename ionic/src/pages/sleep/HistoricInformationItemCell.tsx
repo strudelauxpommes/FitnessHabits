@@ -12,18 +12,16 @@ export function HistoricInformationItemCell(props: {
                       <IonItem>
                             <IonGrid>
                               <IonRow>
-                                  <IonCol><IonLabel>Date : {props.sleep.getStartDate()}</IonLabel></IonCol>
-                                </IonRow>
-                                <IonRow>
+                                  <IonCol><IonLabel>{props.sleep.getStartDate()}</IonLabel></IonCol>
                                   <IonCol>
                                     <IonLabel>
-                                      Durée du sommeil: {props.sleep.getStartTime()} - {props.sleep.getEndTime()}
+                                      {props.sleep.getStartTime()} - {props.sleep.getEndTime()}
                                     </IonLabel>
                                   </IonCol>
-                                </IonRow>
-                                <IonRow>
-                                  <IonCol><IonLabel>Nombre de réveils: {props.sleep.getNumberOfInteruptions()}</IonLabel></IonCol>
-                                </IonRow>
+                                <IonCol>
+                                  <IonLabel>réveils: {props.sleep.getNumberOfInteruptions()}</IonLabel>
+                                </IonCol>
+                              </IonRow>  
                             </IonGrid>
                       </IonItem>
                     } class='react-sanfona-item'>

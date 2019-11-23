@@ -7,6 +7,10 @@ import {
     IonContent,
     IonHeader,
     IonList,
+    IonItem,
+    IonCol,
+    IonLabel,
+    IonRow,
 } from '@ionic/react';
 
 import React, { Component } from 'react';
@@ -51,9 +55,6 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         const backEndCollection = await sleepService.fetchHistory_v2()
         const displaySleepCollection = await sleepService.fetchHistory()
         displaySleepCollection.sortByAscendingStartDate()
-
-        console.log(backEndCollection)
-        console.log(displaySleepCollection)
 
         if(displaySleepCollection){
             this.setState({
@@ -107,6 +108,21 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
                     <IonCardTitle>Historique</IonCardTitle>
                     <IonCardContent>
                         <IonList>
+                        <IonItem>
+                            <IonGrid>
+                                <IonRow>
+                                    <IonCol>
+                                        <IonLabel>Date</IonLabel>
+                                    </IonCol>
+                                    <IonCol>
+                                        <IonLabel>Durée</IonLabel>
+                                    </IonCol>
+                                    <IonCol>
+                                        <IonLabel>Nombre de réveils</IonLabel>
+                                    </IonCol>
+                                    </IonRow>
+                            </IonGrid>
+                        </IonItem>
                         {this.state.sleepCollection.list.map((item:Sleep) =>                              
                             <SwipeableSleep
                                 key={item.getId()}
