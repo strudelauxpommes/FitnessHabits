@@ -14,7 +14,9 @@ export default class DateRow extends React.Component {
   }
 
   getTotalDuration() {
+    // return 0;
     let total = moment.duration(0);
+    console.log(this.props.activities);
     this.props.activities.forEach(a => {
       let duration = moment.duration(a.duree);
       total.add(duration);
@@ -23,6 +25,7 @@ export default class DateRow extends React.Component {
   }
 
   getIntensityAverage() {
+    // return 0;
     let total = 0;
     this.props.activities.forEach(a => {
       total += a.intensity;

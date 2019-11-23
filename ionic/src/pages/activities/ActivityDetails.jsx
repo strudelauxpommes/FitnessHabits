@@ -17,10 +17,8 @@ const ActivityDetails = () => {
 
   activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
     if (result && result.length > 0) {
-      console.log(result);
       setDates(result)
     }
-    console.log(dates);
   });
 
   return (
@@ -60,8 +58,9 @@ const ActivityDetails = () => {
           {
             dates
               ? dates.map((d, index) => {
+                let json = JSON.parse(d);
                 return (
-                    <DateRow key={d['day']} jour={d['day']} activities={d['activities']} index={index}></DateRow>
+                    <DateRow key={index} jour={json['day']} activities={json['activities']} index={index}></DateRow>
                 );
               })
               : null
