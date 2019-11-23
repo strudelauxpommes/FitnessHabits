@@ -19,15 +19,11 @@ import {
   home,
   redo,
   settings,
-  trash,
-  add
+  trash
 } from "ionicons/icons";
-import { Component, default as React } from "react";
-import { RouteComponentProps, Redirect, Route } from "react-router";
+import React, { Component } from "react";
+import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
-import SleepSummary from "./sleep/SleepSummary";
-import Export from './export';
-import Import from './import';
 import Alcool from "../alcool/AlcoolSommaire";
 import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
@@ -49,35 +45,32 @@ class Home extends Component<RouteComponentProps, State> {
 
     const sleepCollection = sleepService.fetch();
 
-var fr_dictionary = require('../i18n/fr.json');
-T.setTexts(fr_dictionary);
+    this.state = {
+      sleepCollection: sleepCollection,
+      T: null
+    };
+  }
 
-const Home: React.FC = () => {
-  return (
-    <IonPage>
-      <IonRouterOutlet>
-        <Redirect exact path="/tabs" to="/tabs/home" />
-        <Route path="/tabs/export" render={() => <Export />} exact={true} />
-        <Route path="/tabs/import" render={() => <Import />} exact={true} />
-      </IonRouterOutlet>
+  render() {
+    const { sleepCollection } = this.state;
 
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>
-           {T.translate("app.title")}
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
+    return (
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>{T.translate("app.title")}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-      <IonContent slot="top">
-        <IonItem color="primary">
-          <IonAvatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y%22" />
-          </IonAvatar>
-          <IonLabel>
-            <h1>Username</h1>  
-          </IonLabel>
-          <IonButton color="light" slot="end">
+        <IonContent slot="top">
+          <IonItem color="primary">
+            <IonAvatar slot="start">
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y%22" />
+            </IonAvatar>
+            <IonLabel>
+              <h1>Username</h1>
+            </IonLabel>
+            <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
             </IonButton>
@@ -95,6 +88,7 @@ const Home: React.FC = () => {
             activeDate={new Date("2019-10-31T21:00:00-05:00")}
           />
         </IonContent>
+
         <Tabs />
       </IonPage>
       /** 
@@ -105,4 +99,5 @@ const Home: React.FC = () => {
     );
   }
 }
+
 export default Home;

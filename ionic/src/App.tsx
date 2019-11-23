@@ -21,14 +21,13 @@ import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 /* Export Import Delete */
 import Export from "./pages/export";
-import Home from "./pages/Home";
 import Import from "./pages/import";
 import FoodAdd from "./pages/nourriture/FoodAdd";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodList from "./pages/nourriture/FoodList";
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
-
+import Home from "./pages/Home";
 /* Parameters import */
 import Parameters from "./pages/parameters/Parameters";
 import Preference from "./pages/parameters/Preference";
@@ -44,15 +43,8 @@ import "./theme/sleep.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-import SleepDetail from './pages/sleep/SleepDetail';
-import SleepSummary from './pages/sleep/SleepSummary';
-import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
-import './services/parameters/InitializeParameters.js';
-import moment from 'moment';
-import React from 'react';
-import { Route, Redirect } from 'react-router';
-import Home from './pages/Home';
-
+import "./services/parameters/InitializeParameters.js";
+import AlcoolDetail from './alcool/AlcoolDetail';
 
 // Init language
 init();
@@ -86,6 +78,7 @@ const App: React.FC = () => (
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
         <Route path="/tabs" component={Tabs} />
+        <Route path="/alcool-detail" component={AlcoolDetail} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
