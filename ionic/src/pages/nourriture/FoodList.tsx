@@ -14,7 +14,8 @@ import {
   IonRow,
   IonCol,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonTitle
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
 import { add } from "ionicons/icons";
@@ -28,7 +29,9 @@ export default class FoodList extends Component {
         </IonHeader>
         <IonContent>
           <IonCard>
-            <IonCardHeader></IonCardHeader>
+            <IonCardHeader>
+            <IonTitle>Diner</IonTitle>
+            </IonCardHeader>
             <IonCardContent>
               <IonList>
                 <IonItem>
@@ -51,8 +54,8 @@ export default class FoodList extends Component {
               <IonGrid>
                 <IonRow>
                   <IonCol> </IonCol>
-                  <IonCol push="-0.5">
-                    <IonButton size="default" expand="block" href="/food-add">
+                  <IonCol >
+                    <IonButton size="default" expand="block" color="dark" href="/food-add">
                       <IonIcon size="large" icon={add}></IonIcon>
                     </IonButton>
                   </IonCol>
