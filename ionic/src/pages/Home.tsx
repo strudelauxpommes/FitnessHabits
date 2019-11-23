@@ -21,15 +21,17 @@ import {
   settings,
   trash
 } from "ionicons/icons";
-import { Component, default as React } from "react";
+import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
-import SleepService from "../services/sleep/SleepService";
-import SleepSummary from "./sleep/SleepSummary";
 import Alcool from "../alcool/AlcoolSommaire";
+import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
-
-//const MainTabs: React.FC<MainTabsProps> = () => {
+import FoodHome from "./nourriture/FoodHome";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
+import SleepSummary from "./sleep/SleepSummary";
+import Poids from "../entities/poids/Poids";
+import Tabs from "./tabs";
 
 const sleepService = SleepService();
 
@@ -80,31 +82,14 @@ class Home extends Component<RouteComponentProps, State> {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-          <FoodSummary />
+          <Poids />
+          <FoodHome />
+          <BeveragesSummary
+            activeDate={new Date("2019-10-31T21:00:00-05:00")}
+          />
         </IonContent>
 
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="export" href="/">
-            <IonIcon icon={redo} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="import" href="/">
-            <IonIcon icon={download} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="delete" href="/">
-            <IonIcon icon={trash} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/">
-            <IonIcon icon={settings} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <Tabs />
       </IonPage>
       /** 
       <IonTabs>

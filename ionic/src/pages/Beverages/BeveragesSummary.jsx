@@ -1,11 +1,35 @@
-import React, { Component } from 'react';
-import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent, IonLabel, IonTitle } from '@ionic/react';
-import { cafe } from 'ionicons/icons';
-import FavoriteBeverage from './FavoriteBeverage';
-import { DalImpl } from '../../dal/DalImpl'
-
+import React, { Component } from "react";
+import {
+  IonPage,
+  IonGrid,
+  IonContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonRow,
+  IonCol,
+  IonIcon,
+  IonCardContent,
+  IonLabel,
+  IonTitle
+} from "@ionic/react";
+import data from "./data.json";
+import { cafe } from "ionicons/icons";
+import FavoriteBeverage from "./FavoriteBeverage";
+import { DalImpl } from "../../dal/DalImpl";
 
 class BeveragesSummary extends Component {
+  constructor() {
+    super();
+    this.state = {
+      beverages: [],
+      total: 0,
+      unit: "L",
+      unitConverter: 1,
+      date: Date
+    };
+    this.onIncrease = this.onIncrease.bind(this);
+  }
 
     constructor(props) {
         super(props);
@@ -30,8 +54,8 @@ class BeveragesSummary extends Component {
         for (let beverage of this.state.beverages) {
             await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
         }
-        
     }
+  }
 
     async getBeverages() {
         const instance = new DalImpl();
@@ -69,7 +93,7 @@ class BeveragesSummary extends Component {
             
         }
     }
-
+  }
     async resetQuantities() {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
@@ -86,18 +110,18 @@ class BeveragesSummary extends Component {
             this.defaultBeverage('Perrier'),
         ]
 
-        await this.setState({beverages: defaultBeverages});
-    }
+    await this.setState({ beverages: defaultBeverages });
+  }
 
-    defaultBeverage(beverageName) {
-        return {
-            name: beverageName,
-            volume: 125,
-            quantity: 0,
-            comment: "",
-            favorite: true
-        }
-    }
+  defaultBeverage(beverageName) {
+    return {
+      name: beverageName,
+      volume: 125,
+      quantity: 0,
+      comment: "",
+      favorite: true
+    };
+  }
 
     async onIncrease (data) {
         await this.setState(prevState => ({
@@ -154,6 +178,28 @@ class BeveragesSummary extends Component {
             </IonPage>
         );
     }
+    return (
+      <IonCard>
+        <IonCardHeader class="new-beverages-style">
+          <IonRow>
+            <IonCol style={{ textAlign: "left" }}>
+              <IonTitle>
+                <IonIcon icon={cafe}></IonIcon> &nbsp; Breuvages
+              </IonTitle>
+            </IonCol>
+            <IonCol style={{ textAlign: "right" }}>
+              <IonLabel>{this.state.total + this.state.unit}</IonLabel>
+            </IonCol>
+          </IonRow>
+        </IonCardHeader>
+        <IonCardContent style={{ textAlign: "center" }}>
+          <IonGrid>
+            <IonRow>{beveragesRender}</IonRow>
+          </IonGrid>
+        </IonCardContent>
+      </IonCard>
+    );
+  }
 }
 
 export default BeveragesSummary;
