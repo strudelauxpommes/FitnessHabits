@@ -28,6 +28,9 @@ import './theme/sleep.css';
 import './theme/variables.css';
 
 
+/* Alcool Imports */
+import AlcoolDetail from './alcool/AlcoolDetail';
+
 /* Temporary activeDate global variable */
 export const activeDate = moment();
 
@@ -65,8 +68,10 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
+        <Route path="/alcoolDetail" component={AlcoolDetail} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
