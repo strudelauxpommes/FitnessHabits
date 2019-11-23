@@ -12,6 +12,7 @@
     "i18n-react": "^0.7.0",
     "ionicons": "^4.6.3",
     "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router": "^5.1.0",
