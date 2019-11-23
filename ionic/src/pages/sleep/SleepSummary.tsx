@@ -54,7 +54,7 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
 
-    const test = await sleepService.fecthHistory_v2()
+    const test = await sleepService.fetchHistory_v2()
     console.log(test)
 
     this.setState({

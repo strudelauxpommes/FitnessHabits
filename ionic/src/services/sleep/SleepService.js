@@ -10,7 +10,7 @@ import { thisExpression } from '@babel/types';
 export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
-        // this.persist.clear()
+        //this.persist.clear()
         this.validatorService = new ValidatorService()
     }    
 
@@ -32,7 +32,7 @@ export default class SleepService{
             const sleepCollection = new SleepCollection({'activeDate': '', 'list': []})
             return sleepCollection
         } 
-            
+        
         // const actualParsed = JSON.parse(actual)
         const sleepCollection = new SleepCollection(actual); 
 
@@ -75,25 +75,23 @@ export default class SleepService{
             finalCollection.push(temp[(temp.length-1)])
         })
     
-        const result = []
-        
-        finalCollection.forEach(item => {
-                const value = item.value
-                // const json = JSON.parse(value)
-                result.push(new SleepCollection(value))
-        })
+        const x = await this.fetchHistory_v2()
+        const mergedCollection = x[0]
+        for(var i = 1; i < x.length;i++){
+            mergedCollection.addSleepList(x[i].list)
+        }   
 
-        return result
+        return mergedCollection
     }
 
-    async fecthHistory_v2(){
+    async fetchHistory_v2(){
         let result = []
         const historyDates = await this.getHistoryDate()
 
         for(let i = 0; i < historyDates.length; i++){
             let actual = await this.persist.getValue(this.getKey(), historyDates[i])
             if(actual === undefined){
-                actual = {'activeDate': '', 'list': []}
+                actual = {'activeDate': 'ttt', 'list': []}
             } else {
                 console.log(actual)
             }
@@ -153,11 +151,12 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2019-10-09T00:00:00-05:00');
+        return moment('2019-10-11T00:00:00-05:00');
     }
 
     async getHistoryDate(){
         return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
+        //return [new Date('2019-09-11'), new Date('2019-09-10'),new Date('2019-09-09'), new Date('2019-09-08'), new Date('2019-09-07'), new Date('2019-09-06'), new Date('2019-09-05')]
     }
 
     async getActiveDate(){
@@ -174,8 +173,6 @@ export default class SleepService{
 
         const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
 
-        console.log(momentValue.toDate())
-        
-        return new Date("2019-10-07");
+        return new Date("2019-10-11");
     }
 }
