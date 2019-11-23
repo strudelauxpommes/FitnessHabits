@@ -91,11 +91,18 @@ class Poids extends Component {
         var imcslot = document.getElementById('imc');
         var timeout = null;
         var imc = 0;
+        var poids = 0;
+
         var taille = (this.state.taille) / 100;
         input.onkeyup = (e) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
+                if(this.state.unitePoids == "lbs") {
+                    poids = (input.value)/2.2;
+                    this.setState({poids: poids});
+                }else {
                 this.setState({poids: input.value});
+                }
                 this.persist.setValue("profil/poids",this.state.poids);
 				if(this.validateInput1()){
 					if (this.state.poids != 0) {
