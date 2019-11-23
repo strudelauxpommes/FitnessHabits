@@ -28,6 +28,7 @@ import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodList from "./pages/nourriture/FoodList";
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
+
 /* Parameters import */
 import Parameters from "./pages/parameters/Parameters";
 import Preference from "./pages/parameters/Preference";
@@ -43,12 +44,21 @@ import "./theme/sleep.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-/* Temporary activeDate global variable */
-export const activeDate = moment();
+import SleepDetail from './pages/sleep/SleepDetail';
+import SleepSummary from './pages/sleep/SleepSummary';
+import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
+import './services/parameters/InitializeParameters.js';
+import moment from 'moment';
+import React from 'react';
+import { Route, Redirect } from 'react-router';
+import Home from './pages/Home';
+
 
 // Init language
 init();
 
+/* Temporary activeDate global variable */
+export const activeDate = moment();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
