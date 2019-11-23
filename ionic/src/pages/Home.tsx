@@ -2,9 +2,9 @@ import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSu
 import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router';
-import Export from './export';
-import Import from './import';
-import Supression from './purge';
+import Export from './export-import/export';
+import Import from './export-import/import';
+import Supression from './export-import/remove';
 import T from 'i18n-react';
 
 //interface MainTabsProps { }
