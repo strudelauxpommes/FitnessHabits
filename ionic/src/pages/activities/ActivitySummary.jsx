@@ -1,9 +1,12 @@
 import { IonPage } from '@ionic/react';
 import React from 'react';
+import { useState } from 'react';
+import moment from 'moment';
 import Summary from '../../components/Summary';
+import { ActivityService } from '../../services/ActivityService';
 
 const ActivitySummary = () => {
-  let dates = [
+  let datesTest = [
     {
       jour : "2019/11/19",
       activites : [
@@ -69,7 +72,7 @@ const ActivitySummary = () => {
     }
   ]
   
-  let favoris = {
+  let favorisTest = {
     premier : "Yoga",
     deuxieme :"Vélo",
     troisieme :"Soccer"
@@ -77,7 +80,7 @@ const ActivitySummary = () => {
   
   return (
     <IonPage>
-      <Summary dates={dates} favoris={favoris}></Summary>
+      <Summary dates={datesTest} favoris={favorisTest}></Summary>
     </IonPage>
   );
 };
