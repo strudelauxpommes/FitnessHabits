@@ -79,20 +79,6 @@ test('add sleep invalid', () => {
     expect(result).toBeFalsy()
 })
 
-test('Get average of sleep between 2 dates', () => {
-    const sleepCollection = new SleepCollection();
-    sleepCollection.addSleep(new Sleep({'id': 1, 'start': '2016-11-01T23:00:00-05:00', 'end': '2016-11-02T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-    sleepCollection.addSleep(new Sleep({'id': 2, 'start': '2016-11-02T23:15:00-05:00', 'end': '2016-11-03T07:06:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-    sleepCollection.addSleep(new Sleep({'id': 3, 'start': '2016-11-05T23:30:00-05:00', 'end': '2016-11-06T07:06:15-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-    sleepCollection.addSleep(new Sleep({'id': 4, 'start': '2016-11-06T23:45:00-05:00', 'end': '2016-11-07T07:25:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-    sleepCollection.addSleep(new Sleep({'id': 5, 'start': '2016-11-07T23:00:00-05:00', 'end': '2016-11-08T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-    sleepCollection.addSleep(new Sleep({'id': 6, 'start': '2016-11-08T23:00:00-05:00', 'end': '2016-11-09T07:05:00-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
-
-    const result = sleepCollection.getAverageSleep(moment.parseZone('2016-11-06T00:00:00-05:00'), 7)
-
-    expect(result.toString()).toEqual("PT7H58M")
-})
-
 test('sort sleep entites by ascending order order', () => {
     const sleepCollection = new SleepCollection();
     sleepCollection.addSleep(new Sleep({'id': 3, 'start': '2016-11-05T23:30:00-05:00', 'end': '2016-11-06T07:06:15-05:00', 'numberOfInteruptions': 1, 'comments': ''}))
