@@ -30,9 +30,6 @@ import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
 
-/* Temporary activeDate global variable */
-export const activeDate = moment();
-
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
