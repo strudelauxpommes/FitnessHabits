@@ -155,7 +155,18 @@ export default class SleepService{
     }
 
     async getHistoryDate(){
-        return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
+
+        const historyDates = []
+        for(var i =0; i <= 6;i++){
+            var temp = moment('2019-10-11T00:00:00-05:00');
+            temp = temp.subtract(i,"days")
+            temp = temp.format("DD-MM-YYYY")
+            console.log(temp)
+            historyDates.push(temp)
+        }
+
+        return historyDates
+        //return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
         //return [new Date('2019-09-11'), new Date('2019-09-10'),new Date('2019-09-09'), new Date('2019-09-08'), new Date('2019-09-07'), new Date('2019-09-06'), new Date('2019-09-05')]
     }
 
