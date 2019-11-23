@@ -17,7 +17,6 @@
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "react-sanfona": "^1.4.0",
-    "react-scripts": "3.2.0",
     "serve": "^11.2.0"
   },
   "devDependencies": {

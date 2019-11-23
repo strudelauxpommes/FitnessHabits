@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent, IonLabel } from '@ionic/react';
+import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent, IonLabel, IonTitle } from '@ionic/react';
 import data from './data.json';
 import { cafe } from 'ionicons/icons';
 import FavoriteBeverage from './FavoriteBeverage';
@@ -29,7 +29,7 @@ class BeveragesSummary extends Component {
             this.setState({unitConverter:0.033814})
         } 
         for (let beverage of this.state.beverages) {
-            await this.setState({total: this.state.unitConverter*(this.state.total + beverage.quantity * beverage.volume)});
+            await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
         }
         
     }
@@ -81,9 +81,9 @@ class BeveragesSummary extends Component {
                 el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
             )
         }))
-        this.setState({total: this.state.total+data.volume})
 
         await instance.setValue('beverage/listBeverage', JSON.stringify(this.state.beverages));
+        this.setState({total: this.state.total + (this.state.unitConverter*data.volume/1000)})
     }
 
     render() {
@@ -96,17 +96,14 @@ class BeveragesSummary extends Component {
                 <IonContent>
                     <IonCard>
                         <IonCardHeader class="new-beverages-style">
-                            <IonCardTitle> 
                                 <IonRow>
-                                    <IonCol>
-                                        <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> 
-                                        <p style={{display:'inline'}}>&nbsp; Breuvages</p>
+                                    <IonCol style={{textAlign:'left'}}>
+                                        <IonTitle><IonIcon  icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
                                     </IonCol>
                                     <IonCol style={{textAlign:'right'}}>
                                         <IonLabel>{this.state.total + this.state.unit}</IonLabel>
                                     </IonCol>
                                 </IonRow>
-                            </IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent style={{textAlign:'center'}}>
                             <IonGrid>

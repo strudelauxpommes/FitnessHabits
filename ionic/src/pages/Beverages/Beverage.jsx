@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { IonRow, IonCol, IonButton, IonItem, IonFabButton, IonIcon } from '@ionic/react';
+import { IonRow, IonCol, IonButton, IonItem, IonFabButton, IonIcon, IonGrid, IonInput, IonLabel } from '@ionic/react';
 import Dal from '../../dal/Dal'
 import { starOutline } from 'ionicons/icons';
 import { add } from 'ionicons/icons';
@@ -22,22 +22,43 @@ export class Beverage extends Component {
     render() {
         return (
                 <IonItem >
-                    
-                    <IonFabButton size={"small"} style={{float:"left"}}>
-                        <IonIcon icon={starOutline} />
-                    </IonFabButton>
-
-                    {this.props.beverage.name}
-                    {this.props.beverage.volume + this.state.unit}
-                    
-                    <IonFabButton size={"small"} style={{float: "right", position:"absolute", right: 100}}>
-                        <IonIcon icon={add} />
-                    </IonFabButton>
-
-                    <IonFabButton size={"small"} style={{position:"absolute", right: 0}}>
-                    <IonIcon icon={remove} />
-                    </IonFabButton>
-
+                    <IonGrid>
+                        <IonRow>
+                            <IonCol size={"2"}>
+                                <IonFabButton size={"small"}>
+                                    <IonIcon icon={starOutline} />
+                                </IonFabButton>
+                            </IonCol>
+                            <IonCol size={"3"} style={{textAlign:'center'}}>
+                                <IonRow>
+                                    {this.props.beverage.name}
+                                </IonRow>
+                                <IonRow>
+                                    {this.props.beverage.volume + this.state.unit}
+                                </IonRow>
+                                <IonRow>
+                                    {this.props.beverage.comment}
+                                </IonRow>
+                            </IonCol>
+                            <IonCol size={"6"}>
+                                <IonRow>
+                                    <IonCol>
+                                        <IonFabButton size={"small"}>
+                                            <IonIcon icon={add} />
+                                        </IonFabButton>
+                                    </IonCol>
+                                    <IonCol>
+                                        <IonInput placeholder="99"></IonInput>
+                                    </IonCol>
+                                    <IonCol>
+                                        <IonFabButton size={"small"}>
+                                            <IonIcon icon={remove} />
+                                        </IonFabButton>
+                                    </IonCol>
+                                </IonRow>
+                            </IonCol>
+                    </IonRow>
+                    </IonGrid>
                 </IonItem>
         )
     }
