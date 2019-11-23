@@ -1,22 +1,10 @@
-import {
-  IonCard,
-  IonIcon,
-  IonCardContent,
-  IonInput,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonButton,
-  IonPage,
-  IonContent,
-  IonAlert,
-} from '@ionic/react';
+import { IonAlert, IonButton, IonCard, IonPage, IonCardContent, IonCol, IonGrid, IonIcon, IonInput, IonRow, IonContent } from '@ionic/react';
+import { add, moon, remove } from 'ionicons/icons';
+import React, { Component } from 'react';
+import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
+import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import SleepService from '../../services/sleep/SleepService';
 
-import React, { Component } from 'react'
-import { moon, remove, add } from 'ionicons/icons'
-import { Sleep, SleepCollection } from '../../entities/sleep/sleep'
-import SleepService from '../../services/sleep/SleepService'
-import { SleepBuilder } from '../../entities/sleep/sleep_builder'
 
 type Props = {
   activeDate: Date;
@@ -60,8 +48,6 @@ export default class SleepSummary extends Component<Props, State> {
 
     const temp = new Date("2019-10-11T00:00:00")
     
-    console.log("yo")
-    console.log(temp)
     
     const sleepCollection = await sleepService.fetchActiveDate()
     const moodObjects = await sleepService.fetchMoods()
@@ -191,8 +177,6 @@ export default class SleepSummary extends Component<Props, State> {
 
   render() {
     return (
-      <IonPage>
-        <IonContent>
           <IonCard class="sleep-ion-card sleep-text">
             <IonCardContent>
             <a href="/sleep-detail" id="sleep-summary-a">
@@ -287,8 +271,6 @@ export default class SleepSummary extends Component<Props, State> {
               </form>
             </IonCardContent>
           </IonCard>
-        </IonContent>
-      </IonPage >
     );
   }
 }

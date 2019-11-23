@@ -1,6 +1,17 @@
 FitnessHabits
 =============
 
+## Main Page
+
+Main page prototype is available. Before reading and executing the commands found below, make sure you are in the `mainpage` branch. If you are not, here is the commands : 
+
+* Clone the repository with `git clone <repo url>`
+* In terminal, move to the project folder `cd .../your_working_directory/FitnessHabits/ionic`
+* Write this command : `git checkout mainpage`
+* Then, run the commands below
+
+Image of the app running is available in the WIKI of the repository.
+
 Prerquisites
 ------------
 * The project uses [Ionic] framework to build a multiplateform mobile app.

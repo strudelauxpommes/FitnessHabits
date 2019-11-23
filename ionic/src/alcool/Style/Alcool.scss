@@ -1,0 +1,19 @@
+:root {
+    /** alcool **/
+    --ion-color-alcool: #ffb31a;
+    --ion-color-alcool-rgb: 255, 179, 26;
+    --ion-color-alcool-contrast: #000000;
+    --ion-color-alcool-contrast-rgb: 255, 255, 255;
+    --ion-color-alcool-shade: #e09e17;
+    --ion-color-alcool-tint: #ffbb31;
+}
+
+/** alcool **/
+.ion-color-alcool {
+    --ion-color-base: var(--ion-color-alcool) !important;
+    --ion-color-base-rgb: var(--ion-color-alcool-rgb) !important;
+    --ion-color-contrast: var(--ion-color-alcool-contrast) !important;
+    --ion-color-contrast-rgb: var(--ion-color-alcool-contrast-rgb) !important;
+    --ion-color-shade: var(--ion-color-alcool-shade) !important;
+    --ion-color-tint: var(--ion-color-alcool-tint) !important;
+}

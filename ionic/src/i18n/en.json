@@ -1,0 +1,12 @@
+{
+  "app": {
+    "title": "Fitness Habits",
+    "ok": "Ok",
+    "cancel": "Cancel"
+  },
+  "pages": {
+    "home-page": {}
+  },
+  "components": {},
+  "services": {}
+}
