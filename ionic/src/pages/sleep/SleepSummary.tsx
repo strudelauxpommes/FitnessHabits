@@ -256,7 +256,16 @@ export default class SleepSummary extends Component<Props, State> {
                       <IonAlert
                         isOpen={this.state.choosingMood}
                         onDidDismiss={(e: any) => this.onChoosingMoodDismissed(e)}
-                        buttons={['OK']}
+                        buttons={
+                          [
+                            {
+                              text: 'ok',
+                              handler: (data) => {
+                                console.log(data.mood)
+                              }
+                            }
+                          ]
+                        }
                         header="Choisir votre humeur"
                         inputs={
                           [
