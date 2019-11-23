@@ -4,6 +4,8 @@ import { calendar, download, home, redo, settings, trash } from 'ionicons/icons'
 import React, { Component } from 'react';
 import { Redirect, Route, RouteComponentProps } from 'react-router';
 import { SleepCollection } from 'src/entities/sleep/sleep';
+import Dal from '../dal/Dal';
+import { DalImpl } from '../dal/DalImpl';
 import SleepService from '../services/sleep/SleepService';
 import Export from './export';
 import Import from './import';
@@ -12,8 +14,18 @@ import SleepSummary from './sleep/SleepSummary';
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
 
-var fr_dictionary = require('../i18n/fr.json');
-T.setTexts(fr_dictionary);
+const dal: Dal = new DalImpl();
+dal.getItems("lang_key", new Date("2019-01-16"), new Date()).then((lang) => {
+  if (lang[0].value == "fr") {
+    T.setTexts(require('../i18n/fr.json'));
+  } else if (lang[0].value == "es") {
+    T.setTexts(require('../i18n/es.json'));
+  } else if (lang[0].value == "en") {
+    T.setTexts(require('../i18n/en.json'));
+  } else {
+    T.setTexts(require('../i18n/fr.json'));
+  }
+})
 
 const sleepService = SleepService()
 
