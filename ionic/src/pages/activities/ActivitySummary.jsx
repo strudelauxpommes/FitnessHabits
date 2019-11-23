@@ -1,70 +1,85 @@
-import { IonContent, IonHeader, IonPage,IonCol, IonRow, IonGrid, IonImg } from '@ionic/react';
+import { IonPage } from '@ionic/react';
 import React from 'react';
+import { useState } from 'react';
+import moment from 'moment';
+import Summary from '../../components/Summary';
 
 const ActivitySummary = () => {
+  let datesTest = [
+    {
+      jour : "2019/11/19",
+      activites : [
+        {
+          id : 1,
+          titre : "Yoga",
+          duree : 60,
+          intensite : 2
+        },
+        {
+          id : 2,
+          titre : "Vélo",
+          duree : 40,
+          intensite : 5
+        },
+        {
+          id : 3,
+          titre : "Soccer",
+          duree : 45,
+          intensite : 8
+        }
+      ]
+    },
+    {
+      jour : "2019/11/18",
+      activites : [
+        {
+          id : 4,
+          titre : "Gym",
+          duree : 60,
+          intensite : 6
+        },
+        {
+          id : 5,
+          titre : "Vélo",
+          duree : 40,
+          intensite : 5
+        },
+        {
+          id : 6,
+          titre : "Tennis",
+          duree : 40,
+          intensite : 8
+        }
+      ]
+    },
+    {
+      jour : "2019/11/17",
+      activites : [
+        {
+          id : 7,
+          titre : "Vélo",
+          duree : 40,
+          intensite : 4
+        },
+        {
+          id : 8,
+          titre : "Soccer",
+          duree : 40,
+          intensite : 7
+        }
+      ]
+    }
+  ]
+  
+  let favorisTest = {
+    premier : "Yoga",
+    deuxieme :"Vélo",
+    troisieme :"Soccer"
+  }
+  
   return (
     <IonPage>
-      <IonHeader className="as-header-container">
-            <IonGrid>
-                <IonRow>
-                    <IonCol className="as-col-title" size="6">
-                    <h4 id='as-title'>Activités</h4>
-                    </IonCol>
-                    <IonCol>
-                        <div class='as-temps-total'>
-                            <IonImg className="as-icon-time" src="assets/icon/clock-icon.png"></IonImg>
-                            <div class='as-temps-total-value'>8:00</div>
-                        </div>
-                    </IonCol>
-                    <IonCol>
-                        <div class='as-intensite-moy'>
-                            <IonImg class="as-icon-intensity" src="assets/icon/intensite-icon.png"></IonImg>
-                            <div class='as-intensity-moy-value'>5</div>
-                        </div>
-                        
-                    </IonCol>
-                    
-                </IonRow>
-            </IonGrid>
-      </IonHeader>
-        <IonContent id="as-content-container" no-padding>
-            <IonGrid id='as-grid-container'>
-                <IonRow>
-                    <IonCol className="as-bubble-container" size="3">
-                        <p class="as-title-activity">Activity 1</p>
-                        <div class="as-bubble">
-                            <p>
-                                2:00
-                            </p>
-                        </div>
-                    </IonCol>
-                    <IonCol className="as-bubble-container" size="3">
-                        <p class="as-title-activity">Activity 2</p>
-                        <div class="as-bubble">
-                            <p>
-                                2:00
-                            </p>
-                        </div>
-                    </IonCol>
-                    <IonCol className="as-bubble-container" size="3">
-                        <p class="as-title-activity">Activity 3</p>
-                        <div class="as-bubble">
-                            <p>
-                                2:00
-                            </p>
-                        </div>
-                    </IonCol>
-                    <IonCol className="as-bubble-container" size="3">
-                        <p class="as-title-activity">Autre</p>
-                        <div class="as-bubble">
-                            <p>
-                                2:00
-                            </p>
-                        </div>
-                    </IonCol>
-                </IonRow>
-            </IonGrid>
-      </IonContent>
+      <Summary dates={datesTest} favoris={favorisTest}></Summary>
     </IonPage>
   );
 };
