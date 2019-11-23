@@ -14,6 +14,7 @@ import React, {Component, ChangeEvent} from 'react';
 import {speedometer} from 'ionicons/icons';
 import '../../theme/poids.css';
 import {DalImpl} from '../../dal/DalImpl'
+import { async } from 'q';
 
 class Poids extends Component {
     constructor(props) {
@@ -56,45 +57,36 @@ class Poids extends Component {
 		});
 		return InputIsValid;	
 	 }
-    apicall = () => {
-        if (this.persist.getLastValue("profil/poids") != null) {
+    apicall = async() => {
+        if (await this.persist.getLastValue("profil/poids") != null) {
             this.setState({
-                poids: this
-                    .persist
-                    .getLastValue("profil/poids")
+                poids: this.persist.getLastValue("profil/poids")
             });
         }
 
-        if (this.persist.getValue("preferences/unitePoids") != null) {
-            this.setState({
-                unitePoids: this
-                    .persist
-                    .getValue("preferences/unitePoids")
+        if (await this.persist.getValue("preferences/unitePoids") != null) {
+            this.setState({unitePoids: this.persist.getValue("preferences/unitePoids")
             });
-        } else if (this.persist.getValue("preferences/unitePoids") === null) {
+        } else if (await this.persist.getValue("preferences/unitePoids") == null) {
             this.setState({unitePoids: "kg"});
         }
-        if (this.persist.getValue("preferences/uniteTaille") != null) {
+        if (await this.persist.getValue("preferences/uniteTaille") != null) {
             this.setState({
-                unitePoids: this
-                    .persist
-                    .getValue("preferences/uniteTaille")
+                uniteTaille: this.persist.getValue("preferences/uniteTaille")
             });
-        } else if (this.persist.getValue("preferences/uniteTaille") === null) {
-            this.setState({unitePoids: "cm"});
+        } else if (await this.persist.getValue("preferences/uniteTaille") == null) {
+            this.setState({uniteTaille: "cm"});
         }
 
-        if (this.persist.getLastValue("profil/taille") != null) {
+        if (await this.persist.getLastValue("profil/taille") != null) {
             this.setState({
-                poids: this
-                    .persist
-                    .getLastValue("profil/taille")
+                poids: this.persist.getLastValue("profil/taille")
             });
         }
 
     }
-    surpoids = (event) => {
-        this.apicall();
+    surpoids = async (event) => {
+        await this.apicall();
         var input = document.getElementById('poids');
         var imcslot = document.getElementById('imc');
         var timeout = null;
