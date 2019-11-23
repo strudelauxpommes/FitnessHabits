@@ -72,6 +72,11 @@ test('add sleep invalid', () => {
     result = sleepCollection.addSleep(newSleep)
 
     expect(result).toBeTruthy()
+
+    newSleep = new Sleep({'id': 1, 'start': '2016-11-09T22:00:00-05:00', 'end': '2016-11-09T22:01:00-05:00', 'numberOfInteruptions': 1, 'comments': ''})
+    result = sleepCollection.addSleep(newSleep)
+
+    expect(result).toBeFalsy()
 })
 
 test('Get average of sleep between 2 dates', () => {
