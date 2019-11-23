@@ -14,19 +14,19 @@ const ActivityDetails = () => {
         {
           id : 1,
           titre : "Yoga",
-          duree : 60,
+          duree : "0:60:0",
           intensite : 2
         },
         {
           id : 2,
           titre : "Vélo",
-          duree : 40,
+          duree : "0:40:0",
           intensite : 5
         },
         {
           id : 3,
           titre : "Soccer",
-          duree : 45,
+          duree : "0:45:0",
           intensite : 8
         }
       ]
@@ -37,19 +37,19 @@ const ActivityDetails = () => {
         {
           id : 4,
           titre : "Gym",
-          duree : 60,
+          duree : "0:60:0",
           intensite : 6
         },
         {
           id : 5,
           titre : "Vélo",
-          duree : 40,
+          duree : "0:40:0",
           intensite : 5
         },
         {
           id : 6,
           titre : "Tennis",
-          duree : 40,
+          duree : "0:40:0",
           intensite : 8
         }
       ]
@@ -60,13 +60,13 @@ const ActivityDetails = () => {
         {
           id : 7,
           titre : "Vélo",
-          duree : 40,
+          duree : "0:40:0",
           intensite : 4
         },
         {
           id : 8,
           titre : "Soccer",
-          duree : 40,
+          duree : "0:40:0",
           intensite : 7
         }
       ]

@@ -14,11 +14,12 @@ export default class DateRow extends React.Component {
   }
 
   getTotalDuration() {
-    let total = 0;
+    let total = moment.duration(0);
     this.props.activites.forEach(a => {
-      total += a.duree;
+      let duration = moment.duration(a.duree);
+      total.add(duration);
     });
-    return total;
+    return ("0" + total.hours()).slice(-2) + ':' + ("0" + total.minutes()).slice(-2);
   }
 
   getIntensityAverage() {
@@ -34,7 +35,7 @@ export default class DateRow extends React.Component {
       <IonGrid>
 		<IonRow className={ classNames({jourActif: this.props.index === 0, jourInactif: this.props.index > 0})}>
           <IonCol size="6">{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
-          <IonCol size="3">{this.getTotalDuration()} min</IonCol>
+          <IonCol size="3">{this.getTotalDuration()}</IonCol>
           <IonCol size="3">{this.getIntensityAverage()}</IonCol>
         </IonRow>
           {

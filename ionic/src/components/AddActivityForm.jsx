@@ -10,7 +10,6 @@ import {
 import Dal from '../dal/DalImpl';
 
 const AddActivityForm = () => {
-  const dal = new Dal();
   const [ name, setName ] = useState('');
   const [ time, setTime ] = useState('');
   const [ intensity, setIntensity ] = useState('');
