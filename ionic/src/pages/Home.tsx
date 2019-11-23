@@ -1,27 +1,44 @@
-import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
-import T from 'i18n-react';
-import { calendar, download, home, redo, settings, trash } from 'ionicons/icons';
-import { Component, default as React } from 'react';
-import { RouteComponentProps } from 'react-router';
-import { SleepCollection } from 'src/entities/sleep/sleep';
-import SleepService from '../services/sleep/SleepService';
-import SleepSummary from './sleep/SleepSummary';
+import {
+  IonAvatar,
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonPage,
+  IonTabBar,
+  IonTabButton,
+  IonTitle,
+  IonToolbar
+} from "@ionic/react";
+import T from "i18n-react";
+import {
+  calendar,
+  download,
+  home,
+  redo,
+  settings,
+  trash
+} from "ionicons/icons";
+import { Component, default as React } from "react";
+import { RouteComponentProps } from "react-router";
+import { SleepCollection } from "src/entities/sleep/sleep";
+import SleepService from "../services/sleep/SleepService";
+import SleepSummary from "./sleep/SleepSummary";
+import Alcool from "../alcool/AlcoolSommaire";
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
-
-
 
 const sleepService = SleepService();
 
 type State = {
-  sleepCollection: SleepCollection
-  T: any
+  sleepCollection: SleepCollection;
+  T: any;
 };
 class Home extends Component<RouteComponentProps, State> {
-
   constructor(props: RouteComponentProps) {
     super(props);
-
 
     const sleepCollection = sleepService.fetch();
 
@@ -53,7 +70,7 @@ class Home extends Component<RouteComponentProps, State> {
             <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-          </IonButton>
+            </IonButton>
           </IonItem>
 
           <div>
@@ -61,6 +78,7 @@ class Home extends Component<RouteComponentProps, State> {
           </div>
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
+          <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
         </IonContent>
 
         <IonTabBar slot="bottom">
