@@ -33,4 +33,10 @@ import {DalImpl} from '../dal/DalImpl'
     async getAllActivitiesBetween(beginDate: Date,endDate: Date){
         return await this.INSTANCE.getValues(this.KEY,beginDate,endDate); 
     }
+    /**
+     * Returns the last Activity 
+     */
+    async getActivity(){
+        return await this.INSTANCE.getValue(this.KEY,new Date());
+    }
 }
