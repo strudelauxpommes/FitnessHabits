@@ -10,7 +10,7 @@ import {
   import { RouteComponentProps } from 'react-router';
   import '../theme/AlcoolDetail.scss';
   
-  const AlcoolCardItem = ({ name, quantity, volume }) => {
+  const SummaryCardItem = ({ name, quantity, volume }) => {
     return (
       <IonCol>
         <IonRow className="ion-text-center">
@@ -39,4 +39,4 @@ import {
       </IonCol>
     );
   }
-  export default AlcoolCardItem;
+  export default SummaryCardItem;
