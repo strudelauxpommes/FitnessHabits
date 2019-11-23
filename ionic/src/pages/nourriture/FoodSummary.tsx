@@ -20,98 +20,148 @@ import {
   IonCard,
   IonCardHeader,
   IonCardContent,
-  IonTitle
+  IonTitle,
+  IonList
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
-import { FoodHome } from './FoodHome'
+import { FoodHome } from './FoodHome';
+import FoodService from "src/services/food/FoodService";
 
-class FoodSummary extends React.Component {
+
+export default class FoodSummary extends Component {
+  foodService = FoodService();
+
   render() {
     return (
-      <IonCard>
-        <IonCardHeader>
-          <IonTitle>Sommaire</IonTitle>
-        </IonCardHeader>
+      <IonPage>
+        <IonHeader className="background-black">
+          <FoodHeader backLink="/"></FoodHeader>
+        </IonHeader>
 
-        <IonCardContent>
-          <IonGrid class="gridBorder">
-            <IonRow>
-              <IonCol>
-                <IonRow>
-                  <IonInput value="43" disabled></IonInput>
-                </IonRow>
-                <IonRow>
-                  <IonText> Proteine </IonText>
-                </IonRow>
-              </IonCol>
-              <IonCol>
-                <IonRow>
-                  <IonInput value="43" disabled></IonInput>
-                </IonRow>
-                <IonRow>Lipide</IonRow>
-              </IonCol>
-              <IonCol>
-                <IonRow>
-                  <IonInput value="43" disabled></IonInput>
-                </IonRow>
-                <IonRow>Glucide</IonRow>
-              </IonCol>
-              <IonCol>
-                <IonRow>
-                  <IonInput value="43" disabled></IonInput>
-                </IonRow>
-                <IonRow>Fibre</IonRow>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+        <IonContent className="ion-padding">
+          <IonCard>
+            <IonCardHeader>
+            <IonTitle>Sommaire</IonTitle>
+            </IonCardHeader>
 
-          <IonItem href="/food-list/dejeuner">
-            <IonLabel>Dejeuner</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
-          <IonItem href="/food-list/collation_am">
-            <IonLabel>Collation AM</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
-          <IonItem href="/food-list/diner">
-            <IonLabel>Diner</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
-          <IonItem href="/food-list/collaton_pm">
-            <IonLabel>Collation PM</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
-          <IonItem href="/food-list/souper">
-            <IonLabel>Souper</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
-          <IonItem href="/food-list/collation_soir">
-            <IonLabel>Collation Soir</IonLabel>
-            <IonIcon md="md-arrow-forward"></IonIcon>
-          </IonItem>
+            <IonCardContent>
+              <IonGrid class="gridBorder">
+                <IonRow>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>
+                      <IonText> Proteine </IonText>
+                    </IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Lipide</IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Glucide</IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Fibre</IonRow>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
 
-          <IonGrid>
-            <IonRow>
-              <IonCol pull="-1.5">
-                <IonToolbar>
-                  <IonButtons slot="start">
-                    <IonButton
-                      href="/food-daily-intake"
-                      expand="block"
-                      color="dark"
-                      fill="solid"
-                    >
-                      Bilan de la journee
-                    </IonButton>
-                  </IonButtons>
-                </IonToolbar>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCardContent>
-      </IonCard>
+
+              <IonList>
+                <IonItem lines="full" href="/food-add-dejeuner">
+                  <IonLabel>
+                    <b>Dejeuner</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayDeujeuner.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationAM">
+                  <IonLabel>
+                    <b>Collation AM</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationAM.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-diner">
+                  <IonLabel>
+                    <b>Diner</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayDiner.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationPM">
+                  <IonLabel>
+                    <b>Collation PM</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationPM.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-souper">
+                  <IonLabel>
+                    <b>Souper</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArraySouper.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationSoir">
+                  <IonLabel>
+                    <b>Collation Soir</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationSoir.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+              </IonList>
+
+            </IonCardContent>
+          </IonCard>
+        </IonContent>
+      </IonPage>
     );
   }
 }
-
-export default FoodSummary;

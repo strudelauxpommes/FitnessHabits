@@ -21,19 +21,19 @@ import {
 import { checkmark } from "ionicons/icons";
 import { FoodHeader } from "./FoodHeader";
 
-export default class FoodAdd extends Component {
+export default class FoodAddDejeuner extends Component {
   render() {
     return (
       <IonPage>
         <IonHeader className="background-black">
-          <FoodHeader backLink="/food-list/:period"></FoodHeader>
+          <FoodHeader backLink="/food-summary"></FoodHeader>
         </IonHeader>
 
         <IonContent className="ion-padding">
           <IonCard>
             <IonCardHeader>
               <IonToolbar>
-                <IonTitle>DINER</IonTitle>
+                <IonTitle>Dejeuner</IonTitle>
               </IonToolbar>
             </IonCardHeader>
             <IonCardContent>

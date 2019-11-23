@@ -27,8 +27,13 @@ import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
-import FoodAdd from "./pages/nourriture/FoodAddDiner";
+import FoodAddDiner from "./pages/nourriture/FoodAddDiner";
 import FoodList from './pages/nourriture/FoodList';
+import FoodAddDejeuner from "./pages/nourriture/FoodAddDejeuner";
+import FoodAddSouper from "./pages/nourriture/FoodAddSouper";
+import FoodAddCollationAM from "./pages/nourriture/FoodAddCollationAM";
+import FoodAddCollationPM from "./pages/nourriture/FoodAddCollationPM";
+import FoodAddCollationSoir from "./pages/nourriture/FoodAddCollationSoir";
         
 /* Alcool Imports */
 import AlcoolDetail from "./alcool/AlcoolDetail";
@@ -65,8 +70,14 @@ const App: React.FC = () => (
           path="/food"
           render={() => <Redirect to="/food-summary" />}
         />
+        <Route path="/food-add-collationAm" component={FoodAddCollationAM} />
+        <Route path="/food-add-collationPM" component={FoodAddCollationPM} />
+        <Route path="/food-add-collationSoir" component={FoodAddCollationSoir} />
+        <Route path="/food-add-diner" component={FoodAddDiner} />
+        <Route path="/food-add-dejeuner" component={FoodAddDejeuner} />
+        <Route path="/food-add-souper" component={FoodAddSouper} />
+        
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
-        <Route path="/food-add" component={FoodAdd} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
