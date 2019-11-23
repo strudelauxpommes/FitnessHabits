@@ -1,11 +1,11 @@
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRouterOutlet, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
-import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
+import T from 'i18n-react';
+import { add, calendar, download, home, redo, settings, trash } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import Export from './export';
 import Import from './import';
 import Supression from './purge';
-import T from 'i18n-react';
 
 //interface MainTabsProps { }
 
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>
-           {T.translate("app.title")}
+            {T.translate("app.title")}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -35,14 +35,14 @@ const Home: React.FC = () => {
       <IonContent slot="top">
         <IonItem color="primary">
           <IonAvatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y%22" alt=""/>
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y%22" alt="" />
           </IonAvatar>
           <IonLabel>
-            <h1>Username</h1>  
+            <h1>Username</h1>
           </IonLabel>
           <IonButton color="light" slot="end">
-              <IonIcon slot="start" icon={calendar} />
-              11 Novembre 2019
+            <IonIcon slot="start" icon={calendar} />
+            11 Novembre 2019
           </IonButton>
         </IonItem>
 

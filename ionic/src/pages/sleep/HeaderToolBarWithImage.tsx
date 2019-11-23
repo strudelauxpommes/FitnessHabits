@@ -1,4 +1,4 @@
-import { IonToolbar, IonTitle, IonIcon, IonButtons, IonBackButton } from '@ionic/react';
+import { IonBackButton, IonButtons, IonIcon, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 export function HeaderToolBarWithImage(props: {
     title: React.ReactNode;
@@ -11,4 +11,4 @@ export function HeaderToolBarWithImage(props: {
             <IonBackButton defaultHref="/sleep-summary" />
         </IonButtons>
     </IonToolbar>);
-}
+} 

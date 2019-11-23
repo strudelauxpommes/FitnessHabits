@@ -1,22 +1,10 @@
-import {
-  IonCard,
-  IonIcon,
-  IonCardContent,
-  IonInput,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonButton,
-  IonPage,
-  IonContent,
-  IonAlert,
-} from '@ionic/react';
-
+import { IonAlert, IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonIcon, IonInput, IonPage, IonRow } from '@ionic/react';
+import { add, moon, remove } from 'ionicons/icons';
 import React, { Component } from 'react';
-import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
-import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import SleepService from '../../services/sleep/SleepService';
+
 
 type Props = {
   activeDate: Date;
@@ -140,18 +128,18 @@ export default class SleepSummary extends Component<Props, State> {
         <IonContent>
           <IonCard class="sleep-ion-card sleep-text">
             <IonCardContent>
-            <a href="/sleep-detail" id="sleep-summary-a">
+              <a href="/sleep-detail" id="sleep-summary-a">
 
-              <IonGrid id="sleep-card-header">
-                <IonRow>
-                  <IonCol size='9' id="sleep-card-header-first-col">
-                  <IonIcon icon={moon} /> SOMMEIL
+                <IonGrid id="sleep-card-header">
+                  <IonRow>
+                    <IonCol size='9' id="sleep-card-header-first-col">
+                      <IonIcon icon={moon} /> SOMMEIL
                   </IonCol>
-                  <IonCol size='3'>
-                    {(parseFloat(this.state.totalSleepTimeToday) / 60).toFixed(2)} heures
+                    <IonCol size='3'>
+                      {(parseFloat(this.state.totalSleepTimeToday) / 60).toFixed(2)} heures
                   </IonCol>
-                </IonRow>
-              </IonGrid>
+                  </IonRow>
+                </IonGrid>
               </a>
 
               <form>

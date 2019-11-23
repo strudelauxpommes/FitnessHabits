@@ -1,0 +1,131 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.strudelauxpommes.fitnesshabits.supplement.SupplementFragment">
+
+
+    <GridLayout
+        android:layout_width="180dp"
+        android:layout_height="170.25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp">
+
+            <Button
+                android:id="@+id/btnHeader"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:text="@string/supplements_title"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnMoment1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_morning"/>
+
+                <ImageView
+                    android:id="@+id/btnSuppCheckMorning"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_untouched" />
+
+                <ImageView
+                    android:id="@+id/btnMoment2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_lunch" />
+
+
+                <ImageView
+                    android:id="@+id/btnSuppCheckNoon"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_untouched"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnMoment3"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_supper" />
+
+                <ImageView
+                    android:id="@+id/btnSuppCheckEvening"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_untouched"/>
+
+                <ImageView
+                    android:id="@+id/btnMoment4"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_night" />
+
+                <ImageView
+                    android:id="@+id/btnSuppCheckNight"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/supp_untouched" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</FrameLayout>

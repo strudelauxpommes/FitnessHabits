@@ -1,10 +1,4 @@
-import {
-  IonPage,
-  IonHeader, IonToolbar, IonRadioGroup, IonTitle,
-  IonList, IonItem, IonLabel, IonRadio, IonSelect, IonToast,
-  IonButton, IonRow, IonCol, IonContent, IonIcon, IonSelectOption,
-
-} from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonRadio, IonRadioGroup, IonRow, IonSelect, IonSelectOption, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import { logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
 
