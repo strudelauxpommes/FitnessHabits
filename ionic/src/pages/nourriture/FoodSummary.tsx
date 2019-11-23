@@ -22,6 +22,8 @@ import {
   IonCardContent,
   IonTitle
 } from "@ionic/react";
+import { FoodHeader } from "./FoodHeader";
+import { FoodHome } from './FoodHome'
 
 class FoodSummary extends React.Component {
   render() {
