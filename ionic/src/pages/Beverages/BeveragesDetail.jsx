@@ -51,8 +51,7 @@ class BeveragesDetail extends Component {
                     <IonToolbar class="new-beverages-style">
                             <IonRow>
                                 <IonCol>
-                                    <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> 
-                                    <p style={{display:'inline'}}>&nbsp; Breuvages</p>
+                                    <IonTitle > <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> &nbsp; Breuvages</IonTitle>
                                 </IonCol>
                                 <IonCol style={{textAlign:'right'}}>
                                     <IonLabel>{this.state.total + this.state.unit}</IonLabel>
