@@ -37,6 +37,12 @@ export default class AlcoolSommaire extends React.Component {
           quantity: 1,
           volume: "150 ml"
         }
+        ,
+        "Bière": {
+          name: "Bière",
+          quantity: 2,
+          volume: "344 ml"
+        }
       }
     })
   }
