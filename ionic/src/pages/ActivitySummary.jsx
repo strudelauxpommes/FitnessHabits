@@ -27,7 +27,7 @@ const ActivitySummary = () => {
                 </IonRow>
             </IonGrid>
       </IonHeader>
-      <IonContent id="as-content-container" no-padding>
+        <IonContent id="as-content-container" no-padding>
             <IonGrid id='as-grid-container'>
                 <IonRow>
                     <IonCol className="as-bubble-container" size="3">
