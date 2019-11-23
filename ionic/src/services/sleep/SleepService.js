@@ -158,11 +158,11 @@ export default class SleepService{
 
         const historyDates = []
         for(var i =0; i <= 6;i++){
+            //eventually change the moment for the activate
             var temp = moment('2019-10-11T00:00:00-05:00');
             temp = temp.subtract(i,"days")
             temp = temp.format("DD-MM-YYYY")
-            console.log(temp)
-            historyDates.push(temp)
+            historyDates.push(new Date(temp))
         }
 
         return historyDates
