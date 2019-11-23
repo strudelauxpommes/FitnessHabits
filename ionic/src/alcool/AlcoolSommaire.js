@@ -1,6 +1,5 @@
 import {
   IonTitle,
-  IonCol,
   IonRow,
   IonIcon,
   IonCard,
@@ -9,10 +8,7 @@ import {
   IonCardHeader
 } from '@ionic/react';
 import { wine } from 'ionicons/icons';
-import { text } from 'ionicons/icons';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { RouteComponentProps } from 'react-router';
 import './Style/AlcoolSommaire.scss';
 import './Style/Alcool.scss';
 
