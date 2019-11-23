@@ -4,6 +4,8 @@ import React from 'react';
 import { Redirect, Route } from 'react-router';
 import Export from './export';
 import Import from './import';
+import Poids from '../entities/poids/Poids';
+import Glycemie from '../entities/glycemie/Glycemie';
 import Supression from './purge';
 import T from 'i18n-react';
 
@@ -27,7 +29,7 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>
-           {T.translate("app.title")}
+            {T.translate("app.title")}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -38,11 +40,11 @@ const Home: React.FC = () => {
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y%22" />
           </IonAvatar>
           <IonLabel>
-            <h1>Username</h1>  
+            <h1>Username</h1>
           </IonLabel>
           <IonButton color="light" slot="end">
-              <IonIcon slot="start" icon={calendar} />
-              11 Novembre 2019
+            <IonIcon slot="start" icon={calendar} />
+            11 Novembre 2019
           </IonButton>
         </IonItem>
 
@@ -152,28 +154,8 @@ const Home: React.FC = () => {
             </IonRow>
           </IonCardContent>
         </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Poids</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonRow>
-              <IonItem>Poids : </IonItem>
-              <IonInput placeholder="150.9" color="dark"></IonInput>
-              <IonSelect value="Lbs" interface="popover">
-                <IonSelectOption selected>Lbs</IonSelectOption>
-                <IonSelectOption>Kgs</IonSelectOption>
-              </IonSelect>
-            </IonRow>
-            <IonRow>
-              <IonItem>Pourcentage de gras : </IonItem>
-              <IonInput placeholder="0.00%" color="dark"></IonInput>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-
+        <Poids />
+		<Glycemie />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>Nourriture</IonCardTitle>
