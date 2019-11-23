@@ -1,4 +1,3 @@
-
 import {
   IonAvatar,
   IonButton,
@@ -11,20 +10,7 @@ import {
   IonTabBar,
   IonTabButton,
   IonTitle,
-  IonCardHeader,
-  IonCardTitle,
-  IonCard,
-  IonToolbar,
-  IonRouterOutlet,
-  IonCardContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonCheckbox,
-  IonCardSubtitle,
+  IonToolbar
 } from "@ionic/react";
 import T from "i18n-react";
 import {
@@ -47,8 +33,21 @@ import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
 import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
+import SleepSummary from "./sleep/SleepSummary";
+import Poids from "../entities/poids/Poids";
+import Tabs from "./tabs";
 
-//const MainTabs: React.FC<MainTabsProps> = () => {
+const sleepService = SleepService();
+
+type State = {
+  sleepCollection: SleepCollection;
+  T: any;
+};
+class Home extends Component<RouteComponentProps, State> {
+  constructor(props: RouteComponentProps) {
+    super(props);
+
+    const sleepCollection = sleepService.fetch();
 
 var fr_dictionary = require('../i18n/fr.json');
 T.setTexts(fr_dictionary);
@@ -90,37 +89,20 @@ const Home: React.FC = () => {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-          <FoodSummary />
+          <Poids />
           <FoodHome />
           <BeveragesSummary
             activeDate={new Date("2019-10-31T21:00:00-05:00")}
           />
         </IonContent>
-
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="export" href="/">
-            <IonIcon icon={redo} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="import" href="/">
-            <IonIcon icon={download} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="delete" href="/">
-            <IonIcon icon={trash} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/">
-            <IonIcon icon={settings} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-        </IonPage>
-  );
-};
-
+        <Tabs />
+      </IonPage>
+      /** 
+      <IonTabs>
+        
+      </IonTabs>
+      */
+    );
+  }
+}
 export default Home;
