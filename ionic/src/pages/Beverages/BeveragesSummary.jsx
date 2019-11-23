@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, IonRow, IonCol, IonIcon, IonCardContent, IonLabel, IonTitle } from '@ionic/react';
-import data from './data.json';
 import { cafe } from 'ionicons/icons';
 import FavoriteBeverage from './FavoriteBeverage';
 import { DalImpl } from '../../dal/DalImpl'
