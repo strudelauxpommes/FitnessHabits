@@ -33,13 +33,15 @@ import "./theme/sleep.css";
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
 /* Parameters import */
-import Parameters from './pages/parameters/Parameters';
-import Preference from './pages/parameters/Preference';
-import Profil from './pages/parameters/Profil';
+import Parameters from "./pages/parameters/Parameters";
+import Preference from "./pages/parameters/Preference";
+import Profil from "./pages/parameters/Profil";
+
+import Tabs from "./pages/tabs";
 /* Theme variables */
 import "./theme/variables.css";
-import Dal from './dal/Dal';
-import { DalImpl } from './dal/DalImpl';
+import Dal from "./dal/Dal";
+import { DalImpl } from "./dal/DalImpl";
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
@@ -70,6 +72,7 @@ const App: React.FC = () => (
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
+        <Route path="/tabs" component={Tabs} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

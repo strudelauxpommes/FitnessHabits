@@ -31,6 +31,7 @@ import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
 import SleepSummary from "./sleep/SleepSummary";
 import Poids from "../entities/poids/Poids";
+import Tabs from "./tabs";
 
 const sleepService = SleepService();
 
@@ -88,28 +89,7 @@ class Home extends Component<RouteComponentProps, State> {
           />
         </IonContent>
 
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="export" href="/parameter">
-            <IonIcon icon={redo} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="import" href="/">
-            <IonIcon icon={download} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="delete" href="/">
-            <IonIcon icon={trash} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/parameters">
-            <IonIcon icon={settings} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <Tabs />
       </IonPage>
       /** 
       <IonTabs>
