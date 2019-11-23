@@ -5,9 +5,9 @@ import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, I
 import { Route, Redirect } from 'react-router';
 import { add, trash, download, settings, arrowRoundForward } from 'ionicons/icons';
 
-import Export from './export';
-import Import from './import';
-import Supression from './remove';
+import Export from './export-import/export';
+import Import from './export-import/import';
+import Supression from './export-import/remove';
 
 interface MainTabsProps { }
 
