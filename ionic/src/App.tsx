@@ -14,7 +14,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
 import moment from "moment";
-import React, { default as React } from "react";
+import { default as React } from "react";
 import { Redirect, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import FoodAdd from "./pages/nourriture/FoodAdd";
