@@ -52,7 +52,7 @@ export default class FoodList extends Component {
                 <IonRow>
                   <IonCol> </IonCol>
                   <IonCol push="-0.5">
-                    <IonButton size="default" expand="block" href="/food-add/">
+                    <IonButton size="default" expand="block" href="/food-add">
                       <IonIcon size="large" icon={add}></IonIcon>
                     </IonButton>
                   </IonCol>

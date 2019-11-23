@@ -51,7 +51,7 @@ const App: React.FC = () => (
           render={() => <Redirect to="/food-summary" />}
         />
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
-        <Route path="/food-add/:period" component={FoodAdd} />
+        <Route path="/food-add" component={FoodAdd} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
