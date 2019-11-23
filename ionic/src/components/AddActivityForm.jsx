@@ -19,27 +19,33 @@ const AddActivityForm = () => {
   const activityService = new ActivityService();
 
   const submit = async () => {
-    if (name.length === 0 || time.length === 0 || intensity.length === 0) {
-      setFormErrors("Veuillez remplir les sections obligatoires");
-    } else if (intensity < 0 || intensity > 10) {
-      setFormErrors("L'intensité doit être située entre 0 et 10");
-    } else {
-      setFormErrors('');
+    // if (name.length === 0 || time.length === 0) {
+    //   setFormErrors("Veuillez remplir les sections obligatoires");
+    // } else if (intensity < 0 || intensity > 10) {
+    //   setFormErrors("L'intensité doit être située entre 0 et 10");
+    // } else {
+    //   setFormErrors('');
 
       try {
         let activity = {
           title: name,
           duration: time,
           intensity: intensity,
-          comment: comment,
-          favorite: favorite
+          comments: comment,
+          isFavorite: favorite
+        }
+        console.log(activity);
+
+        let date = {
+          day: new Date(),
+          activities: [activity]
         }
 
-        activityService.setActivity(activity);
+        activityService.setActivity(date);
       } catch (e) {
         setFormErrors(e);
       }
-    }
+    // }
   }
 
   return (
