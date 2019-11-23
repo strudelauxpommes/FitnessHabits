@@ -3,6 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
 import { add } from 'ionicons/icons';
 import React, { useState } from 'react';
 import DateRow from '../components/DateRow';
+import AddActivityForm from '../components/AddActivityForm';
 
 const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
@@ -91,7 +92,7 @@ const ActivityDetails = () => {
       </IonHeader>
       <IonContent no-padding>
         <IonModal isOpen={showModal}>
-          <p>This is modal content</p>
+          <AddActivityForm></AddActivityForm>
           <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
         </IonModal>
 
