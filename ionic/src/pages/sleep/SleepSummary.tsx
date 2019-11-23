@@ -17,8 +17,7 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
-import moment from 'moment'
-import { thisExpression } from '@babel/types';
+import { activeDate } from 'src/App';
 
 type Props = {
   activeDate: Date;
@@ -34,6 +33,7 @@ type State = {
   hasSubmitError: boolean,
   errorMessage: string,
   choosingMood: boolean,
+  moods: object[],
 }
 
 export default class SleepSummary extends Component<Props, State> {
@@ -52,12 +52,16 @@ export default class SleepSummary extends Component<Props, State> {
       hasSubmitError: false,
       errorMessage: "",
       choosingMood: false,
+      moods: [],
     }
   }
 
   async componentDidMount(){
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
+    const moodObjects = await sleepService.fetchMoods()
+
+    sleepCollection.getAverageSleep(sleepService.getActiveDate() as any, 7 as any)
 
     const test = await sleepService.fetchHistory_v2()
     console.log(test)
@@ -65,18 +69,15 @@ export default class SleepSummary extends Component<Props, State> {
     this.setState({
       sleeps: sleepCollection,
       totalSleepTimeToday: sleepCollection.showTotalSleep(),
+      moods: moodObjects
     })
 }
 
   onChoosingMoodOk(mood: string) {
-      console.log("onChoosingMoodDIsmissed")
-      console.log(this.state);
       this.setState({
         mood: mood,
         choosingMood: false
       });
-      console.log("After setstate")
-      console.log(this.state)
 
       this.onSubmit();
   }
@@ -86,9 +87,8 @@ export default class SleepSummary extends Component<Props, State> {
    */
   async onSubmit() {
     const sleepService = new SleepService();
+    sleepService.fetchMoods()
     const activeDate = await new SleepService().getActiveMoment()
-
-    console.log(this.state)
 
     var builder = (
       new SleepBuilder(activeDate)
@@ -126,8 +126,6 @@ export default class SleepSummary extends Component<Props, State> {
     }
   }
 
-  
-
   /**
    * [Handles state change for submit error alert dismiss]
    */
@@ -136,27 +134,6 @@ export default class SleepSummary extends Component<Props, State> {
       hasSubmitError: false,
       errorMessage: "",
     })
-  }
-
-  /**
-   * [Adds a sleep object to the collection and updates the state]
-   * 
-   * @param sleep sleep object to add
-   */
-  async addSleepItem(sleep: any) {
-    const sleepService = new SleepService();
-
-    let collection = this.state.sleeps
-    
-    // await sleepService.saveActiveDate(collection)
-
-    // this.setState({
-    //   sleeps: this.state.sleeps,
-    //   sleepTimeBegin: "",
-    //   sleepTimeEnd: "",
-    //   wakeUpCount: "",
-    //   totalSleepTimeToday: collection.calculateTotalSleep().toString()
-    // });
   }
 
   /**
@@ -293,48 +270,7 @@ export default class SleepSummary extends Component<Props, State> {
                           ]
                         }
                         header="Choisir votre humeur"
-                        inputs={
-                          [
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'Super',
-                              label: 'Super'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'De bonne humeur',
-                              label: 'De bonne humeur'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'Neutre',
-                              label: 'Neutre'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'Un peu grognon',
-                              label: 'Un peu grognon'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'Fatigue',
-                              label: 'Fatigue'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              value: 'Depressif',
-                              label: 'Depressif'
-                            },
-
-
-                          ]
-                        }
+                        inputs={this.state.moods}
                       />
                     </IonCol>
                   </IonRow>
