@@ -10,13 +10,42 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class FoodCategory {
     @PrimaryKey(autoGenerate = true)
-    private int categoryId; //TODO: Implement model
+    private int id; //TODO: Implement model
+    private String categoryName;
+    private String pathToImg;
+    private boolean isFavorite;
 
-    public int getCategoryId() {
-        return categoryId;
+    // Getters
+    public int getId() {
+        return id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public String getPathToImg() {
+        return pathToImg;
+    }
+
+    public boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    // Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setPathToImg(String pathToImg) {
+        this.pathToImg = pathToImg;
     }
 }

@@ -16,7 +16,7 @@
             android:id="@+id/physicalActivityFragment"
             android:layout_width="match_parent"
             android:layout_height="182.5dp"
-            android:name="com.strudelauxpommes.fitnesshabits.physicalactivity.PhisicalActivityFragment"
+            android:name="com.strudelauxpommes.fitnesshabits.physicalactivity.PhysicalActivityFragment"
             />
         <fragment
             android:id="@+id/supplementFragment"
@@ -61,5 +61,4 @@
             android:name="com.strudelauxpommes.fitnesshabits.alcohol.AlcoholFragment"
             />
     </LinearLayout>
-
 </LinearLayout>

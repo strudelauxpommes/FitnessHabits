@@ -29,7 +29,7 @@ public class SleepRepository {
         this.sleepEntryDAO = sleepEntryDAO;
     }
 
-    public LiveData<List<SleepEntry>> loadDailyDate() {
+    public LiveData<List<SleepEntry>> loadDailyData() {
         if (listSleepEntry == null) {
             SleepEntry defaultData = new SleepEntry();
             defaultData.setDate(CalendarDate.now());
@@ -50,7 +50,7 @@ public class SleepRepository {
 
     @SuppressLint("StaticFieldLeak")
     @MainThread
-    public void saveDrinkEntry(SleepEntry entry) {
+    public void saveSleepEntry(SleepEntry entry) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
