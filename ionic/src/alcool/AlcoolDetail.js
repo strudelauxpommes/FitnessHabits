@@ -1,5 +1,4 @@
 import {
-    IonButton,
     IonFab,
     IonFabButton,
     IonIcon,
@@ -10,12 +9,15 @@ import { add } from 'ionicons/icons';
 import React from 'react';
 import './Style/AlcoolDetail.scss';
 import AlcoolDetailHeader from './Components/AlcoolDetailHeader';
+import AlcoolDetailAddForm from './Components/AlcoolDetailAddForm';
+
 //import DAL from '../dal/Dal';
 
 class AlcoolDetail extends React.Component {
     constructor(props) {
         super(props);
         this.getDateFromParameters = this.getDateFromParameters.bind(this);
+        this.setShowModal = this.setShowModal.bind(this);
         this.state = {
             showModal: false
         }
@@ -38,7 +40,7 @@ class AlcoolDetail extends React.Component {
         return (
             <IonPage>
                 <IonModal isOpen={this.state.showModal}>
-                    <IonButton onClick={() => this.setShowModal(false)}>Close Modal</IonButton>
+                    <AlcoolDetailAddForm setShowModal={this.setShowModal} />
                 </IonModal>
                 <AlcoolDetailHeader date={this.getDateFromParameters()} />
                 <IonFab vertical="bottom" horizontal="center" slot="fixed">
