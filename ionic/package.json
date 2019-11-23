@@ -7,12 +7,18 @@
     "@capacitor/core": "^1.3.0",
     "@ionic/react": "^4.11.0",
     "@ionic/react-router": "^4.11.0",
+    "ajv": "^6.10.2",
     "cordova-sqlite-storage": "^3.4.0",
+    "i18n-react": "^0.7.0",
     "ionicons": "^4.6.3",
+    "moment": "^2.24.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router": "^5.1.0",
-    "react-router-dom": "^5.1.0"
+    "react-router-dom": "^5.1.0",
+    "react-sanfona": "^1.4.0",
+    "react-scripts": "3.2.0",
+    "serve": "^11.2.0"
   },
   "devDependencies": {
     "@capacitor/cli": "^1.3.0",
@@ -32,6 +38,7 @@
     "karma-typescript": "^4.1.1",
     "protractor": "~5.4.0",
     "react-scripts": "3.2.0",
+    "react-test-renderer": "^16.12.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "tslint-react": "^4.1.0",
