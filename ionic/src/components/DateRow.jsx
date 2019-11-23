@@ -29,14 +29,14 @@ export default class DateRow extends React.Component {
     });
     return Math.round(total / this.props.activities.length);
   }
-
+  
   render() {
     return (
-      <IonGrid>
-		<IonRow className={ classNames({jourActif: this.props.index === 0, jourInactif: this.props.index > 0})}>
-          <IonCol size="6">{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
-          <IonCol size="3">{this.getTotalDuration()}</IonCol>
-          <IonCol size="3">{this.getIntensityAverage()}</IonCol>
+      <IonGrid className="ad-grid-row-jour">
+		    <IonRow className={ classNames({adJourActif: this.props.index === 0, adJourInactif: this.props.index > 0}) + " ad-row-jour ad-row"}>
+          <IonCol className="ad-data-col-name" size="10">{'Jour ' + (7 - this.props.index) + ' (' + this.getFormattedDate() + ')'}</IonCol>
+          <IonCol className="ad-data-col" size="3">{this.getTotalDuration()}</IonCol>
+          <IonCol className="ad-data-col" size="3">{this.getIntensityAverage()}</IonCol>
         </IonRow>
           {
             this.props.activities.map((a, index) => {

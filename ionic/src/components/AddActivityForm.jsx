@@ -34,8 +34,8 @@ const AddActivityForm = () => {
   }
 
   return (
-    <IonContent>
-      <form onSubmit={(e) => { e.preventDefault(); submit();}}>
+    <IonContent className="ad-activity-form-content">
+      <form className="ad-form-activity" onSubmit={(e) => { e.preventDefault(); submit();}}>
         <IonList>
           <IonItem>
             <IonLabel>Name</IonLabel>
