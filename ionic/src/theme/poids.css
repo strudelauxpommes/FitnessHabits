@@ -2,3 +2,10 @@
     background-Color: #8533ff;
     color: white;
 }
+
+.errorMsg {
+    color: red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+    font-style: italic;
+}
