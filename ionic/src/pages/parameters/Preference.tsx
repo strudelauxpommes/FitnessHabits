@@ -30,7 +30,7 @@ const Preference: React.FC = () => {
         <IonItem>
             <IonLabel>Poids Corporel</IonLabel>
             <IonSelect interface="popover">
-              <IonSelectOption value="lbs" onClick={() => dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
+              <IonSelectOption value="lbs" onClick={async () => await dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
               <IonSelectOption value="kg">kg</IonSelectOption>
             </IonSelect>
         </IonItem>
