@@ -14,7 +14,8 @@ class BeveragesSummary extends Component {
             total: 0,
             unit: "L",
             unitConverter:1,
-            date: Date
+            date: [],
+            key: 'beverage/beverageList'
         }
         this.onIncrease=this.onIncrease.bind(this);
     }
@@ -23,8 +24,6 @@ class BeveragesSummary extends Component {
         
         await this.getBeverages();
 
-        //ici: setstate this.state.unit en allant chercher le parametre 
-        //
         if (this.state.unit==="on") {
             this.setState({unitConverter:0.033814})
         } 
@@ -36,20 +35,47 @@ class BeveragesSummary extends Component {
 
     async getBeverages() {
         const instance = new DalImpl();
-        // let date = await instance.getLastValue('activeDate');
-
-        // let activeDate = new Date();
-        // await this.setState({date: activeDate});
-
-        let beverages = await instance.getLastValue('beverage/listBeverage')
-        if (!beverages) {
-            alert('none');
-            await this.initDefaultBeverages();
-            await instance.setValue('beverage/listBeverage', JSON.stringify(this.state.beverages));
+        let date = await instance.getLastValue('settings/activeDate');
+        if (date) {
+            this.setState({date: JSON.parse(date)});
         } else {
-            let favorites = JSON.parse(beverages).filter(beverage => beverage.favorite === true);
-            await this.setState({beverages: favorites})
+            // remove this when impl
+            let todayDate = new Date();
+            this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
         }
+
+
+        let beverages = await instance.getLastValue(this.state.key)
+        if (!beverages) {
+            await this.initDefaultBeverages();
+            await this.saveBeverage();
+        } else {
+            let parsedBeverage = JSON.parse(beverages);
+            let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
+            let lastDate = new Date(parsedBeverage.date[2], parsedBeverage.date[1], parsedBeverage.date[0])
+
+            if (activeDate.getTime() > lastDate.getTime()) {
+                this.resetQuantities();
+            } else if (activeDate.getTime() === lastDate.getTime()) {
+                await this.setState({beverages: parsedBeverage.beverageList});
+            } else if (activeDate.getTime() < lastDate.getTime()) {
+                let activeEndDate = new Date(activeDate)
+                activeEndDate.setDate(activeDate.getDate() + 1)
+                let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
+                if (pastBeverages) {
+                    this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
+                }
+            }
+            
+        }
+    }
+
+    async resetQuantities() {
+        await this.setState(prevState => ({
+            beverages: prevState.beverages.map(
+                beverage => beverage ? { ...beverage, quantity: 0 } : beverage
+            )
+        }))
     }
 
     async initDefaultBeverages() {
@@ -74,22 +100,31 @@ class BeveragesSummary extends Component {
     }
 
     async onIncrease (data) {
-        const instance = new DalImpl();
-
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
                 el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
             )
         }))
-
-        await instance.setValue('beverage/listBeverage', JSON.stringify(this.state.beverages));
         this.setState({total: this.state.total + (this.state.unitConverter*data.volume/1000)})
+
+        await this.saveBeverage();
+    }
+
+    async saveBeverage() {
+        const instance = new DalImpl();
+
+        await instance.setValue(this.state.key, JSON.stringify({ 
+            date: this.state.date,
+            beverageList: this.state.beverages
+         }));
     }
 
     render() {
         let beveragesRender = [];
         for (let beverage of this.state.beverages) {
-            beveragesRender.push(<FavoriteBeverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></FavoriteBeverage>);
+            if (beverage.favorite) {
+                beveragesRender.push(<FavoriteBeverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></FavoriteBeverage>);
+            }
         }
         return (
             <IonPage>
