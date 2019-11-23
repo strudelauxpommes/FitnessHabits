@@ -143,10 +143,8 @@ class SleepCollection {
     constructor(datas) {
         this.list = []
         if(datas){
-            this.activeDate = moment(datas.activeDate)
+            this.activeDate = datas['activeDate']
 
-            
-    
             if (datas.list) {
                 this.addSleepList(datas.list)
             }

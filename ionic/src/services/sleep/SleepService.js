@@ -10,6 +10,7 @@ import { thisExpression } from '@babel/types';
 export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
+        // this.persist.clear()
         this.validatorService = new ValidatorService()
     }    
 
@@ -21,11 +22,14 @@ export default class SleepService{
      * Fetch the list of sleeps from the persistance layer
      */
     async fetchActiveDate () {
+        
         const activeDate = await this.getActiveDate()
+        
+        
         const actual = await this.persist.getValue(this.getKey(), activeDate)
 
         if(actual === undefined){
-            const sleepCollection = new SleepCollection({'activeDate': activeDate.toISOString().split('T')[0], 'list': []})
+            const sleepCollection = new SleepCollection({'activeDate': '', 'list': []})
             return sleepCollection
         } 
             
@@ -86,15 +90,31 @@ export default class SleepService{
         return result
     }
 
+    async fecthHistory_v2(){
+        let result = []
+        const historyDates = await this.getHistoryDate()
+
+        for(let i = 0; i < historyDates.length; i++){
+            let actual = await this.persist.getValue(this.getKey(), historyDates[i])
+            if(actual === undefined){
+                actual = {'activeDate': '', 'list': []}
+            } else {
+                console.log(actual)
+            }
+                
+            // const actualParsed = JSON.parse(actual)
+            const sleepCollection = new SleepCollection(actual); 
+            result.push(sleepCollection)
+        }
+
+        return result
+    }
     
 
     /**
      * Save a new sleep to the persistance layer
      */
     async saveActiveDate(sleepCollection){
-        // const json = JSON.stringify(sleepCollection)
-        console.log(sleepCollection)
-
         const activeDate = await this.getActiveDate()
     
         await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
@@ -124,10 +144,26 @@ export default class SleepService{
         return moment('2019-10-15T00:00:00-05:00');
     }
 
+    async getHistoryDate(){
+        return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
+    }
+
     async getActiveDate(){
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
+        const values = [7, 10, 2019]
+        const str = values.map(s => {
+            if(s < 10){
+                return `0${s}`
+            }
+
+            return `${s}`
+        })
+
+        const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
+
+        console.log(momentValue.toDate())
         
-        return new Date("2019-10-09");
+        return new Date("2019-10-07");
     }
 }

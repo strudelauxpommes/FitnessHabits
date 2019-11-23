@@ -54,7 +54,8 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
 
-    const test = await sleepService.fetchHistory()
+    const test = await sleepService.fecthHistory_v2()
+    console.log(test)
 
     this.setState({
       sleeps: sleepCollection,
@@ -80,6 +81,12 @@ export default class SleepSummary extends Component<Props, State> {
     );
 
     const collection = this.state.sleeps
+
+    const test = builder.sleep
+
+    if(test){
+      console.log(test.getStartDate(), test.getEndDate())
+    }
 
     if (builder.isValid && collection.addSleep(builder.sleep as Sleep)) {
       await sleepService.saveActiveDate(collection)
