@@ -65,28 +65,13 @@ function ParamDate(haveLimit : boolean) {
 
 const Home: React.FC = () => {
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar class="new-background-color">
-
-          <IonTitle color="light">FitnessHabits</IonTitle>
-          <IonButton class="new-background-color" slot="end" >
             <IonIcon icon={calendar}></IonIcon>
                       <IonDatetime displayFormat="YYYY/MM/DD" min={ParamDate(true)} max={ParamDate(false)} value={myDate.toString()}
                       onIonChange={ 
                         (e) =>   SaveDateActive(cleDate, (e.target as HTMLInputElement).value)
                            }
                       >
-                      </IonDatetime>
-                      
-                  </IonButton>
-
-        </IonToolbar>
-      </IonHeader>
-          <IonContent>
-        
-      </IonContent>
-    </IonPage>
+                      </IonDatetime>                   
   );
 };
 
