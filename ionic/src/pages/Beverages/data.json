@@ -1,0 +1,32 @@
+{
+    "items": [
+        {
+            "name":"Café",
+            "volume": 125,
+            "quantity": 3,
+            "comment": "",
+            "favorite": true
+        },
+        {
+            "name":"Eau",
+            "volume": 125,
+            "quantity": 0,
+            "comment": "",
+            "favorite": true
+        },
+        {
+            "name":"Thé",
+            "volume": 125,
+            "quantity": 0,
+            "comment": "",
+            "favorite": true
+        },
+        {
+            "name":"Perrier",
+            "volume": 125,
+            "quantity": 0,
+            "comment": "",
+            "favorite": true
+        }            
+    ]
+}
