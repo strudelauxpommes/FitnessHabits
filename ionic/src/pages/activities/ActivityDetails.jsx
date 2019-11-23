@@ -17,7 +17,8 @@ const ActivityDetails = () => {
 
   activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
     if (result && result.length > 0) {
-      setDates(result);
+      console.log(result);
+      setDates(result)
     }
     console.log(dates);
   });

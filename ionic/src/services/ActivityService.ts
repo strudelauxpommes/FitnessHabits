@@ -9,6 +9,10 @@ import {DalImpl} from '../dal/DalImpl'
     INSTANCE  = new DalImpl();
     KEY = "Activites";
 
+    constructor() {
+        this.INSTANCE.clear();
+    }
+
     /**
      * Insert an Activity in the DB 
      * @param activity

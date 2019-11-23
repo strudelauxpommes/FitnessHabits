@@ -1,7 +1,7 @@
 import {Activity} from './Activity';
 
 export interface ActivityDate{
-    jour: string;
+    day: string;
     activites : Activity[];
 
 }
