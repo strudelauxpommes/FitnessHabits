@@ -3,6 +3,7 @@ import React from 'react';
 import { IonApp, IonHeader, IonContent, IonText, IonPage, IonToolbar, IonGrid, IonRow, IonCol, IonTitle, IonItem, IonLabel, IonInput, IonCardHeader, IonCard, IonCardContent, IonIcon, IonButton } from '@ionic/react';
 import { MDBIcon } from 'mdbreact';
 import { moon, remove, add, checkmark } from 'ionicons/icons';
+import { FoodHeader } from './FoodHeader';
 
 export default class FoodAdd  extends Component {
 
@@ -10,17 +11,8 @@ export default class FoodAdd  extends Component {
         return (
           <IonPage>
       <IonHeader className="background-black">
-        <IonToolbar>
-          <IonGrid>
-            <IonRow>
-              <IonCol size="4.5">
-                <MDBIcon size="1x" icon="backward" />
-              </IonCol>
-              <IonCol> Nutrition </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonToolbar>
-      </IonHeader>
+          <FoodHeader backLink="/food-list/:period"></FoodHeader>  
+        </IonHeader>
 
 
       <IonContent className="ion-padding">

@@ -9,13 +9,18 @@ import {
   IonList,
   IonPage,
   IonCard,
-  IonCardContent
+  IonCardContent,
+  IonIcon
 } from "@ionic/react";
+import { FoodHeader } from "./FoodHeader";
 
 export default class FoodDailyIntake extends Component {
   render() {
     return (
       <IonPage>
+        <IonHeader className="background-black">
+          <FoodHeader backLink="/food-summary"></FoodHeader>
+        </IonHeader>
         <IonContent>
           <IonCard>
             <IonCardContent>
