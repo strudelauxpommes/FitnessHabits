@@ -3,7 +3,7 @@ import { IonPage, IonGrid, IonContent, IonRow, IonCol, IonIcon, IonToolbar, IonT
 import data from './data.json';
 import { cafe, add } from 'ionicons/icons';
 import Beverage from './Beverage';
-import Dal from '../../dal/Dal'
+import { DalImpl } from '../../dal/DalImpl'
 
 class BeveragesDetail extends Component {
 
@@ -12,9 +12,11 @@ class BeveragesDetail extends Component {
         this.state = {
             beverages: [],
             total: 0,
-            unit: "on",
+            unit: "L",
             unitConverter:1,
-            favorites:0
+            favorites:0,
+            date: [],
+            key: 'beverage/beverageList'
         }
         this.onIncrease=this.onIncrease.bind(this);
         this.onDecrease=this.onDecrease.bind(this);
@@ -22,7 +24,8 @@ class BeveragesDetail extends Component {
     }
 
     async componentDidMount() {
-        await this.setState({beverages: data.items})
+
+        await this.getBeverages();
         //ici: setstate this.state.unit en allant chercher le parametre 
         //
         if (this.state.unit==="on") {
@@ -51,6 +54,8 @@ class BeveragesDetail extends Component {
             )
         }))
         this.setState({total: parseFloat(this.state.total) + this.state.unitConverter*parseFloat(data.volume)})
+        await this.saveBeverage();
+
     }
     
     async onDecrease (data){
@@ -62,6 +67,39 @@ class BeveragesDetail extends Component {
         if (this.state.total>0) {
             this.setState({total: parseFloat(this.state.total) - this.state.unitConverter*parseFloat(data.volume)})
         }
+        await this.saveBeverage();
+    }
+
+    async getBeverages() {
+        const instance = new DalImpl();
+        let date = await instance.getLastValue('settings/activeDate');
+
+        if (date) {
+            await this.setState({date: JSON.parse(date)});
+        } else {
+            // remove this when impl
+            let todayDate = new Date();
+            await this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
+        }
+
+        let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
+
+        let activeEndDate = new Date(activeDate)
+        activeEndDate.setDate(activeDate.getDate() + 1)
+
+        let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
+        if (pastBeverages) {
+            await this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
+        }
+    }
+
+    async saveBeverage() {
+        const instance = new DalImpl();
+
+        await instance.setValue(this.state.key, JSON.stringify({ 
+            date: this.state.date,
+            beverageList: this.state.beverages
+         }));
     }
 
     render() {
