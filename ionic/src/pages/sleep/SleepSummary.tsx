@@ -123,8 +123,6 @@ export default class SleepSummary extends Component<Props, State> {
     }
   }
 
-  
-
   /**
    * [Handles state change for submit error alert dismiss]
    */
