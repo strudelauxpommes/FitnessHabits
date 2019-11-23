@@ -9,71 +9,61 @@ const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
   let dates = [
     {
-      jour : "2019/11/19",
-      activites : [
+      day : "2019/11/19",
+      activities : [
         {
-          id : 1,
-          titre : "Yoga",
-          duree : 60,
-          intensite : 2
+          title : "Yoga",
+          duration : "0:60:0",
+          intensity : 2
         },
         {
-          id : 2,
-          titre : "Vélo",
-          duree : 40,
-          intensite : 5
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 5
         },
         {
-          id : 3,
-          titre : "Soccer",
-          duree : 45,
-          intensite : 8
+          title : "Soccer",
+          duration : "0:45:0",
+          intensity : 8
         }
       ]
     },
     {
-      jour : "2019/11/18",
-      activites : [
+      day : "2019/11/18",
+      activities : [
         {
-          id : 4,
-          titre : "Gym",
-          duree : 60,
-          intensite : 6
+          title : "Gym",
+          duration : "0:60:0",
+          intensity : 6
         },
         {
-          id : 5,
-          titre : "Vélo",
-          duree : 40,
-          intensite : 5
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 5
         },
         {
-          id : 6,
-          titre : "Tennis",
-          duree : 40,
-          intensite : 8
+          title : "Tennis",
+          duration : "0:40:0",
+          intensity : 8
         }
       ]
     },
     {
-      jour : "2019/11/17",
-      activites : [
+      day : "2019/11/17",
+      activities : [
         {
-          id : 7,
-          titre : "Vélo",
-          duree : 40,
-          intensite : 4
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 4
         },
         {
-          id : 8,
-          titre : "Soccer",
-          duree : 40,
-          intensite : 7
+          title : "Soccer",
+          duration : "0:40:0",
+          intensity : 7
         }
       ]
     }
   ]
-
-  let dayIndex = 0;
 
   return (
     <IonPage>
@@ -103,9 +93,9 @@ const ActivityDetails = () => {
             <IonCol size="3">Intensité</IonCol>
           </IonRow>
           {
-            dates.map(d => {
+            dates.map((d, index) => {
               return (
-                  <DateRow key={d['jour']} jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
+                  <DateRow key={d['day']} jour={d['day']} activities={d['activities']} index={index}></DateRow>
               );
             })
           }
