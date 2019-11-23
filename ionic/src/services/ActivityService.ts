@@ -9,10 +9,6 @@ import {DalImpl} from '../dal/DalImpl'
     INSTANCE  = new DalImpl();
     KEY = "Activites";
 
-    constructor() {
-        this.INSTANCE.setValue(this.KEY, "activite");
-    }
-
     /**
      * Insert an Activity in the DB 
      * @param activity
@@ -20,7 +16,6 @@ import {DalImpl} from '../dal/DalImpl'
     async setActivity(activity: ActivityDate ){
     let value :string = JSON.stringify(activity);
         this.INSTANCE.setValueByDate(this.KEY, value, new Date());
-
     }
     /**
     * Get All Activities ever entered in the DB 
@@ -37,6 +32,5 @@ import {DalImpl} from '../dal/DalImpl'
 
     async getAllActivitiesBetween(beginDate: Date,endDate: Date){
         return this.INSTANCE.getValues(this.KEY,beginDate,endDate); 
-        
     }
 }

@@ -16,66 +16,11 @@ const ActivityDetails = () => {
   let aWeekAgo = today.clone().subtract(7, 'days');
 
   activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
-    setDates(result);
+    if (result && result.length > 0) {
+      setDates(result);
+    }
     console.log(dates);
   });
-  // let dates = [
-  //   {
-  //     day : "2019/11/19",
-  //     activities : [
-  //       {
-  //         title : "Yoga",
-  //         duration : "0:60:0",
-  //         intensity : 2
-  //       },
-  //       {
-  //         title : "Vélo",
-  //         duration : "0:40:0",
-  //         intensity : 5
-  //       },
-  //       {
-  //         title : "Soccer",
-  //         duration : "0:45:0",
-  //         intensity : 8
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     day : "2019/11/18",
-  //     activities : [
-  //       {
-  //         title : "Gym",
-  //         duration : "0:60:0",
-  //         intensity : 6
-  //       },
-  //       {
-  //         title : "Vélo",
-  //         duration : "0:40:0",
-  //         intensity : 5
-  //       },
-  //       {
-  //         title : "Tennis",
-  //         duration : "0:40:0",
-  //         intensity : 8
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     day : "2019/11/17",
-  //     activities : [
-  //       {
-  //         title : "Vélo",
-  //         duration : "0:40:0",
-  //         intensity : 4
-  //       },
-  //       {
-  //         title : "Soccer",
-  //         duration : "0:40:0",
-  //         intensity : 7
-  //       }
-  //     ]
-  //   }
-  // ]
 
   return (
     <IonPage>
