@@ -5,10 +5,11 @@ import { cafe } from 'ionicons/icons';
 import FavoriteBeverage from './FavoriteBeverage';
 import { DalImpl } from '../../dal/DalImpl'
 
+
 class BeveragesSummary extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             beverages: [],
             total: 0,
@@ -133,7 +134,9 @@ class BeveragesSummary extends Component {
                         <IonCardHeader class="new-beverages-style">
                                 <IonRow>
                                     <IonCol style={{textAlign:'left'}}>
-                                        <IonTitle><IonIcon  icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
+                                        <a style={{color:'inherit'}} href="/beverages-detail">
+                                        <IonTitle><IonIcon icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
+                                        </a>
                                     </IonCol>
                                     <IonCol style={{textAlign:'right'}}>
                                         <IonLabel>{this.state.total + this.state.unit}</IonLabel>

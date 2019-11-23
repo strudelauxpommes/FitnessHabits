@@ -12,7 +12,7 @@ class BeveragesDetail extends Component {
         this.state = {
             beverages: [],
             total: 0,
-            unit: "on",
+            unit: "L",
             unitConverter:1,
             favorites:0
         }
