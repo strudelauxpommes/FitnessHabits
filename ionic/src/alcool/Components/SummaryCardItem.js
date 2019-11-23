@@ -1,30 +1,34 @@
 import {
-    IonCol,
-    IonRow,
-    IonButton,
-    IonText,
-  } from '@ionic/react';
-  import { wine } from 'ionicons/icons';
-  import { text } from 'ionicons/icons';
-  import React from 'react';
-  import { RouteComponentProps } from 'react-router';
-  import '../theme/AlcoolDetail.scss';
+  IonCol,
+  IonRow,
+  IonButton,
+  IonText,
+} from '@ionic/react';
+import React from 'react';
+import '../Style/AlcoolSommaire.scss';
+
+class SummaryCardItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   
-  const SummaryCardItem = ({ name, quantity, volume }) => {
+
+  render() {
     return (
       <IonCol>
         <IonRow className="ion-text-center">
           <IonCol>
             <IonText>
-              {name}
+              {this.props.name}
             </IonText>
           </IonCol>
         </IonRow>
         <IonRow className="ion-text-center">
           <IonCol>
-            <IonButton className="round" shape='round' color='alcool'>
+            <IonButton onClick={() => this.props.addAlcool(this.props.name) }className="summary__round" shape='round' color='alcool'>
               <IonText>
-                {quantity}
+                {this.props.quantity}
               </IonText>
             </IonButton>
           </IonCol>
@@ -32,11 +36,13 @@ import {
         <IonRow className="ion-text-center">
           <IonCol>
             <IonText>
-              {volume}
+              {this.props.volume}
             </IonText>
           </IonCol>
         </IonRow>
       </IonCol>
     );
   }
-  export default SummaryCardItem;
+}
+
+export default SummaryCardItem;
