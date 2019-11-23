@@ -1,35 +1,15 @@
-import {
-  IonAvatar,
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonTabBar,
-  IonTabButton,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
+import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTabBar, IonTabButton, IonTitle, IonToolbar } from "@ionic/react";
 import T from "i18n-react";
-import {
-  calendar,
-  download,
-  home,
-  redo,
-  settings,
-  trash
-} from "ionicons/icons";
-import { Component, default as React } from "react";
+import { calendar, download, home, redo, settings, trash } from "ionicons/icons";
+import React, { Component } from 'react';
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
-import SleepService from "../services/sleep/SleepService";
-import SleepSummary from "./sleep/SleepSummary";
 import Alcool from "../alcool/AlcoolSommaire";
+import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
+import SleepSummary from "./sleep/SleepSummary";
 
-//const MainTabs: React.FC<MainTabsProps> = () => {
+import Poids from '../entities/poids/Poids'
 
 const sleepService = SleepService();
 
@@ -81,6 +61,7 @@ class Home extends Component<RouteComponentProps, State> {
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <FoodSummary />
+          <Poids />
         </IonContent>
 
         <IonTabBar slot="bottom">
