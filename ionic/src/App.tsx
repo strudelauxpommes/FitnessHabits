@@ -20,7 +20,6 @@ import Home from './pages/Home';
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
 /* Sleep Imports */
 import SleepDetail from './pages/sleep/SleepDetail';
-import SleepSummary from './pages/sleep/SleepSummary';
 import './theme/sleep.css';
 /* Theme variables */
 import './theme/variables.css';
@@ -34,7 +33,6 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
-        <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
       </IonRouterOutlet>
