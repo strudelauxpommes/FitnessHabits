@@ -1,10 +1,9 @@
 {
-  "appId": "ca.uqam.strudelauxpommes.FitnessHabits",
-  "appName": "FitnessHabits",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
-  "cordova": {}
+    "appId": "ca.uqam.strudelauxpommes.FitnessHabits",
+    "appName": "FitnessHabits",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "build",
+    "windowsAndroidStudioPath": "C:\\Program Files\\Android\\Android Studio\\bin\\studio64.exe",
+    "cordova": {}
 }
-
-
