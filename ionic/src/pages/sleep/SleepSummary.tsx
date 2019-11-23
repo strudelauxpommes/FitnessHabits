@@ -17,7 +17,6 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
-import moment from 'moment'
 
 type Props = {
   activeDate: Date;
@@ -33,6 +32,7 @@ type State = {
   hasSubmitError: boolean,
   errorMessage: string,
   choosingMood: boolean,
+  moods: object[],
 }
 
 export default class SleepSummary extends Component<Props, State> {
@@ -50,25 +50,33 @@ export default class SleepSummary extends Component<Props, State> {
       totalSleepTimeToday: "00:00:00",
       hasSubmitError: false,
       errorMessage: "",
-      choosingMood: true,
+      choosingMood: false,
+      moods: [],
     }
   }
 
   async componentDidMount(){
     const sleepService = new SleepService()
     const sleepCollection = await sleepService.fetchActiveDate()
+    const moodObjects = await sleepService.fetchMoods()
 
-    const test = await sleepService.fecthHistory_v2()
+    const test = await sleepService.fetchHistory_v2()
     console.log(test)
 
     this.setState({
       sleeps: sleepCollection,
       totalSleepTimeToday: sleepCollection.showTotalSleep(),
+      moods: moodObjects
     })
 }
 
-  onChoosingMoodDismissed(e: any) {
-    console.log(e.target.value)
+  onChoosingMoodOk(mood: string) {
+      this.setState({
+        mood: mood,
+        choosingMood: false
+      });
+
+      this.onSubmit();
   }
 
   /**
@@ -76,6 +84,7 @@ export default class SleepSummary extends Component<Props, State> {
    */
   async onSubmit() {
     const sleepService = new SleepService();
+    sleepService.fetchMoods()
     const activeDate = await new SleepService().getActiveMoment()
 
     var builder = (
@@ -84,7 +93,7 @@ export default class SleepSummary extends Component<Props, State> {
         .buildEnd(this.state.sleepTimeEnd)
         .buildNumberOfInteruptions(this.state.wakeUpCount)
         .buildComment("")
-        .buildMood()
+        .buildMood(this.state.mood)
         .createInstance()
     );
 
@@ -114,6 +123,8 @@ export default class SleepSummary extends Component<Props, State> {
     }
   }
 
+  
+
   /**
    * [Handles state change for submit error alert dismiss]
    */
@@ -122,27 +133,6 @@ export default class SleepSummary extends Component<Props, State> {
       hasSubmitError: false,
       errorMessage: "",
     })
-  }
-
-  /**
-   * [Adds a sleep object to the collection and updates the state]
-   * 
-   * @param sleep sleep object to add
-   */
-  async addSleepItem(sleep: any) {
-    const sleepService = new SleepService();
-
-    let collection = this.state.sleeps
-    
-    // await sleepService.saveActiveDate(collection)
-
-    // this.setState({
-    //   sleeps: this.state.sleeps,
-    //   sleepTimeBegin: "",
-    //   sleepTimeEnd: "",
-    //   wakeUpCount: "",
-    //   totalSleepTimeToday: collection.calculateTotalSleep().toString()
-    // });
   }
 
   /**
@@ -159,6 +149,18 @@ export default class SleepSummary extends Component<Props, State> {
       sleeps: this.state.sleeps,
       totalSleepTimeToday: this.state.sleeps.showTotalSleep(),
     });
+  }
+
+  showMoodAlert() {
+    this.setState({
+      choosingMood: true
+    })
+  }
+
+  onChoosingMoodDismissed() {
+    this.setState({
+      choosingMood: false
+    })
   }
 
   onSleepTimeBeginChange(e: any) {
@@ -242,7 +244,7 @@ export default class SleepSummary extends Component<Props, State> {
                     </IonCol>
                     <IonCol>
                       <IonButton
-                        onClick={() => this.onSubmit()}
+                        onClick={() => this.showMoodAlert()}
                         color="success">
                         <IonIcon icon={add} />
                       </IonButton>
@@ -255,43 +257,19 @@ export default class SleepSummary extends Component<Props, State> {
                       />
                       <IonAlert
                         isOpen={this.state.choosingMood}
-                        onDidDismiss={(e: any) => this.onChoosingMoodDismissed(e)}
-                        buttons={['OK']}
-                        header="Choisir votre humeur"
-                        inputs={
+                        onDidDismiss={() => this.onChoosingMoodDismissed()}
+                        buttons={
                           [
                             {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'Super'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'De bonne humeur'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'Neutre'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'Un peu grognon'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'Fatigue'
-                            },
-                            {
-                              name: 'mood',
-                              type: 'radio',
-                              label:  'Depressif'
-                            },
+                              text: 'Ok',
+                              handler: data => {
+                                this.onChoosingMoodOk(data)
+                              }
+                            }
                           ]
                         }
+                        header="Choisir votre humeur"
+                        inputs={this.state.moods}
                       />
                     </IonCol>
                   </IonRow>
