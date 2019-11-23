@@ -18,10 +18,10 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonRouterOutlet>
-        <Redirect exact path="/tabs" to="/tabs/home" />
-        <Route path="/tabs/export" render={() => <Export />} exact={true} />
-        <Route path="/tabs/import" render={() => <Import />} exact={true} />
-        <Route path="/tabs/remove" render={() => <Supression />} exact={true} />   
+        <Redirect exact path="/" to="/tabs/home" />
+        <Route path="/export-import/export" render={() => <Export />} exact={true} />
+        <Route path="/export-import/import" render={() => <Import />} exact={true} />
+        <Route path="/export-import/remove" render={() => <Supression />} exact={true} />   
       </IonRouterOutlet>
 
       <IonHeader>
