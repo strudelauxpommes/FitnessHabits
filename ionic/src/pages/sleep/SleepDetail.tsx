@@ -21,6 +21,10 @@ import moment from 'moment'
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
 // import { any } from 'prop-types';
 
+type Prop = {
+    
+}
+
 type State = {
     sleepCollection: SleepCollection;
     averageSleep: number
@@ -40,12 +44,12 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         const sleepService = new SleepService();
         sleepService.getActiveDate()
         const activeDate = moment("2019-10-10")
-        const sleepCollection = new SleepCollection({'activeDate': '2019-10-10', 'list':[]});
+        const sleepCollection = await sleepService.fetchHistory()
 
-        this.setState({
-            sleepCollection: sleepCollection,
-            averageSleep: sleepCollection.getAverageSleep(activeDate as any, 7 as any)
-        })
+        // this.setState({
+        //     sleepCollection: sleepCollection,
+        //     averageSleep: sleepCollection.getAverageSleep(activeDate as any, 7 as any)
+        // })
     }
 
     displaySleepEdit(e: any) {
@@ -62,11 +66,18 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         // this.setState({ sleepCollection: newCollection });
     }
 
-    deleteSleepItemWithKey(key: any) {
-        //@todo: PhilB
-        // sleepService.delete(key);
-        // console.log(sleepService.fetch());
-        // this.setState({ sleepCollection: sleepService.fetch() });
+    deleteSleepItemWithKey(key: Sleep) {
+        
+        //first we remove the item we want to remove
+        const newCollection = this.state.sleepCollection
+        newCollection.removeSleep(key)
+        //then we remove all the items from the collection that dont share the date of the removed item
+        const temp = newCollection.filterSleepByDate(key.start)
+        
+        const sleepService = new SleepService()
+        sleepService.saveCollectionAtDate(temp,key.start)
+        
+        this.setState({sleepCollection: newCollection})
     }
 
     render() {

@@ -39,6 +39,11 @@ export default class SleepService{
         return sleepCollection
     }
 
+    /**
+     * Fetch the list of Sleep Collection associated with the last 7 days 
+     * from the active date.
+     */
+
     async fetchHistory(){
         const activeMoment = await this.getActiveMoment()
         const startMoment = activeMoment.clone().subtract(7, 'days')
@@ -46,7 +51,6 @@ export default class SleepService{
         const begin = new Date(startMoment.format("YYYY-MM-DD"));
         const end = new Date(activeMoment.format("YYYY-MM-DD"));
         let items = await this.persist.getItems("sleep", begin, end);
-        
         
         //we define a groupby function to group all sleepcollection in separate arrays
         const groupBy = (array, fn) => array.reduce((result, item) => {
@@ -58,10 +62,8 @@ export default class SleepService{
 
         //we use the groupby
         const tempGroup = groupBy(items,i => i.dateTime)
-        
         //we get the key of all the element in the resulting object
         const allCollectionKeys = Object.keys(tempGroup)
-
 
         const finalCollection = []
 
@@ -69,14 +71,10 @@ export default class SleepService{
         //still need to verify if the sorting order is good
         allCollectionKeys.forEach( (collection) => {
             const temp = tempGroup[collection]
-            temp.sort((a,b) => {
-                return a.timestampMS - b.timestampMs
-            })
             //once we have the latest value we push it to the finalCollection array
-            finalCollection.push(temp[0])
+            finalCollection.push(temp[(temp.length-1)])
         })
-        
-
+    
         const result = []
         
         finalCollection.forEach(item => {
@@ -84,8 +82,6 @@ export default class SleepService{
                 // const json = JSON.parse(value)
                 result.push(new SleepCollection(value))
         })
-
-        console.log(result)
 
         return result
     }
@@ -109,15 +105,31 @@ export default class SleepService{
 
         return result
     }
-    
+
 
     /**
      * Save a new sleep to the persistance layer
      */
     async saveActiveDate(sleepCollection){
         const activeDate = await this.getActiveDate()
-    
+
         await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
+    }
+
+    /**
+     * 
+     * @param {SleepCollection} sleepCollection 
+     * @param {moment} date 
+     * 
+     * save a collection at a specific date
+     */
+
+    async saveCollectionAtDate(sleepCollection,date){
+        const json = JSON.stringify(sleepCollection)
+        //we then need to transform the actual date to the JS date format
+        const dateFormated = Date(date.toDate())
+        //then call setValueByDate
+        await this.persist.setValueByDate("sleep",json,dateFormated)
     }
 
     /**
@@ -141,7 +153,7 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2019-10-15T00:00:00-05:00');
+        return moment('2019-10-09T00:00:00-05:00');
     }
 
     async getHistoryDate(){
