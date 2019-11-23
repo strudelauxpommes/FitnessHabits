@@ -60,7 +60,7 @@ class BeveragesDetail extends Component {
                     </IonToolbar>
                         <IonContent>
                         <IonFab vertical={"top"} slot={"fixed"} horizontal={"end"} edge>
-                            <IonFabButton size={"small"} color={"danger"}>
+                            <IonFabButton size={"small"} color={"success"}>
                                 <IonIcon icon={add}/>
                             </IonFabButton>
                         </IonFab>
