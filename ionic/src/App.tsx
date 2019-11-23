@@ -26,6 +26,10 @@ import "./theme/sleep.css";
 /* Beverage import */
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
+/* Parameters import */
+import Parameters from './pages/parameters/Parameters';
+import Preference from './pages/parameters/Preference';
+import Profil from './pages/parameters/Profil';
 /* Theme variables */
 import "./theme/variables.css";
 import Dal from './dal/Dal';
@@ -66,6 +70,9 @@ const App: React.FC = () => (
         <Route path="/beverages-detail" component={BeveragesDetail} />
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/parameters" component={Parameters} exact={true} />
+        <Route path="/preference" component={Preference} exact={true} />
+        <Route path="/profil" component={Profil} exact={true} />
         <Route path="/food-summary" component={FoodSummary} />
         <Route path="/food-list/:period" component={FoodList} />
         <Route

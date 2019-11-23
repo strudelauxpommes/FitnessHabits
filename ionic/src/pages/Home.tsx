@@ -39,13 +39,14 @@ import {
 import { Component, default as React } from "react";
 import { RouteComponentProps, Redirect, Route } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
-import SleepService from "../services/sleep/SleepService";
 import SleepSummary from "./sleep/SleepSummary";
-import Alcool from "../alcool/AlcoolSommaire";
-import FoodHome from "./nourriture/FoodHome";
-import BeveragesSummary from "./Beverages/BeveragesSummary";
 import Export from './export';
 import Import from './import';
+import Alcool from "../alcool/AlcoolSommaire";
+import SleepService from "../services/sleep/SleepService";
+import FoodSummary from "./nourriture/FoodSummary";
+import FoodHome from "./nourriture/FoodHome";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
 
@@ -80,287 +81,43 @@ const Home: React.FC = () => {
           <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-          </IonButton>
-        </IonItem>
+            </IonButton>
+          </IonItem>
 
-        <div><br /></div>
+          <div>
+            <br />
+          </div>
 
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Activités</IonCardTitle>
-          </IonCardHeader>
+          <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
+          <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
+          <FoodSummary />
+          <FoodHome />
+          <BeveragesSummary
+            activeDate={new Date("2019-10-31T21:00:00-05:00")}
+          />
+        </IonContent>
 
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol>Activité</IonCol>
-                <IonCol>Durée</IonCol>
-                <IonCol>Intensité</IonCol>
-              </IonRow>
-
-              <IonRow>
-                <IonCol>Karaté</IonCol>
-                <IonCol>1:17</IonCol>
-                <IonCol>M</IonCol>
-              </IonRow>
-
-              <IonRow>
-                <IonCol>Jogging</IonCol>
-                <IonCol>hh:mm</IonCol>
-                <IonCol>H</IonCol>
-              </IonRow>
-
-              <IonRow>
-                <IonCol>HIIT</IonCol>
-                <IonCol>00:32</IonCol>
-                <IonCol>H</IonCol>
-              </IonRow>
-            </IonGrid>
-
-            <IonHeader>Autre :</IonHeader>
-            <IonRow>
-              <IonInput placeholder="Nom de l'activité" color="dark"></IonInput>
-              <IonInput placeholder="Durée" color="dark"> </IonInput>
-              <IonSelect placeholder="Intensité" interface="popover">
-                <IonSelectOption>F</IonSelectOption>
-                <IonSelectOption>M</IonSelectOption>
-                <IonSelectOption>H</IonSelectOption>
-              </IonSelect>
-              <IonButton shape="round"><IonIcon icon={add} /></IonButton>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Suppléments</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol>Matin</IonCol>
-                <IonCol><IonCheckbox></IonCheckbox></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Midi</IonCol>
-                <IonCol><IonCheckbox></IonCheckbox></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Souper</IonCol>
-                <IonCol><IonCheckbox></IonCheckbox></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Coucher</IonCol>
-                <IonCol><IonCheckbox></IonCheckbox></IonCol>
-              </IonRow>
-            </IonGrid>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Sommeil</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol>Début</IonCol>
-                <IonCol>Fin</IonCol>
-                <IonCol># de réveils</IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonInput placeholder="23:00" color="dark"></IonInput></IonCol>
-                <IonCol><IonInput placeholder="06:30" color="dark"></IonInput></IonCol>
-                <IonCol><IonItem>2</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonInput placeholder="15:00" color="dark"></IonInput></IonCol>
-                <IonCol><IonInput placeholder="16:30" color="dark"></IonInput></IonCol>
-                <IonCol><IonItem>0</IonItem></IonCol>
-              </IonRow>
-            </IonGrid>
-            <IonHeader>Ajouter un réveil :</IonHeader>
-            <IonRow>
-              <IonInput placeholder="Heure coucher" color="dark"></IonInput>
-              <IonInput placeholder="Heure réveil" color="dark"> </IonInput>
-              <IonButton shape="round"><IonIcon icon={add} /></IonButton>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Poids</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonRow>
-              <IonItem>Poids : </IonItem>
-              <IonInput placeholder="150.9" color="dark"></IonInput>
-              <IonSelect value="Lbs" interface="popover">
-                <IonSelectOption selected>Lbs</IonSelectOption>
-                <IonSelectOption>Kgs</IonSelectOption>
-              </IonSelect>
-            </IonRow>
-            <IonRow>
-              <IonItem>Pourcentage de gras : </IonItem>
-              <IonInput placeholder="0.00%" color="dark"></IonInput>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Nourriture</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol></IonCol>
-                <IonCol><IonItem># Portions</IonItem></IonCol>
-                <IonCol></IonCol>
-                <IonCol></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Protéines</IonCol>
-                <IonCol><IonItem>3</IonItem></IonCol>
-                <IonCol><IonButton shape="round">+1</IonButton></IonCol>
-                <IonCol><IonButton shape="round" color="secondary">-1</IonButton></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Légumes</IonCol>
-                <IonCol><IonItem>2</IonItem></IonCol>
-                <IonCol><IonButton shape="round">+1</IonButton></IonCol>
-                <IonCol><IonButton shape="round" color="secondary">-1</IonButton></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Glucides</IonCol>
-                <IonCol><IonItem>3</IonItem></IonCol>
-                <IonCol><IonButton shape="round">+1</IonButton></IonCol>
-                <IonCol><IonButton shape="round" color="secondary">-1</IonButton></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Lipides</IonCol>
-                <IonCol><IonItem>1</IonItem></IonCol>
-                <IonCol><IonButton shape="round">+1</IonButton></IonCol>
-                <IonCol><IonButton shape="round" color="secondary">-1</IonButton></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>Fruits</IonCol>
-                <IonCol><IonItem>5</IonItem></IonCol>
-                <IonCol><IonButton shape="round">+1</IonButton></IonCol>
-                <IonCol><IonButton shape="round" color="secondary">-1</IonButton></IonCol>
-              </IonRow>
-            </IonGrid>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Breuvage</IonCardTitle>
-            <IonCardSubtitle>1500 ml</IonCardSubtitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol><IonItem>Type</IonItem></IonCol>
-                <IonCol><IonItem>Volume</IonItem></IonCol>
-                <IonCol><IonItem>Quantité</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Eau</IonItem></IonCol>
-                <IonCol><IonItem>250 ml</IonItem></IonCol>
-                <IonCol><IonItem>6</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Café</IonItem></IonCol>
-                <IonCol><IonItem>250 ml</IonItem></IonCol>
-                <IonCol><IonItem>1</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Tisane</IonItem></IonCol>
-                <IonCol><IonItem>250 ml</IonItem></IonCol>
-                <IonCol><IonItem>2</IonItem></IonCol>
-              </IonRow>
-            </IonGrid>
-            <IonCol><IonItem>Autre : </IonItem></IonCol>
-            <IonRow>
-              <IonCol><IonInput placeholder="Type" color="dark"></IonInput></IonCol>
-              <IonCol><IonInput placeholder="Volume" color="dark"></IonInput></IonCol>
-              <IonCol><IonButton shape="round"><IonIcon icon={add} /></IonButton></IonCol>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Alcool</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol><IonItem>Type</IonItem></IonCol>
-                <IonCol><IonItem>Volume</IonItem></IonCol>
-                <IonCol><IonItem>Quantité</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Vin</IonItem></IonCol>
-                <IonCol><IonItem>250 ml</IonItem></IonCol>
-                <IonCol><IonItem>6</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Vodka</IonItem></IonCol>
-                <IonCol><IonItem>1 oz</IonItem></IonCol>
-                <IonCol><IonItem>1</IonItem></IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol><IonItem>Jaggermeister</IonItem></IonCol>
-                <IonCol><IonItem>2 oz</IonItem></IonCol>
-                <IonCol><IonItem>2</IonItem></IonCol>
-              </IonRow>
-            </IonGrid>
-            <IonCol><IonItem>Autre : </IonItem></IonCol>
-            <IonRow>
-              <IonCol><IonInput placeholder="Type" color="dark"></IonInput></IonCol>
-              <IonCol><IonInput placeholder="Volume" color="dark"></IonInput></IonCol>
-              <IonCol><IonSelect value="ml" interface="popover">
-                <IonSelectOption selected>ml</IonSelectOption>
-                <IonSelectOption>oz</IonSelectOption>
-              </IonSelect></IonCol>
-              <IonCol><IonButton shape="round"><IonIcon icon={add} /></IonButton></IonCol>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
-      </IonContent>
-
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/home">
-          <IonIcon icon={home} />
-          <IonLabel></IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="export" href="/">
-          <IonIcon icon={redo} />
-          <IonLabel></IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="import" href="/">
-          <IonIcon icon={download} />
-          <IonLabel></IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="delete" href="/">
-          <IonIcon icon={trash} />
-          <IonLabel></IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="settings" href="/Profil">
-        <IonTabButton tab="settings" href="/Parameters">
-          <IonIcon icon={settings} />
-          <IonLabel></IonLabel>
-        </IonTabButton>
-        </IonTabButton>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel></IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="export" href="/">
+            <IonIcon icon={redo} />
+            <IonLabel></IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="import" href="/">
+            <IonIcon icon={download} />
+            <IonLabel></IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="delete" href="/">
+            <IonIcon icon={trash} />
+            <IonLabel></IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="settings" href="/">
+            <IonIcon icon={settings} />
+            <IonLabel></IonLabel>
+          </IonTabButton>
         </IonTabBar>
         </IonPage>
   );
