@@ -5,6 +5,7 @@ import { Redirect, Route } from 'react-router';
 import Export from './export';
 import Import from './import';
 import Poids from '../entities/poids/Poids';
+import Glycemie from '../entities/glycemie/Glycemie';
 import Supression from './purge';
 import T from 'i18n-react';
 
@@ -154,6 +155,7 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <Poids />
+		<Glycemie />
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>Nourriture</IonCardTitle>
