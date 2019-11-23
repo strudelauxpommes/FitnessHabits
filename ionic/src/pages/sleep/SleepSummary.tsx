@@ -18,6 +18,7 @@ import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
 import moment from 'moment'
+import { thisExpression } from '@babel/types';
 
 type Props = {
   activeDate: Date;
@@ -50,7 +51,7 @@ export default class SleepSummary extends Component<Props, State> {
       totalSleepTimeToday: "00:00:00",
       hasSubmitError: false,
       errorMessage: "",
-      choosingMood: true,
+      choosingMood: false,
     }
   }
 
@@ -67,8 +68,17 @@ export default class SleepSummary extends Component<Props, State> {
     })
 }
 
-  onChoosingMoodDismissed(e: any) {
-    console.log(e.target.value)
+  onChoosingMoodOk(mood: string) {
+      console.log("onChoosingMoodDIsmissed")
+      console.log(this.state);
+      this.setState({
+        mood: mood,
+        choosingMood: false
+      });
+      console.log("After setstate")
+      console.log(this.state)
+
+      this.onSubmit();
   }
 
   /**
@@ -78,13 +88,15 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepService = new SleepService();
     const activeDate = await new SleepService().getActiveMoment()
 
+    console.log(this.state)
+
     var builder = (
       new SleepBuilder(activeDate)
         .buildStart(this.state.sleepTimeBegin)
         .buildEnd(this.state.sleepTimeEnd)
         .buildNumberOfInteruptions(this.state.wakeUpCount)
         .buildComment("")
-        .buildMood()
+        .buildMood(this.state.mood)
         .createInstance()
     );
 
@@ -113,6 +125,8 @@ export default class SleepSummary extends Component<Props, State> {
       })
     }
   }
+
+  
 
   /**
    * [Handles state change for submit error alert dismiss]
@@ -159,6 +173,18 @@ export default class SleepSummary extends Component<Props, State> {
       sleeps: this.state.sleeps,
       totalSleepTimeToday: this.state.sleeps.showTotalSleep(),
     });
+  }
+
+  showMoodAlert() {
+    this.setState({
+      choosingMood: true
+    })
+  }
+
+  onChoosingMoodDismissed() {
+    this.setState({
+      choosingMood: false
+    })
   }
 
   onSleepTimeBeginChange(e: any) {
@@ -242,7 +268,7 @@ export default class SleepSummary extends Component<Props, State> {
                     </IonCol>
                     <IonCol>
                       <IonButton
-                        onClick={() => this.onSubmit()}
+                        onClick={() => this.showMoodAlert()}
                         color="success">
                         <IonIcon icon={add} />
                       </IonButton>
@@ -255,13 +281,13 @@ export default class SleepSummary extends Component<Props, State> {
                       />
                       <IonAlert
                         isOpen={this.state.choosingMood}
-                        onDidDismiss={(e: any) => this.onChoosingMoodDismissed(e)}
+                        onDidDismiss={() => this.onChoosingMoodDismissed()}
                         buttons={
                           [
                             {
-                              text: 'ok',
-                              handler: (data) => {
-                                console.log(data.mood)
+                              text: 'Ok',
+                              handler: data => {
+                                this.onChoosingMoodOk(data)
                               }
                             }
                           ]
@@ -272,33 +298,41 @@ export default class SleepSummary extends Component<Props, State> {
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'Super'
+                              value: 'Super',
+                              label: 'Super'
                             },
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'De bonne humeur'
+                              value: 'De bonne humeur',
+                              label: 'De bonne humeur'
                             },
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'Neutre'
+                              value: 'Neutre',
+                              label: 'Neutre'
                             },
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'Un peu grognon'
+                              value: 'Un peu grognon',
+                              label: 'Un peu grognon'
                             },
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'Fatigue'
+                              value: 'Fatigue',
+                              label: 'Fatigue'
                             },
                             {
                               name: 'mood',
                               type: 'radio',
-                              label:  'Depressif'
+                              value: 'Depressif',
+                              label: 'Depressif'
                             },
+
+
                           ]
                         }
                       />
