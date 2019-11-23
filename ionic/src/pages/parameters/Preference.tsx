@@ -1,14 +1,49 @@
 import { IonContent, IonItemSliding,IonButton,IonList,IonTabBar, IonTabButton, IonIcon,IonItemGroup, IonItemDivider, IonHeader, IonListHeader, IonRadioGroup, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonRadio, IonCol, IonText } from '@ionic/react';
-import React from 'react';
-import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
+import React,{useState} from 'react';
+import { add,  calendar, download, settings, trash, home, redo } from 'ionicons/icons';
 import '../../theme/parameters.css';
 import { DalImpl } from '../../dal/DalImpl';
 import Dal  from '../../dal/Dal';
+import { cpus } from 'os';
 
-const Preference: React.FC = () => {
-  const dal: Dal = new DalImpl();
-  return (
-    <IonPage>
+type PreferenceState = { unitePoid: string ,uniteTaille: string,
+  uniteBreuvages: string ,
+  uniteTotalBreuvages: string ,quantiteIncrementAlcool: string 
+  ,quantiteIncrementBreuvages: string };
+class Preference extends React.Component<PreferenceState> {
+  dal: Dal;
+  state: PreferenceState;
+  constructor(props: any) {
+    super(props);
+    this.dal = new DalImpl();
+    this.state = {unitePoid: '', uniteTaille:'', uniteBreuvages:'', uniteTotalBreuvages:''
+  ,quantiteIncrementAlcool:'', quantiteIncrementBreuvages:''};
+  }
+  //await this.dal.setValue("preferences/unitePoids", "lbs")
+  //await this.dal.getLastValue("preferences/unitePoids")
+  async componentDidMount(){
+     this.setState ({ unitePoid: await this.dal.getLastValue("preferences/unitePoids"),
+     uniteTaille: await this.dal.getLastValue("preferences/uniteTaille"),
+     uniteBreuvages: await this.dal.getLastValue("preferences/uniteBreuvages"),
+     uniteTotalBreuvages: await this.dal.getLastValue("preferences/uniteTotalBreuvages"),
+     quantiteIncrementAlcool: await this.dal.getLastValue("preferences/quantiteIncrementAlcool"),
+     quantiteIncrementBreuvages: await this.dal.getLastValue("preferences/quantiteIncrementBreuvages")});
+  }
+  handleChange = (event: any) => {
+      console.log(event.detail.value);
+      this.setState({
+        selected: event.detail.value
+      });
+  }
+
+  saveItem = () => {
+    const item = {};
+    // do more with item object as required (e.g. save to database)
+  }
+
+  render() {
+    return (
+      <IonPage>
       <IonContent>
       <IonHeader>
         <IonToolbar slot="top" className="toolbarName ion-text-center">
@@ -27,36 +62,37 @@ const Preference: React.FC = () => {
         <IonText>
           <h4>Unite de mesure</h4>
         </IonText>
+        
         <IonItem>
             <IonLabel>Poids Corporel</IonLabel>
-            <IonSelect interface="popover">
-              <IonSelectOption value="lbs" onClick={async () => await dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
+            <IonSelect value={ this.state.unitePoid } interface="popover">
+              <IonSelectOption  value="lbs" onClick={async () => await this.dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
               <IonSelectOption value="kg">kg</IonSelectOption>
             </IonSelect>
         </IonItem>
 
         <IonItem>
-            <IonLabel>Taille</IonLabel>
-            <IonSelect interface="popover">
-              <IonSelectOption value="feet">pi/po</IonSelectOption>
+            <IonLabel >Taille</IonLabel>
+            <IonSelect value={ this.state.uniteTaille} interface="popover">
+              <IonSelectOption value="pi/po">pi/po</IonSelectOption>
               <IonSelectOption value="cm">cm</IonSelectOption>
             </IonSelect>
         </IonItem>
 
         <IonItem>
             <IonLabel>Breuvage</IonLabel>
-            <IonSelect interface="popover">
-              <IonSelectOption value="litre">L</IonSelectOption>
-              <IonSelectOption value="ml">mL</IonSelectOption>
+            <IonSelect value={ this.state.uniteBreuvages } interface="popover">
+              <IonSelectOption value="L">L</IonSelectOption>
+              <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
         </IonItem>
         
         <IonItem>
             <IonLabel>Total des Breuvages</IonLabel>
-            <IonSelect interface="popover">
-              <IonSelectOption value="litre">L</IonSelectOption>
-              <IonSelectOption value="ml">mL</IonSelectOption>
+            <IonSelect value={ this.state.uniteTotalBreuvages } interface="popover">
+              <IonSelectOption value="L">L</IonSelectOption>
+              <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
         </IonItem>
@@ -64,7 +100,7 @@ const Preference: React.FC = () => {
         <IonItem>
             <IonLabel>Alcool</IonLabel>
             <IonSelect interface="popover">
-              <IonSelectOption value="ml">mL</IonSelectOption>
+              <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
         </IonItem>
@@ -145,8 +181,8 @@ const Preference: React.FC = () => {
         </IonTabButton>
       </IonTabBar>
     </IonPage>
-      
-  );
-};
+    );
+  }
 
+}
 export default Preference;
