@@ -1,9 +1,16 @@
+import { Component, default as React } from "react";
+import { RouteComponentProps } from "react-router";
+import { SleepCollection } from "src/entities/sleep/sleep";
+import SleepService from "../services/sleep/SleepService";
+import SleepSummary from "./sleep/SleepSummary";
+import Alcool from "../alcool/AlcoolSommaire";
+import FoodSummary from "./nourriture/FoodSummary";
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRouterOutlet, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
 import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
-import React from 'react';
 import { Redirect, Route } from 'react-router';
 import Export from './export';
 import Import from './import';
+import Parameters from './parameters/Parameters';
 import Supression from './purge';
 import T from 'i18n-react';
 
@@ -319,16 +326,13 @@ const Home: React.FC = () => {
           <IonLabel></IonLabel>
         </IonTabButton>
         <IonTabButton tab="settings" href="/Profil">
+        <IonTabButton tab="settings" href="/Parameters">
           <IonIcon icon={settings} />
           <IonLabel></IonLabel>
         </IonTabButton>
-      </IonTabBar>
-    </IonPage>
-    /** 
-    <IonTabs>
-      
-    </IonTabs>
-    */
+        </IonTabButton>
+        </IonTabBar>
+        </IonPage>
   );
 };
 
