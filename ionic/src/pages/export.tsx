@@ -91,16 +91,6 @@ const [showToast1, setShowToast] = useState(false);
               <IonRadio slot="start" value="json" />
             </IonItem>
           </IonRadioGroup>
-          <IonItem>
-            <IonIcon icon={logIn} slot="start"></IonIcon>
-            <IonLabel position="stacked">Emplacement</IonLabel>
-            <IonSelect>
-              <IonSelectOption value="usb" selected>USB</IonSelectOption>
-              <IonSelectOption value="cardSD">Card SD</IonSelectOption>
-              <IonSelectOption value="email">Gmail</IonSelectOption>
-              <IonSelectOption value="file">FileSystem</IonSelectOption>
-            </IonSelect>
-          </IonItem>
           <IonRow>
             <IonCol>
               <IonButton color="light" onClick={() => setShowToast(true)} expand="block">Exporter</IonButton>
