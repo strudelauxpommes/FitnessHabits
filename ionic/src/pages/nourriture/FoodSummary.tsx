@@ -20,13 +20,17 @@ import {
   IonCard,
   IonCardHeader,
   IonCardContent,
-  IonTitle
+  IonTitle,
+  IonList
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
-import { FoodHome } from './FoodHome'
+import { FoodHome } from './FoodHome';
+import FoodService from "src/services/food/FoodService";
 
 
 export default class FoodSummary extends Component {
+  foodService = FoodService();
+
   render() {
     return (
       <IonPage>
@@ -72,49 +76,88 @@ export default class FoodSummary extends Component {
                 </IonRow>
               </IonGrid>
 
-              <IonItem href="/food-list/dejeuner">
-                <IonLabel>Dejeuner</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
-              <IonItem href="/food-list/collation_am">
-                <IonLabel>Collation AM</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
-              <IonItem href="/food-list/diner">
-                <IonLabel>Diner</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
-              <IonItem href="/food-list/collaton_pm">
-                <IonLabel>Collation PM</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
-              <IonItem href="/food-list/souper">
-                <IonLabel>Souper</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
-              <IonItem href="/food-list/collation_soir">
-                <IonLabel>Collation Soir</IonLabel>
-                <IonIcon md="md-arrow-forward"></IonIcon>
-              </IonItem>
 
-              <IonGrid>
-                <IonRow>
-                  <IonCol pull="-1.5">
-                    <IonToolbar>
-                      <IonButtons slot="start">
-                        <IonButton
-                          href="/food-daily-intake"
-                          expand="block"
-                          color="dark"
-                          fill="solid"
-                        >
-                          Bilan de la journee
-                        </IonButton>
-                      </IonButtons>
-                    </IonToolbar>
-                  </IonCol>
-                </IonRow>
-              </IonGrid>
+              <IonList>
+                <IonItem lines="full" href="/food-add-dejeuner">
+                  <IonLabel>
+                    <b>Dejeuner</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayDeujeuner.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationAM">
+                  <IonLabel>
+                    <b>Collation AM</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationAM.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-diner">
+                  <IonLabel>
+                    <b>Diner</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayDiner.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationPM">
+                  <IonLabel>
+                    <b>Collation PM</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationPM.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-souper">
+                  <IonLabel>
+                    <b>Souper</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArraySouper.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+                <IonItem lines="full" href="/food-add-collationSoir">
+                  <IonLabel>
+                    <b>Collation Soir</b>
+                  </IonLabel>
+                  <IonIcon md="md-arrow-forward"></IonIcon>
+                </IonItem>
+                {this.foodService.foodArrayCollationSoir.map((food, index) => {
+                  return (
+                    <IonItem lines="none" key={index}>
+                      <IonLabel>{food.FoodItem}</IonLabel>
+                    </IonItem>
+                  );
+                })}
+              </IonList>
+
             </IonCardContent>
           </IonCard>
         </IonContent>

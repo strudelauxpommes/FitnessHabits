@@ -26,14 +26,14 @@ export default class FoodAdd extends Component {
     return (
       <IonPage>
         <IonHeader className="background-black">
-          <FoodHeader backLink="/food-list/:period"></FoodHeader>
+          <FoodHeader backLink="/food-summary"></FoodHeader>
         </IonHeader>
 
         <IonContent className="ion-padding">
           <IonCard>
             <IonCardHeader>
               <IonToolbar>
-                <IonTitle>collaton AM</IonTitle>
+                <IonTitle>collation AM</IonTitle>
               </IonToolbar>
             </IonCardHeader>
             <IonCardContent>
