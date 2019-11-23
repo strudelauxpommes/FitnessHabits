@@ -202,16 +202,25 @@ ion-grid {
 
 /********************** INTENSITÉ **********************/
 .intensiteFaible {
-  background-color: green;
-  color: white;
+  background-color: #55FF55;
+  color: #000000;
+  border-style: solid;
+  border-color: #00FF00;
+  border-width: 4px;
 }
 
 .intensiteMoyenne {
-  background-color: yellow;
-  color: white;
+  background-color: #FFFF55;
+  color: #000000;
+  border-style: solid;
+  border-color: #FFFF00;
+  border-width: 4px;
 }
 
 .intensiteForte {
-  background-color: red;
-  color: white;
+  background-color: #FF5555;
+  color: #000000;
+  border-style: solid;
+  border-color: #FF0000;
+  border-width: 4px;
 }

@@ -13,16 +13,16 @@ export default class Summary extends React.Component {
     });
     return total;
   }
-
-  getIntensityAverageAll() {
-    let total = 0, nb = 0;
+  
+  getTotalDuration(titre) {
+    let total = 0;
     this.props.dates.forEach(d => {
       d.activites.forEach(a => {
-        total += a.intensite;
-        nb++;
+        if(a.titre === titre)
+          total += a.duree;
       });
     });
-    return Math.round(total / nb);
+    return total;
   }
   
   getTotalDurationAutre(titre1, titre2, titre3) {
@@ -36,31 +36,17 @@ export default class Summary extends React.Component {
     return total;
   }
 
-  getIntensityAverageAutre(titre1, titre2, titre3) {
+  getIntensityAverageAll() {
     let total = 0, nb = 0;
     this.props.dates.forEach(d => {
       d.activites.forEach(a => {
-        if(a.titre !== titre1 && a.titre !== titre2 && a.titre !== titre3)
-        {
-          total += a.intensite;
-          nb++;
-        }
+        total += a.intensite;
+        nb++;
       });
     });
     return Math.round(total / nb);
   }
   
-  getTotalDuration(titre) {
-    let total = 0;
-    this.props.dates.forEach(d => {
-      d.activites.forEach(a => {
-        if(a.titre === titre)
-          total += a.duree;
-      });
-    });
-    return total;
-  }
-
   getIntensityAverage(titre) {
     let total = 0, nb = 0;
     this.props.dates.forEach(d => {
@@ -75,11 +61,26 @@ export default class Summary extends React.Component {
     return Math.round(total / nb);
   }
   
+  getIntensityAverageAutre(titre1, titre2, titre3) {
+    let total = 0, nb = 0;
+    this.props.dates.forEach(d => {
+      d.activites.forEach(a => {
+        if(a.titre !== titre1 && a.titre !== titre2 && a.titre !== titre3)
+        {
+          total += a.intensite;
+          nb++;
+        }
+      });
+    });
+    return Math.round(total / nb);
+  }
+  
   getIntensityColor(intensite) {
     let r = 0, g = 0, b = 0;
-    if(intensite < 5) {
+    if(intensite >= 5) {
       r = 255;
       g = Math.round(51 * intensite);
+      
     }
     else {
       g = 255;
