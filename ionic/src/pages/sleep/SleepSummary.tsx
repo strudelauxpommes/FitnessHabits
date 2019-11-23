@@ -57,6 +57,12 @@ export default class SleepSummary extends Component<Props, State> {
 
   async componentDidMount(){
     const sleepService = new SleepService()
+
+    const temp = new Date("2019-10-11T00:00:00")
+    
+    console.log("yo")
+    console.log(temp)
+    
     const sleepCollection = await sleepService.fetchActiveDate()
     const moodObjects = await sleepService.fetchMoods()
 

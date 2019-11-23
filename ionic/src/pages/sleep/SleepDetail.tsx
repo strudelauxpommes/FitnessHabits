@@ -94,6 +94,7 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         const sleepService = new SleepService()
         sleepService.saveCollectionWithDate(updatedCollection,updatedCollectionActiveDate)        
 
+
         //first we remove the item we want to remove
         //const newCollection = this.state.sleepCollection
         //newCollection.removeSleep(key)

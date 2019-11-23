@@ -20,6 +20,7 @@ export default class SleepService{
     /**
      * Fetch the list of sleeps from the persistance layer
      */
+
     async fetchActiveDate () {
             const activeDate = await this.getActiveDate()
         
