@@ -1,16 +1,32 @@
 import {
-  IonPage,
+  IonPage,IonSelect, IonSelectOption,
   IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
   IonList, IonItem, IonLabel, IonIcon, IonDatetime,
   IonButton, IonRow, IonCol, IonContent, IonRadioGroup,
   IonRadio, IonToast
 
 } from '@ionic/react';
-import { calendar } from 'ionicons/icons';
+import { calendar, logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
+import { FilterDumper } from 'src/dal/FitlerDumper';
+
 
 const Export: React.FC = () => {
-  const [showToast1, setShowToast] = useState(false);
+const [showToast1, setShowToast] = useState(false);
+
+async function getAllData() {
+  console.log('test');
+  var dateDebut = document.getElementById("debut") 
+  var dateFin = document.getElementById("fin") 
+  
+  const dumper = new FilterDumper();
+  await dumper.dumpAll();
+
+}
+function changeColor(id:string){
+  var btn = document.getElementById(id) 
+  btn!.setAttribute("color", "primary")
+}
   return (
     <IonPage id="export-import-list" color="#b3b3b3">
       <IonHeader>
@@ -18,7 +34,7 @@ const Export: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Exporter les données</IonTitle>
+          <IonTitle >Exporter les données</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -26,12 +42,12 @@ const Export: React.FC = () => {
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
           <IonLabel position="stacked">À partir de</IonLabel>
-          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={null}></IonDatetime>
+          <IonDatetime id="debut" displayFormat="MMM DD, YYYY" max="2056" value="2019-09-19"></IonDatetime>
         </IonItem>
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
           <IonLabel position="stacked">Jusqu'à </IonLabel>
-          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={null}></IonDatetime>
+          <IonDatetime id="fin" displayFormat="MMM DD, YYYY" max="2056" value={new Date().toISOString()}></IonDatetime>
         </IonItem>
       </IonList>
 
@@ -39,29 +55,37 @@ const Export: React.FC = () => {
 
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="block">Nourriture</IonButton>
+            <IonButton id="food" onClick={() => changeColor("food")} color="light" expand="block">Nourriture</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton color="light" expand="block">Boissons</IonButton>
+            <IonButton id="beverage" onClick={() => changeColor("beverage")} color="light" expand="block">Breuvages</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="block">Suppléments</IonButton>
+            <IonButton id="" color="light" expand="block">Suppléments</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton color="light" expand="block">Someil</IonButton>
+            <IonButton id="sleep" onClick={() => changeColor("sleep")}  color="light" expand="block">Sommeil</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="full" >Poids</IonButton>
+            <IonButton id="profil/poids" onClick={() => changeColor("profil/poids")} color="light" expand="full" >Poids</IonButton>
           </IonCol>
           <IonCol>
-            <IonButton expand="full" color="light" >Activités physiques</IonButton>
+            <IonButton id="Activites"  onClick={() => changeColor("Activites")} expand="full" color="light" >Activités physiques</IonButton>
           </IonCol>
         </IonRow>
-        <IonButton color="secondary" expand="block">Toutes les données</IonButton>
+        <IonRow>
+          <IonCol>
+            <IonButton id="alcohol" onClick={() => changeColor("alcohol")}  color="light" expand="full" >Alcool</IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton id="profil/glycemie" onClick={() => changeColor("profil/glycemie")} expand="full" color="light" >Glycémie</IonButton>
+          </IonCol>
+        </IonRow>
+        <IonButton onClick={() => getAllData()} color="secondary" expand="block">Toutes les données</IonButton>
       </IonList>
 
         <div className="about-header"></div>
@@ -86,9 +110,10 @@ const Export: React.FC = () => {
               <IonButton color="light" onClick={() => setShowToast(true)} expand="block">Exporter</IonButton>
               <IonToast
                 isOpen={showToast1}
+                position="middle"
                 onDidDismiss={() => setShowToast(false)}
-                message="Vos données ont été bien exportée."
-                duration={200}
+                message="L'exportation des données a réussi"
+                duration={400}
               />
             </IonCol>
           </IonRow>
@@ -97,5 +122,4 @@ const Export: React.FC = () => {
     </IonPage>
   );
 };
-
 export default Export;

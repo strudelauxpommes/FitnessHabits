@@ -1,0 +1,242 @@
+[
+    {
+        "Category": "Viande",
+        "Sub-category": "Gibier",
+        "Food item": "Chevreuil",
+        "Portion size": "100g",
+        "Proteines": "26,5",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "8,2"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Gibier",
+        "Food item": "Lapin",
+        "Portion size": "100g",
+        "Proteines": "29,1",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "8,1"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Volaille",
+        "Food item": "Poulet (blanc)",
+        "Portion size": "100g",
+        "Proteines": "29,8",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "7,8"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Volaille",
+        "Food item": "Poulet rôti (cuisse)",
+        "Portion size": "100g",
+        "Proteines": "24,2",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "12,9"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Volaille",
+        "Food item": "Dinde (cuisse)",
+        "Portion size": "100g",
+        "Proteines": "27,9",
+        "Net Carbs": "0,1",
+        "Fibers": "0",
+        "Fat": "9,8"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Boeuf et veau",
+        "Food item": "Steak haché",
+        "Portion size": "125g",
+        "Proteines": "31,9",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "22,3"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Boeuf et veau",
+        "Food item": "Entrecôte grillée",
+        "Portion size": "150g",
+        "Proteines": "41,1",
+        "Net Carbs": "0,9",
+        "Fibers": "0",
+        "Fat": "21,1"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Volaille",
+        "Food item": "Oeuf brouillé",
+        "Portion size": "50g",
+        "Proteines": "6,9",
+        "Net Carbs": "1",
+        "Fibers": "0",
+        "Fat": "8,9"
+    },
+    {
+        "Category": "Viande",
+        "Sub-category": "Volaille",
+        "Food item": "Oeut",
+        "Portion size": "50g",
+        "Proteines": "6,3",
+        "Net Carbs": "0,4",
+        "Fibers": "0",
+        "Fat": "4,8"
+    },
+    {
+        "Category": "Pains\\Gâteaux",
+        "Sub-category": "Pain",
+        "Food item": "Pain Keto 1 tranche",
+        "Portion size": "44g",
+        "Proteines": "15",
+        "Net Carbs": "1",
+        "Fibers": "3",
+        "Fat": "4,6"
+    },
+    {
+        "Category": "Pains\\Gâteaux",
+        "Sub-category": "Pain",
+        "Food item": "Pain aux amandes",
+        "Portion size": "",
+        "Proteines": "",
+        "Net Carbs": "",
+        "Fibers": "",
+        "Fat": ""
+    },
+    {
+        "Category": "Protéines",
+        "Sub-category": "Poisson",
+        "Food item": "Saumon cuit",
+        "Portion size": "150g",
+        "Proteines": "36,9",
+        "Net Carbs": "0",
+        "Fibers": "0",
+        "Fat": "7,9"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Laitues",
+        "Food item": "Salade verte",
+        "Portion size": "1 tasse (36g)",
+        "Proteines": "0,5",
+        "Net Carbs": "1",
+        "Fibers": "5",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Crucifères",
+        "Food item": "Chou vert",
+        "Portion size": "1 tasse (145g)",
+        "Proteines": "2,6",
+        "Net Carbs": "3,7",
+        "Fibers": "4,1",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Crucifères",
+        "Food item": "Broccoli",
+        "Portion size": "100g",
+        "Proteines": "2,4",
+        "Net Carbs": "3,9",
+        "Fibers": "3,3",
+        "Fat": "0,4"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Racines",
+        "Food item": "Radis",
+        "Portion size": "1 tasse (100g)",
+        "Proteines": "1,1",
+        "Net Carbs": "1,2",
+        "Fibers": "1,4",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Crucifères",
+        "Food item": "Chou-fleur",
+        "Portion size": "1 tasse (124g)",
+        "Proteines": "2,3",
+        "Net Carbs": "2,2",
+        "Fibers": "2,9",
+        "Fat": "0,6"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Courges",
+        "Food item": "Zucchini",
+        "Portion size": "1 petit (170g)",
+        "Proteines": "1,9",
+        "Net Carbs": "2,9",
+        "Fibers": "1,7",
+        "Fat": "0,6"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Verts",
+        "Food item": "Asperges",
+        "Portion size": "1 portion (105g)",
+        "Proteines": "2,5",
+        "Net Carbs": "2,2",
+        "Fibers": "2,1",
+        "Fat": "0,2"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Oignons",
+        "Food item": "Oignon jaune cuit",
+        "Portion size": "15g",
+        "Proteines": "0,2",
+        "Net Carbs": "1,2",
+        "Fibers": "0,2",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Oignons",
+        "Food item": "Oignon rouge cru",
+        "Portion size": "15g",
+        "Proteines": "0,2",
+        "Net Carbs": "1,2",
+        "Fibers": "0,2",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Oignons",
+        "Food item": "Échalotte verte",
+        "Portion size": "1 (20g)",
+        "Proteines": "0,4",
+        "Net Carbs": "1",
+        "Fibers": "0,5",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Oignons",
+        "Food item": "Ail",
+        "Portion size": "1 gousse (3g)",
+        "Proteines": "0,1",
+        "Net Carbs": "0,9",
+        "Fibers": "0,1",
+        "Fat": "0,1"
+    },
+    {
+        "Category": "Légumes",
+        "Sub-category": "Piments",
+        "Food item": "Poivrons rouges",
+        "Portion size": "",
+        "Proteines": "",
+        "Net Carbs": "",
+        "Fibers": "",
+        "Fat": ""
+    }
+]
