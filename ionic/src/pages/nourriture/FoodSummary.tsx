@@ -23,6 +23,7 @@ import {
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
 
+
 export default class FoodSummary extends Component {
   render() {
     return (

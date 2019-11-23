@@ -18,8 +18,12 @@ import {
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
 import { add } from "ionicons/icons";
+import FoodService from "src/services/food/FoodService"
 
 export default class FoodList extends Component {
+  
+  foodService = FoodService()
+
   render() {
     return (
       <IonPage>
