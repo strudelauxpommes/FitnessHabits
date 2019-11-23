@@ -14,30 +14,27 @@ const AddActivityForm = () => {
   const [ intensity, setIntensity ] = useState('');
   const [ comment, setComment ] = useState('');
   const [ favorite, setFavorite ] = useState('');
-  const [ formErrors, setFormErrors ] = useState({});
+  const [ formErrors, setFormErrors ] = useState('');
 
   const submit = async () => {
-    if (name.length == 0 || time.length == 0 || intensity.length == 0) {
+    if (name.length === 0 || time.length === 0 || intensity.length === 0) {
       setFormErrors("Veuillez remplir les sections obligatoires");
     } else if (intensity < 0 || intensity > 10) {
       setFormErrors("L'intensité doit être située entre 0 et 10");
-    }
+    } else {
+      setFormErrors('');
 
-    try {
-      console.log("New activity");
-    } catch (e) {
-      setFormErrors(e);
+      try {
+        console.log("New activity");
+      } catch (e) {
+        setFormErrors(e);
+      }
     }
   }
 
   return (
     <IonContent>
       <form onSubmit={(e) => { e.preventDefault(); submit();}}>
-        <div>
-          {formErrors ? (
-            formErrors.message
-          ): null}
-        </div>
         <IonList>
           <IonItem>
             <IonLabel>Name</IonLabel>
@@ -61,6 +58,11 @@ const AddActivityForm = () => {
           </IonItem>
         </IonList>
 
+        <div className="ad-error-msg">
+          {formErrors.length > 0 ? (
+            formErrors
+          ): null}
+        </div>
         <IonButton className="ad-submit-btn" expand={true} type="submit">Créer</IonButton>
       </form>
     </IonContent>
