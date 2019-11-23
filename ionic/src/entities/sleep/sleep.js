@@ -152,7 +152,8 @@ class SleepCollection {
     }
 
     getActiveDate(){
-        return this.activeDate.toDate()
+        return this.activeDate
+        //return this.activeDate.toDate()
     }
 
     /**
@@ -166,6 +167,24 @@ class SleepCollection {
         listSleeps.forEach(sleep => {
             this.addSleep(new Sleep(sleep))
         });
+    }
+
+
+    /**
+     * 
+     * [returns true if a sleepCollection contains a key]
+     * 
+     * @param {string]} forKey the result of the getType()
+     * 
+     */
+
+    containsSleepItem(forKey) {
+        
+        const filteredCollection = this.list.filter( (item) => { 
+            return item.getId() === forKey
+        })
+
+        return  filteredCollection.length > 0
     }
 
     /**
@@ -313,6 +332,8 @@ class SleepCollection {
         const test = moment.duration(this.calculateTotalSleep() / 60, 'h')
         return moment.utc(test.as('milliseconds')).format('HH:mm')
     }
+
+
 }
 
 export { Sleep, SleepCollection };

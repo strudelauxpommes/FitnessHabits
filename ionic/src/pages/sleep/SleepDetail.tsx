@@ -46,10 +46,13 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         const sleepService = new SleepService();
         sleepService.getActiveDate()
         const activeDate = sleepService.getActiveDate()
-    
+        
         const backEndCollection = await sleepService.fetchHistory_v2()
         const displaySleepCollection = await sleepService.fetchHistory()
         displaySleepCollection.sortByAscendingStartDate()
+
+        console.log(backEndCollection)
+        console.log(displaySleepCollection)
 
         if(displaySleepCollection){
             this.setState({
@@ -77,16 +80,34 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
 
     deleteSleepItemWithKey(key: Sleep) {
         
+        const updatedCollection = this.state.backEndCollection.filter( (sc:SleepCollection) => {
+            return sc.containsSleepItem(key.getId())
+        })[0]
+
+        console.log("the collection to update")
+        console.log(updatedCollection)
+
+        const updatedCollectionActiveDate = updatedCollection.getActiveDate()
+        console.log("the activeDate ToDelete")
+        console.log(updatedCollectionActiveDate)
+
+        updatedCollection.removeSleep(key)
+
+        console.log(updatedCollection)
+
+        const sleepService = new SleepService()
+        sleepService.saveCollectionWithDate(updatedCollection,updatedCollectionActiveDate)        
+
         //first we remove the item we want to remove
-        const newCollection = this.state.sleepCollection
+        //const newCollection = this.state.sleepCollection
         //newCollection.removeSleep(key)
         //then we remove all the items from the collection that dont share the date of the removed item
         //const temp = newCollection.filterSleepByDate(key.start)
         
-        const sleepService = new SleepService()
+        //const sleepService = new SleepService()
         //sleepService.saveCollectionAtDate(temp,key.start)
         
-        this.setState({sleepCollection: newCollection})
+        //this.setState({sleepCollection: newCollection})
     }
 
     render() {

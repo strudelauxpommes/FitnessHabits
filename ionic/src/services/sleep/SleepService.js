@@ -27,7 +27,7 @@ export default class SleepService{
         
         const parsedDate = activeDate.getUTCFullYear()+"-"+(activeDate.getMonth()+1)+"-"+activeDate.getDate()
         const actual = await this.persist.getValue(this.getKey(), activeDate)
-
+        
         if(actual === undefined){
             const sleepCollection = new SleepCollection({'activeDate': parsedDate, 'list': []})
             return sleepCollection
@@ -110,6 +110,15 @@ export default class SleepService{
      */
     async saveActiveDate(sleepCollection){
         const activeDate = await this.getActiveDate()
+        
+        await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
+    }
+
+    async saveCollectionWithDate(sleepCollection,date){
+        const activeDate = date
+
+        console.log("the date where to save")
+        console.log(activeDate)
 
         await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
     }
