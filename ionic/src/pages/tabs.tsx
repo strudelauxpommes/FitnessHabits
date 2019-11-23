@@ -18,7 +18,7 @@ class Tabs extends React.Component {
           <IonIcon icon={download} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="delete" href="/purge">
+        <IonTabButton tab="delete" href="/remove">
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>
