@@ -6,6 +6,10 @@ import Home from "./pages/Home";
 import moment from "moment";
 import T from "i18n-react";
 
+/* Import DAL */
+import Dal from "./dal/Dal";
+import { DalImpl } from "./dal/DalImpl";
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -30,13 +34,13 @@ import "./theme/sleep.css";
 import SleepDetail from "./pages/sleep/SleepDetail";
 import SleepSummary from "./pages/sleep/SleepSummary";
 import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
- 
+
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodAdd from "./pages/nourriture/FoodAdd";
-import FoodList from './pages/nourriture/FoodList';
-        
+import FoodList from "./pages/nourriture/FoodList";
+
 /* Alcool Imports */
 import AlcoolDetail from "./alcool/AlcoolDetail";
 
