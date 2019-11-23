@@ -13,7 +13,7 @@ import AlcoolDetailAddForm from './Components/AlcoolDetailAddForm';
 
 //import DAL from '../dal/Dal';
 
-class AlcoolDetail extends React.Component {
+export default class AlcoolDetail extends React.Component {
     constructor(props) {
         super(props);
         this.getDateFromParameters = this.getDateFromParameters.bind(this);
@@ -52,4 +52,3 @@ class AlcoolDetail extends React.Component {
         );
     }
 }
-export default AlcoolDetail;

@@ -14,8 +14,7 @@ import './Style/Alcool.scss';
 import SummaryCardItem from './Components/SummaryCardItem'
 import SummaryOtherAlcoolItem from './Components/SummaryOtherAlcoolItem';
 
-
-class AlcoolSommaire extends React.Component {
+export default class AlcoolSommaire extends React.Component {
   constructor(props) {
     super(props);
     this.addAlcool = this.addAlcool.bind(this);
@@ -68,31 +67,4 @@ class AlcoolSommaire extends React.Component {
     }
     return list;
   }
-
-  render() {
-
-    return (
-      <IonCard>
-        <IonCardHeader color="alcool">
-          <IonRow>
-            <IonIcon item-center icon={wine} className="summary__wine-icon" />
-            <IonTitle>Alcool</IonTitle>
-          </IonRow>
-        </IonCardHeader>
-        <IonRow>
-          {this.getSummaryCardList()}
-          <SummaryOtherAlcoolItem />
-        </IonRow>
-
-        <IonCardContent>
-          <IonGrid>
-            <IonRow>
-            </IonRow>
-          </IonGrid>
-        </IonCardContent>
-      </IonCard >
-    );
-  }
 }
-
-export default AlcoolSommaire
