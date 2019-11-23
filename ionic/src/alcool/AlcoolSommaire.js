@@ -6,16 +6,15 @@ import {
   IonGrid,
   IonCardContent,
   IonCardHeader
-} from '@ionic/react';
-import { wine } from 'ionicons/icons';
-import React from 'react';
-import './Style/AlcoolSommaire.scss';
-import './Style/Alcool.scss';
-import SummaryCardItem from './Components/SummaryCardItem'
-import SummaryOtherAlcoolItem from './Components/SummaryOtherAlcoolItem';
+} from "@ionic/react";
+import { wine } from "ionicons/icons";
+import React from "react";
+import "./Style/AlcoolSommaire.scss";
+import "./Style/Alcool.scss";
+import SummaryCardItem from "./Components/SummaryCardItem";
+import SummaryOtherAlcoolItem from "./Components/SummaryOtherAlcoolItem";
 
-
-class AlcoolSommaire extends React.Component {
+export default class AlcoolSommaire extends React.Component {
   constructor(props) {
     super(props);
     this.addAlcool = this.addAlcool.bind(this);
@@ -23,23 +22,25 @@ class AlcoolSommaire extends React.Component {
   }
 
   initializeState() {
-    return ({
+    return {
       Alcools: {
-
-        "Whisky": {
+        Whisky: {
           name: "Whisky",
           quantity: 2,
           volume: "44 ml"
-        }
-        ,
-
+        },
         "Vin Blanc": {
           name: "Vin Blanc",
           quantity: 1,
           volume: "150 ml"
+        },
+        Bière: {
+          name: "Bière",
+          quantity: 2,
+          volume: "344 ml"
         }
       }
-    })
+    };
   }
 
   addAlcool(name) {
@@ -48,10 +49,9 @@ class AlcoolSommaire extends React.Component {
       let newStateObject = this.state;
 
       console.log(newStateObject.Alcools[`${name}`]);
-        newStateObject.Alcools[`${name}`].quantity = newQt;
-        this.setState(newStateObject)
-      
-    } 
+      newStateObject.Alcools[`${name}`].quantity = newQt;
+      this.setState(newStateObject);
+    }
   }
 
   getSummaryCardList() {
@@ -64,13 +64,12 @@ class AlcoolSommaire extends React.Component {
           quantity={this.state.Alcools[key].quantity}
           volume={this.state.Alcools[key].volume}
           addAlcool={this.addAlcool}
-        />)
+        />
+      );
     }
     return list;
   }
-
   render() {
-
     return (
       <IonCard>
         <IonCardHeader color="alcool">
@@ -86,13 +85,10 @@ class AlcoolSommaire extends React.Component {
 
         <IonCardContent>
           <IonGrid>
-            <IonRow>
-            </IonRow>
+            <IonRow></IonRow>
           </IonGrid>
         </IonCardContent>
-      </IonCard >
+      </IonCard>
     );
   }
 }
-
-export default AlcoolSommaire

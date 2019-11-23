@@ -7,12 +7,10 @@ import {
 import React from 'react';
 import '../Style/AlcoolSommaire.scss';
 
-class SummaryCardItem extends React.Component {
+export default class SummaryCardItem extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  
 
   render() {
     return (
@@ -44,5 +42,3 @@ class SummaryCardItem extends React.Component {
     );
   }
 }
-
-export default SummaryCardItem;
