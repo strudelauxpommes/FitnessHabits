@@ -3,7 +3,7 @@ import {ActivityDate} from '../models/ActivityDate'
 describe('ActivityService',function(){
     let testActivity: ActivityDate = {
         day: "2019/11/19",
-        activities: [
+        activites: [
             {
                 title: "Yoga",
                 duration: "0:60:0",
