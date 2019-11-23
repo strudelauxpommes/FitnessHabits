@@ -96,7 +96,7 @@ export default class FoodSummary extends Component {
 
               <IonGrid>
                 <IonRow>
-                  <IonCol pull="-2.5">
+                  <IonCol pull="-1.5">
                     <IonToolbar>
                       <IonButtons slot="start">
                         <IonButton
