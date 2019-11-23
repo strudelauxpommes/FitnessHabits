@@ -22,17 +22,16 @@ export default class SleepService{
      */
 
     async fetchActiveDate () {
-            const activeDate = await this.getActiveDate()
+        const activeDate = await this.getActiveMoment()
         
-        const parsedDate = activeDate.getUTCFullYear()+"-"+(activeDate.getMonth()+1)+"-"+activeDate.getDate()
-        const actual = await this.persist.getValue(this.getKey(), activeDate)
+        const parsedDate = new Date(activeDate.format('YYYY-MM-DD'))
+        const actual = await this.persist.getValue(this.getKey(), parsedDate)
         
         if(actual === undefined){
             const sleepCollection = new SleepCollection({'activeDate': parsedDate, 'list': []})
             return sleepCollection
         } 
         
-        // const actualParsed = JSON.parse(actual)
         const sleepCollection = new SleepCollection(actual); 
 
         return sleepCollection
@@ -86,11 +85,13 @@ export default class SleepService{
     async fetchHistory_v2(){
         let result = []
         const historyDates = await this.getHistoryDate()
+       
 
         for(let i = 0; i < historyDates.length; i++){
-            let actual = await this.persist.getValue(this.getKey(), historyDates[i])
+            const parsedDate = new Date(historyDates[i].format('YYYY-MM-DD'))
+            let actual = await this.persist.getValue(this.getKey(), parsedDate)
             if(actual === undefined){
-                actual = {'activeDate': historyDates[i], 'list': []}
+                actual = {'activeDate': parsedDate, 'list': []}
             } 
 
             const sleepCollection = new SleepCollection(actual); 
@@ -140,10 +141,8 @@ export default class SleepService{
     async saveCollectionWithDate(sleepCollection,date){
         const activeDate = date
 
-        console.log("the date where to save")
-        console.log(activeDate)
 
-        await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
+        await this.persist.setValueByDate("sleep", sleepCollection, new Date(activeDate)); 
     }
 
     /**
@@ -191,10 +190,10 @@ export default class SleepService{
         const historyDates = []
         for(var i =0; i <= 6;i++){
             //eventually change the moment for the activate
-            var temp = moment('2019-10-11T00:00:00-04:00');
+            var temp = moment('2019-10-11');
             temp = temp.subtract(i,"days")
-            temp = temp.format("MM-DD-YYYY")
-            historyDates.push(new Date(temp))
+            // temp = temp.format("MM-DD-YYYY")
+            historyDates.push(temp)
         }
         
         return historyDates
@@ -216,6 +215,6 @@ export default class SleepService{
 
         //const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
         
-        return new Date("2019-10-11T00:00:00");
+        return new Date("2019-10-11");
     }
 }
