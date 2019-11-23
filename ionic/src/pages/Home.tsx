@@ -59,7 +59,6 @@ const Home: React.FC = () => {
         <Redirect exact path="/tabs" to="/tabs/home" />
         <Route path="/tabs/export" render={() => <Export />} exact={true} />
         <Route path="/tabs/import" render={() => <Import />} exact={true} />
-        <Route path="/tabs/purge" render={() => <Supression />} exact={true} />
       </IonRouterOutlet>
 
       <IonHeader>
