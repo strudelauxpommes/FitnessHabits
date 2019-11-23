@@ -8,6 +8,7 @@ import {
 } from '@ionic/react';
 import { calendar, logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
+import u from './export'
 
 const Export: React.FC = () => {
 const [showToast1, setShowToast] = useState(false);
@@ -19,7 +20,7 @@ const [showToast1, setShowToast] = useState(false);
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Exporter les données</IonTitle>
+          <IonTitle >Exporter les données</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

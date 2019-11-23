@@ -7,7 +7,7 @@ import { add, trash, download, settings, arrowRoundForward } from 'ionicons/icon
 
 import Export from './export';
 import Import from './import';
-import Supression from './purge';
+import Supression from './remove';
 
 interface MainTabsProps { }
 
@@ -19,14 +19,14 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Redirect exact path="/tabs" to="/tabs/home" />
         <Route path="/tabs/export" render={() => <Export />} exact={true} />
         <Route path="/tabs/import" render={() => <Import />} exact={true} />
-        <Route path="/tabs/purge" render={() => <Supression />} exact={true} />   
+        <Route path="/tabs/remove" render={() => <Supression />} exact={true} />   
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="ajoutDonnees" href="/tabs/addData">
           <IonIcon icon={add} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="purge" href="/tabs/purge">
+        <IonTabButton tab="remove" href="/tabs/remove">
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>
