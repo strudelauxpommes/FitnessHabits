@@ -1,9 +1,11 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon, IonCol, IonRow, IonGrid } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons,
+  IonButton, IonIcon, IonCol, IonRow, IonGrid, IonModal } from '@ionic/react';
 import { add } from 'ionicons/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import DateRow from '../components/DateRow';
 
 const ActivityDetails = () => {
+  const [showModal, setShowModal] = useState(false);
   let dates = [
     {
       jour : "2019/11/19",
@@ -76,16 +78,23 @@ const ActivityDetails = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
-        <ion-icon class="as-back-icon" name="arrow-back"></ion-icon>
           <IonTitle>Activité(s)</IonTitle>
+          <IonButtons slot="start">
+            <IonIcon class="as-back-icon" name="arrow-back"></IonIcon>
+          </IonButtons>
           <IonButtons slot="end">
-            <IonButton>
+            <IonButton onClick={() => setShowModal(true)}>
               <IonIcon icon={add}></IonIcon>
             </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent no-padding>
+        <IonModal isOpen={showModal}>
+          <p>This is modal content</p>
+          <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
+        </IonModal>
+
 	    <IonGrid class="test" className="ion-no-padding ion-no-margin" no-padding>
           <IonRow className="ion-no-padding" no-padding>
             <IonCol size="6">Nom</IonCol>
