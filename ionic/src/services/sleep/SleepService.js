@@ -25,11 +25,11 @@ export default class SleepService{
         
         const activeDate = await this.getActiveDate()
         
-        
+        const parsedDate = activeDate.getUTCFullYear()+"-"+(activeDate.getMonth()+1)+"-"+activeDate.getDate()
         const actual = await this.persist.getValue(this.getKey(), activeDate)
 
         if(actual === undefined){
-            const sleepCollection = new SleepCollection({'activeDate': '', 'list': []})
+            const sleepCollection = new SleepCollection({'activeDate': parsedDate, 'list': []})
             return sleepCollection
         } 
         
@@ -91,9 +91,7 @@ export default class SleepService{
         for(let i = 0; i < historyDates.length; i++){
             let actual = await this.persist.getValue(this.getKey(), historyDates[i])
             if(actual === undefined){
-
                 actual = {'activeDate': historyDates[i], 'list': []}
-                console.log(actual)
             } else {
                 console.log(actual)
             }
@@ -185,7 +183,7 @@ export default class SleepService{
         })
 
         const momentValue = moment(`${str[2]}-${str[1]}-${str[0]}T00:00:00-05:00`)
-
+        
         return new Date("2019-10-11");
     }
 }
