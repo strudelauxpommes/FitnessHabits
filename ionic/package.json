@@ -7,11 +7,8 @@
     "@capacitor/core": "^1.3.0",
     "@ionic/react": "^4.11.0",
     "@ionic/react-router": "^4.11.0",
-<<<<<<< HEAD
     "classnames": "^2.2.6",
-=======
     "ajv": "^6.10.2",
->>>>>>> master
     "cordova-sqlite-storage": "^3.4.0",
     "i18n-react": "^0.7.0",
     "ionicons": "^4.6.3",

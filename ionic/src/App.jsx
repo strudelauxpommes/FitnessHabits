@@ -2,13 +2,9 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-<<<<<<< HEAD:ionic/src/App.jsx
 import ActivityDetails from './pages/ActivityDetails';
 import ActivitySommary from './pages/ActivitySummary';
-=======
-import Home from './pages/Home';
 import moment from 'moment';
->>>>>>> master:ionic/src/App.tsx
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
