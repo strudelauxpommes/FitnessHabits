@@ -4,22 +4,26 @@ import {
     IonIcon,
     IonModal,
     IonPage,
+    IonContent,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React from 'react';
 import './Style/AlcoolDetail.scss';
 import AlcoolDetailHeader from './Components/AlcoolDetailHeader';
 import AlcoolDetailAddForm from './Components/AlcoolDetailAddForm';
+import Tabs from 'src/pages/tabs';
 
 //import DAL from '../dal/Dal';
 
-class AlcoolDetail extends React.Component {
+export default class AlcoolDetail extends React.Component {
     constructor(props) {
         super(props);
         this.getDateFromParameters = this.getDateFromParameters.bind(this);
         this.setShowModal = this.setShowModal.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.state = {
-            showModal: false
+            showModal: false,
+            Alcools: {}
         }
     }
 
@@ -35,21 +39,37 @@ class AlcoolDetail extends React.Component {
         });
     }
 
+    onSubmit(name, volume) {
+        debugger;
+        if (!this.state.Alcools[`${name}`]) {
+            var newStateObj = this.state;
+            newStateObj.Alcools[`${name}`] = {};
+            newStateObj.Alcools[`${name}`].quantity = volume;
+            console.log(newStateObj);
+            debugger;
+            this.setState(newStateObj);
+        }
+    }
+
     render() {
         this.getDateFromParameters();
         return (
             <IonPage>
-                <IonModal isOpen={this.state.showModal}>
-                    <AlcoolDetailAddForm setShowModal={this.setShowModal} />
-                </IonModal>
-                <AlcoolDetailHeader date={this.getDateFromParameters()} />
-                <IonFab vertical="bottom" horizontal="center" slot="fixed">
-                    <IonFabButton color="alcool" onClick={() => this.setShowModal(true)}>
-                        <IonIcon icon={add} />
-                    </IonFabButton>
-                </IonFab>
+                <IonContent>
+                    <IonModal isOpen={this.state.showModal}>
+                        <AlcoolDetailAddForm
+                            setShowModal={this.setShowModal}
+                            onSubmit={this.onSubmit} />
+                    </IonModal>
+                    <AlcoolDetailHeader date={this.getDateFromParameters()} />
+                    <IonFab vertical="bottom" horizontal="center" slot="fixed">
+                        <IonFabButton color="alcool" onClick={() => this.setShowModal(true)}>
+                            <IonIcon icon={add} />
+                        </IonFabButton>
+                    </IonFab>
+                </IonContent>
+                <Tabs />
             </IonPage>
         );
     }
 }
-export default AlcoolDetail;
