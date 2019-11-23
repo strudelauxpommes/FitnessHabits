@@ -1,6 +1,7 @@
 import {
     IonBackButton,
     IonButtons,
+    IonCol,
     IonGrid,
     IonHeader,
     IonIcon,
@@ -14,17 +15,20 @@ import React from 'react';
 import '../Style/Alcool.scss';
 import '../Style/AlcoolDetail.scss';
 
-const AlcoolDetailHeader = () => {
+const AlcoolDetailHeader = ({ date }) => {
     return (
         <IonHeader>
-            <IonToolbar className="header__top-menu" color="alcool">
+            <IonToolbar className="alcool-detail-header__top-menu" color="alcool">
                 <IonGrid>
-                    <IonRow className="header__title-row">
+                    <IonRow className="alcool-detail-header__title-row">
                         <IonButtons>
                             <IonBackButton defaultHref="/home" />
                         </IonButtons>
-                        <IonIcon item-center icon={wine} className="header__title-row__wine-icon" />
+                        <IonIcon item-center icon={wine} className="alcool-detail-header__title-row__wine-icon" />
                         <IonTitle>Alcool Détaillé</IonTitle>
+                    </IonRow>
+                    <IonRow className="ion-text-center alcool-detail-header__date">
+                        <IonCol>{date}</IonCol>
                     </IonRow>
                 </IonGrid>
             </IonToolbar>
