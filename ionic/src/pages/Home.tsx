@@ -1,15 +1,12 @@
-import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
 import T from 'i18n-react';
 import { calendar, download, home, redo, settings, trash } from 'ionicons/icons';
-import React, { Component } from 'react';
-import { Redirect, Route, RouteComponentProps } from 'react-router';
+import { Component, default as React } from 'react';
+import { RouteComponentProps } from 'react-router';
 import { SleepCollection } from 'src/entities/sleep/sleep';
 import Dal from '../dal/Dal';
 import { DalImpl } from '../dal/DalImpl';
 import SleepService from '../services/sleep/SleepService';
-import Export from './export';
-import Import from './import';
-import Supression from './purge';
 import SleepSummary from './sleep/SleepSummary';
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
@@ -27,21 +24,21 @@ dal.getItems("lang_key", new Date("2019-01-16"), new Date()).then((lang) => {
   }
 })
 
-const sleepService = SleepService()
+
+const sleepService = SleepService();
 
 type State = {
-  sleepCollection: SleepCollection
+  sleepCollection: SleepCollection;
 };
 class Home extends Component<RouteComponentProps, State> {
-
   constructor(props: RouteComponentProps) {
     super(props);
 
     const sleepCollection = sleepService.fetch();
 
     this.state = {
-      sleepCollection: sleepCollection,
-    }
+      sleepCollection: sleepCollection
+    };
   }
 
   render() {
@@ -49,18 +46,9 @@ class Home extends Component<RouteComponentProps, State> {
 
     return (
       <IonPage>
-        <IonRouterOutlet>
-          <Redirect exact path="/tabs" to="/tabs/home" />
-          <Route path="/tabs/export" render={() => <Export />} exact={true} />
-          <Route path="/tabs/import" render={() => <Import />} exact={true} />
-          <Route path="/tabs/purge" render={() => <Supression />} exact={true} />
-        </IonRouterOutlet>
-
         <IonHeader>
           <IonToolbar>
-            <IonTitle>
-              {T.translate("app.title")}
-            </IonTitle>
+            <IonTitle>{T.translate("app.title")}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -75,13 +63,14 @@ class Home extends Component<RouteComponentProps, State> {
             <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-          </IonButton>
+            </IonButton>
           </IonItem>
 
-          <div><br /></div>
+          <div>
+            <br />
+          </div>
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-
         </IonContent>
 
         <IonTabBar slot="bottom">
@@ -114,6 +103,6 @@ class Home extends Component<RouteComponentProps, State> {
       */
     );
   }
-};
+}
 
 export default Home;
