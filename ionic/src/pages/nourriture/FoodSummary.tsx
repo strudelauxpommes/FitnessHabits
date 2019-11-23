@@ -1,141 +1,121 @@
-import { Component } from 'react';
-import React from 'react';
-import { IonApp, IonHeader, IonContent, IonText, IonPage, IonToolbar, IonGrid, IonRow, IonCol, IonItem, IonLabel, IonDatetime, IonInput, IonButtons, IonButton, IonIcon, IonCard, IonCardHeader, IonCardContent } from '@ionic/react';
-import { MDBIcon } from "mdbreact";
+import { Component } from "react";
+import React from "react";
+import {
+  IonApp,
+  IonHeader,
+  IonContent,
+  IonText,
+  IonPage,
+  IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonDatetime,
+  IonInput,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonCard,
+  IonCardHeader,
+  IonCardContent
+} from "@ionic/react";
+import { FoodHeader } from "./FoodHeader";
 
 export default class FoodSummary extends Component {
+  render() {
+    return (
+      <IonPage>
+        <IonHeader className="background-black">
+          <FoodHeader backLink="/"></FoodHeader>
+        </IonHeader>
 
-    render() {
-        return (
-          <IonPage>
-      <IonHeader className="background-black">
-        <IonToolbar>
-          <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonItem lines="none" href="/">
-                  <IonLabel>
-                    <IonIcon md="md-arrow-back" ></IonIcon>
-                  </IonLabel>
-                </IonItem>
-              </IonCol>
-              <IonCol pull="1.5">
-                <IonItem lines="none">
-                  <IonLabel>Nutrition</IonLabel>
-                </IonItem>
-              </IonCol>
-            </IonRow>
+        <IonContent className="ion-padding">
+          <IonCard>
+            <IonCardHeader>
+              <h4>Sommaire</h4>
+            </IonCardHeader>
 
-            <IonRow>
-              <IonCol push="2">
-                <IonItem lines="none">
-                  <IonLabel>
-                  <IonIcon md="md-arrow-back"></IonIcon>
-                  </IonLabel>
-                </IonItem>
-              </IonCol>
-              <IonCol pull="0.5">
-                <IonItem lines="none">
-                  <IonLabel>
-                    <IonDatetime
-                      displayFormat="YYYY MM DD"
-                      value="1994-23-08"
-                    ></IonDatetime>
-                  </IonLabel>
-                </IonItem>
-              </IonCol>
-              <IonCol push="-0.5">
-                <IonItem lines="none">
-                  <IonLabel>
-                  <IonIcon md="md-arrow-forward"></IonIcon>
-                  </IonLabel>
-                </IonItem>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonToolbar>
-      </IonHeader>
+            <IonCardContent>
+              <IonGrid class="gridBorder">
+                <IonRow>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>
+                      <IonText> Proteine </IonText>
+                    </IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Lipide</IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Glucide</IonRow>
+                  </IonCol>
+                  <IonCol>
+                    <IonRow>
+                      <IonInput value="43" disabled></IonInput>
+                    </IonRow>
+                    <IonRow>Fibre</IonRow>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
 
-      <IonContent className="ion-padding">
-        <IonCard>
-          <IonCardHeader>
-          <h4>Sommaire</h4>
-          </IonCardHeader>
-        
-        
-<IonCardContent>
-        <IonGrid class="gridBorder">
-          <IonRow>
-            <IonCol>
-              <IonRow>
-                <IonInput value="43" disabled></IonInput>
-              </IonRow>
-              <IonRow>
-                <IonText> Proteine </IonText>
-              </IonRow>
-            </IonCol>
-            <IonCol>
-              <IonRow>
-                <IonInput value="43" disabled></IonInput>
-              </IonRow>
-              <IonRow>Lipide</IonRow>
-            </IonCol>
-            <IonCol>
-              <IonRow>
-                <IonInput value="43" disabled></IonInput>
-              </IonRow>
-              <IonRow>Glucide</IonRow>
-            </IonCol>
-            <IonCol>
-              <IonRow>
-                <IonInput value="43" disabled></IonInput>
-              </IonRow>
-              <IonRow>Fibre</IonRow>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+              <IonItem href="/foodList/dejeuner">
+                <IonLabel>Dejeuner</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
+              <IonItem href="/foodList/collation_am">
+                <IonLabel>Collation AM</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
+              <IonItem href="/foodList/diner">
+                <IonLabel>Diner</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
+              <IonItem href="/foodList/collaton_pm">
+                <IonLabel>Collation PM</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
+              <IonItem href="/foodList/souper">
+                <IonLabel>Souper</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
+              <IonItem href="/foodList/collation_soir">
+                <IonLabel>Collation Soir</IonLabel>
+                <IonIcon md="md-arrow-forward"></IonIcon>
+              </IonItem>
 
-        <IonItem href="/foodList/dejeuner">
-          <IonLabel>Dejeuner</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-        <IonItem href="/foodList/collation_am">
-          <IonLabel>Collation AM</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-        <IonItem href="/foodList/diner">
-          <IonLabel>Diner</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-        <IonItem href="/foodList/collaton_pm">
-          <IonLabel>Collation PM</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-        <IonItem href="/foodList/souper">
-          <IonLabel>Souper</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-        <IonItem href="/foodList/collation_soir">
-          <IonLabel>Collation Soir</IonLabel>
-          <IonIcon md="md-arrow-forward"></IonIcon>
-        </IonItem>
-
-        <IonGrid>
-          <IonRow>
-            <IonCol pull="-2.5">
-              <IonToolbar>
-                <IonButtons slot="start">
-                  <IonButton href="/food-daily-intake" expand="block" color="dark" fill="outline">Bilan de la journee</IonButton>
-                </IonButtons>
-              </IonToolbar>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-        </IonCardContent>
-        </IonCard>
-      </IonContent>
-    </IonPage>
-        );
-      }
-
+              <IonGrid>
+                <IonRow>
+                  <IonCol pull="-2.5">
+                    <IonToolbar>
+                      <IonButtons slot="start">
+                        <IonButton
+                          href="/food-daily-intake"
+                          expand="block"
+                          color="dark"
+                          fill="outline"
+                        >
+                          Bilan de la journee
+                        </IonButton>
+                      </IonButtons>
+                    </IonToolbar>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+            </IonCardContent>
+          </IonCard>
+        </IonContent>
+      </IonPage>
+    );
+  }
 }
