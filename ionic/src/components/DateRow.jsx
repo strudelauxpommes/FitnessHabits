@@ -39,9 +39,9 @@ export default class DateRow extends React.Component {
           <IonCol size="3">{this.getIntensityAverage()}</IonCol>
         </IonRow>
           {
-            this.props.activites.map(a => {
+            this.props.activites.map((a, index) => {
               return (
-                  <ActivityRow key={a['id']} titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
+                  <ActivityRow key={index} titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
               );
             })
           }

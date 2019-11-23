@@ -12,19 +12,16 @@ const ActivityDetails = () => {
       jour : "2019/11/19",
       activites : [
         {
-          id : 1,
           titre : "Yoga",
           duree : "0:60:0",
           intensite : 2
         },
         {
-          id : 2,
           titre : "Vélo",
           duree : "0:40:0",
           intensite : 5
         },
         {
-          id : 3,
           titre : "Soccer",
           duree : "0:45:0",
           intensite : 8
@@ -35,19 +32,16 @@ const ActivityDetails = () => {
       jour : "2019/11/18",
       activites : [
         {
-          id : 4,
           titre : "Gym",
           duree : "0:60:0",
           intensite : 6
         },
         {
-          id : 5,
           titre : "Vélo",
           duree : "0:40:0",
           intensite : 5
         },
         {
-          id : 6,
           titre : "Tennis",
           duree : "0:40:0",
           intensite : 8
@@ -58,13 +52,11 @@ const ActivityDetails = () => {
       jour : "2019/11/17",
       activites : [
         {
-          id : 7,
           titre : "Vélo",
           duree : "0:40:0",
           intensite : 4
         },
         {
-          id : 8,
           titre : "Soccer",
           duree : "0:40:0",
           intensite : 7
@@ -72,8 +64,6 @@ const ActivityDetails = () => {
       ]
     }
   ]
-
-  let dayIndex = 0;
 
   return (
     <IonPage>
@@ -103,9 +93,9 @@ const ActivityDetails = () => {
             <IonCol size="3">Intensité</IonCol>
           </IonRow>
           {
-            dates.map(d => {
+            dates.map((d, index) => {
               return (
-                  <DateRow key={d['jour']} jour={d['jour']} activites={d['activites']} index={dayIndex++}></DateRow>
+                  <DateRow key={d['jour']} jour={d['jour']} activites={d['activites']} index={index}></DateRow>
               );
             })
           }
