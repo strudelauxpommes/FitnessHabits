@@ -9,7 +9,8 @@ import {
   IonPage,
   IonCard,
   IonCardContent,
-  IonIcon
+  IonIcon,
+  IonCardHeader
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
 
@@ -22,6 +23,7 @@ export default class FoodDailyIntake extends Component {
         </IonHeader>
         <IonContent>
           <IonCard>
+          <IonCardHeader>Food Daily Intake</IonCardHeader>
             <IonCardContent>
               <IonList>
                 <IonItem lines="full">
