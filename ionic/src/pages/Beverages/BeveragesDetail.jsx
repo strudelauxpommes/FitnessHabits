@@ -129,7 +129,7 @@ class BeveragesDetail extends Component {
                     <IonToolbar class="new-beverages-style">
                             <IonRow>
                                 <IonCol style={{textAlign:'left'}}>
-                                <a style={{color:'inherit', textDecoration: 'none'}} href="/beverages-summary">
+                                <a style={{color:'inherit', textDecoration: 'none'}} href="/home">
                                     <IonTitle> <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> &nbsp; Breuvages</IonTitle>
                                 </a>
                                 </IonCol>

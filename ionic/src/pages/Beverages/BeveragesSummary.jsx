@@ -13,26 +13,13 @@ import {
   IonLabel,
   IonTitle
 } from "@ionic/react";
-import data from "./data.json";
 import { cafe } from "ionicons/icons";
 import FavoriteBeverage from "./FavoriteBeverage";
 import { DalImpl } from "../../dal/DalImpl";
 
 class BeveragesSummary extends Component {
-  constructor() {
-    super();
-    this.state = {
-      beverages: [],
-      total: 0,
-      unit: "L",
-      unitConverter: 1,
-      date: Date
-    };
-    this.onIncrease = this.onIncrease.bind(this);
-  }
-
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             beverages: [],
             total: 0,
@@ -55,7 +42,7 @@ class BeveragesSummary extends Component {
             await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
         }
     }
-  }
+  
 
     async getBeverages() {
         const instance = new DalImpl();
@@ -93,7 +80,7 @@ class BeveragesSummary extends Component {
             
         }
     }
-  }
+  
     async resetQuantities() {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
@@ -151,8 +138,7 @@ class BeveragesSummary extends Component {
             }
         }
         return (
-            <IonPage>
-                <IonContent>
+
                     <IonCard>
                         <IonCardHeader class="new-beverages-style">
                                 <IonRow>
@@ -174,32 +160,8 @@ class BeveragesSummary extends Component {
                             </IonGrid>
                         </IonCardContent>
                     </IonCard>
-                </IonContent>
-            </IonPage>
         );
     }
-    return (
-      <IonCard>
-        <IonCardHeader class="new-beverages-style">
-          <IonRow>
-            <IonCol style={{ textAlign: "left" }}>
-              <IonTitle>
-                <IonIcon icon={cafe}></IonIcon> &nbsp; Breuvages
-              </IonTitle>
-            </IonCol>
-            <IonCol style={{ textAlign: "right" }}>
-              <IonLabel>{this.state.total + this.state.unit}</IonLabel>
-            </IonCol>
-          </IonRow>
-        </IonCardHeader>
-        <IonCardContent style={{ textAlign: "center" }}>
-          <IonGrid>
-            <IonRow>{beveragesRender}</IonRow>
-          </IonGrid>
-        </IonCardContent>
-      </IonCard>
-    );
-  }
 }
 
 export default BeveragesSummary;
