@@ -7,6 +7,7 @@ import {
   IonLabel,
   IonButton
 } from '@ionic/react';
+import Dal from '../dal/DalImpl';
 
 const AddActivityForm = () => {
   const [ name, setName ] = useState('');
@@ -58,6 +59,11 @@ const AddActivityForm = () => {
           </IonItem>
         </IonList>
 
+        <div className="ad-error-msg">
+          {formErrors.length > 0 ? (
+            formErrors
+          ): null}
+        </div>
         <IonButton className="ad-submit-btn" expand={true} type="submit">Créer</IonButton>
       </form>
     </IonContent>
