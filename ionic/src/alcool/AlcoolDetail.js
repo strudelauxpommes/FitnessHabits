@@ -4,12 +4,14 @@ import {
     IonIcon,
     IonModal,
     IonPage,
+    IonContent,
 } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import React from 'react';
 import './Style/AlcoolDetail.scss';
 import AlcoolDetailHeader from './Components/AlcoolDetailHeader';
 import AlcoolDetailAddForm from './Components/AlcoolDetailAddForm';
+import Tabs from 'src/pages/tabs';
 
 //import DAL from '../dal/Dal';
 
@@ -53,17 +55,20 @@ export default class AlcoolDetail extends React.Component {
         this.getDateFromParameters();
         return (
             <IonPage>
-                <IonModal isOpen={this.state.showModal}>
-                    <AlcoolDetailAddForm
-                        setShowModal={this.setShowModal}
-                        onSubmit={this.onSubmit} />
-                </IonModal>
-                <AlcoolDetailHeader date={this.getDateFromParameters()} />
-                <IonFab vertical="bottom" horizontal="center" slot="fixed">
-                    <IonFabButton color="alcool" onClick={() => this.setShowModal(true)}>
-                        <IonIcon icon={add} />
-                    </IonFabButton>
-                </IonFab>
+                <IonContent>
+                    <IonModal isOpen={this.state.showModal}>
+                        <AlcoolDetailAddForm
+                            setShowModal={this.setShowModal}
+                            onSubmit={this.onSubmit} />
+                    </IonModal>
+                    <AlcoolDetailHeader date={this.getDateFromParameters()} />
+                    <IonFab vertical="bottom" horizontal="center" slot="fixed">
+                        <IonFabButton color="alcool" onClick={() => this.setShowModal(true)}>
+                            <IonIcon icon={add} />
+                        </IonFabButton>
+                    </IonFab>
+                </IonContent>
+                <Tabs />
             </IonPage>
         );
     }
