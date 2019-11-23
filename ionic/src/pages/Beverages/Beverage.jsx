@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { IonRow, IonCol, IonButton, IonItem, IonFabButton, IonIcon, IonGrid, IonInput, IonLabel } from '@ionic/react';
 import Dal from '../../dal/Dal'
-import { starOutline } from 'ionicons/icons';
+import { starOutline, star } from 'ionicons/icons';
 import { add } from 'ionicons/icons';
 import { remove } from 'ionicons/icons';
 
@@ -29,6 +29,8 @@ export class Beverage extends Component {
         this.props.onFavorite(this.props.beverage);
     }
 
+
+
     render() {
         return (
                 <IonItem >
@@ -36,7 +38,11 @@ export class Beverage extends Component {
                         <IonRow>
                             <IonCol size={"2"}>
                                 <IonFabButton onClick={this.fav} size={"small"}>
-                                    <IonIcon icon={starOutline} />
+                                    {this.props.beverage.favorite ? (
+                                        <IonIcon icon={star} />
+                                    ) : (
+                                        <IonIcon icon={starOutline} />
+                                    )}
                                 </IonFabButton>
                             </IonCol>
                             <IonCol size={"4"}>

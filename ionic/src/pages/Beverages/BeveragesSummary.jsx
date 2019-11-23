@@ -134,7 +134,7 @@ class BeveragesSummary extends Component {
                         <IonCardHeader class="new-beverages-style">
                                 <IonRow>
                                     <IonCol style={{textAlign:'left'}}>
-                                        <a style={{color:'inherit'}} href="/beverages-detail">
+                                        <a style={{color:'inherit', textDecoration: 'none'}} href="/beverages-detail">
                                         <IonTitle><IonIcon icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
                                         </a>
                                     </IonCol>
