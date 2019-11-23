@@ -17,6 +17,7 @@ import { moon, remove, add } from 'ionicons/icons';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import SleepService from '../../services/sleep/SleepService';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import moment from 'moment'
 
 type Props = {
   activeDate: Date;
@@ -43,7 +44,7 @@ export default class SleepSummary extends Component<Props, State> {
       sleepTimeBegin: "2300",
       sleepTimeEnd: "0400",
       wakeUpCount: "",
-      totalSleepTimeToday: "",
+      totalSleepTimeToday: "00:00:00",
       hasSubmitError: false,
       errorMessage: "",
     }
@@ -57,7 +58,7 @@ export default class SleepSummary extends Component<Props, State> {
 
     this.setState({
       sleeps: sleepCollection,
-      totalSleepTimeToday: sleepCollection.calculateTotalSleep().toString(),
+      totalSleepTimeToday: sleepCollection.showTotalSleep(),
     })
 }
 
@@ -88,7 +89,7 @@ export default class SleepSummary extends Component<Props, State> {
           sleepTimeBegin: "",
           sleepTimeEnd: "",
           wakeUpCount: "",
-          totalSleepTimeToday: collection.calculateTotalSleep().toString()
+          totalSleepTimeToday: collection.showTotalSleep()
         });
     } else {
       this.setState({
@@ -141,7 +142,7 @@ export default class SleepSummary extends Component<Props, State> {
 
     this.setState({
       sleeps: this.state.sleeps,
-      totalSleepTimeToday: this.state.sleeps.calculateTotalSleep().toString(),
+      totalSleepTimeToday: this.state.sleeps.showTotalSleep(),
     });
   }
 
@@ -182,7 +183,7 @@ export default class SleepSummary extends Component<Props, State> {
                   <IonIcon icon={moon} /> SOMMEIL
                   </IonCol>
                   <IonCol size='3'>
-                    {(parseFloat(this.state.totalSleepTimeToday) / 60).toFixed(2)} heures
+                    {this.state.totalSleepTimeToday}
                   </IonCol>
                 </IonRow>
               </IonGrid>

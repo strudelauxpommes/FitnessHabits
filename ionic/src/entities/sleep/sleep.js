@@ -1,4 +1,5 @@
 import moment, { now } from 'moment';
+import { timingSafeEqual } from 'crypto';
 
 //Important - Overide the format when jsonifying a moment object
 moment.fn.toJSON = function () { return this.format(); }
@@ -302,7 +303,12 @@ class SleepCollection {
             totalMinutes += sleep.getDurationAsMinutes();
         })
 
-        return totalMinutes;
+        return totalMinutes
+    }
+
+    showTotalSleep(){
+        const test = moment.duration(this.calculateTotalSleep() / 60, 'h')
+        return moment.utc(test.as('milliseconds')).format('HH:mm:ss')
     }
 }
 

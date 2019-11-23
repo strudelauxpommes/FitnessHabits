@@ -2,6 +2,7 @@ import { SleepCollection } from '../../entities/sleep/sleep'
 import { DalImpl } from '../../dal/DalImpl'
 import ValidatorService from './ValidatorService';
 import moment from 'moment'
+import { thisExpression } from '@babel/types';
 // import ajv from 'ajv';
 /**
  * Service to fetch sleep entities from the persistence
@@ -9,7 +10,6 @@ import moment from 'moment'
 export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
-
         this.validatorService = new ValidatorService()
     }    
 
@@ -29,8 +29,8 @@ export default class SleepService{
             return sleepCollection
         } 
             
-        const actualParsed = JSON.parse(actual)
-        const sleepCollection = new SleepCollection(actualParsed); 
+        // const actualParsed = JSON.parse(actual)
+        const sleepCollection = new SleepCollection(actual); 
 
         return sleepCollection
     }
@@ -77,9 +77,11 @@ export default class SleepService{
         
         finalCollection.forEach(item => {
                 const value = item.value
-                const json = JSON.parse(value)
-                result.push(new SleepCollection(json))
+                // const json = JSON.parse(value)
+                result.push(new SleepCollection(value))
         })
+
+        console.log(result)
 
         return result
     }
@@ -90,11 +92,12 @@ export default class SleepService{
      * Save a new sleep to the persistance layer
      */
     async saveActiveDate(sleepCollection){
-        const json = JSON.stringify(sleepCollection)
+        // const json = JSON.stringify(sleepCollection)
+        console.log(sleepCollection)
 
         const activeDate = await this.getActiveDate()
     
-        await this.persist.setValueByDate("sleep", json, activeDate); 
+        await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
     }
 
     /**
