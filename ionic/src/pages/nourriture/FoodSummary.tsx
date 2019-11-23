@@ -23,7 +23,7 @@ import {
   IonTitle
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
-// import { FoodHome } from './FoodHome';
+import { FoodHome } from './FoodHome'
 
 
 export default class FoodSummary extends Component {
