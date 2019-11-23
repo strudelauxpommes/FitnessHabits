@@ -42,6 +42,8 @@ import AlcoolDetail from "./alcool/AlcoolDetail";
 
 /* Theme variable */
 import "./theme/variables.css";
+import Dal from './dal/Dal';
+import { DalImpl } from './dal/DalImpl';
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
