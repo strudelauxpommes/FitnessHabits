@@ -3,7 +3,7 @@ import { IonPage, IonGrid, IonContent, IonCard, IonCardHeader, IonCardTitle, Ion
 import data from './data.json';
 import { cafe } from 'ionicons/icons';
 import FavoriteBeverage from './FavoriteBeverage';
-import Dal from '../../dal/Dal'
+import { DalImpl } from '../../dal/DalImpl'
 
 class BeveragesSummary extends Component {
 
@@ -13,13 +13,16 @@ class BeveragesSummary extends Component {
             beverages: [],
             total: 0,
             unit: "L",
-            unitConverter:1
+            unitConverter:1,
+            date: Date
         }
         this.onIncrease=this.onIncrease.bind(this);
     }
 
     async componentDidMount() {
-        await this.setState({beverages: data.items})
+        
+        await this.getBeverages();
+
         //ici: setstate this.state.unit en allant chercher le parametre 
         //
         if (this.state.unit==="on") {
@@ -31,13 +34,56 @@ class BeveragesSummary extends Component {
         
     }
 
+    async getBeverages() {
+        const instance = new DalImpl();
+        // let date = await instance.getLastValue('activeDate');
+
+        // let activeDate = new Date();
+        // await this.setState({date: activeDate});
+
+        let beverages = await instance.getLastValue('beverage/listBeverage')
+        if (!beverages) {
+            alert('none');
+            await this.initDefaultBeverages();
+            await instance.setValue('beverage/listBeverage', JSON.stringify(this.state.beverages));
+        } else {
+            let favorites = JSON.parse(beverages).filter(beverage => beverage.favorite === true);
+            await this.setState({beverages: favorites})
+        }
+    }
+
+    async initDefaultBeverages() {
+        let defaultBeverages = [
+            this.defaultBeverage('Café'),
+            this.defaultBeverage('Eau'),
+            this.defaultBeverage('Thé'),
+            this.defaultBeverage('Perrier'),
+        ]
+
+        await this.setState({beverages: defaultBeverages});
+    }
+
+    defaultBeverage(beverageName) {
+        return {
+            name: beverageName,
+            volume: 125,
+            quantity: 0,
+            comment: "",
+            favorite: true
+        }
+    }
+
     async onIncrease (data) {
+        const instance = new DalImpl();
+
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
                 el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
             )
         }))
         this.setState({total: this.state.total+data.volume})
+
+        await instance.setValue('beverage/listBeverage', JSON.stringify(this.state.beverages));
     }
 
     render() {
