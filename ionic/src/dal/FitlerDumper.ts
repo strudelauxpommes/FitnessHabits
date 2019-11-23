@@ -23,7 +23,7 @@ export class FilterDumper {
         }
         const dumpString = JSON.stringify(dump);
         const now = new Date();
-        const path = now.toISOString() + ".bak";
+        const path = now.toISOString() + ".json";
         await fileDumper.writeDump(path, dumpString);
     }
 

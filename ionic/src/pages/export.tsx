@@ -112,8 +112,8 @@ function changeColor(id:string){
                 isOpen={showToast1}
                 position="middle"
                 onDidDismiss={() => setShowToast(false)}
-                message="L'éxportation des données a échoué"
-                duration={4000}
+                message="L'exportation des données a réussi"
+                duration={400}
               />
             </IonCol>
           </IonRow>
