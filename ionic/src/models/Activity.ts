@@ -1,5 +1,7 @@
 export interface Activity{
-   titre: string;
-   duree: string;
-   intensite: number; 
+   title: string;
+   duration: string;
+   intensity: number; 
+   comments: string; 
+   isFavorite: Boolean; 
 }
