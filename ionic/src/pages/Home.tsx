@@ -2,9 +2,6 @@ import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSu
 import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router';
-import Export from './export-import/export';
-import Import from './export-import/import';
-import Supression from './export-import/remove';
 import T from 'i18n-react';
 
 //interface MainTabsProps { }
@@ -17,13 +14,6 @@ T.setTexts(fr_dictionary);
 const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonRouterOutlet>
-        <Redirect exact path="/" to="/tabs/home" />
-        <Route path="/export-import/export" render={() => <Export />} exact={true} />
-        <Route path="/export-import/import" render={() => <Import />} exact={true} />
-        <Route path="/export-import/remove" render={() => <Supression />} exact={true} />   
-      </IonRouterOutlet>
-
       <IonHeader>
         <IonToolbar>
           <IonTitle>
@@ -306,15 +296,15 @@ const Home: React.FC = () => {
           <IonIcon icon={home} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="export" href="/">
+        <IonTabButton tab="export" href="/export">
           <IonIcon icon={redo} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="import" href="/">
+        <IonTabButton tab="import" href="/import">
           <IonIcon icon={download} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="delete" href="/">
+        <IonTabButton tab="delete" href="/remove">
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>

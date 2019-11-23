@@ -29,6 +29,10 @@ import './theme/sleep.css';
 import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
+/* Export Import Delete */
+import Export from './pages/export';
+import Import from './pages/import';
+import Supression from './pages/remove';
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
@@ -39,6 +43,10 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/export" render={() => <Export />} exact={true} />
+        <Route path="/import" render={() => <Import />} exact={true} />
+        <Route path="/remove" render={() => <Supression />} exact={true} />   
+      
         <Route path="/sleep-summary" component={SleepSummary}/>
         <Route path="/sleep-detail" component={SleepDetail}/>
         <Route path="/sleep-detail-edit" component={AddSleepLineForm}/>
