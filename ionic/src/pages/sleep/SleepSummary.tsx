@@ -28,9 +28,11 @@ type State = {
   sleepTimeBegin: string,
   sleepTimeEnd: string,
   wakeUpCount: string,
+  mood: string,
   totalSleepTimeToday: string,
   hasSubmitError: boolean,
   errorMessage: string,
+  choosingMood: boolean,
 }
 
 export default class SleepSummary extends Component<Props, State> {
@@ -44,9 +46,11 @@ export default class SleepSummary extends Component<Props, State> {
       sleepTimeBegin: "2300",
       sleepTimeEnd: "0400",
       wakeUpCount: "",
+      mood: "",
       totalSleepTimeToday: "00:00:00",
       hasSubmitError: false,
       errorMessage: "",
+      choosingMood: true,
     }
   }
 
@@ -62,6 +66,10 @@ export default class SleepSummary extends Component<Props, State> {
       totalSleepTimeToday: sleepCollection.showTotalSleep(),
     })
 }
+
+  onChoosingMoodDismissed(e: any) {
+    console.log(e.target.value)
+  }
 
   /**
    * [Handles the submit event. Adds sleep to collection and updates the state]
@@ -244,6 +252,55 @@ export default class SleepSummary extends Component<Props, State> {
                         message={this.state.errorMessage}
                         onDidDismiss={() => this.onSubmitErrorDismissed()}
                         buttons={['OK']}
+                      />
+                      <IonAlert
+                        isOpen={this.state.choosingMood}
+                        onDidDismiss={(e: any) => this.onChoosingMoodDismissed(e)}
+                        buttons={
+                          [
+                            {
+                              text: 'ok',
+                              handler: (data) => {
+                                console.log(data.mood)
+                              }
+                            }
+                          ]
+                        }
+                        header="Choisir votre humeur"
+                        inputs={
+                          [
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'Super'
+                            },
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'De bonne humeur'
+                            },
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'Neutre'
+                            },
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'Un peu grognon'
+                            },
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'Fatigue'
+                            },
+                            {
+                              name: 'mood',
+                              type: 'radio',
+                              label:  'Depressif'
+                            },
+                          ]
+                        }
                       />
                     </IonCol>
                   </IonRow>

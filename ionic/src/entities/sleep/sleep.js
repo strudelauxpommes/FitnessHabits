@@ -183,7 +183,8 @@ class SleepCollection {
         let result = true
 
         this.list.forEach(s => {
-            result = result && ! sleep.start.isBetween(s.start, s.end) && !sleep.end.isBetween(s.start, s.end)
+            result = result && ! sleep.start.isBetween(s.start, s.end) && !sleep.end.isBetween(s.start, s.end) &&
+            sleep.start.diff(s.start) != 0 && sleep.end.diff(s.end) != 0
         })
 
         if(result){
@@ -310,7 +311,7 @@ class SleepCollection {
 
     showTotalSleep(){
         const test = moment.duration(this.calculateTotalSleep() / 60, 'h')
-        return moment.utc(test.as('milliseconds')).format('HH:mm:ss')
+        return moment.utc(test.as('milliseconds')).format('HH:mm')
     }
 }
 
