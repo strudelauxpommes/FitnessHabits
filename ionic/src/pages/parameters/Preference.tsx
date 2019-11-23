@@ -1,24 +1,9 @@
-import { IonContent, IonItemSliding,IonButton,IonList,IonItemGroup, IonItemDivider, IonHeader, IonListHeader, IonRadioGroup, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonRadio, IonCol, IonText } from '@ionic/react';
+import { IonContent, IonItemSliding,IonButton,IonList,IonTabBar, IonTabButton, IonIcon,IonItemGroup, IonItemDivider, IonHeader, IonListHeader, IonRadioGroup, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonRadio, IonCol, IonText } from '@ionic/react';
 import React from 'react';
-
-const Home: React.FC = () => {
+import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
+import '../../theme/parameters.css';
+const Preference: React.FC = () => {
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar className="toolbarName ion-text-center">
-          <IonTitle>Paule Levasseur</IonTitle>
-        </IonToolbar>
-        <IonGrid>
-          <IonRow>
-            <IonCol className="pref">
-              <div className="ion-text-center"><h4>Profil</h4></div>
-            </IonCol>
-            <IonCol className="profil">
-              <div className="ion-text-center"><h4>Preference</h4></div>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonHeader>
 
       <IonContent>
         <IonContent>
@@ -118,12 +103,9 @@ const Home: React.FC = () => {
 
         </IonRadioGroup>
         
-        
-
         </IonContent>
       </IonContent>
-    </IonPage>
   );
 };
 
-export default Home;
+export default Preference;

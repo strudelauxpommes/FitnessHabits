@@ -4,6 +4,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router';
 import Export from './export';
 import Import from './import';
+import Parameters from './parameters/Parameters';
 import Supression from './purge';
 import T from 'i18n-react';
 
@@ -318,7 +319,7 @@ const Home: React.FC = () => {
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="settings" href="/">
+        <IonTabButton tab="settings" href="/Parameters">
           <IonIcon icon={settings} />
           <IonLabel></IonLabel>
         </IonTabButton>

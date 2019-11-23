@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import moment from 'moment';
+import Parameters from './pages/parameters/Parameters';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,6 +43,7 @@ const App: React.FC = () => (
         <Route path="/sleep-summary" component={SleepSummary}/>
         <Route path="/sleep-detail" component={SleepDetail}/>
         <Route path="/sleep-detail-edit" component={AddSleepLineForm}/>
+        <Route path="/parameters" component={Parameters} exact={true} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
