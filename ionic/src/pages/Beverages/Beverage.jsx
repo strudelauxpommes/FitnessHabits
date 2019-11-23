@@ -25,16 +25,19 @@ export class Beverage extends Component {
                     <IonGrid>
                         <IonRow>
                             <IonCol size={"2"}>
-                                <IonFabButton size={"small"} style={{float:"left"}}>
+                                <IonFabButton size={"small"}>
                                     <IonIcon icon={starOutline} />
                                 </IonFabButton>
                             </IonCol>
-                            <IonCol size={"4"}>
+                            <IonCol size={"3"} style={{textAlign:'center'}}>
                                 <IonRow>
-                                {this.props.beverage.name}
+                                    {this.props.beverage.name}
                                 </IonRow>
                                 <IonRow>
-                                {this.props.beverage.volume + this.state.unit}
+                                    {this.props.beverage.volume + this.state.unit}
+                                </IonRow>
+                                <IonRow>
+                                    {this.props.beverage.comment}
                                 </IonRow>
                             </IonCol>
                             <IonCol size={"6"}>
@@ -45,10 +48,7 @@ export class Beverage extends Component {
                                         </IonFabButton>
                                     </IonCol>
                                     <IonCol>
-                                        <IonItem>
-                                        <IonLabel>Quantité</IonLabel>
                                         <IonInput placeholder="99"></IonInput>
-                                        </IonItem>
                                     </IonCol>
                                     <IonCol>
                                         <IonFabButton size={"small"}>

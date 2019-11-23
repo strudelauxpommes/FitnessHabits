@@ -50,16 +50,14 @@ class BeveragesSummary extends Component {
                 <IonContent>
                     <IonCard>
                         <IonCardHeader class="new-beverages-style">
-                            <IonCardTitle> 
                                 <IonRow>
-                                    <IonCol>
-                                        <IonTitle><IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
+                                    <IonCol style={{textAlign:'left'}}>
+                                        <IonTitle><IonIcon  icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
                                     </IonCol>
                                     <IonCol style={{textAlign:'right'}}>
                                         <IonLabel>{this.state.total + this.state.unit}</IonLabel>
                                     </IonCol>
                                 </IonRow>
-                            </IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent style={{textAlign:'center'}}>
                             <IonGrid>

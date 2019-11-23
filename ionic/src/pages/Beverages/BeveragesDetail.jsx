@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IonPage, IonGrid, IonContent, IonRow, IonCol, IonIcon, IonToolbar, IonTitle, IonLabel, IonList, IonItem } from '@ionic/react';
+import { IonPage, IonGrid, IonContent, IonRow, IonCol, IonIcon, IonToolbar, IonTitle, IonLabel, IonList, IonItem, IonFabButton, IonFab } from '@ionic/react';
 import data from './data.json';
 import { cafe } from 'ionicons/icons';
 import Beverage from './Beverage';
@@ -26,7 +26,7 @@ class BeveragesDetail extends Component {
             this.setState({unitConverter:0.033814})
         } 
         for (let beverage of this.state.beverages) {
-            await this.setState({total: this.state.unitConverter*(this.state.total + beverage.quantity * beverage.volume)});
+            await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
         }
         
     }
@@ -37,7 +37,7 @@ class BeveragesDetail extends Component {
                 el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
             )
         }))
-        this.setState({total: this.state.total+data.volume})
+        this.setState({total: this.state.total + (this.state.unitConverter*data.volume/1000)})
     }
 
     render() {
@@ -47,17 +47,23 @@ class BeveragesDetail extends Component {
         }
         return (
             <IonPage>
-                <IonContent>
                     <IonToolbar class="new-beverages-style">
                             <IonRow>
-                                <IonCol>
-                                    <IonTitle > <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> &nbsp; Breuvages</IonTitle>
+                                <IonCol style={{textAlign:'left'}}>
+                                    <IonTitle> <IonIcon style={{textAlign:'left'}} icon={cafe} ></IonIcon> &nbsp; Breuvages</IonTitle>
                                 </IonCol>
                                 <IonCol style={{textAlign:'right'}}>
                                     <IonLabel>{this.state.total + this.state.unit}</IonLabel>
                                 </IonCol>
+                                
                             </IonRow>
-                        </IonToolbar>
+                    </IonToolbar>
+                        <IonContent>
+                        <IonFab vertical={"top"} slot={"fixed"} edge>
+                            <IonFabButton size={"small"}>
+                                
+                            </IonFabButton>
+                        </IonFab>
                         <IonList>
                             {beveragesRender}
                         </IonList>
