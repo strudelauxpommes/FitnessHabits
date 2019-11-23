@@ -1,20 +1,51 @@
+
+import {
+  IonAvatar,
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonPage,
+  IonTabBar,
+  IonTabButton,
+  IonTitle,
+  IonCardHeader,
+  IonCardTitle,
+  IonCard,
+  IonToolbar,
+  IonRouterOutlet,
+  IonCardContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonInput,
+  IonSelect,
+  IonSelectOption,
+  IonCheckbox,
+  IonCardSubtitle,
+} from "@ionic/react";
+import T from "i18n-react";
+import {
+  calendar,
+  download,
+  home,
+  redo,
+  settings,
+  trash,
+  add
+} from "ionicons/icons";
 import { Component, default as React } from "react";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, Redirect, Route } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
 import SleepService from "../services/sleep/SleepService";
 import SleepSummary from "./sleep/SleepSummary";
 import Alcool from "../alcool/AlcoolSommaire";
-import FoodSummary from "./nourriture/FoodSummary";
-import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRouterOutlet, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTitle, IonToolbar } from '@ionic/react';
-import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
-import { Redirect, Route } from 'react-router';
+import FoodHome from "./nourriture/FoodHome";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
 import Export from './export';
 import Import from './import';
-import Parameters from './parameters/Parameters';
-import Supression from './purge';
-import T from 'i18n-react';
-
-//interface MainTabsProps { }
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
 
