@@ -12,11 +12,14 @@ import {calendar} from 'ionicons/icons';
 import './Home.css';
 import { SaveDateActive } from './StorageDate'; //GetDateActive
 import React from 'react';
+import { DalImpl } from '../../dal/DalImpl';
+import Dal from '../../dal/Dal';
 
 
 
 var myDate = new Date();
 const cleDate = "settings/dateActive";
+const dateInst: Dal = new DalImpl();
 
 
 
@@ -66,12 +69,16 @@ function ParamDate(haveLimit : boolean) {
 const Home: React.FC = () => {
   return (
             <IonIcon icon={calendar}></IonIcon>
-                      <IonDatetime displayFormat="YYYY/MM/DD" min={ParamDate(true)} max={ParamDate(false)} value={myDate.toString()}
-                      onIonChange={ 
-                        (e) =>   SaveDateActive(cleDate, (e.target as HTMLInputElement).value)
-                           }
-                      >
-                      </IonDatetime>                   
+            <IonDatetime displayFormat="YYYY/MM/DD" min={ParamDate(true)} max={ParamDate(false)} value={myDate.toString()}
+            onIonChange={ async (e) => {var utcDate = new Date((e.target as HTMLInputElement).value);
+              var dateActu = utcDate.getDate();
+              var moisActu = utcDate.getMonth()+1;
+              var anneActu = utcDate.getFullYear();
+              var tab = [dateActu,moisActu,anneActu];
+              
+              await dateInst.setValue(cleDate, tab);
+            }
+                }/>                    
   );
 };
 
