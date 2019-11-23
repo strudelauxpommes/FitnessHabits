@@ -27,8 +27,8 @@ export default class FoodAdd extends Component {
       <IonPage>
         <IonHeader className="background-black">
           <FoodHeader backLink="/food-summary"></FoodHeader>
+          
         </IonHeader>
-
         <IonContent className="ion-padding">
           <IonCard>
             <IonCardHeader>

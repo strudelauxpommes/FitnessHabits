@@ -23,12 +23,12 @@ import {
     return (
         <IonContent>
 
-        <IonCard button={true}>
+        <IonCard button={true} href="/food-summary">
           <IonCardHeader>
             <IonCardTitle>
               <IonGrid>
                   
-                  <IonButton color="success" expand="full">
+                  <IonButton color="success" expand="full" href="/food-summary">
                   <IonCol pull="1">
                   <IonIcon icon={pizza} size="large"></IonIcon>
                   </IonCol>

@@ -18,7 +18,7 @@ import {
   IonIcon,
   IonButton
 } from "@ionic/react";
-import { checkmark } from "ionicons/icons";
+import { checkmark, close } from "ionicons/icons";
 import { FoodHeader } from "./FoodHeader";
 
 export default class FoodAddDejeuner extends Component {
@@ -83,12 +83,16 @@ export default class FoodAddDejeuner extends Component {
               <IonGrid>
                 <IonRow>
                   <IonCol> </IonCol>
-                  <IonCol>
+                  <IonCol pull="3">
                     <IonButton fill="solid" color="dark" expand="block">
                       <IonIcon icon={checkmark}></IonIcon>
                     </IonButton>
                   </IonCol>
-                  <IonCol> </IonCol>
+                  <IonCol pull="1.5"> 
+                  <IonButton fill="solid" color="danger" expand="block" href="/food-summary" >
+                      <IonIcon icon={close}></IonIcon>
+                    </IonButton>
+                  </IonCol>
                 </IonRow>
               </IonGrid>
             </IonCardContent>
