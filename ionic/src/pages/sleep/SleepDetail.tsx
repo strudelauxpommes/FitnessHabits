@@ -27,6 +27,7 @@ type Prop = {
 
 type State = {
     sleepCollection: SleepCollection;
+    backEndCollection: any
     averageSleep: number
 }
 
@@ -36,20 +37,28 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
 
         this.state = {
             sleepCollection: new SleepCollection([]),
-            averageSleep: moment.duration(0).as('milliseconds')
+            averageSleep: moment.duration(0).as('milliseconds'),
+            backEndCollection:[]
         }
     }
 
     async componentDidMount(){
         const sleepService = new SleepService();
         sleepService.getActiveDate()
-        const activeDate = moment("2019-10-10")
-        const sleepCollection = await sleepService.fetchHistory()
+        const activeDate = sleepService.getActiveDate()
+    
+        const backEndCollection = await sleepService.fetchHistory_v2()
+        const displaySleepCollection = await sleepService.fetchHistory()
+        displaySleepCollection.sortByAscendingStartDate()
 
-        // this.setState({
-        //     sleepCollection: sleepCollection,
-        //     averageSleep: sleepCollection.getAverageSleep(activeDate as any, 7 as any)
-        // })
+        if(displaySleepCollection){
+            this.setState({
+                sleepCollection: displaySleepCollection,
+                //averageSleep: displaySleepCollection.getAverageSleep(activeDate as any, 7 as any)
+                averageSleep:12,
+                backEndCollection:backEndCollection
+            })
+        }
     }
 
     displaySleepEdit(e: any) {
@@ -70,12 +79,12 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         
         //first we remove the item we want to remove
         const newCollection = this.state.sleepCollection
-        newCollection.removeSleep(key)
+        //newCollection.removeSleep(key)
         //then we remove all the items from the collection that dont share the date of the removed item
-        const temp = newCollection.filterSleepByDate(key.start)
+        //const temp = newCollection.filterSleepByDate(key.start)
         
         const sleepService = new SleepService()
-        sleepService.saveCollectionAtDate(temp,key.start)
+        //sleepService.saveCollectionAtDate(temp,key.start)
         
         this.setState({sleepCollection: newCollection})
     }
@@ -99,14 +108,15 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
                     <IonCardTitle>Historique</IonCardTitle>
                     <IonCardContent>
                         <IonList>
-                            {this.state.sleepCollection.list.map((item: Sleep) =>
-                                <SwipeableSleep
-                                    key={item.getId()}
-                                    sleep={item}
-                                    onEdit={this.displaySleepEdit}
-                                    onDelete={(e: any) => this.deleteSleepItemWithKey(e)}
-                                    history={this.props.history}
-                                />)}
+                        {this.state.sleepCollection.list.map((item:Sleep) =>                              
+                            <SwipeableSleep
+                                key={item.getId()}
+                                sleep={item}
+                                onEdit={this.displaySleepEdit}
+                                onDelete={(e: any) => this.deleteSleepItemWithKey(e)}
+                                history={this.props.history}
+                            />)
+                        }
                         </IonList>
                     </IonCardContent>
                 </IonCard>
