@@ -90,6 +90,11 @@ export default class Summary extends React.Component {
   }
   
   render() {
+    let intensitePremier = this.getIntensityAverage(this.props.favoris.premier);
+    let intensiteDeuxieme = this.getIntensityAverage(this.props.favoris.deuxieme);
+    let intensiteTroisieme = this.getIntensityAverage(this.props.favoris.troisieme);
+    let intensiteAutre = this.getIntensityAverage(this.props.favoris.premier);
+    
     return (
       <IonContent>
       
@@ -119,10 +124,10 @@ export default class Summary extends React.Component {
           <IonRow>
             <IonCol className="as-bubble-container" size="3">
               <p className="as-title-activity">{this.props.favoris.premier}</p>
-              <div className={ "as-bubble " + classNames({intensiteFaible:  this.getIntensityAverage(this.props.favoris.premier) < 4, 
-                                                          intensiteMoyenne: this.getIntensityAverage(this.props.favoris.premier) >= 4 &&
-                                                                            this.getIntensityAverage(this.props.favoris.premier) < 8,
-                                                          intensiteForte:   this.getIntensityAverage(this.props.favoris.premier) >= 8 })}>
+              <div className={ "as-bubble " + classNames({intensiteFaible:  intensitePremier < 4, 
+                                                          intensiteMoyenne: intensitePremier >= 4 &&
+                                                                            intensitePremier < 8,
+                                                          intensiteForte:   intensitePremier >= 8 })}>
                   <p>
                     {this.getTotalDuration(this.props.favoris.premier)}
                   </p>
@@ -130,10 +135,10 @@ export default class Summary extends React.Component {
             </IonCol>
             <IonCol className="as-bubble-container" size="3">
               <p className="as-title-activity">{this.props.favoris.deuxieme}</p>
-              <div className={ "as-bubble " + classNames({intensiteFaible:  this.getIntensityAverage(this.props.favoris.deuxieme) < 4, 
-                                                          intensiteMoyenne: this.getIntensityAverage(this.props.favoris.deuxieme) >= 4 &&
-                                                                            this.getIntensityAverage(this.props.favoris.deuxieme) < 8,
-                                                          intensiteForte:   this.getIntensityAverage(this.props.favoris.deuxieme) >= 8 })}>
+              <div className={ "as-bubble " + classNames({intensiteFaible:  intensiteDeuxieme < 4, 
+                                                          intensiteMoyenne: intensiteDeuxieme >= 4 &&
+                                                                            intensiteDeuxieme < 8,
+                                                          intensiteForte:   intensiteDeuxieme >= 8 })}>
                   <p>
                     {this.getTotalDuration(this.props.favoris.deuxieme)}
                   </p>
@@ -141,10 +146,10 @@ export default class Summary extends React.Component {
             </IonCol>
             <IonCol className="as-bubble-container" size="3">
               <p className="as-title-activity">{this.props.favoris.troisieme}</p>
-              <div className={ "as-bubble " + classNames({intensiteFaible:  this.getIntensityAverage(this.props.favoris.troisieme) < 4, 
-                                                          intensiteMoyenne: this.getIntensityAverage(this.props.favoris.troisieme) >= 4 &&
-                                                                            this.getIntensityAverage(this.props.favoris.troisieme) < 8,
-                                                          intensiteForte:   this.getIntensityAverage(this.props.favoris.troisieme) >= 8 })}>
+              <div className={ "as-bubble " + classNames({intensiteFaible:  intensiteTroisieme < 4, 
+                                                          intensiteMoyenne: intensiteTroisieme >= 4 &&
+                                                                            intensiteTroisieme < 8,
+                                                          intensiteForte:   intensiteTroisieme >= 8 })}>
                   <p>
                     {this.getTotalDuration(this.props.favoris.troisieme)}
                   </p>
@@ -152,10 +157,10 @@ export default class Summary extends React.Component {
             </IonCol>
             <IonCol className="as-bubble-container" size="3">
               <p className="as-title-activity">Autre</p>
-              <div className={ "as-bubble " + classNames({intensiteFaible:  this.getIntensityAverageAutre() < 4, 
-                                                          intensiteMoyenne: this.getIntensityAverageAutre() >= 4 &&
-                                                                            this.getIntensityAverageAutre() < 8,
-                                                          intensiteForte:   this.getIntensityAverageAutre() >= 8 })}>
+              <div className={ "as-bubble " + classNames({intensiteFaible:  intensiteAutre < 4, 
+                                                          intensiteMoyenne: intensiteAutre >= 4 &&
+                                                                            intensiteAutre < 8,
+                                                          intensiteForte:   intensiteAutre >= 8 })}>
                   <p>
                     {this.getTotalDurationAutre(this.props.favoris.premier, this.props.favoris.deuxieme, this.props.favoris.troisieme)}
                   </p>
