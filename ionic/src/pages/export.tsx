@@ -13,6 +13,15 @@ import React, { useState } from 'react';
 const Export: React.FC = () => {
 const [showToast1, setShowToast] = useState(false);
 
+function getAllData() {
+  console.log('test');
+  var d = document.getElementById("debut") 
+  console.log(d);
+}
+function changeColor(){
+  var btn = document.getElementById("allData") 
+  btn!.style.backgroundColor = "red";
+}
   return (
     <IonPage id="export-import-list" color="#b3b3b3">
       <IonHeader>
@@ -28,12 +37,12 @@ const [showToast1, setShowToast] = useState(false);
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
           <IonLabel position="stacked">À partir de</IonLabel>
-          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value="2019-09-19"></IonDatetime>
+          <IonDatetime id="debut" displayFormat="MMM DD, YYYY" max="2056" value="2019-09-19"></IonDatetime>
         </IonItem>
         <IonItem>
           <IonIcon icon={calendar} slot="start"></IonIcon>
           <IonLabel position="stacked">Jusqu'à </IonLabel>
-          <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={new Date().toISOString()}></IonDatetime>
+          <IonDatetime id="fin" displayFormat="MMM DD, YYYY" max="2056" value={new Date().toISOString()}></IonDatetime>
         </IonItem>
       </IonList>
 
@@ -41,7 +50,7 @@ const [showToast1, setShowToast] = useState(false);
 
         <IonRow>
           <IonCol>
-            <IonButton color="light" expand="block">Nourriture</IonButton>
+            <IonButton id="allData" onClick={() => changeColor()} color="light" expand="block">Nourriture</IonButton>
           </IonCol>
           <IonCol>
             <IonButton color="light" expand="block">Breuvages</IonButton>
@@ -71,7 +80,7 @@ const [showToast1, setShowToast] = useState(false);
             <IonButton expand="full" color="light" >Glycémie</IonButton>
           </IonCol>
         </IonRow>
-        <IonButton color="secondary" expand="block">Toutes les données</IonButton>
+        <IonButton onClick={() => getAllData()} color="secondary" expand="block">Toutes les données</IonButton>
       </IonList>
 
         <div className="about-header"></div>
@@ -109,7 +118,7 @@ const [showToast1, setShowToast] = useState(false);
                 position="middle"
                 onDidDismiss={() => setShowToast(false)}
                 message="L'éxportation des données a échoué"
-                duration={40000}
+                duration={4000}
               />
             </IonCol>
           </IonRow>

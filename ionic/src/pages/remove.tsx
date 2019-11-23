@@ -21,9 +21,9 @@ const Purge: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <div className="about-header"></div>
-        <div className="about-info">
-          <h4 className="ion-padding-start">Supprimer les données jusqu’à</h4>
-        </div>
+      <div className="about-info">
+        <h4 className="ion-padding-start">Supprimer les données jusqu’à</h4>
+      </div>
       <IonContent>
         <IonList>
           <IonItem>
@@ -33,16 +33,13 @@ const Purge: React.FC = () => {
           </IonItem>
           <IonRow>
             <IonCol>
-            <IonButton color="light" onClick={() => setShowToast2(true)} expand="block">Supprimer</IonButton>
-            <IonToast
-        isOpen={showToast2}
-        onDidDismiss={() => setShowToast2(false)}
-        message="Vos anciennes données allant jusqu'au Aug 18, 2019 ont bien été supprimées"
-        position="middle"
-        
-
-      />
-
+              <IonButton color="light" onClick={() => setShowToast2(true)} expand="block">Supprimer</IonButton>
+              <IonToast
+                isOpen={showToast2}
+                onDidDismiss={() => setShowToast2(false)}
+                message="Vos anciennes données allant jusqu'au Aug 18, 2019 ont bien été supprimées"
+                position="middle"
+              />
             </IonCol>
           </IonRow>
         </IonList>
