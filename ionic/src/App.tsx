@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import moment from "moment";
+import T from "i18n-react";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -29,13 +30,43 @@ import "./theme/sleep.css";
 import SleepDetail from "./pages/sleep/SleepDetail";
 import SleepSummary from "./pages/sleep/SleepSummary";
 import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
+ 
+/* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodAdd from "./pages/nourriture/FoodAdd";
 import FoodList from './pages/nourriture/FoodList';
+        
+/* Alcool Imports */
+import AlcoolDetail from "./alcool/AlcoolDetail";
+
+/* Theme variable */
+import "./theme/variables.css";
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
+
+function init(): void {
+  const dal: Dal = new DalImpl();
+
+  dal
+    .getItems("preferences/langue", new Date("2019-01-16"), new Date())
+    .then(lang => {
+      if (!lang || !lang[0] || !lang[0].value) {
+        T.setTexts(require("./i18n/fr.json"));
+      } else if (lang[0].value == "fr") {
+        T.setTexts(require("./i18n/fr.json"));
+      } else if (lang[0].value == "es") {
+        T.setTexts(require("./i18n/es.json"));
+      } else if (lang[0].value == "en") {
+        T.setTexts(require("./i18n/en.json"));
+      } else {
+        T.setTexts(require("./i18n/fr.json"));
+      }
+    });
+}
+
+init();
 
 const App: React.FC = () => (
   <IonApp>
