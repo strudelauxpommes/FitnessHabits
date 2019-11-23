@@ -13,7 +13,6 @@ import {
   IonLabel,
   IonTitle
 } from "@ionic/react";
-import data from "./data.json";
 import { cafe } from "ionicons/icons";
 import FavoriteBeverage from "./FavoriteBeverage";
 import { DalImpl } from "../../dal/DalImpl";
@@ -31,84 +30,53 @@ class BeveragesSummary extends Component {
     this.onIncrease = this.onIncrease.bind(this);
   }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            beverages: [],
-            total: 0,
-            unit: "L",
-            unitConverter:1,
-            date: [],
-            key: 'beverage/beverageList'
-        }
-        this.onIncrease=this.onIncrease.bind(this);
+  async componentDidMount() {
+    await this.getBeverages();
+
+    //ici: setstate this.state.unit en allant chercher le parametre
+    //
+    if (this.state.unit === "on") {
+      this.setState({ unitConverter: 0.033814 });
     }
-
-    async componentDidMount() {
-        
-        await this.getBeverages();
-
-        if (this.state.unit==="on") {
-            this.setState({unitConverter:0.033814})
-        } 
-        for (let beverage of this.state.beverages) {
-            await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
-        }
+    for (let beverage of this.state.beverages) {
+      await this.setState({
+        total:
+          this.state.unitConverter *
+          (this.state.total + (beverage.quantity * beverage.volume) / 1000)
+      });
     }
   }
 
-    async getBeverages() {
-        const instance = new DalImpl();
-        let date = await instance.getLastValue('settings/activeDate');
-        if (date) {
-            this.setState({date: JSON.parse(date)});
-        } else {
-            // remove this when impl
-            let todayDate = new Date();
-            this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
-        }
+  async getBeverages() {
+    const instance = new DalImpl();
+    // let date = await instance.getLastValue('activeDate');
 
+    // let activeDate = new Date();
+    // await this.setState({date: activeDate});
 
-        let beverages = await instance.getLastValue(this.state.key)
-        if (!beverages) {
-            await this.initDefaultBeverages();
-            await this.saveBeverage();
-        } else {
-            let parsedBeverage = JSON.parse(beverages);
-            let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
-            let lastDate = new Date(parsedBeverage.date[2], parsedBeverage.date[1], parsedBeverage.date[0])
-
-            if (activeDate.getTime() > lastDate.getTime()) {
-                this.resetQuantities();
-            } else if (activeDate.getTime() === lastDate.getTime()) {
-                await this.setState({beverages: parsedBeverage.beverageList});
-            } else if (activeDate.getTime() < lastDate.getTime()) {
-                let activeEndDate = new Date(activeDate)
-                activeEndDate.setDate(activeDate.getDate() + 1)
-                let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
-                if (pastBeverages) {
-                    this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
-                }
-            }
-            
-        }
+    let beverages = await instance.getLastValue("beverage/listBeverage");
+    if (!beverages) {
+      alert("none");
+      await this.initDefaultBeverages();
+      await instance.setValue(
+        "beverage/listBeverage",
+        JSON.stringify(this.state.beverages)
+      );
+    } else {
+      let favorites = JSON.parse(beverages).filter(
+        beverage => beverage.favorite === true
+      );
+      await this.setState({ beverages: favorites });
     }
   }
-    async resetQuantities() {
-        await this.setState(prevState => ({
-            beverages: prevState.beverages.map(
-                beverage => beverage ? { ...beverage, quantity: 0 } : beverage
-            )
-        }))
-    }
 
-    async initDefaultBeverages() {
-        let defaultBeverages = [
-            this.defaultBeverage('Café'),
-            this.defaultBeverage('Eau'),
-            this.defaultBeverage('Thé'),
-            this.defaultBeverage('Perrier'),
-        ]
+  async initDefaultBeverages() {
+    let defaultBeverages = [
+      this.defaultBeverage("Café"),
+      this.defaultBeverage("Eau"),
+      this.defaultBeverage("Thé"),
+      this.defaultBeverage("Perrier")
+    ];
 
     await this.setState({ beverages: defaultBeverages });
   }
@@ -123,60 +91,36 @@ class BeveragesSummary extends Component {
     };
   }
 
-    async onIncrease (data) {
-        await this.setState(prevState => ({
-            beverages: prevState.beverages.map(
-                el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
-            )
-        }))
-        this.setState({total: this.state.total + (this.state.unitConverter*data.volume/1000)})
+  async onIncrease(data) {
+    const instance = new DalImpl();
 
-        await this.saveBeverage();
-    }
+    await this.setState(prevState => ({
+      beverages: prevState.beverages.map(el =>
+        el.name === data.name
+          ? { ...el, quantity: this.state.unitConverter * (el.quantity + 1) }
+          : el
+      )
+    }));
 
-    async saveBeverage() {
-        const instance = new DalImpl();
+    await instance.setValue(
+      "beverage/listBeverage",
+      JSON.stringify(this.state.beverages)
+    );
+    this.setState({
+      total: this.state.total + (this.state.unitConverter * data.volume) / 1000
+    });
+  }
 
-        await instance.setValue(this.state.key, JSON.stringify({ 
-            date: this.state.date,
-            beverageList: this.state.beverages
-         }));
-    }
-
-    render() {
-        let beveragesRender = [];
-        for (let beverage of this.state.beverages) {
-            if (beverage.favorite) {
-                beveragesRender.push(<FavoriteBeverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></FavoriteBeverage>);
-            }
-        }
-        return (
-            <IonPage>
-                <IonContent>
-                    <IonCard>
-                        <IonCardHeader class="new-beverages-style">
-                                <IonRow>
-                                    <IonCol style={{textAlign:'left'}}>
-                                        <a style={{color:'inherit', textDecoration: 'none'}} href="/beverages-detail">
-                                        <IonTitle><IonIcon icon={cafe} ></IonIcon>  &nbsp; Breuvages</IonTitle>
-                                        </a>
-                                    </IonCol>
-                                    <IonCol style={{textAlign:'right'}}>
-                                        <IonLabel>{this.state.total + this.state.unit}</IonLabel>
-                                    </IonCol>
-                                </IonRow>
-                        </IonCardHeader>
-                        <IonCardContent style={{textAlign:'center'}}>
-                            <IonGrid>
-                                <IonRow>
-                                    {beveragesRender}
-                                </IonRow>
-                            </IonGrid>
-                        </IonCardContent>
-                    </IonCard>
-                </IonContent>
-            </IonPage>
-        );
+  render() {
+    let beveragesRender = [];
+    for (let beverage of this.state.beverages) {
+      beveragesRender.push(
+        <FavoriteBeverage
+          onIncrement={this.onIncrease}
+          beverage={beverage}
+          key={beverage.name}
+        ></FavoriteBeverage>
+      );
     }
     return (
       <IonCard>
