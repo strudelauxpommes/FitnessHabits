@@ -188,6 +188,18 @@ ion-grid {
     align-items:center;
 }
 
-.as-bubble p {
+/********************** INTENSITÉ **********************/
+.intensiteFaible {
+  background-color: green;
+  color: white;
+}
 
+.intensiteMoyenne {
+  background-color: yellow;
+  color: white;
+}
+
+.intensiteForte {
+  background-color: red;
+  color: white;
 }
