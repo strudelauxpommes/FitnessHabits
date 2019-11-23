@@ -34,7 +34,7 @@ import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
-import FoodAdd from "./pages/nourriture/FoodAdd";
+import FoodAdd from "./pages/nourriture/FoodAddDiner";
 import FoodList from './pages/nourriture/FoodList';
         
 /* Alcool Imports */
