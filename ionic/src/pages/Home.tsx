@@ -4,40 +4,30 @@ import { calendar, download, home, redo, settings, trash } from 'ionicons/icons'
 import { Component, default as React } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { SleepCollection } from 'src/entities/sleep/sleep';
-import Dal from '../dal/Dal';
-import { DalImpl } from '../dal/DalImpl';
 import SleepService from '../services/sleep/SleepService';
 import SleepSummary from './sleep/SleepSummary';
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
 
-const dal: Dal = new DalImpl();
-dal.getItems("lang_key", new Date("2019-01-16"), new Date()).then((lang) => {
-  if (lang[0].value == "fr") {
-    T.setTexts(require('../i18n/fr.json'));
-  } else if (lang[0].value == "es") {
-    T.setTexts(require('../i18n/es.json'));
-  } else if (lang[0].value == "en") {
-    T.setTexts(require('../i18n/en.json'));
-  } else {
-    T.setTexts(require('../i18n/fr.json'));
-  }
-})
 
 
 const sleepService = SleepService();
 
 type State = {
-  sleepCollection: SleepCollection;
+  sleepCollection: SleepCollection
+  T: any
 };
 class Home extends Component<RouteComponentProps, State> {
+
   constructor(props: RouteComponentProps) {
     super(props);
+
 
     const sleepCollection = sleepService.fetch();
 
     this.state = {
-      sleepCollection: sleepCollection
+      sleepCollection: sleepCollection,
+      T: null
     };
   }
 
@@ -63,7 +53,7 @@ class Home extends Component<RouteComponentProps, State> {
             <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-            </IonButton>
+          </IonButton>
           </IonItem>
 
           <div>
