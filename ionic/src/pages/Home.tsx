@@ -1,7 +1,27 @@
-import { IonAvatar, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonTabBar, IonTabButton, IonTitle, IonToolbar } from "@ionic/react";
+import {
+  IonAvatar,
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonPage,
+  IonTabBar,
+  IonTabButton,
+  IonTitle,
+  IonToolbar
+} from "@ionic/react";
 import T from "i18n-react";
-import { calendar, download, home, redo, settings, trash } from "ionicons/icons";
-import React, { Component } from 'react';
+import {
+  calendar,
+  download,
+  home,
+  redo,
+  settings,
+  trash
+} from "ionicons/icons";
+import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
 import Alcool from "../alcool/AlcoolSommaire";
@@ -9,8 +29,8 @@ import SleepService from "../services/sleep/SleepService";
 import FoodSummary from "./nourriture/FoodSummary";
 import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
-
-import Poids from '../entities/poids/Poids'
+import SleepSummary from "./sleep/SleepSummary";
+import Poids from "../entities/poids/Poids";
 
 const sleepService = SleepService();
 
@@ -61,7 +81,6 @@ class Home extends Component<RouteComponentProps, State> {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-          <FoodSummary />
           <Poids />
           <FoodHome />
           <BeveragesSummary
@@ -74,7 +93,7 @@ class Home extends Component<RouteComponentProps, State> {
             <IonIcon icon={home} />
             <IonLabel></IonLabel>
           </IonTabButton>
-          <IonTabButton tab="export" href="/">
+          <IonTabButton tab="export" href="/parameter">
             <IonIcon icon={redo} />
             <IonLabel></IonLabel>
           </IonTabButton>
@@ -86,7 +105,7 @@ class Home extends Component<RouteComponentProps, State> {
             <IonIcon icon={trash} />
             <IonLabel></IonLabel>
           </IonTabButton>
-          <IonTabButton tab="settings" href="/">
+          <IonTabButton tab="settings" href="/parameters">
             <IonIcon icon={settings} />
             <IonLabel></IonLabel>
           </IonTabButton>
