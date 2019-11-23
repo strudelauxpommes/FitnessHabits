@@ -29,7 +29,6 @@ class SleepBuilder {
     buildStart(startInput) {
         if (this.isValidTime(startInput)) {
             this.startMoment = this.convertSleepInputToMoment(String(startInput))
-            console.log(this.startMoment.format())
         } else {
             this.errorFields.push("Endormi à")
         }
@@ -56,10 +55,8 @@ class SleepBuilder {
      * @return this
      */
     buildEnd(endInput) {
-
         if (this.isValidTime(endInput)) {
             this.endMoment = this.convertSleepInputToMoment(String(endInput))
-            console.log(this.endMoment.format())
         } else {
             this.errorFields.push("Réveillé à")
         }

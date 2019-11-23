@@ -12,11 +12,11 @@ import {
   IonAlert,
 } from '@ionic/react';
 
-import React, { Component } from 'react';
-import { moon, remove, add } from 'ionicons/icons';
-import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
-import SleepService from '../../services/sleep/SleepService';
-import { SleepBuilder } from '../../entities/sleep/sleep_builder';
+import React, { Component } from 'react'
+import { moon, remove, add } from 'ionicons/icons'
+import { Sleep, SleepCollection } from '../../entities/sleep/sleep'
+import SleepService from '../../services/sleep/SleepService'
+import { SleepBuilder } from '../../entities/sleep/sleep_builder'
 
 type Props = {
   activeDate: Date;
@@ -60,6 +60,8 @@ export default class SleepSummary extends Component<Props, State> {
     const sleepCollection = await sleepService.fetchActiveDate()
     const moodObjects = await sleepService.fetchMoods()
 
+    sleepCollection.getAverageSleep(sleepService.getActiveDate() as any, 7 as any)
+
     const test = await sleepService.fetchHistory_v2()
 
     this.setState({
@@ -98,12 +100,6 @@ export default class SleepSummary extends Component<Props, State> {
 
     const collection = this.state.sleeps
 
-    const test = builder.sleep
-
-    if(test){
-      console.log(test.getStartDate(), test.getEndDate())
-    }
-
     if(collection.addSleep(builder.sleep as Sleep) === false){
       builder.isValid = false
       builder.errorMessage += "<ul><li>Sommeil invalide: les dates se chevauchent!</li></ul>"
@@ -126,8 +122,6 @@ export default class SleepSummary extends Component<Props, State> {
       })
     }
   }
-
-  
 
   /**
    * [Handles state change for submit error alert dismiss]
