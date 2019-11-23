@@ -3,7 +3,7 @@ import {DalImpl} from '../dal/DalImpl'
 export module ActiviteService {
     const INSTANCE  = new DalImpl();
     const KEY = "Activites/activite";
-    INSTANCE.setValue("Activites/activite", "activite");
+    INSTANCE.setValue("Activites", "activites");
 
  export class ActivityService {
         /**
