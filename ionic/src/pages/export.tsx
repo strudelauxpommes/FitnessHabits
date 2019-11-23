@@ -8,15 +8,21 @@ import {
 } from '@ionic/react';
 import { calendar, logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
+import { FilterDumper } from 'src/dal/FitlerDumper';
 
 
 const Export: React.FC = () => {
 const [showToast1, setShowToast] = useState(false);
 
-function getAllData() {
+async function getAllData() {
   console.log('test');
-  var d = document.getElementById("debut") 
-  console.log(d);
+  var dateDebut = document.getElementById("debut") 
+  var dateFin = document.getElementById("fin") 
+  //console.log(d);
+  const dumper = new FilterDumper();
+  
+  await dumper.dump();
+
 }
 function changeColor(id:string){
   var btn = document.getElementById(id) 
