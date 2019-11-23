@@ -13,10 +13,10 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
-import moment from 'moment';
-import { default as React } from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import moment from "moment";
+import React, { default as React } from "react";
+import { Redirect, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import FoodAdd from "./pages/nourriture/FoodAdd";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodList from './pages/nourriture/FoodList';
@@ -30,7 +30,6 @@ import { init } from './services/i18n/i18n';
 import './theme/sleep.css';
 /* Theme variables */
 import './theme/variables.css';
-
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
