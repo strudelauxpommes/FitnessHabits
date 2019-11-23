@@ -104,6 +104,33 @@ export default class SleepService{
         return result
     }
 
+    async fetchMoods(){
+        // Remove this once values are set by parameters team
+        await this.persist.setValue("preferences/listeHumeurs", [
+            "Super", 
+            "De bonne humeur", 
+            "Neutre", 
+            "Grognon",
+            "Fatigué",
+            "Dépressif"
+        ]);
+        const moods = await this.persist.getLastValue("preferences/listeHumeurs");
+        const moodObjects = []
+
+        moods.forEach(mood => 
+            moodObjects.push(
+                {
+                    name: 'mood',
+                    value: mood,
+                    label: mood,
+                    type: 'radio'
+                }
+            )   
+        )
+
+        return moodObjects
+    }
+
 
     /**
      * Save a new sleep to the persistance layer
