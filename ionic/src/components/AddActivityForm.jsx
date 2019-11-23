@@ -7,7 +7,7 @@ import {
   IonLabel,
   IonButton
 } from '@ionic/react';
-import Dal from '../dal/DalImpl';
+// import { ActivityService } from '../../services/ActivityService';
 
 const AddActivityForm = () => {
   const [ name, setName ] = useState('');
@@ -26,7 +26,15 @@ const AddActivityForm = () => {
       setFormErrors('');
 
       try {
-        console.log("New activity");
+        let activity = {
+          title: name,
+          duration: time,
+          intensity: intensity,
+          comment: comment,
+          favorite: favorite
+        }
+
+        activityService.setActivity(activity);
       } catch (e) {
         setFormErrors(e);
       }
@@ -50,7 +58,7 @@ const AddActivityForm = () => {
             <IonInput name="intensity" type="number" value={intensity} onChange={(e) => setIntensity(e.target.value)}/>
           </IonItem>
           <IonItem>
-            <IonLabel>Comment</IonLabel>
+            <IonLabel>Commentaire</IonLabel>
             <IonInput name="comment" type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
           </IonItem>
           <IonItem>
