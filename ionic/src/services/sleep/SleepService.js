@@ -35,6 +35,11 @@ export default class SleepService{
         return sleepCollection
     }
 
+    /**
+     * Fetch the list of Sleep Collection associated with the last 7 days 
+     * from the active date.
+     */
+
     async fetchHistory(){
         const activeMoment = await this.getActiveMoment()
         const startMoment = activeMoment.clone().subtract(7, 'days')
@@ -42,7 +47,6 @@ export default class SleepService{
         const begin = new Date(startMoment.format("YYYY-MM-DD"));
         const end = new Date(activeMoment.format("YYYY-MM-DD"));
         let items = await this.persist.getItems("sleep", begin, end);
-        
         
         //we define a groupby function to group all sleepcollection in separate arrays
         const groupBy = (array, fn) => array.reduce((result, item) => {
@@ -54,10 +58,8 @@ export default class SleepService{
 
         //we use the groupby
         const tempGroup = groupBy(items,i => i.dateTime)
-        
         //we get the key of all the element in the resulting object
         const allCollectionKeys = Object.keys(tempGroup)
-
 
         const finalCollection = []
 
@@ -65,26 +67,28 @@ export default class SleepService{
         //still need to verify if the sorting order is good
         allCollectionKeys.forEach( (collection) => {
             const temp = tempGroup[collection]
-            temp.sort((a,b) => {
-                return a.timestampMS - b.timestampMs
-            })
             //once we have the latest value we push it to the finalCollection array
-            finalCollection.push(temp[0])
+            finalCollection.push(temp[(temp.length-1)])
         })
-        
-
+    
         const result = []
         
         finalCollection.forEach(item => {
                 const value = item.value
                 const json = JSON.parse(value)
-                result.push(new SleepCollection(json))
+                //result.push(new SleepCollection(json))
+                const itemCollection = new SleepCollection(json)
+                result.push(itemCollection)        
         })
-
+        
+        const mergedCollection = result[0]
+        
+        for(var i = 1; i < result.length;i++){
+            mergedCollection.addSleepList(result[i].list)
+        }
+        
         return result
     }
-
-    
 
     /**
      * Save a new sleep to the persistance layer
