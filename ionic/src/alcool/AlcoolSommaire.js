@@ -6,13 +6,13 @@ import {
   IonGrid,
   IonCardContent,
   IonCardHeader
-} from '@ionic/react';
-import { wine } from 'ionicons/icons';
-import React from 'react';
-import './Style/AlcoolSommaire.scss';
-import './Style/Alcool.scss';
-import SummaryCardItem from './Components/SummaryCardItem'
-import SummaryOtherAlcoolItem from './Components/SummaryOtherAlcoolItem';
+} from "@ionic/react";
+import { wine } from "ionicons/icons";
+import React from "react";
+import "./Style/AlcoolSommaire.scss";
+import "./Style/Alcool.scss";
+import SummaryCardItem from "./Components/SummaryCardItem";
+import SummaryOtherAlcoolItem from "./Components/SummaryOtherAlcoolItem";
 
 export default class AlcoolSommaire extends React.Component {
   constructor(props) {
@@ -22,29 +22,25 @@ export default class AlcoolSommaire extends React.Component {
   }
 
   initializeState() {
-    return ({
+    return {
       Alcools: {
-
-        "Whisky": {
+        Whisky: {
           name: "Whisky",
           quantity: 2,
           volume: "44 ml"
-        }
-        ,
-
+        },
         "Vin Blanc": {
           name: "Vin Blanc",
           quantity: 1,
           volume: "150 ml"
-        }
-        ,
-        "Bière": {
+        },
+        Bière: {
           name: "Bière",
           quantity: 2,
           volume: "344 ml"
         }
       }
-    })
+    };
   }
 
   addAlcool(name) {
@@ -53,10 +49,9 @@ export default class AlcoolSommaire extends React.Component {
       let newStateObject = this.state;
 
       console.log(newStateObject.Alcools[`${name}`]);
-        newStateObject.Alcools[`${name}`].quantity = newQt;
-        this.setState(newStateObject)
-      
-    } 
+      newStateObject.Alcools[`${name}`].quantity = newQt;
+      this.setState(newStateObject);
+    }
   }
 
   getSummaryCardList() {
@@ -69,8 +64,31 @@ export default class AlcoolSommaire extends React.Component {
           quantity={this.state.Alcools[key].quantity}
           volume={this.state.Alcools[key].volume}
           addAlcool={this.addAlcool}
-        />)
+        />
+      );
     }
     return list;
+  }
+  render() {
+    return (
+      <IonCard>
+        <IonCardHeader color="alcool">
+          <IonRow>
+            <IonIcon item-center icon={wine} className="summary__wine-icon" />
+            <IonTitle>Alcool</IonTitle>
+          </IonRow>
+        </IonCardHeader>
+        <IonRow>
+          {this.getSummaryCardList()}
+          <SummaryOtherAlcoolItem />
+        </IonRow>
+
+        <IonCardContent>
+          <IonGrid>
+            <IonRow></IonRow>
+          </IonGrid>
+        </IonCardContent>
+      </IonCard>
+    );
   }
 }
