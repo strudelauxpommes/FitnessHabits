@@ -21,71 +21,69 @@ export function FoodHome(props: {
   // backLink: any;
 }) {
   return (
-    <IonContent>
-      <IonCard button={true}>
-        <IonCardHeader>
-          <IonCardTitle>
-            <IonGrid>
-              <IonButton color="success" expand="full">
-                <IonCol pull="1">
-                  <IonIcon icon={pizza} size="large"></IonIcon>
-                </IonCol>
-                <IonCol pull="3">Nourriture</IonCol>
-              </IonButton>
-            </IonGrid>
-          </IonCardTitle>
-        </IonCardHeader>
-
-        <IonCardContent>
+    <IonCard button={true}>
+      <IonCardHeader>
+        <IonCardTitle>
           <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonInput value="43" disabled></IonInput>
+            <IonButton color="success" expand="full">
+              <IonCol pull="1">
+                <IonIcon icon={pizza} size="large"></IonIcon>
               </IonCol>
-              <IonCol>
-                <IonInput value="43" disabled></IonInput>
-              </IonCol>
-              <IonCol>
-                <IonInput value="43" disabled></IonInput>
-              </IonCol>
-              <IonCol>
-                <IonInput value="43" disabled></IonInput>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <IonText> Proteine </IonText>
-              </IonCol>
-              <IonCol>
-                <IonRow>Lipide</IonRow>
-              </IonCol>
-              <IonCol>
-                <IonRow>Glucide</IonRow>
-              </IonCol>
-              <IonCol>
-                <IonRow>Fibre</IonRow>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <img src="https://img.icons8.com/cotton/64/000000/steak-rare--v1.png"></img>
-              </IonCol>
-              <IonCol>
-                <img src="https://img.icons8.com/emoji/64/000000/butter-emoji.png"></img>
-              </IonCol>
-              <IonCol>
-                <img src="https://img.icons8.com/cute-clipart/64/000000/halloween-candy.png"></img>
-              </IonCol>
-              <IonCol>
-                <img src="https://img.icons8.com/doodle/48/000000/wheat--v5.png"></img>
-              </IonCol>
-            </IonRow>
+              <IonCol pull="3">Nourriture</IonCol>
+            </IonButton>
           </IonGrid>
-        </IonCardContent>
-      </IonCard>
-    </IonContent>
+        </IonCardTitle>
+      </IonCardHeader>
+
+      <IonCardContent>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonInput value="43" disabled></IonInput>
+            </IonCol>
+            <IonCol>
+              <IonInput value="43" disabled></IonInput>
+            </IonCol>
+            <IonCol>
+              <IonInput value="43" disabled></IonInput>
+            </IonCol>
+            <IonCol>
+              <IonInput value="43" disabled></IonInput>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonText> Proteine </IonText>
+            </IonCol>
+            <IonCol>
+              <IonRow>Lipide</IonRow>
+            </IonCol>
+            <IonCol>
+              <IonRow>Glucide</IonRow>
+            </IonCol>
+            <IonCol>
+              <IonRow>Fibre</IonRow>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <img src="https://img.icons8.com/cotton/64/000000/steak-rare--v1.png"></img>
+            </IonCol>
+            <IonCol>
+              <img src="https://img.icons8.com/emoji/64/000000/butter-emoji.png"></img>
+            </IonCol>
+            <IonCol>
+              <img src="https://img.icons8.com/cute-clipart/64/000000/halloween-candy.png"></img>
+            </IonCol>
+            <IonCol>
+              <img src="https://img.icons8.com/doodle/48/000000/wheat--v5.png"></img>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonCardContent>
+    </IonCard>
   );
 }
 
