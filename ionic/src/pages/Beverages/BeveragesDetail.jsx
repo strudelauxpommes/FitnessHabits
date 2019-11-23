@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { IonPage, IonGrid, IonContent, IonRow, IonCol, IonIcon, IonToolbar, IonTitle, IonLabel, IonList, IonItem, IonFabButton, IonFab } from '@ionic/react';
 import data from './data.json';
-import { cafe } from 'ionicons/icons';
+import { cafe, add } from 'ionicons/icons';
 import Beverage from './Beverage';
 import Dal from '../../dal/Dal'
 
@@ -59,9 +59,9 @@ class BeveragesDetail extends Component {
                             </IonRow>
                     </IonToolbar>
                         <IonContent>
-                        <IonFab vertical={"top"} slot={"fixed"} edge>
-                            <IonFabButton size={"small"}>
-                                
+                        <IonFab vertical={"top"} slot={"fixed"} horizontal={"end"} edge>
+                            <IonFabButton size={"small"} color={"danger"}>
+                                <IonIcon icon={add}/>
                             </IonFabButton>
                         </IonFab>
                         <IonList>

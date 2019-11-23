@@ -41,7 +41,7 @@ export class Beverage extends Component {
                                 </IonRow>
                             </IonCol>
                             <IonCol size={"6"}>
-                                <IonRow>
+                                <IonRow style={{textAlign:'right'}}>
                                     <IonCol>
                                         <IonFabButton size={"small"}>
                                             <IonIcon icon={add} />
