@@ -18,10 +18,9 @@ async function getAllData() {
   console.log('test');
   var dateDebut = document.getElementById("debut") 
   var dateFin = document.getElementById("fin") 
-  //console.log(d);
-  const dumper = new FilterDumper();
   
-  await dumper.dump();
+  const dumper = new FilterDumper();
+  //await dumper.dump();
 
 }
 function changeColor(id:string){

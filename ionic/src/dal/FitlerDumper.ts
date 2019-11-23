@@ -26,4 +26,10 @@ export class FilterDumper {
         const path = now.toISOString() + ".bak";
         await fileDumper.writeDump(path, dumpString);
     }
+
+    async dumpAll() {
+        const begin = new Date(0);
+        const end = new Date();
+        await this.dump(begin, end, []);
+    }
 }
