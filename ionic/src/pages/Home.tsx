@@ -27,6 +27,7 @@ import { SleepCollection } from "src/entities/sleep/sleep";
 import SleepService from "../services/sleep/SleepService";
 import SleepSummary from "./sleep/SleepSummary";
 import Alcool from "../alcool/AlcoolSommaire";
+import FoodSummary from "./nourriture/FoodSummary";
 
 //const MainTabs: React.FC<MainTabsProps> = () => {
 
@@ -79,6 +80,7 @@ class Home extends Component<RouteComponentProps, State> {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
+          <FoodSummary />
         </IonContent>
 
         <IonTabBar slot="bottom">
