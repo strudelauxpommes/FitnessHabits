@@ -2,7 +2,11 @@ import { IonContent, IonItemSliding,IonButton,IonList,IonTabBar, IonTabButton, I
 import React from 'react';
 import { add, calendar, download, settings, trash, home, redo } from 'ionicons/icons';
 import '../../theme/parameters.css';
+import { DalImpl } from '../../dal/DalImpl';
+import Dal  from '../../dal/Dal';
+
 const Preference: React.FC = () => {
+  const dal: Dal = new DalImpl();
   return (
     <IonPage>
       <IonContent>
@@ -26,7 +30,7 @@ const Preference: React.FC = () => {
         <IonItem>
             <IonLabel>Poids Corporel</IonLabel>
             <IonSelect interface="popover">
-              <IonSelectOption value="lbs">lbs</IonSelectOption>
+              <IonSelectOption value="lbs" onClick={() => dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
               <IonSelectOption value="kg">kg</IonSelectOption>
             </IonSelect>
         </IonItem>
