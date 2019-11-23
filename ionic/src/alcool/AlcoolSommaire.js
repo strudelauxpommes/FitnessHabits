@@ -69,8 +69,33 @@ export default class AlcoolSommaire extends React.Component {
           quantity={this.state.Alcools[key].quantity}
           volume={this.state.Alcools[key].volume}
           addAlcool={this.addAlcool}
+          key={key}
         />)
     }
     return list;
+  }
+
+render() {
+    return (
+      <IonCard>
+        <IonCardHeader color="alcool">
+          <IonRow>
+            <IonIcon item-center icon={wine} className="summary__wine-icon" />
+            <IonTitle>Alcool</IonTitle>
+          </IonRow>
+        </IonCardHeader>
+        <IonRow>
+          {this.getSummaryCardList()}
+          <SummaryOtherAlcoolItem />
+        </IonRow>
+
+        <IonCardContent>
+          <IonGrid>
+            <IonRow>
+            </IonRow>
+          </IonGrid>
+        </IonCardContent>
+      </IonCard >
+    );
   }
 }

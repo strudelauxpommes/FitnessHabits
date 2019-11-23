@@ -40,13 +40,10 @@ export default class AlcoolDetail extends React.Component {
     }
 
     onSubmit(name, volume) {
-        debugger;
         if (!this.state.Alcools[`${name}`]) {
             var newStateObj = this.state;
             newStateObj.Alcools[`${name}`] = {};
             newStateObj.Alcools[`${name}`].quantity = volume;
-            console.log(newStateObj);
-            debugger;
             this.setState(newStateObj);
         }
     }
