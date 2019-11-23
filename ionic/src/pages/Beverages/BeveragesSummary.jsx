@@ -27,6 +27,7 @@ class BeveragesSummary extends Component {
             unitConverter:1,
             date: [],
             key: 'beverage/beverageList'
+            
         }
         this.onIncrease=this.onIncrease.bind(this);
     }

@@ -1,36 +1,15 @@
-import {
-  IonAvatar,
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonTabBar,
-  IonTabButton,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
+import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import T from "i18n-react";
-import {
-  calendar,
-  download,
-  home,
-  redo,
-  settings,
-  trash
-} from "ionicons/icons";
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
+import Calendrier from ".././calandrier/calandrier";
 import Alcool from "../alcool/AlcoolSommaire";
-import SleepService from "../services/sleep/SleepService";
-import FoodSummary from "./nourriture/FoodSummary";
-import FoodHome from "./nourriture/FoodHome";
-import BeveragesSummary from "./Beverages/BeveragesSummary";
-import SleepSummary from "./sleep/SleepSummary";
 import Poids from "../entities/poids/Poids";
+import SleepService from "../services/sleep/SleepService";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
+import FoodHome from "./nourriture/FoodHome";
+import SleepSummary from "./sleep/SleepSummary";
 import Tabs from "./tabs";
 
 const sleepService = SleepService();
@@ -70,10 +49,11 @@ class Home extends Component<RouteComponentProps, State> {
             <IonLabel>
               <h1>Username</h1>
             </IonLabel>
-            <IonButton color="light" slot="end">
+            {/* <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-            </IonButton>
+            </IonButton> */}
+            <Calendrier />
           </IonItem>
 
           <div>
