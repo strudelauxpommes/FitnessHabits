@@ -252,6 +252,10 @@ class SleepCollection {
         return this.list.filter((sleep) => sleep.start.isBetween(start, end) && sleep.end.isBetween(start, end))
     }
 
+    filterSleepByDate(date){
+        return this.list.filter((sleep) => sleep.start.isSame(date))
+    }
+
     /**
      * [Calculate the average sleep between a date and x days before description]
      *

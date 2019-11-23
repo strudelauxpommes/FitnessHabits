@@ -66,11 +66,18 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
         // this.setState({ sleepCollection: newCollection });
     }
 
-    deleteSleepItemWithKey(key: any) {
-        //@todo: PhilB
-        // sleepService.delete(key);
-        // console.log(sleepService.fetch());
-        // this.setState({ sleepCollection: sleepService.fetch() });
+    deleteSleepItemWithKey(key: Sleep) {
+        
+        //first we remove the item we want to remove
+        const newCollection = this.state.sleepCollection
+        newCollection.removeSleep(key)
+        //then we remove all the items from the collection that dont share the date of the removed item
+        const temp = newCollection.filterSleepByDate(key.start)
+        
+        const sleepService = new SleepService()
+        sleepService.saveCollectionAtDate(temp,key.start)
+        
+        this.setState({sleepCollection: newCollection})
     }
 
     render() {

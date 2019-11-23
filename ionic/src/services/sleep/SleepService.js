@@ -97,8 +97,23 @@ export default class SleepService{
         const json = JSON.stringify(sleepCollection)
 
         const activeDate = await this.getActiveDate()
-    
         await this.persist.setValueByDate("sleep", json, activeDate); 
+    }
+
+    /**
+     * 
+     * @param {SleepCollection} sleepCollection 
+     * @param {moment} date 
+     * 
+     * save a collection at a specific date
+     */
+
+    async saveCollectionAtDate(sleepCollection,date){
+        const json = JSON.stringify(sleepCollection)
+        //we then need to transform the actual date to the JS date format
+        const dateFormated = Date(date.toDate())
+        //then call setValueByDate
+        await this.persist.setValueByDate("sleep",json,dateFormated)
     }
 
     /**
@@ -122,7 +137,7 @@ export default class SleepService{
         // Waiting for ocean team to complete active date persistence
         // const activeDate = await this.persist.getValue('active-date')
         
-        return moment('2019-10-15T00:00:00-05:00');
+        return moment('2019-10-09T00:00:00-05:00');
     }
 
     async getActiveDate(){
