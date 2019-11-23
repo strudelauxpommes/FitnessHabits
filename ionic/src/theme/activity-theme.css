@@ -104,6 +104,18 @@ ion-grid {
     text-align: center;
 }
 
+.ad-hidden-comment, .ad-hidden-comment .native-textarea.sc-ion-textarea-md{
+    height:0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    transition:1s;
+}
+
+.ad-show-comment, .ad-show-comment .native-textarea.sc-ion-textarea-md{
+    height:80px;
+    transition:1s;
+}
+
 /*****************************************************
 ******************* ACTIVITÉ SOMMAIRE ****************
 ******************************************************/

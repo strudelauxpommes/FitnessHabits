@@ -9,14 +9,15 @@ import AddActivityForm from '../../components/AddActivityForm';
 
 const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
+  const [dates, setDates] = useState();
   const activityService = new ActivityService();
 
   let today = moment();
   let aWeekAgo = today.clone().subtract(7, 'days');
-  let dates;
 
   activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
-    dates = result;
+    setDates(result);
+    console.log(dates);
   });
   // let dates = [
   //   {
