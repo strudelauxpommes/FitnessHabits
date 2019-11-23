@@ -14,12 +14,17 @@ const ActivityDetails = () => {
 
   let today = moment();
   let aWeekAgo = today.clone().subtract(7, 'days');
+  let fetchedData = false;
 
-  activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
-    if (result && result.length > 0) {
-      setDates(result)
-    }
-  });
+  if (!fetchedData) {
+    setInterval(() => {
+      activityService.getAllActivitiesBetween(aWeekAgo.toDate(), today.toDate()).then((result) => {
+        fetchedData = true;
+        console.log(result);
+        setDates(result);
+      });
+    }, 3000);
+  }
 
   return (
     <IonPage>
@@ -56,7 +61,7 @@ const ActivityDetails = () => {
             <IonCol className="ad-data-col" size="3">Intensité</IonCol>
           </IonRow>
           {
-            dates
+            dates !== null && dates !== undefined
               ? dates.map((d, index) => {
                 let json = JSON.parse(d);
                 return (

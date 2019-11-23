@@ -22,7 +22,7 @@ import {DalImpl} from '../dal/DalImpl'
     * @param date 
     */
     async getAllActivities(){
-        return this.INSTANCE.getAllItems(this.KEY);    
+        return await this.INSTANCE.getAllItems(this.KEY);    
     }
     /**
     * Returns all Activities between beginDate and EndDate
@@ -31,6 +31,6 @@ import {DalImpl} from '../dal/DalImpl'
     */
 
     async getAllActivitiesBetween(beginDate: Date,endDate: Date){
-        return this.INSTANCE.getValues(this.KEY,beginDate,endDate); 
+        return await this.INSTANCE.getValues(this.KEY,beginDate,endDate); 
     }
 }
