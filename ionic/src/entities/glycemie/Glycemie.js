@@ -22,9 +22,9 @@ class Glycemie extends Component {
 		let glycemie = this.state.glycemie;
 		let errors = "";
 		let InputIsValid = true;
-		if(!String(glycemie).match(/^[0-9]{1,2}(.)?[0-9]{1,2}$/)){
+		if(!String(glycemie).match(/^\d{1,2}([\,\.]\d{1})?$/)){
 			InputIsValid = false;
-			errors = "*Veuillez respectez ce format: 99.9";
+			errors = "*Veuillez respecter ce format: 99.9";
 		}
 		this.setState({
 			errors: errors
