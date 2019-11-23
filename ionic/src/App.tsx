@@ -44,6 +44,7 @@ import "./theme/sleep.css";
 import "./theme/variables.css";
 
 import "./services/parameters/InitializeParameters.js";
+import AlcoolDetail from './alcool/AlcoolDetail';
 
 // Init language
 init();
@@ -77,6 +78,7 @@ const App: React.FC = () => (
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
         <Route path="/tabs" component={Tabs} />
+        <Route path="/alcool-detail" component={AlcoolDetail} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
