@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage,IonCol, IonRow, IonGrid } from '@ionic/react';
+import { IonContent, IonHeader, IonPage,IonCol, IonRow, IonGrid, IonImg } from '@ionic/react';
 import React from 'react';
 
 const ActivitySommary = () => {
@@ -14,13 +14,13 @@ const ActivitySommary = () => {
                     </IonCol>
                     <IonCol>
                         <div class='as-temps-total'>
-                            <ion-img class="as-icon-time" src="assets/icon/clock-icon.png"></ion-img>
+                            <IonImg className="as-icon-time" src="assets/icon/clock-icon.png"></IonImg>
                             <div class='as-temps-total-value'>8:00</div>
                         </div>
                     </IonCol>
                     <IonCol>
                         <div class='as-intensite-moy'>
-                            <ion-img class="as-icon-intensity" src="assets/icon/intensite-icon.png"></ion-img>
+                            <IonImg class="as-icon-intensity" src="assets/icon/intensite-icon.png"></IonImg>
                             <div class='as-intensity-moy-value'>5</div>
                         </div>
                         
