@@ -13,10 +13,20 @@ export class Beverage extends Component {
             unit: "ml"
         }
         this.increment=this.increment.bind(this);
+        this.decrement=this.decrement.bind(this);
+        this.fav=this.fav.bind(this);
     }
     
     increment(){
         this.props.onIncrement(this.props.beverage);
+    }
+    
+    decrement(){
+        this.props.onDecrement(this.props.beverage);
+    }
+    
+    fav(){
+        this.props.onFavorite(this.props.beverage);
     }
 
     render() {
@@ -25,7 +35,7 @@ export class Beverage extends Component {
                     <IonGrid>
                         <IonRow>
                             <IonCol size={"2"}>
-                                <IonFabButton size={"small"}>
+                                <IonFabButton onClick={this.fav} size={"small"}>
                                     <IonIcon icon={starOutline} />
                                 </IonFabButton>
                             </IonCol>
@@ -43,15 +53,15 @@ export class Beverage extends Component {
                             <IonCol size={"6"}>
                                 <IonRow style={{justifyContent:'end'}}>
                                         <IonCol size={"5"}>
-                                            <IonFabButton size={"small"}>
+                                            <IonFabButton onClick={this.increment} size={"small"}>
                                                 <IonIcon icon={add} />
                                             </IonFabButton>
                                         </IonCol>
                                             <IonCol size={"2"} >
-                                            <IonInput inputmode="numeric" placeholder="99" style={{textAlign:'center'}}></IonInput>
+                                            <IonInput inputmode="numeric" placeholder={this.props.beverage.quantity} style={{textAlign:'center'}}></IonInput>
                                         </IonCol>
                                         <IonCol size={"5"}>
-                                            <IonFabButton size={"small"}>
+                                            <IonFabButton onClick={this.decrement} size={"small"}>
                                                 <IonIcon icon={remove} />
                                             </IonFabButton>
                                         </IonCol>

@@ -12,10 +12,13 @@ class BeveragesDetail extends Component {
         this.state = {
             beverages: [],
             total: 0,
-            unit: "L",
-            unitConverter:1
+            unit: "on",
+            unitConverter:1,
+            favorites:0
         }
         this.onIncrease=this.onIncrease.bind(this);
+        this.onDecrease=this.onDecrease.bind(this);
+        this.onFavorite=this.onFavorite.bind(this);
     }
 
     async componentDidMount() {
@@ -23,27 +26,48 @@ class BeveragesDetail extends Component {
         //ici: setstate this.state.unit en allant chercher le parametre 
         //
         if (this.state.unit==="on") {
-            this.setState({unitConverter:0.033814})
-        } 
-        for (let beverage of this.state.beverages) {
-            await this.setState({total: this.state.unitConverter*(this.state.total + (beverage.quantity * beverage.volume/1000))});
+          await  this.setState({unitConverter:0.034})
+        } else {
+            await this.setState({unitConverter:0.001})
         }
-        
+        for (let beverage of this.state.beverages) {
+            await this.setState({total: (this.state.total + (beverage.quantity * beverage.volume))});
+        }
+         await this.setState({total:(this.state.total * this.state.unitConverter).toFixed(3)});
+    }
+    
+    async onFavorite (data) {
+        await this.setState(prevState => ({
+            beverages: prevState.beverages.map(
+                el => el.name === data.name? { ...el, favorite: !el.favorite}: el
+            )
+        }))
     }
 
     async onIncrease (data) {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
-                el => el.name === data.name? { ...el, quantity: this.state.unitConverter * (el.quantity+1) }: el
+                el => el.name === data.name? { ...el, quantity: (el.quantity+1) }: el
             )
         }))
-        this.setState({total: this.state.total + (this.state.unitConverter*data.volume/1000)})
+        this.setState({total: parseFloat(this.state.total) + this.state.unitConverter*parseFloat(data.volume)})
+    }
+    
+    async onDecrease (data){
+        await this.setState(prevState => ({
+            beverages: prevState.beverages.map(
+                el => el.name === data.name && el.quantity>0? { ...el, quantity: (el.quantity-1) }: el
+            )
+        }))
+        if (this.state.total>0) {
+            this.setState({total: parseFloat(this.state.total) - this.state.unitConverter*parseFloat(data.volume)})
+        }
     }
 
     render() {
         let beveragesRender = [];
         for (let beverage of this.state.beverages) {
-            beveragesRender.push(<Beverage onIncrement={this.onIncrease} beverage={beverage} key={beverage.name}></Beverage>);
+            beveragesRender.push(<Beverage onIncrement={this.onIncrease} onDecrement={this.onDecrease} beverage={beverage} key={beverage.name}></Beverage>);
         }
         return (
             <IonPage>
