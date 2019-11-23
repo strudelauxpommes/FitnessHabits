@@ -1,9 +1,7 @@
 import { IonContent, IonHeader, IonPage,IonCol, IonRow, IonGrid, IonImg } from '@ionic/react';
 import React from 'react';
 
-const ActivitySommary = () => {
-
-
+const ActivitySummary = () => {
   return (
     <IonPage>
       <IonHeader className="as-header-container">
@@ -71,4 +69,4 @@ const ActivitySommary = () => {
   );
 };
 
-export default ActivitySommary;
+export default ActivitySummary;
