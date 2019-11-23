@@ -19,12 +19,12 @@ const AddActivityForm = () => {
   const activityService = new ActivityService();
 
   const submit = async () => {
-    // if (name.length === 0 || time.length === 0) {
-    //   setFormErrors("Veuillez remplir les sections obligatoires");
-    // } else if (intensity < 0 || intensity > 10) {
-    //   setFormErrors("L'intensité doit être située entre 0 et 10");
-    // } else {
-    //   setFormErrors('');
+    if (name.length === 0 || time.length === 0) {
+      setFormErrors("Veuillez remplir les sections obligatoires");
+    } else if (intensity < 0 || intensity > 10) {
+      setFormErrors("L'intensité doit être située entre 0 et 10");
+    } else {
+      setFormErrors('');
 
       try {
         let activity = {
@@ -45,7 +45,7 @@ const AddActivityForm = () => {
       } catch (e) {
         setFormErrors(e);
       }
-    // }
+    }
   }
 
   return (
@@ -54,23 +54,23 @@ const AddActivityForm = () => {
         <IonList>
           <IonItem>
             <IonLabel>Name</IonLabel>
-            <IonInput name="activityName" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+            <IonInput name="activityName" type="text" value={name} onInput={(e) => setName(e.target.value)}/>
           </IonItem>
           <IonItem>
             <IonLabel>Temps</IonLabel>
-            <IonInput name="time" type="text" value={time} onChange={(e) => setTime(e.target.value)}/>
+            <IonInput name="time" type="text" value={time} onInput={(e) => setTime(e.target.value)}/>
           </IonItem>
           <IonItem>
             <IonLabel>Intensité</IonLabel>
-            <IonInput name="intensity" type="number" value={intensity} onChange={(e) => setIntensity(e.target.value)}/>
+            <IonInput name="intensity" type="number" value={intensity} onInput={(e) => setIntensity(e.target.value)}/>
           </IonItem>
           <IonItem>
             <IonLabel>Commentaire</IonLabel>
-            <IonInput name="comment" type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
+            <IonInput name="comment" type="text" value={comment} onInput={(e) => setComment(e.target.value)}/>
           </IonItem>
           <IonItem>
             <IonLabel>Favoris</IonLabel>
-            <IonInput name="favorite" type="text" value={favorite} onChange={(e) => setFavorite(e.target.value)}/>
+            <IonInput name="favorite" type="text" value={favorite} onInput={(e) => setFavorite(e.target.value)}/>
           </IonItem>
         </IonList>
 
