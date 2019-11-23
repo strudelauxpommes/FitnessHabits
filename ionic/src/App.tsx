@@ -32,6 +32,7 @@ import "./theme/sleep.css";
 /* Beverage import */
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
+import './services/parameters/InitializeParameters.js'
 /* Theme variables */
 import "./theme/variables.css";
 import Dal from './dal/Dal';
@@ -63,6 +64,7 @@ const App: React.FC = () => (
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
+        <Route path="/parameters" component={Parameters} exact={true}
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
