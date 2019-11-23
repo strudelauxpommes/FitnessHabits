@@ -29,7 +29,7 @@ export class Beverage extends Component {
                                     <IonIcon icon={starOutline} />
                                 </IonFabButton>
                             </IonCol>
-                            <IonCol size={"3"} style={{textAlign:'center'}}>
+                            <IonCol size={"4"}>
                                 <IonRow>
                                     {this.props.beverage.name}
                                 </IonRow>
@@ -41,20 +41,21 @@ export class Beverage extends Component {
                                 </IonRow>
                             </IonCol>
                             <IonCol size={"6"}>
-                                <IonRow style={{textAlign:'right'}}>
-                                    <IonCol>
-                                        <IonFabButton size={"small"}>
-                                            <IonIcon icon={add} />
-                                        </IonFabButton>
-                                    </IonCol>
-                                    <IonCol>
-                                        <IonInput placeholder="99"></IonInput>
-                                    </IonCol>
-                                    <IonCol>
-                                        <IonFabButton size={"small"}>
-                                            <IonIcon icon={remove} />
-                                        </IonFabButton>
-                                    </IonCol>
+                                <IonRow style={{justifyContent:'end'}}>
+                                        <IonCol size={"5"}>
+                                            <IonFabButton size={"small"}>
+                                                <IonIcon icon={add} />
+                                            </IonFabButton>
+                                        </IonCol>
+                                            <IonCol size={"2"} >
+                                            <IonInput inputmode="numeric" placeholder="99" style={{textAlign:'center'}}></IonInput>
+                                        </IonCol>
+                                        <IonCol size={"5"}>
+                                            <IonFabButton size={"small"}>
+                                                <IonIcon icon={remove} />
+                                            </IonFabButton>
+                                        </IonCol>
+                                    
                                 </IonRow>
                             </IonCol>
                     </IonRow>
