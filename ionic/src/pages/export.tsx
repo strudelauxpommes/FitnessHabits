@@ -20,7 +20,7 @@ async function getAllData() {
   var dateFin = document.getElementById("fin") 
   
   const dumper = new FilterDumper();
-  //await dumper.dump();
+  await dumper.dumpAll();
 
 }
 function changeColor(id:string){

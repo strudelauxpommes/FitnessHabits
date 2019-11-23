@@ -1,10 +1,9 @@
 import { Plugins, FilesystemDirectory, FilesystemEncoding } from '@capacitor/core';
-const { Filesystem } = Plugins;
 
 import { DalDumper } from './DalDumper';
 import { DalImpl } from './DalImpl';
 import Dal from './Dal';
-
+const { Filesystem } = Plugins;
 export class FileDumper {
 
     // https://capacitor.ionicframework.com/docs/apis/filesystem/
