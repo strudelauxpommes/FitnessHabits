@@ -8,59 +8,120 @@
  For instance, the profile module with name and age data could look
  like this: profile/name "John Smith", profile/age 42.
  */
-import { Plugins } from '@capacitor/core';
+import Item from './model/item';
+import { Value } from './model/value';
 
-const { Storage } = Plugins;
 
-export class Dal {
-    /*
-      As far as I am concerned, I believe NodeJS only has atomic operations
-      because it works on a single thread model. However, Ionic generates
-      code to different platforms that may or may not have the same threading
-      model. Therefore, I am unsure whether or not the set operation is atomic.
-      TODO: "proove" with unit test(s),
-            search (Ionic Storage module unit tests or stack overflow)
-            peer review.
-    */
-
-    async setItem(key: any, value: any) {
-        const timestampMs = Date.now();
-        const lastValue = await this.getItems(key);
-        lastValue.push({ timestampMs, value });
-        await Storage.set({ key, value: JSON.stringify(lastValue) });
-    }
-
-    async getItems(key: any) {
-        const { value } = await Storage.get({ key });
-        if (value === undefined || value === null) {
-            return [];
-        } else {
-            return JSON.parse(value);
-        }
-    }
+export default interface Dal {
 
     /**
-       Retieve the latest time stamped item under a key
+     * Set an item (key, {timestamp, date, value}) for a given (key, value)
+     * in the Storage with the actual date.
+     * If the key already exists with the same date (year, month, day)
+     * the value will be "updated" (i.e. the item will be added with a new 
+     * timestamp, instead of updating the old value).
+     * @param key
+     * @param value
      */
-    async getItem(key: any) {
-        const items = await this.getItems(key);
-        if (items.length === 0) {
-            return undefined;
-        }
-        const { value } = items[items.length - 1];
-        return value;
-    }
+    setValue(key: string, value: Value): Promise<void>;
 
-    async removeItem(key: any) {
-        await Storage.remove({ key });
-    }
+    /**
+     * Set an item (key, {timestamp, date, value}) for a given (key, date, value)
+     * in the Storage with the given date.
+     * If the key already exists with the same date (year, month, day)
+     * the value will be "updated" (i.e. the item will be added with a new 
+     * timestamp, instead of updating the old value).
+     * @param key
+     * @param value
+     * @param date
+     */
+    setValueByDate(key: string, value: Value, date: Date): Promise<void>;
 
-    async keys() {
-        const { keys } = await Storage.keys();
-        return keys;
-    }
+    /**
+     * Get all items with their timestamp related to the given key
+     * @param key
+     */
+    getAllItems(key: string): Promise<Item[]>;
 
-    async clear() {
-        await Storage.clear();
-    }
+    /**
+     * Get all items with their timestamp related to the given key and between
+     * the begin date to the end date inclusively.
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.timestampMs
+     */
+    getItems(key: string, begin: Date, end: Date): Promise<Item[]>;
+
+    /**
+     * Get all latest items (by the mean of their timestamp) related to the given 
+     * key and between the begin date to the end date inclusively.
+     * An item is the "latest" if its timestamp is the most recent for other items
+     * with the same (key, date, value) 
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.dateTime
+     */
+    getLatestItems(key: string, begin: Date, end: Date): Promise<Item[]>;
+
+
+    /**
+     * Get all values (like getAllItems) related to the given key
+     * @param key
+     */
+    getAllValues(key: string): Promise<Value[]>;
+
+    /**
+     * Get all values  (like getItems)  related to the given key and between
+     * the begin date to the end date inclusively.
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.timestampMs
+     */
+    getValues(key: string, begin: Date, end: Date): Promise<Value[]>;
+
+    /**
+     * Get all latest values (like getLatesItems) related to the given
+     * key and between the begin date to the end date inclusively.
+     * A Value is the latest if its item is the "latest".
+     * @param key
+     * @param begin
+     * @param end
+     * @returns a promise of Item[] ordered by Item.dateTime
+     */
+    getLatestValues(key: string, begin: Date, end: Date): Promise<Value[]>;
+
+    /**
+     * Retrieve the latest time stamped value under a key regardless its date.
+     * @param key
+     * @returns Value or 'undefined' if there is no such value.
+     */
+    getLastValue(key: string): Promise<Value | undefined>;
+
+    /**
+     * Retrieve the latest time stamped value under a key for a given date
+     * @param key
+     * @param date
+     * @returns Value or 'undefined' if there is no such value.
+     */
+    getValue(key: string, date: Date): Promise<Value | undefined>;
+
+    /**
+     * Remove all items for the given key
+     * @param key
+     */
+    removeItem(key: string): Promise<void>;
+
+    /**
+     * Return all keys.
+     */
+    keys(): Promise<string[]>;
+
+    /**
+     * Clear all items.
+     * Warning : use carefully !!
+     */
+    clear(): Promise<void>;
 }

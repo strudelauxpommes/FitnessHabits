@@ -2,8 +2,11 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import ActivityDetails from './pages/ActivityDetails';
-import ActivitySummary from './pages/ActivitySummary';
+
+/* Activity imports */
+import ActivityDetails from './pages/activities/ActivityDetails';
+import ActivitySommary from './pages/activities/ActivitySummary';
+import moment from 'moment';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -31,11 +34,14 @@ const App = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/details" component={ActivityDetails} exact={true} />
-        <Route path="/home" component={ActivitySummary} exact={true} />
+        <Route path="/home" component={ActivitySommary} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );
+
+/* Temporary activeDate global variable */
+export const activeDate = moment();
 
 export default App;
