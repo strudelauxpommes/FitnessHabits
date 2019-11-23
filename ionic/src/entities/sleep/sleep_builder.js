@@ -29,6 +29,7 @@ class SleepBuilder {
     buildStart(startInput) {
         if (this.isValidTime(startInput)) {
             this.startMoment = this.convertSleepInputToMoment(String(startInput))
+            console.log(this.startMoment.format())
         } else {
             this.errorFields.push("Endormi à")
         }
@@ -58,6 +59,7 @@ class SleepBuilder {
 
         if (this.isValidTime(endInput)) {
             this.endMoment = this.convertSleepInputToMoment(String(endInput))
+            console.log(this.endMoment.format())
         } else {
             this.errorFields.push("Réveillé à")
         }
@@ -195,17 +197,11 @@ class SleepBuilder {
     convertSleepInputToMoment(input) {
         const time = this.getTimeFromSleepString(input);
 
-        const momentObj = {
-            year: this.activeDate.year(),
-            month: this.activeDate.month(),
-            day: this.activeDate.day(),
-            hour: time.hour,
-            minute: time.minute,
-            second: 0,
-            milliseconds: 0,
-        }
+        const localMoment = this.activeDate.clone()
+        localMoment.hour(time.hour)
+        localMoment.minute(time.minute)
 
-        return moment(momentObj);
+        return localMoment;
     }
 
     /**

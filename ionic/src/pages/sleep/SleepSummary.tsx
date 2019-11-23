@@ -61,7 +61,6 @@ export default class SleepSummary extends Component<Props, State> {
     const moodObjects = await sleepService.fetchMoods()
 
     const test = await sleepService.fetchHistory_v2()
-    console.log(test)
 
     this.setState({
       sleeps: sleepCollection,
@@ -105,7 +104,12 @@ export default class SleepSummary extends Component<Props, State> {
       console.log(test.getStartDate(), test.getEndDate())
     }
 
-    if (builder.isValid && collection.addSleep(builder.sleep as Sleep)) {
+    if(collection.addSleep(builder.sleep as Sleep) === false){
+      builder.isValid = false
+      builder.errorMessage += "<ul><li>Sommeil invalide: les dates se chevauchent!</li></ul>"
+    }
+
+    if (builder.isValid) {
       await sleepService.saveActiveDate(collection)
 
       this.setState({
