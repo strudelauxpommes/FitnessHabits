@@ -3,7 +3,6 @@ import React from "react";
 import {
   IonHeader,
   IonContent,
-  IonText,
   IonItem,
   IonLabel,
   IonList,

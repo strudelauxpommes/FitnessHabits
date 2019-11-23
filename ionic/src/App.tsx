@@ -32,6 +32,7 @@ import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
 import FoodSummary from "./pages/nourriture/FoodSummary";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodAdd from "./pages/nourriture/FoodAdd";
+import FoodList from './pages/nourriture/FoodList';
 
 /* Temporary activeDate global variable */
 export const activeDate = moment();
@@ -43,6 +44,7 @@ const App: React.FC = () => (
         <Route path="/home" component={Home} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/food-summary" component={FoodSummary} />
+        <Route path="/food-list/:period" component={FoodList} />
         <Route
           exact
           path="/food"
