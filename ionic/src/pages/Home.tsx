@@ -6,6 +6,7 @@ import Export from './export';
 import Import from './import';
 import Supression from './purge';
 import T from 'i18n-react';
+import Poids from '../entities/poids/Poids';
 
 //interface MainTabsProps { }
 
@@ -153,26 +154,7 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
 
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>Poids</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonRow>
-              <IonItem>Poids : </IonItem>
-              <IonInput placeholder="150.9" color="dark"></IonInput>
-              <IonSelect value="Lbs" interface="popover">
-                <IonSelectOption selected>Lbs</IonSelectOption>
-                <IonSelectOption>Kgs</IonSelectOption>
-              </IonSelect>
-            </IonRow>
-            <IonRow>
-              <IonItem>Pourcentage de gras : </IonItem>
-              <IonInput placeholder="0.00%" color="dark"></IonInput>
-            </IonRow>
-          </IonCardContent>
-        </IonCard>
+        <Poids />
 
         <IonCard>
           <IonCardHeader>
