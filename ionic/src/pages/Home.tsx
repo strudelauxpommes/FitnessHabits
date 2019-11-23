@@ -318,7 +318,7 @@ const Home: React.FC = () => {
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="settings" href="/">
+        <IonTabButton tab="settings" href="/Profil">
           <IonIcon icon={settings} />
           <IonLabel></IonLabel>
         </IonTabButton>
