@@ -13,7 +13,6 @@ import {
   import React, { Component , ChangeEvent} from 'react';
   import { speedometer} from 'ionicons/icons';
   import '../../theme/poids.css';;
-  //import Data from '../dal/Dal';
   class Poids extends Component {
     state = {
         poids: 0,
@@ -29,7 +28,6 @@ import {
         input.onkeyup = (e) => {
             clearTimeout(timeout);
             timeout = setTimeout( ()=> {
-                //input = document.getElementById('poids');
                 this.setState({poids: input.value});
                 if(this.state.poids != 0){
 					imc = Math.round((this.state.poids/(taille*taille)) * 100)/100;

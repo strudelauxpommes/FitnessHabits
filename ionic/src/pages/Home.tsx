@@ -153,7 +153,6 @@ const Home: React.FC = () => {
             </IonRow>
           </IonCardContent>
         </IonCard>
-
         <Poids />
         <IonCard>
           <IonCardHeader>
