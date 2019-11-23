@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   IonContent,
   IonInput,
@@ -15,31 +14,27 @@ const AddActivityForm = () => {
   const [ intensity, setIntensity ] = useState('');
   const [ comment, setComment ] = useState('');
   const [ favorite, setFavorite ] = useState('');
-  const [ formErrors, setFormErrors ] = useState({});
+  const [ formErrors, setFormErrors ] = useState('');
 
   const submit = async () => {
-    try {
-      // await newActivity({
-      //   name,
-      //   time,
-      //   intensity,
-      //   comment,
-      //   favorite
-      // });
-      console.log("New activity");
-    } catch (e) {
-      setFormErrors(e);
+    if (name.length === 0 || time.length === 0 || intensity.length === 0) {
+      setFormErrors("Veuillez remplir les sections obligatoires");
+    } else if (intensity < 0 || intensity > 10) {
+      setFormErrors("L'intensité doit être située entre 0 et 10");
+    } else {
+      setFormErrors('');
+
+      try {
+        console.log("New activity");
+      } catch (e) {
+        setFormErrors(e);
+      }
     }
   }
 
   return (
-    <IonContent>
-      <form onSubmit={(e) => { e.preventDefault(); submit();}}>
-        <div>
-          {formErrors ? (
-            formErrors.message
-          ): null}
-        </div>
+    <IonContent className="ad-activity-form-content">
+      <form className="ad-form-activity" onSubmit={(e) => { e.preventDefault(); submit();}}>
         <IonList>
           <IonItem>
             <IonLabel>Name</IonLabel>
@@ -51,7 +46,7 @@ const AddActivityForm = () => {
           </IonItem>
           <IonItem>
             <IonLabel>Intensité</IonLabel>
-            <IonInput name="intensity" type="text" value={intensity} onChange={(e) => setIntensity(e.target.value)}/>
+            <IonInput name="intensity" type="number" value={intensity} onChange={(e) => setIntensity(e.target.value)}/>
           </IonItem>
           <IonItem>
             <IonLabel>Comment</IonLabel>

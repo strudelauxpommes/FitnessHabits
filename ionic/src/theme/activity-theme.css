@@ -2,12 +2,36 @@
 /*****************************************************
 ********************ACTIVITÉ DÉTAILLÉ*****************
 ******************************************************/
-.jourActif {
+.ad-row {
+    padding: 5px 15px 5px 15px;
+}
+
+.ad-data-col {
+    display:flex;
+    justify-content: center;
+}
+
+.ad-data-col-name {
+    
+}
+
+.ad-grid-row-jour, .ad-grid-data {
+    padding:0px;
+    --ion-grid-columns:16;
+}
+
+.ad-row-jour {
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.adJourActif {
 	background-color: #33CCCC;
 	color: white;
 }
 
-.jourInactif {
+.adJourInactif {
 	background-color: grey;
 	color: white;
 }
@@ -29,6 +53,50 @@ ion-grid {
     margin: 0 auto;
     display: block;
     width: 50%;
+    margin-top: 25px;
+}
+
+.ad-modal-add-activity-form {
+    height:100%;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.ad-modal-add-activity-form .sc-ion-modal-md {
+    height: 425px;
+    margin: auto;
+}
+
+.ad-activity-form-content {
+    height:75%;
+}
+
+.ad-nav-bar-modal-activity-form {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--ion-color-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ad-form-activity {
+    height:350px;
+}
+
+.ad-nav-bar-modal-activity-form .ad-close-icon {
+    transform: rotate(45deg);
+}
+
+.ad-close-button .button-native {
+    box-shadow: none;
+}
+
+.ad-error-msg {
+    color: red;
+    text-align: center;
 }
 
 /*****************************************************
