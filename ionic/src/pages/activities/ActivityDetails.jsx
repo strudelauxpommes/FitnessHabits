@@ -9,57 +9,57 @@ const ActivityDetails = () => {
   const [showModal, setShowModal] = useState(false);
   let dates = [
     {
-      jour : "2019/11/19",
-      activites : [
+      day : "2019/11/19",
+      activities : [
         {
-          titre : "Yoga",
-          duree : "0:60:0",
-          intensite : 2
+          title : "Yoga",
+          duration : "0:60:0",
+          intensity : 2
         },
         {
-          titre : "Vélo",
-          duree : "0:40:0",
-          intensite : 5
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 5
         },
         {
-          titre : "Soccer",
-          duree : "0:45:0",
-          intensite : 8
+          title : "Soccer",
+          duration : "0:45:0",
+          intensity : 8
         }
       ]
     },
     {
-      jour : "2019/11/18",
-      activites : [
+      day : "2019/11/18",
+      activities : [
         {
-          titre : "Gym",
-          duree : "0:60:0",
-          intensite : 6
+          title : "Gym",
+          duration : "0:60:0",
+          intensity : 6
         },
         {
-          titre : "Vélo",
-          duree : "0:40:0",
-          intensite : 5
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 5
         },
         {
-          titre : "Tennis",
-          duree : "0:40:0",
-          intensite : 8
+          title : "Tennis",
+          duration : "0:40:0",
+          intensity : 8
         }
       ]
     },
     {
-      jour : "2019/11/17",
-      activites : [
+      day : "2019/11/17",
+      activities : [
         {
-          titre : "Vélo",
-          duree : "0:40:0",
-          intensite : 4
+          title : "Vélo",
+          duration : "0:40:0",
+          intensity : 4
         },
         {
-          titre : "Soccer",
-          duree : "0:40:0",
-          intensite : 7
+          title : "Soccer",
+          duration : "0:40:0",
+          intensity : 7
         }
       ]
     }
@@ -95,7 +95,7 @@ const ActivityDetails = () => {
           {
             dates.map((d, index) => {
               return (
-                  <DateRow key={d['jour']} jour={d['jour']} activites={d['activites']} index={index}></DateRow>
+                  <DateRow key={d['day']} jour={d['day']} activities={d['activities']} index={index}></DateRow>
               );
             })
           }

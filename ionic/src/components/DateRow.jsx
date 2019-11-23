@@ -9,13 +9,13 @@ var classNames = require('classnames');
 export default class DateRow extends React.Component {
   getFormattedDate() {
     moment.locale('fr');
-    let date = new moment(this.props.jour);
+    let date = new moment(this.props.day);
     return date.locale('fr').format('D MMMM');
   }
 
   getTotalDuration() {
     let total = moment.duration(0);
-    this.props.activites.forEach(a => {
+    this.props.activities.forEach(a => {
       let duration = moment.duration(a.duree);
       total.add(duration);
     });
@@ -24,10 +24,10 @@ export default class DateRow extends React.Component {
 
   getIntensityAverage() {
     let total = 0;
-    this.props.activites.forEach(a => {
-      total += a.intensite;
+    this.props.activities.forEach(a => {
+      total += a.intensity;
     });
-    return Math.round(total / this.props.activites.length);
+    return Math.round(total / this.props.activities.length);
   }
 
   render() {
@@ -39,9 +39,9 @@ export default class DateRow extends React.Component {
           <IonCol size="3">{this.getIntensityAverage()}</IonCol>
         </IonRow>
           {
-            this.props.activites.map((a, index) => {
+            this.props.activities.map((a, index) => {
               return (
-                  <ActivityRow key={index} titre={a['titre']} duree={a['duree']} intensite={a['intensite']}></ActivityRow>
+                  <ActivityRow key={index} title={a['title']} duration={a['duration']} intensity={a['intensity']}></ActivityRow>
               );
             })
           }
