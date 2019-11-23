@@ -4,6 +4,7 @@ import data from './data.json';
 import { cafe, add } from 'ionicons/icons';
 import Beverage from './Beverage';
 import { DalImpl } from '../../dal/DalImpl'
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 class BeveragesDetail extends Component {
 
@@ -39,12 +40,29 @@ class BeveragesDetail extends Component {
          await this.setState({total:(this.state.total * this.state.unitConverter).toFixed(3)});
     }
     
-    async onFavorite (data) {
-        await this.setState(prevState => ({
-            beverages: prevState.beverages.map(
-                el => el.name === data.name? { ...el, favorite: !el.favorite}: el
-            )
-        }))
+    async onFavorite (data, isFavoriting) {
+        let favoriteCount = 0;
+        this.state.beverages.map(beverage => {
+            if (beverage.favorite) {
+                favoriteCount++;
+            }
+        });
+
+        if (isFavoriting && favoriteCount < 4) {
+            await this.setState(prevState => ({
+                beverages: prevState.beverages.map(
+                    el => el.name === data.name? { ...el, favorite: true}: el
+                )
+            }))
+            await this.saveBeverage();
+        } else if (!isFavoriting) {
+            await this.setState(prevState => ({
+                beverages: prevState.beverages.map(
+                    el => el.name === data.name? { ...el, favorite: false}: el
+                )
+            }))
+            await this.saveBeverage();
+        }
     }
 
     async onIncrease (data) {
@@ -105,7 +123,7 @@ class BeveragesDetail extends Component {
     render() {
         let beveragesRender = [];
         for (let beverage of this.state.beverages) {
-            beveragesRender.push(<Beverage onIncrement={this.onIncrease} onDecrement={this.onDecrease} beverage={beverage} key={beverage.name}></Beverage>);
+            beveragesRender.push(<Beverage onFavorite={this.onFavorite} onIncrement={this.onIncrease} onDecrement={this.onDecrease} beverage={beverage} key={beverage.name}></Beverage>);
         }
         return (
             <IonPage>

@@ -26,9 +26,12 @@ export class Beverage extends Component {
     }
     
     fav(){
-        this.props.onFavorite(this.props.beverage);
+        if (this.props.beverage.favorite) {
+            this.props.onFavorite(this.props.beverage, false);
+        } else {
+            this.props.onFavorite(this.props.beverage, true);
+        }
     }
-
 
 
     render() {
