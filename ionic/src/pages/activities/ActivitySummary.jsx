@@ -2,7 +2,7 @@ import { IonPage } from '@ionic/react';
 import React from 'react';
 import { useState } from 'react';
 import moment from 'moment';
-import Summary from '../../components/Summary';
+import ActivitiesSummary from '../../components/ActivitiesSummary';
 import { ActivityService } from '../../services/ActivityService';
 
 const ActivitySummary = () => {
@@ -79,8 +79,8 @@ const ActivitySummary = () => {
   }
   
   return (
-    <IonPage>
-      <Summary dates={datesTest} favoris={favorisTest}></Summary>
+    <IonPage className="activite-summary-home">
+      <ActivitiesSummary dates={datesTest} favoris={favorisTest}></ActivitiesSummary>
     </IonPage>
   );
 };

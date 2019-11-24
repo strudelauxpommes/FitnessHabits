@@ -76,7 +76,7 @@ ion-grid {
     color: white;
     width: 100%;
     padding: 15px;
-    background-color: var(--ion-color-primary);
+    background-color: #33CCCC;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -121,11 +121,15 @@ ion-grid {
 ******************************************************/
 
 /*********************** HEADER **********************/
+.activite-summary-home {
+    height:200px;
+}
+
 .as-header-container {
     height: 50px;
     display:flex;
     align-items: center;
-    background-color: var(--ion-color-primary)
+    background-color: #33CCCC
 }
 
 .as-header-container div {
@@ -173,7 +177,7 @@ ion-grid {
 /********************** CONTENT **********************/
 
 #as-grid-container {
-    background-color: var(--ion-color-primary);
+    background-color: #33CCCC;
 }
 
 .as-bubble-container{

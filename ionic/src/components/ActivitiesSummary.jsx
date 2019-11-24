@@ -3,7 +3,14 @@ import { IonRow, IonCol, IonGrid, IonImg, IonHeader, IonContent } from '@ionic/r
 
 var classNames = require('classnames');
 
-export default class Summary extends React.Component {
+
+
+
+export default class ActivitiesSummary extends React.Component {
+  
+
+
+
   getTotalDurationAll() {
     let total = 0;
     if(typeof this.props.dates !== 'undefined') {
@@ -90,16 +97,92 @@ export default class Summary extends React.Component {
   render() {
     let favoriColPremier = "", favoriColDeuxieme = "", favoriColTroisieme = "", favoriColAutre = "";
     
-    let favoriPremier = this.props.favoris.premier ? this.props.favoris.premier : null;
-    let favoriDeuxieme = this.props.favoris.deuxieme ? this.props.favoris.deuxieme : null;
-    let favoriTroisieme = this.props.favoris.troisieme ? this.props.favoris.troisieme : null;
+    // let favoriPremier = this.props.favoris.premier ? this.props.favoris.premier : null;
+    // let favoriDeuxieme = this.props.favoris.deuxieme ? this.props.favoris.deuxieme : null;
+    // let favoriTroisieme = this.props.favoris.troisieme ? this.props.favoris.troisieme : null;
     
-    let dates = this.props.dates ? this.props.dates : null;
+    // let dates = this.props.dates ? this.props.dates : null;
+
+  
+    let datesTest = [
+      {
+        jour : "2019/11/19",
+        activites : [
+          {
+            id : 1,
+            titre : "Yoga",
+            duree : 60,
+            intensite : 2
+          },
+          {
+            id : 2,
+            titre : "Vélo",
+            duree : 40,
+            intensite : 5
+          },
+          {
+            id : 3,
+            titre : "Soccer",
+            duree : 45,
+            intensite : 8
+          }
+        ]
+      },
+      {
+        jour : "2019/11/18",
+        activites : [
+          {
+            id : 4,
+            titre : "Gym",
+            duree : 60,
+            intensite : 6
+          },
+          {
+            id : 5,
+            titre : "Vélo",
+            duree : 40,
+            intensite : 5
+          },
+          {
+            id : 6,
+            titre : "Tennis",
+            duree : 40,
+            intensite : 8
+          }
+        ]
+      },
+      {
+        jour : "2019/11/17",
+        activites : [
+          {
+            id : 7,
+            titre : "Vélo",
+            duree : 40,
+            intensite : 4
+          },
+          {
+            id : 8,
+            titre : "Soccer",
+            duree : 40,
+            intensite : 7
+          }
+        ]
+      }
+    ]
+
+    let favoriPremier = "Yoga"
+
+    console.log(favoriPremier)
+    let favoriDeuxieme = "velo"
+
+    let favoriTroisieme = "soccer"
+
+    let dates = datesTest
     
     if(favoriPremier !== null) {
       let intensite = this.getIntensityAverageActivite(favoriPremier);
       favoriColPremier = <IonCol className="as-bubble-container" size="3">
-                           <p className="as-title-activity">{this.props.favoris.premier}</p>
+                           <p className="as-title-activity">{favoriPremier}</p>
                            <div className={ "as-bubble " + classNames({intensiteFaible:  intensite < 4, 
                                                                        intensiteMoyenne: intensite >= 4 &&
                                                                                          intensite < 8,
