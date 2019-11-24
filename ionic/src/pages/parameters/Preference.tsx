@@ -47,19 +47,23 @@ class Preference extends React.Component<PreferenceState> {
     return (
       <IonPage>
       <IonContent>
-      <IonHeader>
-        <IonToolbar slot="top" className="toolbarName ion-text-center">
-          <IonTitle>Paule Levasseur</IonTitle>
-        </IonToolbar>
-        <IonTabBar slot="top">
-        <IonTabButton tab="profil" href="/profil">
-        <div className="ion-text-center"><h4>Profil</h4></div>
-        </IonTabButton>
-        <IonTabButton tab="preference" href="/preference">
-        <div className="ion-text-center" ><h4>Preference</h4></div>
-        </IonTabButton>
-      </IonTabBar>
-      </IonHeader>
+        <IonHeader>
+          <IonToolbar slot="top" className="toolbarName ion-text-center">
+            <IonTitle>Paule Levasseur</IonTitle>
+          </IonToolbar>
+          <IonTabBar slot="top">
+            <IonTabButton tab="profil" href="/profil">
+              <div className="ion-text-center">
+                <h4>Profil</h4>
+              </div>
+            </IonTabButton>
+            <IonTabButton tab="preference" href="/preference">
+              <div className="ion-text-center">
+                <h4>Preference</h4>
+              </div>
+            </IonTabButton>
+          </IonTabBar>
+        </IonHeader>
         <IonContent>
         <IonText>
           <h4>Unite de mesure</h4>
@@ -71,7 +75,7 @@ class Preference extends React.Component<PreferenceState> {
               <IonSelectOption  value="lbs">lbs</IonSelectOption>
               <IonSelectOption value="kg">kg</IonSelectOption>
             </IonSelect>
-        </IonItem>
+          </IonItem>
 
         <IonItem>
             <IonLabel >Taille</IonLabel>
@@ -79,70 +83,70 @@ class Preference extends React.Component<PreferenceState> {
               <IonSelectOption value="pi/po">pi/po</IonSelectOption>
               <IonSelectOption value="cm">cm</IonSelectOption>
             </IonSelect>
-        </IonItem>
+          </IonItem>
 
-        <IonItem>
+          <IonItem>
             <IonLabel>Breuvage</IonLabel>
             <IonSelect value={ this.state.uniteBreuvages } interface="popover">
               <IonSelectOption value="L">L</IonSelectOption>
               <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
-        </IonItem>
-        
-        <IonItem>
+          </IonItem>
+
+          <IonItem>
             <IonLabel>Total des Breuvages</IonLabel>
             <IonSelect value={ this.state.uniteTotalBreuvages } interface="popover">
               <IonSelectOption value="L">L</IonSelectOption>
               <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
-        </IonItem>
+          </IonItem>
 
-        <IonItem>
+          <IonItem>
             <IonLabel>Alcool</IonLabel>
             <IonSelect interface="popover">
               <IonSelectOption value="mL">mL</IonSelectOption>
               <IonSelectOption value="on">on</IonSelectOption>
             </IonSelect>
-        </IonItem>
-        <IonText>
-          <h4>Liste de Repas</h4>
-        </IonText>
-        <IonList>
-          <IonItem>
-            <IonLabel>Petit-déjeuner</IonLabel>
-            <IonButton>X</IonButton>
           </IonItem>
-          <IonItem>
-            <IonLabel>Collation AM</IonLabel>
-            <IonButton>X</IonButton>
-          </IonItem>
-          <IonItem>
-            <IonLabel>Lunch</IonLabel>
-            <IonButton>X</IonButton>
-          </IonItem>
-          <IonItem>
-            <IonLabel>Collation PM</IonLabel>
-            <IonButton>X</IonButton>
-          </IonItem>
+          <IonText>
+            <h4>Liste de Repas</h4>
+          </IonText>
+          <IonList>
+            <IonItem>
+              <IonLabel>Petit-déjeuner</IonLabel>
+              <IonButton>X</IonButton>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Collation AM</IonLabel>
+              <IonButton>X</IonButton>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Lunch</IonLabel>
+              <IonButton>X</IonButton>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Collation PM</IonLabel>
+              <IonButton>X</IonButton>
+            </IonItem>
             <IonButton expand="block">+</IonButton>
-        </IonList>
-        <IonText>
-          <h4>Autres</h4>
-        </IonText>
-        <IonItem>
+          </IonList>
+          <IonText>
+            <h4>Autres</h4>
+          </IonText>
+          <IonItem>
             <IonLabel>Langue</IonLabel>
             <IonSelect interface="popover">
               <IonSelectOption value="en">English</IonSelectOption>
               <IonSelectOption value="fr">Français</IonSelectOption>
               <IonSelectOption value="es">Español</IonSelectOption>
             </IonSelect>
-        </IonItem>
-        <IonRadioGroup>
-        <IonLabel>Format de Dates</IonLabel>
+          </IonItem>
+          <IonRadioGroup>
+            <IonLabel>Format de Dates</IonLabel>
             <IonList>
-            <IonItem>
+              <IonItem>
                 <IonRadio value="cord" />
                 <IonLabel> Selon la langue</IonLabel>
               </IonItem>
@@ -155,9 +159,7 @@ class Preference extends React.Component<PreferenceState> {
                 </IonSelect>
               </IonItem>
             </IonList>
-
-        </IonRadioGroup>
-        
+          </IonRadioGroup>
         </IonContent>
       </IonContent>
       <IonTabBar slot="bottom">
@@ -177,7 +179,7 @@ class Preference extends React.Component<PreferenceState> {
           <IonIcon icon={trash} />
           <IonLabel></IonLabel>
         </IonTabButton>
-        <IonTabButton tab="settings" href="/Parameters">
+        <IonTabButton tab="settings" href="/parameters">
           <IonIcon icon={settings} />
           <IonLabel></IonLabel>
         </IonTabButton>

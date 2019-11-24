@@ -48,6 +48,140 @@ describe('DateWrapper', function() {
             actual = new DateWrapperImpl(beforeBegin);
             expect(actual.isBetweenDates(begin, end)).toBe(false);
         });
+
+
+        //AJOUT JM
+
+        // isGreaterThan
+        it('should return true if the end date is greater than the beginning one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThan(begin)).toBe(true);
+        });
+
+        it('should return false if the end date is smaller than the beginning one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-01-01")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThan(begin)).toBe(false);
+        });
+
+        it('should return false if the end date is the same as the beginning one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-01-01")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThan(begin)).toBe(false);
+        });
+
+
+        // isGreaterThanOrEqual
+        it('should return true if the end date is greater than the beginning one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThanOrEqual(begin)).toBe(true);
+        });
+
+        it('should return false if the end date is smaller than the beginning one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-01-01")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThanOrEqual(begin)).toBe(false);
+        });
+
+        it('should return true if the end date is the same as the beginning one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-01-01")
+            let actual = new DateWrapperImpl(end);
+            expect(actual.isGreaterThanOrEqual(begin)).toBe(true);
+        });
+
+
+        // isLesserThan
+        it('should return true if the beginning date is smaller than the ending one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThan(end)).toBe(true);
+        });
+
+        it('should return false if the beginning date is greater than the ending one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-02-01")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThan(end)).toBe(false);
+        });
+
+        it('should return false if the beginning date is the same as the ending one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThan(end)).toBe(false);
+        });
+
+
+        //isLesserThanOrEqual
+        it('should return true if the beginning date is smaller than the ending one', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThanOrEqual(end)).toBe(true);
+        });
+
+        it('should return false if the beginning date is greater than the ending one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-02-01")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThanOrEqual(end)).toBe(false);
+        });
+
+        it('should return true if the beginning date is the same as the ending one', function(){
+            const begin = new Date("2019-02-02");
+            const end = new Date("2019-02-02")
+            let actual = new DateWrapperImpl(begin);
+            expect(actual.isLesserThanOrEqual(end)).toBe(true);
+        });
+
+
+        // incrementDays
+        it('should return true if the first date plus a number of days is equal to the second date', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-01-31");
+            const numberOfDays = 30;
+            let actual = new DateWrapperImpl(begin);
+            actual.incrementDays(numberOfDays);
+            expect(actual.isSameDate(end)).toBe(true);
+        });
+
+        it('should return false if the first date plus a number of days is not equal to the second date', function(){
+            const begin = new Date("2019-01-01");
+            const end = new Date("2019-01-31");
+            const numberOfDays = 20;
+            let actual = new DateWrapperImpl(begin);
+            actual.incrementDays(numberOfDays);
+            expect(actual.isSameDate(end)).toBe(false);
+        });
+
+        // decrementDays
+        it('should return true if the first date minus a number of days is equal to the second date', function(){
+            const begin = new Date("2019-01-31");
+            const end = new Date("2019-01-01");
+            const numberOfDays = 30;
+            let actual = new DateWrapperImpl(begin);
+            actual.decrementDays(numberOfDays);
+            expect(actual.isSameDate(end)).toBe(true);
+        });
+
+        it('should return false if the first date minus a number of days is not equal to the second date', function(){
+            const begin = new Date("2019-01-31");
+            const end = new Date("2019-01-01");
+            const numberOfDays = 20;
+            let actual = new DateWrapperImpl(begin);
+            actual.decrementDays(numberOfDays);
+            expect(actual.isSameDate(end)).toBe(false);
+        });
+
     });
 
 });
