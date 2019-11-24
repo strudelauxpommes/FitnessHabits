@@ -29,11 +29,13 @@ class Preference extends React.Component<PreferenceState> {
      quantiteIncrementAlcool: await this.dal.getLastValue("preferences/quantiteIncrementAlcool"),
      quantiteIncrementBreuvages: await this.dal.getLastValue("preferences/quantiteIncrementBreuvages")});
   }
-  handleChange = (event: any) => {
-      console.log(event.detail.value);
-      this.setState({
-        selected: event.detail.value
-      });
+  async handleUnitPoidChange(event:any) {
+      let currentValue = event.detail.value;
+      console.log(currentValue);
+      //this.setState({
+      //  unitePoid: event.detail.value
+      //});
+      this.dal.setValue("preferences/unitePoids", currentValue);
   }
 
   saveItem = () => {
@@ -65,8 +67,8 @@ class Preference extends React.Component<PreferenceState> {
         
         <IonItem>
             <IonLabel>Poids Corporel</IonLabel>
-            <IonSelect value={ this.state.unitePoid } interface="popover">
-              <IonSelectOption  value="lbs" onClick={async () => await this.dal.setValue("preferences/unitePoids", "lbs")}>lbs</IonSelectOption>
+            <IonSelect value={ this.state.unitePoid } interface="popover" onIonChange = { this.handleUnitPoidChange } >
+              <IonSelectOption  value="lbs">lbs</IonSelectOption>
               <IonSelectOption value="kg">kg</IonSelectOption>
             </IonSelect>
         </IonItem>
@@ -132,9 +134,9 @@ class Preference extends React.Component<PreferenceState> {
         <IonItem>
             <IonLabel>Langue</IonLabel>
             <IonSelect interface="popover">
-              <IonSelectOption value="EN">English</IonSelectOption>
-              <IonSelectOption value="FR">Français</IonSelectOption>
-              <IonSelectOption value="ES">Español</IonSelectOption>
+              <IonSelectOption value="en">English</IonSelectOption>
+              <IonSelectOption value="fr">Français</IonSelectOption>
+              <IonSelectOption value="es">Español</IonSelectOption>
             </IonSelect>
         </IonItem>
         <IonRadioGroup>
@@ -147,9 +149,9 @@ class Preference extends React.Component<PreferenceState> {
               <IonItem>
                 <IonRadio value="Custom" />
                 <IonSelect interface="popover">
-                  <IonSelectOption value="EN">AAAA-MM-JJ</IonSelectOption>
-                  <IonSelectOption value="FR">MM-JJ-AAAA</IonSelectOption>
-                  <IonSelectOption value="ES">JJ-MM-AAAA</IonSelectOption>
+                  <IonSelectOption value="AAAA-MM-JJ">AAAA-MM-JJ</IonSelectOption>
+                  <IonSelectOption value="MM-JJ-AAAA">MM-JJ-AAAA</IonSelectOption>
+                  <IonSelectOption value="JJ-MM-AAAA">JJ-MM-AAAA</IonSelectOption>
                 </IonSelect>
               </IonItem>
             </IonList>
