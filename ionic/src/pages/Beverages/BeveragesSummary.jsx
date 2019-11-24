@@ -13,7 +13,6 @@ import {
   IonLabel,
   IonTitle
 } from "@ionic/react";
-import data from "./data.json";
 import { cafe } from "ionicons/icons";
 import FavoriteBeverage from "./FavoriteBeverage";
 import { DalImpl } from "../../dal/DalImpl";

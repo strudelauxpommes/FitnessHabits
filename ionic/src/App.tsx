@@ -13,15 +13,11 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
-import moment from "moment";
-import { default as React } from "react";
-import { Redirect, Route } from "react-router-dom";
 import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
 /* Beverage import */
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 /* Export Import Delete */
 import Export from "./pages/export";
-import Home from "./pages/Home";
 import Import from "./pages/import";
 import FoodAdd from "./pages/nourriture/FoodAdd";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
@@ -34,10 +30,7 @@ import Parameters from "./pages/parameters/Parameters";
 import Preference from "./pages/parameters/Preference";
 import Profil from "./pages/parameters/Profil";
 import Supression from "./pages/remove";
-import { AddSleepLineForm } from "./pages/sleep/AddSleepLineForm";
 /* Sleep Imports */
-import SleepDetail from "./pages/sleep/SleepDetail";
-import SleepSummary from "./pages/sleep/SleepSummary";
 import Tabs from "./pages/tabs";
 import { init } from "./services/i18n/i18n";
 import "./theme/sleep.css";
