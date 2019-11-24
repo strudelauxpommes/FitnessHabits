@@ -91,3 +91,11 @@ test('Test total on ', async () => {
     console.log(result);
     expect(result).toEqual("on")
 })
+
+test('Test username change ', async () => {
+    const dal: Dal = new DalImpl();
+    await dal.setValue("profil/nom", "paule")
+    const result = await dal.getLastValue("profil/nom");
+    console.log(result);
+    expect(result).toEqual("paule")
+})

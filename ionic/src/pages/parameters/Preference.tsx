@@ -51,6 +51,7 @@ type State = {
   uniteTotalBreuvages: any,
   quantiteIncrementAlcool: any,
   quantiteIncrementBreuvages: any,
+  username: any
 }
 
 const parametersService: ParametersService = new ParametersService();
@@ -69,6 +70,7 @@ export default class Preference extends Component<RouteComponentProps, State> {
       uniteTotalBreuvages: "",
       quantiteIncrementAlcool: "",
       quantiteIncrementBreuvages: "",
+      username: ""
     }
 
   }
@@ -87,6 +89,13 @@ export default class Preference extends Component<RouteComponentProps, State> {
     let totalBreuvages = await dal.getLastValue("preferences/uniteTotalBreuvages");
     let incrementAlcool = await dal.getLastValue("preferences/quantiteIncrementAlcool");
     let incrementBreuvages = await dal.getLastValue("preferences/quantiteIncrementBreuvages");
+    let usernameVar = await dal.getLastValue("profil/nom");
+
+    if (usernameVar) {
+      await this.setState({username: usernameVar});
+    }else {
+      await this.setState({username: "kg"});
+    }
 
     if (poids) {
       await this.setState({unitePoids: poids});
@@ -143,7 +152,7 @@ export default class Preference extends Component<RouteComponentProps, State> {
         <IonContent>
           <IonHeader>
             <IonToolbar slot="top" className="toolbarName ion-text-center">
-              <IonTitle>Paule Levasseur</IonTitle>
+              <IonTitle>{this.state.username}</IonTitle>
             </IonToolbar>
             <IonTabBar slot="top">
               <IonTabButton tab="profil" href="/profil">

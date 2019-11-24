@@ -40,7 +40,7 @@ import "./theme/variables.css";
 import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
 import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
-import './services/parameters/InitializeParameters.js';
+// import './services/parameters/InitializeParameters.js';
 import moment from 'moment';
 import React from 'react';
 import { Route, Redirect } from 'react-router';

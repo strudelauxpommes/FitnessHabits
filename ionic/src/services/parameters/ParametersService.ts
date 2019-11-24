@@ -57,4 +57,22 @@ export default class ParametersService {
     async saveBeverageIncrement(incrementBreuvages: string) {
         bd.setValue("preferences/quantiteIncrementBreuvages", incrementBreuvages);
     }
+
+    async saveUsername(username: string) {
+        bd.setValue("profil/nom", username);
+    }
+
+    async saveHeightProfileCm(height: string) {
+        bd.setValue("profil/taille", height);
+    }
+
+    async saveHeightProfilePi(height: string) {
+        const secondInput = (<HTMLInputElement>document.getElementById("secondInput")).value;
+        bd.setValue("profil/taille", height + '/' + secondInput);
+    }
+
+    async saveHeightProfilePo(height: string) {
+        const firstInput = (<HTMLInputElement>document.getElementById("firstInput")).value;
+        bd.setValue("profil/taille", firstInput + '/' + height);
+    }
 }
