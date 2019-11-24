@@ -30,7 +30,7 @@
     "isolatedModules": true
   },
   "include": [
-    "src"
+    "src", "src/pages/nourriture/.tsx"
   ],
   "exclude": [
     "node_modules"

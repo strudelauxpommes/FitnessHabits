@@ -1,0 +1,17 @@
+
+.uniteText{
+    margin-left: 5px;
+  }
+  .toolbarName {
+    --background: #0cd1e8;
+  }
+  
+  .profil {
+    background-color: #d7d8da;
+    margin-right: 5px;
+  }
+  
+  .pref {
+    background-color: grey;
+    margin-left: 5px;
+  }
