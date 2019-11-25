@@ -1,35 +1,16 @@
-import {
-  IonAvatar,
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonTabBar,
-  IonTabButton,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
+import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import T from "i18n-react";
-import {
-  calendar,
-  download,
-  home,
-  redo,
-  settings,
-  trash
-} from "ionicons/icons";
-import { Component, default as React } from "react";
+import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
-import SleepService from "../services/sleep/SleepService";
-import SleepSummary from "./sleep/SleepSummary";
+import Calendrier from ".././calandrier/calandrier";
 import Alcool from "../alcool/AlcoolSommaire";
-import FoodSummary from "./nourriture/FoodSummary";
-
-//const MainTabs: React.FC<MainTabsProps> = () => {
+import Poids from "../entities/poids/Poids";
+import SleepService from "../services/sleep/SleepService";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
+import FoodHome from "./nourriture/FoodHome";
+import SleepSummary from "./sleep/SleepSummary";
+import Tabs from "./tabs";
 
 const sleepService = SleepService();
 
@@ -68,10 +49,11 @@ class Home extends Component<RouteComponentProps, State> {
             <IonLabel>
               <h1>Username</h1>
             </IonLabel>
-            <IonButton color="light" slot="end">
+            {/* <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-            </IonButton>
+            </IonButton> */}
+            <Calendrier />
           </IonItem>
 
           <div>
@@ -80,31 +62,14 @@ class Home extends Component<RouteComponentProps, State> {
 
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
-          <FoodSummary />
+          <Poids />
+          <FoodHome />
+          <BeveragesSummary
+            activeDate={new Date("2019-10-31T21:00:00-05:00")}
+          />
         </IonContent>
 
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="export" href="/">
-            <IonIcon icon={redo} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="import" href="/">
-            <IonIcon icon={download} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="delete" href="/">
-            <IonIcon icon={trash} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/">
-            <IonIcon icon={settings} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <Tabs />
       </IonPage>
       /** 
       <IonTabs>

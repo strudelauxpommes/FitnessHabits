@@ -1,28 +1,26 @@
 import {
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonButton,
-    IonCardContent,
-    IonInput,
-    IonText,
-    IonIcon
-  } from "@ionic/react";
-  import React from "react";
-  import { pizza} from "ionicons/icons";
-  
-  export function FoodHome(props: {
-  //   title: React.ReactNode;
-    // imageName: any;
-    // backLink: any;
-  }) {
-    return (
-        <IonContent>
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonButton,
+  IonCardContent,
+  IonInput,
+  IonText,
+  IonIcon
+} from "@ionic/react";
+import React from "react";
+import { pizza } from "ionicons/icons";
 
+export function FoodHome(props: {
+  //   title: React.ReactNode;
+  // imageName: any;
+  // backLink: any;
+}) {
+  return (
         <IonCard button={true} href="/food-summary">
           <IonCardHeader>
             <IonCardTitle>
@@ -74,3 +72,4 @@ import {
     );
   }
   
+export default FoodHome;
