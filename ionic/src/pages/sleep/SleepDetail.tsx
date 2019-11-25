@@ -11,9 +11,9 @@ import {
 
 import React, { Component } from "react";
 import { moon } from "ionicons/icons";
-import { SwipeableSleep } from "./SwipeableSleep";
+// import { SwipeableSleep } from "./SwipeableSleep";
 import { Sleep, SleepCollection } from "../../entities/sleep/sleep";
-import { GeneralInformationItemCell } from "./GeneralInformationItemCell";
+// import { GeneralInformationItemCell } from "./GeneralInformationItemCell";
 import SleepService from "../../services/sleep/SleepService";
 import { RouteComponentProps } from "react-router";
 
@@ -74,7 +74,7 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
             <IonCardTitle>Informations Générales</IonCardTitle>
             <IonCardContent>
               <IonGrid>
-                <GeneralInformationItemCell
+                {/* <GeneralInformationItemCell
                   labelTitle="Dernière période"
                   labelSubtitle="31/10/2019"
                   labelValue="7"
@@ -85,14 +85,14 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
                   labelValue={moment
                     .utc(this.state.averageSleep)
                     .format("h:mm")}
-                />
+                /> */}
               </IonGrid>
             </IonCardContent>
           </IonCard>
           <IonCard class="ion-card">
             <IonCardTitle>Historique</IonCardTitle>
             <IonCardContent>
-              <IonList>
+              {/* <IonList>
                 {this.state.sleepCollection.list.map((item: Sleep) => (
                   <SwipeableSleep
                     key={item.getId()}
@@ -102,7 +102,7 @@ export default class SleepDetail extends Component<RouteComponentProps, State> {
                     history={this.props.history}
                   />
                 ))}
-              </IonList>
+              </IonList> */}
             </IonCardContent>
           </IonCard>
         </IonContent>

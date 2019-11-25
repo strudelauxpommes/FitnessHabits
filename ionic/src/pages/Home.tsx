@@ -10,6 +10,7 @@ import SleepService from "../services/sleep/SleepService";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
 import FoodHome from "./nourriture/FoodHome";
 import SleepSummary from "./sleep/SleepSummary";
+import ActivitiesSummary from "../components/ActivitiesSummary";
 import Tabs from "./tabs";
 
 const sleepService = SleepService();
@@ -59,7 +60,9 @@ class Home extends Component<RouteComponentProps, State> {
           <div>
             <br />
           </div>
-
+          <div className="activite-summary-home">
+            <ActivitiesSummary/>
+          </div>
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Poids />

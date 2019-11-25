@@ -13,8 +13,11 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
-import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
 /* Beverage import */
+import ActivitiesDetail from "./pages/activities/ActivityDetails";
+import ActivitiesSummary from "./pages/activities/ActivitySummary";
+/* Beverage import */
+import BeveragesDetail from "./pages/Beverages/BeveragesDetail";
 import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 /* Export Import Delete */
 import Export from "./pages/export";
@@ -37,9 +40,10 @@ import Supression from "./pages/remove";
 /* Sleep Imports */
 import Tabs from "./pages/tabs";
 import { init } from "./services/i18n/i18n";
-import "./theme/sleep.css";
+// import "./theme/sleep.css";
 /* Theme variables */
 import "./theme/variables.css";
+import "./theme/activity-theme.css";
 
 import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
@@ -60,6 +64,8 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Route path="/activities-summary" component={ActivitiesSummary} />
+        <Route path="/activities-detail" component={ActivitiesDetail} />
         <Route path="/beverages-summary" component={BeveragesSummary} />
         <Route path="/beverages-detail" component={BeveragesDetail} />
         <Route path="/home" component={Home} exact={true} />
@@ -84,7 +90,7 @@ const App: React.FC = () => (
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
-        <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
+        {/* <Route path="/sleep-detail-edit" component={AddSleepLineForm} /> */}
         <Route path="/tabs" component={Tabs} />
       </IonRouterOutlet>
     </IonReactRouter>
