@@ -279,6 +279,7 @@ export default class Preference extends Component<RouteComponentProps, State> {
             </IonItem>
             <IonRadioGroup>
               <IonLabel>Format de Dates</IonLabel>
+              <IonContent> 
               <IonList>
                 <IonItem>
                   <IonRadio value="cord" />
@@ -293,6 +294,7 @@ export default class Preference extends Component<RouteComponentProps, State> {
                   </IonSelect>
                 </IonItem>
               </IonList>
+              </IonContent> 
             </IonRadioGroup>
           </IonContent>
         </IonContent>
