@@ -75,4 +75,12 @@ export default class ParametersService {
         const firstInput = (<HTMLInputElement>document.getElementById("firstInput")).value;
         bd.setValue("profil/taille", firstInput + '/' + height);
     }
+
+    async saveDate(date: string) {
+        bd.setValue("profil/dateNaissance", date);
+    }
+
+    async saveSexe(sexe: string) {
+        bd.setValue("profil/sexe", sexe);
+    }
 }

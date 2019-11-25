@@ -12,7 +12,9 @@ import Dal from "../../dal/Dal";
 type State = {
   username: any,
   isPipo:boolean,
-  height: any
+  height: any,
+  date:any,
+  sexe:any
 }
 
 const parametersService: ParametersService = new ParametersService();
@@ -25,7 +27,9 @@ export default class Profil extends Component<RouteComponentProps, State> {
     this.state = {
       username: "",
       isPipo: false,
-      height: ""
+      height: "",
+      date: "",
+      sexe: ""
     }
   }
 
@@ -37,6 +41,8 @@ export default class Profil extends Component<RouteComponentProps, State> {
     const dal: Dal = new DalImpl();
     let usernameVar = await dal.getLastValue("profil/nom");
     let heightVar = await dal.getLastValue("profil/taille");
+    let dateVar = await dal.getLastValue("profil/dateNaissance");
+    let sexeVar = await dal.getLastValue("profil/sexe");
 
     if (usernameVar) {
       await this.setState({username: usernameVar});
@@ -49,6 +55,13 @@ export default class Profil extends Component<RouteComponentProps, State> {
     }
     if(heightVar){
       await this.setState({height: heightVar});
+    }
+
+    if(dateVar){
+      await this.setState({date: dateVar});
+    }
+    if(sexeVar){
+      await this.setState({sexe:sexeVar});
     }
   }
 
@@ -100,14 +113,16 @@ export default class Profil extends Component<RouteComponentProps, State> {
             Date de naissance
           </IonListHeader>
           <IonItem>
-          <IonInput type="date" placeholder="Entrez votre date de naissance"></IonInput>
+          <IonInput type="date" value={this.state.date} placeholder="Entrez votre date de naissance" onIonInput={async(e:any) => {await parametersService.saveDate(e.target.value)}}></IonInput>
           </IonItem>
-          <IonListHeader>
-            Sexe
-          </IonListHeader>
           <IonItem>
-          <IonInput type="text" placeholder="Indiquez votre sexe"></IonInput>
-          </IonItem>
+              <IonLabel>Sexe</IonLabel>
+              <IonSelect interface="popover" placeholder={this.state.sexe} onIonChange={async(e:any) => {await parametersService.saveSexe(e.target.value)}}>
+                <IonSelectOption value="Homme">Homme</IonSelectOption>
+                <IonSelectOption value="Femme">Femme</IonSelectOption>
+                <IonSelectOption value="Autre">Autre</IonSelectOption>
+              </IonSelect>
+            </IonItem>
           </IonList>
          
           </IonContent>
