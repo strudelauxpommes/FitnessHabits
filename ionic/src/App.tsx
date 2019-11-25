@@ -69,8 +69,14 @@ const App: React.FC = () => (
         <Route path="/food-list/:period" component={FoodList} />
         <Route exact path="/food"render={() => <Redirect to="/food-summary" />}
         />
+        <Route path="/food-add-collationAm" component={FoodAddCollationAM} />
+        <Route path="/food-add-collationPM" component={FoodAddCollationPM} />
+        <Route path="/food-add-collationSoir" component={FoodAddCollationSoir} />
+        <Route path="/food-add-diner" component={FoodAddDiner} />
+        <Route path="/food-add-dejeuner" component={FoodAddDejeuner} />
+        <Route path="/food-add-souper" component={FoodAddSouper} />
+        
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
-        <Route path="/food-add" component={FoodAdd} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
         <Route path="/sleep-detail-edit" component={AddSleepLineForm} />

@@ -29,7 +29,7 @@ export function FoodHeader(props: {
               </IonLabel>
             </IonItem>
           </IonCol>
-          <IonCol pull="1.5">
+          <IonCol pull="2">
             <IonItem lines="none">
               <IonLabel>Nutrition</IonLabel>
             </IonItem>
