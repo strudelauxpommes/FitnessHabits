@@ -15,6 +15,7 @@ export default class ParametersService {
             bd.setValue("preferences/uniteTaille", "cm"),
             bd.setValue("preferences/uniteBreuvages", "mL"),
             bd.setValue("preferences/uniteTotalBreuvages", "mL"),
+            bd.setValue("preferences/uniteAlcool", "mL"),
             bd.setValue("preferences/quantiteIncrementAlcool", "1.0"),
             bd.setValue("preferences/quantiteIncrementBreuvages", "1.0"),
             bd.setValue("preferences/formatDate", "AAAA-MM-JJ"),
@@ -24,7 +25,62 @@ export default class ParametersService {
        ]);
        load("en");
     };
+
+    async saveWeight(poids: string) {
+        bd.setValue("preferences/unitePoids", poids);
+    }
+
+    async saveHeight(taille: string) {
+        bd.setValue("preferences/uniteTaille", taille);
+    }
+
+    async saveGlucose(glycemie: string) {
+        bd.setValue("preferences/uniteGlycemie", glycemie);
+    }
+
+    async saveAlcool(alcool: string) {
+        bd.setValue("preferences/uniteAlcool", alcool);
+    }
+
+    async saveBeverages(breuvages: string) {
+        bd.setValue("preferences/uniteBreuvages", breuvages);
+    }
+
+    async saveTotalBeverages(totalBreuvages: string) {
+        bd.setValue("preferences/uniteTotalBreuvages", totalBreuvages);
+    }
+
+    async saveAlcoolIncrement(incrementAlcool: string) {
+        bd.setValue("preferences/quantiteIncrementAlcool", incrementAlcool);
+    }
+
+    async saveBeverageIncrement(incrementBreuvages: string) {
+        bd.setValue("preferences/quantiteIncrementBreuvages", incrementBreuvages);
+    }
+
+    async saveUsername(username: string) {
+        bd.setValue("profil/nom", username);
+    }
+
+    async saveHeightProfileCm(height: string) {
+        bd.setValue("profil/taille", height);
+    }
+
+    async saveHeightProfilePi(height: string) {
+        const secondInput = (<HTMLInputElement>document.getElementById("secondInput")).value;
+        bd.setValue("profil/taille", height + '/' + secondInput);
+    }
+
+    async saveHeightProfilePo(height: string) {
+        const firstInput = (<HTMLInputElement>document.getElementById("firstInput")).value;
+        bd.setValue("profil/taille", firstInput + '/' + height);
+    }
+
+    async saveDate(date: string) {
+        bd.setValue("profil/dateNaissance", date);
+    }
+
+    async saveSexe(sexe: string) {
+        bd.setValue("profil/sexe", sexe);
+    }
 }
-
-
-
