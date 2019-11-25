@@ -41,6 +41,7 @@ import ParametersService from "../../services/parameters/ParametersService";
 import { render } from 'react-dom';
 import { RouteComponentProps } from 'react-router';
 import { async } from 'q';
+import Tabs from '../tabs';
 
 type State = {
   unitePoids: any,
@@ -295,28 +296,7 @@ export default class Preference extends Component<RouteComponentProps, State> {
             </IonRadioGroup>
           </IonContent>
         </IonContent>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="export" href="/">
-            <IonIcon icon={redo} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="import" href="/">
-            <IonIcon icon={download} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="delete" href="/">
-            <IonIcon icon={trash} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settings" href="/parameters">
-            <IonIcon icon={settings} />
-            <IonLabel></IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <Tabs/>
       </IonPage>
     );
   }

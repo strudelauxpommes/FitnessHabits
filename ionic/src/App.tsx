@@ -26,7 +26,6 @@ import FoodList from "./pages/nourriture/FoodList";
 import FoodSummary from "./pages/nourriture/FoodSummary";
 
 /* Parameters import */
-import Parameters from "./pages/parameters/Parameters";
 import Preference from "./pages/parameters/Preference";
 import Profil from "./pages/parameters/Profil";
 import Supression from "./pages/remove";
@@ -63,15 +62,12 @@ const App: React.FC = () => (
         <Route path="/export" render={() => <Export />} exact={true} />
         <Route path="/import" render={() => <Import />} exact={true} />
         <Route path="/remove" render={() => <Supression />} exact={true} />
-        <Route path="/parameters" component={Parameters} exact={true} />
+        <Route path="/parameters" render={() => <Redirect to="/profil"/>} exact={true} />
         <Route path="/preference" component={Preference} exact={true} />
         <Route path="/profil" component={Profil} exact={true} />
         <Route path="/food-summary" component={FoodSummary} />
         <Route path="/food-list/:period" component={FoodList} />
-        <Route
-          exact
-          path="/food"
-          render={() => <Redirect to="/food-summary" />}
+        <Route exact path="/food"render={() => <Redirect to="/food-summary" />}
         />
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
         <Route path="/food-add" component={FoodAdd} />
