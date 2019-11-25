@@ -1,54 +1,168 @@
-import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
+import { SleepCollection } from '../../entities/sleep/sleep'
+import { DalImpl } from '../../dal/DalImpl'
+import moment from 'moment'
 /**
  * Service to fetch sleep entities from the persistence
  */
-const SleepService = () => {
+export default class SleepService{
+    constructor(){
+        this.persist = new DalImpl()
+        // this.persist.clear()
+    }    
 
-    var sleepArray = [
-        new Sleep({ "id": 1, "start": "2019-10-31T21:00:00-05:00", "end": "2019-11-01T06:00:00-05:00", "numberOfInteruptions": 2, "comment": "" }),
-        new Sleep({ "id": 2, "start": "2019-10-30T21:15:00-05:00", "end": "2019-10-31T06:23:00-05:00", "numberOfInteruptions": 1, "comment": "" }),
-        new Sleep({ "id": 3, "start": "2019-10-29T21:47:00-05:00", "end": "2019-10-30T06:12:00-05:00", "numberOfInteruptions": 3, "comment": "" }),
-        new Sleep({ "id": 4, "start": "2019-10-28T21:00:00-05:00", "end": "2019-10-29T06:00:00-05:00", "numberOfInteruptions": 0, "comment": "" }),
-        new Sleep({ "id": 5, "start": "2019-10-27T23:34:00-05:00", "end": "2019-10-28T06:57:00-05:00", "numberOfInteruptions": 0, "comment": "" }),
-        new Sleep({ "id": 6, "start": "2019-10-26T21:00:00-05:00", "end": "2019-10-27T06:00:00-05:00", "numberOfInteruptions": 2, "comment": "" }),
-        new Sleep({ "id": 7, "start": "2019-10-25T21:00:00-05:00", "end": "2019-10-26T06:00:00-05:00", "numberOfInteruptions": 4, "comment": "" })
-    ];
+    getKey (){
+        return 'sleep'
+    }
 
     /**
      * Fetch the list of sleeps from the persistance layer
      */
-    const fetch = () => {
-        const sleepCollection = new SleepCollection();
-        sleepCollection.addSleepList(sleepArray);
+
+    async fetchActiveDate () {
+        const activeDate = await this.getActiveMoment()
+        
+        const parsedDate = new Date(activeDate.format('YYYY-MM-DD'))
+        const actual = await this.persist.getValue(this.getKey(), parsedDate)
+        
+        if(actual === undefined){
+            const sleepCollection = new SleepCollection({'activeDate': parsedDate, 'list': []})
+            return sleepCollection
+        } 
+        
+        const sleepCollection = new SleepCollection(actual); 
+
         return sleepCollection
     }
 
     /**
+     * Fetch the list of Sleep Collection associated with the last 7 days 
+     * from the active date.
+     */
+
+    async fetchHistory(){
+        const activeMoment = await this.getActiveMoment()
+        const startMoment = activeMoment.clone().subtract(7, 'days')
+
+        const begin = new Date(startMoment.format("YYYY-MM-DD"));
+        const end = new Date(activeMoment.format("YYYY-MM-DD"));
+        let items = await this.persist.getItems("sleep", begin, end);
+        
+        //we define a groupby function to group all sleepcollection in separate arrays
+        const groupBy = (array, fn) => array.reduce((result, item) => {
+            const key = fn(item);
+            if (!result[key]) result[key] = [];
+                result[key].push(item);
+            return result;
+        }, {});
+
+        //we use the groupby
+        const tempGroup = groupBy(items,i => i.dateTime)
+        //we get the key of all the element in the resulting object
+        const allCollectionKeys = Object.keys(tempGroup)
+
+        const finalCollection = []
+
+        //for each group of collection we sort according to the timestamp and take the first
+        //still need to verify if the sorting order is good
+        allCollectionKeys.forEach( (collection) => {
+            const temp = tempGroup[collection]
+            //once we have the latest value we push it to the finalCollection array
+            finalCollection.push(temp[(temp.length-1)])
+        })
+    
+        const x = await this.fetchHistory_v2()
+        const mergedCollection = x[0]
+        for(var i = 1; i < x.length;i++){
+            mergedCollection.addSleepList(x[i].list)
+        }   
+
+        return mergedCollection
+    }
+
+    async fetchHistory_v2(){
+        let result = []
+        const historyDates = await this.getHistoryDate()
+       
+
+        for(let i = 0; i < historyDates.length; i++){
+            const parsedDate = new Date(historyDates[i].format('YYYY-MM-DD'))
+            let actual = await this.persist.getValue(this.getKey(), parsedDate)
+            if(actual === undefined){
+                actual = {'activeDate': parsedDate, 'list': []}
+            } 
+
+            const sleepCollection = new SleepCollection(actual); 
+            result.push(sleepCollection)
+        }
+
+        return result
+    }
+
+    async fetchMoods(){
+        // Remove this once values are set by parameters team
+        await this.persist.setValue("preferences/listeHumeurs", [
+            "Super", 
+            "De bonne humeur", 
+            "Neutre", 
+            "Grognon",
+            "Fatigué",
+            "Dépressif"
+        ]);
+        const moods = await this.persist.getLastValue("preferences/listeHumeurs");
+        const moodObjects = []
+
+        moods.forEach(mood => 
+            moodObjects.push(
+                {
+                    name: 'mood',
+                    value: mood,
+                    label: mood,
+                    type: 'radio'
+                }
+            )   
+        )
+
+        return moodObjects
+    }
+
+
+    /**
      * Save a new sleep to the persistance layer
      */
-    const save = (sleepItem) => {
+    async saveActiveDate(sleepCollection){
+        const activeDate = await this.getActiveDate()
 
-        const newSleepItem = new Sleep({
-            "id": getNewKey(),
-            "start": sleepItem.start,
-            "end": sleepItem.end,
-            "numberOfInteruptions": 0,
-            "comment": ""
-        });
+        await this.persist.setValueByDate("sleep", sleepCollection, activeDate); 
+    }
 
-        //TODO: change this to talk to the persistence layer
-        sleepArray.push(newSleepItem);
+    async saveCollectionWithDate(sleepCollection,date){
+        const activeDate = date
+
+
+        await this.persist.setValueByDate("sleep", sleepCollection, new Date(activeDate)); 
+    }
+
+    /**
+     * 
+     * @param {SleepCollection} sleepCollection 
+     * @param {moment} date 
+     * 
+     * save a collection at a specific date
+     */
+
+    async saveCollectionAtDate(sleepCollection,date){
+        const json = JSON.stringify(sleepCollection)
+        //we then need to transform the actual date to the JS date format
+        const dateFormated = Date(date.toDate())
+        //then call setValueByDate
+        await this.persist.setValueByDate("sleep",json,dateFormated)
     }
 
     /**
      * Delete a SleepItem from the sleepArray
      */
-    const deleteSleep = (key) => {
-        sleepArray = sleepArray.filter(
-            (item) => {
-                return item.id !== key
-            }
-        );
+    deleteSleep(key, sleepCollection){
+        //@todo: PhilB ou Alex
     }
 
     /**
@@ -56,17 +170,38 @@ const SleepService = () => {
      * for the moment it's simply the length and it's a potential problem.
      * we'll have to talk to pesistance to know how they id their json objects
      */
-    const getNewKey = () => {
-        return sleepArray.length;
+    getNewKey(){
+        //@todo: PhilB ou Alex
+        // return sleepArray.length;
     }
 
-    //delete, update
+    async getActiveMoment(){
+        // Waiting for ocean team to complete active date persistence
+        // const activeDate = await this.persist.getValue('active-date')
+        
+        return moment('2019-10-11T00:00:00-04:00');
+    }
 
-    return {
-        fetch: fetch,
-        save: save,
-        delete: deleteSleep,
+    async getHistoryDate(){
+
+        const historyDates = []
+        for(var i =0; i <= 6;i++){
+            //eventually change the moment for the activate
+            var temp = moment('2019-10-11');
+            temp = temp.subtract(i,"days")
+            // temp = temp.format("MM-DD-YYYY")
+            historyDates.push(temp)
+        }
+        
+        return historyDates
+        //return [new Date('2019-10-11'), new Date('2019-10-10'),new Date('2019-10-09'), new Date('2019-10-08'), new Date('2019-10-07'), new Date('2019-10-06'), new Date('2019-10-05')]
+        //return [new Date('2019-09-11'), new Date('2019-09-10'),new Date('2019-09-09'), new Date('2019-09-08'), new Date('2019-09-07'), new Date('2019-09-06'), new Date('2019-09-05')]
+    }
+
+    async getActiveDate(){
+        // Waiting for ocean team to complete active date persistence
+        // const activeDate = await this.persist.getValue('active-date')
+        
+        return new Date("2019-10-11");
     }
 }
-
-export default SleepService

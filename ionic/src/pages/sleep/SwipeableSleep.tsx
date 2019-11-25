@@ -24,7 +24,7 @@ export function SwipeableSleep(props: {
                   <IonIcon icon={informationCircle} class='sleep-icon-swipe'></IonIcon>
                 </IonItemOption>
                 <IonItemOption color="danger" onClick={
-                    (e) => props.onDelete(props.sleep.getId())
+                    (e) => props.onDelete(props.sleep)
                 }>
                   <IonIcon icon={trash} class='sleep-icon-swipe'></IonIcon>
                 </IonItemOption>

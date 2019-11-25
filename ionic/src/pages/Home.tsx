@@ -25,34 +25,28 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { SleepCollection } from "src/entities/sleep/sleep";
 import Alcool from "../alcool/AlcoolSommaire";
-import SleepService from "../services/sleep/SleepService";
-import FoodSummary from "./nourriture/FoodSummary";
 import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
 import SleepSummary from "./sleep/SleepSummary";
 import Poids from "../entities/poids/Poids";
 import Tabs from "./tabs";
 
-const sleepService = SleepService();
 
 type State = {
-  sleepCollection: SleepCollection;
   T: any;
 };
 class Home extends Component<RouteComponentProps, State> {
   constructor(props: RouteComponentProps) {
     super(props);
 
-    const sleepCollection = sleepService.fetch();
-
+    
     this.state = {
-      sleepCollection: sleepCollection,
       T: null
     };
   }
 
   render() {
-    const { sleepCollection } = this.state;
+    
 
     return (
       <IonPage>

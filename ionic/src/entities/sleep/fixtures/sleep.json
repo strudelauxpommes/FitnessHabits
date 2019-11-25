@@ -1,6 +1,8 @@
 {
+    "id": 1,
     "start": "2016-11-23T23:00:00-05:00",
     "end": "2016-11-24T07:00:00-05:00",
-    "numberOfAwakenings": 2,
-    "comment": ""
+    "numberOfInteruptions": 2,
+    "comment": "",
+    "mood": "Neutre"
 }

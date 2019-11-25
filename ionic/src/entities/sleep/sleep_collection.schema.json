@@ -39,14 +39,18 @@
                 "comment": {
                     "type": "string",
                     "error": "fitnessHabit.sleep.comment.error"
+                },
+                "mood": {
+                    "type": "string",
+                    "minLength": 1
                 }
             },
             "required": [
-                "id",
                 "start",
                 "end",
                 "numberOfInteruptions",
-                "comment"
+                "comment",
+                "mood"
             ]
         }
     }
