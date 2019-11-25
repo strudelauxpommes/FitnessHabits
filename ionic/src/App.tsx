@@ -77,7 +77,6 @@ const App: React.FC = () => (
         <Route path="/food-add" component={FoodAdd} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
-        <Route path="/sleep-detail-edit" component={AddSleepLineForm} />
         <Route path="/tabs" component={Tabs} />
         <Route path="/alcool-detail" component={AlcoolDetail} />
       </IonRouterOutlet>

@@ -1,6 +1,5 @@
 import { SleepCollection } from '../../entities/sleep/sleep'
 import { DalImpl } from '../../dal/DalImpl'
-import ValidatorService from './ValidatorService';
 import moment from 'moment'
 /**
  * Service to fetch sleep entities from the persistence
@@ -9,7 +8,6 @@ export default class SleepService{
     constructor(){
         this.persist = new DalImpl()
         // this.persist.clear()
-        this.validatorService = new ValidatorService()
     }    
 
     getKey (){
