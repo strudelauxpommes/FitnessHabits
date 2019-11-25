@@ -19,11 +19,16 @@ import BeveragesSummary from "./pages/Beverages/BeveragesSummary";
 /* Export Import Delete */
 import Export from "./pages/export";
 import Import from "./pages/import";
-import FoodAdd from "./pages/nourriture/FoodAdd";
 import FoodDailyIntake from "./pages/nourriture/FoodDailyIntake";
 import FoodList from "./pages/nourriture/FoodList";
 /* Food import */
 import FoodSummary from "./pages/nourriture/FoodSummary";
+import FoodAddCollationAM from "./pages/nourriture/FoodAddCollationAM";
+import FoodAddCollationPM from "./pages/nourriture/FoodAddCollationPM";
+import FoodAddCollationSoir from "./pages/nourriture/FoodAddCollationSoir";
+import FoodAddDiner from "./pages/nourriture/FoodAddDiner";
+import FoodAddDejeuner from "./pages/nourriture/FoodAddDejeuner";
+import FoodAddSouper from "./pages/nourriture/FoodAddSouper";
 
 /* Parameters import */
 import Preference from "./pages/parameters/Preference";

@@ -67,8 +67,6 @@ export function FoodHome(props: {
             </IonGrid>
           </IonCardContent>
         </IonCard>
-    
-    </IonContent>
     );
   }
   
