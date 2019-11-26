@@ -74,7 +74,9 @@ class BeveragesSummary extends Component {
                 await this.setState({beverages: parsedBeverage.beverageList});
             } else if (activeDate.getTime() < lastDate.getTime()) {
                 let activeEndDate = new Date(activeDate)
-                activeEndDate.setDate(activeDate.getDate() + 1)
+                activeEndDate.setDate(activeDate.getDate() + 1);
+                activeEndDate.setDate(activeEndDate.getTime() - 1);
+
                 let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
                 if (pastBeverages) {
                     this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
