@@ -1,4 +1,5 @@
-import moment from 'moment';
+import moment, { now } from 'moment';
+import SleepService from 'src/services/sleep/SleepService';
 
 //Important - Overide the format when jsonifying a moment object
 moment.fn.toJSON = function () { return this.format(); }
@@ -23,6 +24,7 @@ class Sleep {
         this.end = moment.parseZone(sleep['end'])
         this.numberOfInteruptions = sleep['numberOfInteruptions']
         this.comment = sleep["comment"]
+        this.mood = sleep["mood"]
     }
 
     /**
@@ -119,6 +121,15 @@ class Sleep {
     getInterval() {
         return `${this.getStartTime() - this.getEndTime()}`
     }
+
+    /**
+     * [Get mood]
+     *
+     * @return  {String} 
+     */
+    getMoon(){
+        return this.mood
+    }
 }
 
 /**
@@ -131,10 +142,18 @@ class SleepCollection {
      */
     constructor(datas) {
         this.list = []
+        if(datas){
+            this.activeDate = datas['activeDate']
 
-        if (datas) {
-            this.addSleepList(datas)
+            if (datas.list) {
+                this.addSleepList(datas.list)
+            }
         }
+    }
+
+    getActiveDate(){
+        return this.activeDate
+        //return this.activeDate.toDate()
     }
 
     /**
@@ -150,6 +169,24 @@ class SleepCollection {
         });
     }
 
+
+    /**
+     * 
+     * [returns true if a sleepCollection contains a key]
+     * 
+     * @param {string]} forKey the result of the getType()
+     * 
+     */
+
+    containsSleepItem(forKey) {
+        
+        const filteredCollection = this.list.filter( (item) => { 
+            return item.getId() === forKey
+        })
+
+        return  filteredCollection.length > 0
+    }
+
     /**
      * [Add a new sleep]
      *
@@ -157,7 +194,23 @@ class SleepCollection {
      *
      */
     addSleep(sleep) {
-        this.list.push(sleep)
+        //Set active date if undefined
+        if(this.activeDate === undefined || sleep.start.isBefore(this.activeDate)){
+            this.activeDate = sleep.start.clone()
+        }
+
+        let result = true
+
+        this.list.forEach(s => {
+            result = result && ! sleep.start.isBetween(s.start, s.end) && !sleep.end.isBetween(s.start, s.end) &&
+            sleep.start.diff(s.start) !== 0 && sleep.end.diff(s.end) !== 0
+        })
+
+        if(result){
+            this.list.push(sleep)
+        }
+ 
+        return result
     }
 
     /**
@@ -183,8 +236,44 @@ class SleepCollection {
      *
      * @return  {[Sleep]}  [return list of sleeps]
      */
-    sortDescByEndDate() {
-        return this.list
+    sortByAscendingStartDate() {
+        return this.list.sort((s1, s2) => {
+            const start1 = s1.start.format("X")
+            const start2 = s2.start.format("X")
+
+            if(start1 < start2){
+                return -1
+            } else if(start1 > start2){
+                return 1
+            }
+
+            return 0;
+        });
+    }
+
+    /**
+     * [sortByDescendingStartDate]
+     *
+     * @return  undefined
+     */
+    sortByDescendingStartDate(){
+        this.sortByAscendingStartDate()
+
+        this.list.reverse()
+    }
+
+    /**
+     * [getMinStartDate]
+     *
+     * @return  {moment}  [get the ]
+     */
+    getMinStartDate(){
+        if(this.size() > 0){
+            this.sortByAscendingStartDate()
+            return this.list[0].start;
+        }
+
+        return now()
     }
 
     /**
@@ -199,6 +288,10 @@ class SleepCollection {
         return this.list.filter((sleep) => sleep.start.isBetween(start, end) && sleep.end.isBetween(start, end))
     }
 
+    filterSleepByDate(date){
+        return this.list.filter((sleep) => sleep.start.isSame(date))
+    }
+
     /**
      * [Calculate the average sleep between a date and x days before description]
      *
@@ -207,18 +300,15 @@ class SleepCollection {
      *
      * @return  {double}                [number of hours]
      */
-    getAverageSleep(date, numberOfDays) {
-        const end = date.clone()
-        const start = date.subtract(numberOfDays, 'days')
-        const list = this.filterSleepByDates(start, end)
+    async getAverageSleep(date, numberOfDays) {
+        const sleepService = new SleepService()
+        let sleepCollections = []
 
-        if (list.length === 0) {
-            return moment.duration(0, 'h')
+        for (let i = 0; i < numberOfDays; i++) {
+            sleepCollections.push(await sleepService.fetchActiveDate(date))
         }
-
-        const totalHours = list.reduce((acc, curr) => acc + curr.getDurationAsHours(), 0)
-        return moment.duration(totalHours / list.length, 'h')
     }
+
 
     /**
      * [Calculates total amount of sleep in the list as minutes]
@@ -232,7 +322,12 @@ class SleepCollection {
             totalMinutes += sleep.getDurationAsMinutes();
         })
 
-        return totalMinutes;
+        return totalMinutes
+    }
+
+    showTotalSleep(){
+        const test = moment.duration(this.calculateTotalSleep() / 60, 'h')
+        return moment.utc(test.as('milliseconds')).format('HH:mm')
     }
 }
 

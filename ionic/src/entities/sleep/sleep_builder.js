@@ -1,27 +1,21 @@
 import { Sleep } from './sleep';
-import { activeDate } from '../../App'
-import moment from 'moment';
+import Crypto from 'crypto-js'
 
 class SleepBuilder {
+    constructor(activeDate) {
+        this.activeDate = activeDate
+        this.startMoment = null
+        this.endMoment = null
+        this.numberOfInteruptions = 0
+        this.comment = ""
+        this.mood = ""
+        this.sleep = null
 
-    /**
-     * [Initialises and declares fields]
-     */
-    constructor() {
+        this.errorFields = []
+        this.errorMessage = ""
+        this.isValid = false
 
-        /* Fields */
-        this.startMoment = null;
-        this.endMoment = null;
-        this.numberOfInteruptions = 0;
-        this.comment = "";
-        this.sleep = null;
-
-        /* Error handling */
-        this.errorFields = [];
-        this.errorMessage = "";
-        this.isValid = false;
-
-        return this;
+        return this
     }
 
     /**
@@ -31,14 +25,25 @@ class SleepBuilder {
      * @return this
      */
     buildStart(startInput) {
-
         if (this.isValidTime(startInput)) {
-            this.startMoment = this.convertSleepInputToMoment(String(startInput));
+            this.startMoment = this.convertSleepInputToMoment(String(startInput))
         } else {
-            this.errorFields.push("Endormi à");
+            this.errorFields.push("Endormi à")
         }
 
-        return this;
+        return this
+    }
+
+    /**
+     * [Mood section]
+     *
+     * @param   {string}  mood  
+     *
+     * @return  {SleepBuilder}  
+     */
+    buildMood(mood = "Neutre"){
+        this.mood = mood
+        return this
     }
 
     /**
@@ -48,11 +53,10 @@ class SleepBuilder {
      * @return this
      */
     buildEnd(endInput) {
-
         if (this.isValidTime(endInput)) {
-            this.endMoment = this.convertSleepInputToMoment(String(endInput));
+            this.endMoment = this.convertSleepInputToMoment(String(endInput))
         } else {
-            this.errorFields.push("Réveillé à");
+            this.errorFields.push("Réveillé à")
         }
 
         return this;
@@ -65,11 +69,10 @@ class SleepBuilder {
      * @return this
      */
     buildNumberOfInteruptions(numberOfInteruptionsInput) {
-
         if (this.isValidNumber(numberOfInteruptionsInput, true)) {
             this.numberOfInteruptions = numberOfInteruptionsInput
         } else {
-            this.errorFields.push("Nb réveils");
+            this.errorFields.push("Nb réveils")
         }
 
         return this;
@@ -91,6 +94,17 @@ class SleepBuilder {
     }
 
     /**
+     * [Generate a unique hash from a moment]
+     *
+     * @param   {string}  value  [value description]
+     *
+     * @return  {string}         [return description]
+     */
+    generateId(moment){
+        return Crypto.SHA1(JSON.stringify(moment)).toString()
+    }
+
+    /**
      * [Creates a Sleep instance]
      * 
      * @return object containing a Sleep instance (sleep), the list of 
@@ -99,22 +113,23 @@ class SleepBuilder {
      */
     createInstance() {
         this.isValid = this.errorFields.length === 0
-        && this.startMoment !== null && this.endMoment !== null;
+        && this.startMoment !== null && this.endMoment !== null
 
         if (this.isValid) {
 
             if (this.startMoment.diff(this.endMoment) >= 0) {
-                this.startMoment = this.startMoment.subtract(1, 'd');
+                this.startMoment = this.startMoment.subtract(1, 'd')
             }
 
             this.sleep = new Sleep({
-                id: this.startMoment.format("YYYY-MM-DD_hh:mm"),
+                id: this.generateId(this.startMoment.format("YYYY-MM-DD_hh:mm")),
                 start: this.startMoment,
                 end: this.endMoment,
                 numberOfInteruptions: this.numberOfInteruptions ?
                     String(this.numberOfInteruptions) : "0",
                 comment: this.comment,
-            });
+                mood: this.mood
+            })
         }
 
         this.errorMessage = "<ul>"
@@ -145,7 +160,7 @@ class SleepBuilder {
             isValid = time.minute >= 0 && time.minute <= 59 && time.hour >= 0 && time.hour <= 23
         }
 
-        return isValid;
+        return isValid
     }
 
     /**
@@ -155,7 +170,7 @@ class SleepBuilder {
      * @param {boolean} acceptEmpty 
      */
     isValidNumber(input, acceptEmpty) {
-        return /^[0-9]{1,4}$/.test(input) || (!input && acceptEmpty);
+        return /^[0-9]{1,4}$/.test(input) || (!input && acceptEmpty)
     }
     
     /**
@@ -177,17 +192,11 @@ class SleepBuilder {
     convertSleepInputToMoment(input) {
         const time = this.getTimeFromSleepString(input);
 
-        const momentObj = {
-            year: activeDate.year(),
-            month: activeDate.month(),
-            day: activeDate.day(),
-            hour: time.hour,
-            minute: time.minute,
-            second: 0,
-            milliseconds: 0,
-        }
+        const localMoment = this.activeDate.clone()
+        localMoment.hour(time.hour)
+        localMoment.minute(time.minute)
 
-        return moment(momentObj);
+        return localMoment;
     }
 
     /**

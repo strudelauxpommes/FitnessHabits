@@ -1,0 +1,45 @@
+.sleep-icon-header {
+    font-size: 50px;
+}
+
+.sleep-icon-swipe {
+font-size: 35px;
+}
+
+.sleep-ion-card {
+text-align: center;
+padding: 0%;
+}
+
+#sleep-card-header {
+background-color: #0040ff;
+color: white;
+margin: auto;
+vertical-align: middle;
+border-radius: 4px;
+}
+
+#sleep-card-header-first-col {
+text-align: left;
+font-size: large;
+font-weight: bold;
+}
+
+#sleep-summary-a {
+text-decoration: none;
+}
+
+.sleep-grid {
+margin:auto;
+vertical-align: middle;
+color: black;
+}
+
+.sleep-input {
+border: lightgray solid 1px;
+border-radius: 4px;
+}
+
+.sleep-text {
+font-family: 'Roboto';
+}

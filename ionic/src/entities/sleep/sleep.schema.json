@@ -3,11 +3,6 @@
     "title": "A sleep entity",
     "type": "object",
     "properties": {
-        "id": {
-            "type": "integer",
-            "minimum": 1,
-            "error": "fitnessHabit.sleep.id.error"
-        },
         "start": {
             "type": "string",
             "format": "date-time",
@@ -32,13 +27,17 @@
         "comment": {
             "type": "string",
             "error": "fitnessHabit.sleep.comment.error"
+        },
+        "mood":{
+            "type": "string",
+            "minLength": 1
         }
     },
     "required": [
-        "id",
         "start",
         "end",
         "numberOfInteruptions",
-        "comment"
+        "comment",
+        "mood"
     ]
 }

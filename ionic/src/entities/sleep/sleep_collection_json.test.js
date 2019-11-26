@@ -16,21 +16,24 @@ test('a valid json sleep collection', () => {
             "start": "2016-11-23T23:00:00-05:00",
             "end": "2016-11-24T07:00:00-05:00",
             "numberOfInteruptions": 2,
-            "comment": ""
+            "comment": "",
+            "mood": "neutre"
         },
         { 
             "id": 2,
             "start": "2016-11-21T23:00:00-05:00",
             "end": "2016-11-22T08:00:00-05:00",
             "numberOfInteruptions": 2,
-            "comment": ""
+            "comment": "",
+            "mood": "neutre"
         },
         {
             "id": 3,
             "start": "2016-11-20T22:00:00-05:00",
             "end": "2016-11-21T06:00:00-05:00",
             "numberOfInteruptions": 2,
-            "comment": ""
+            "comment": "",
+            "mood": "neutre"
         }
     ]
 
