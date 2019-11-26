@@ -47,7 +47,7 @@ import "./theme/activity-theme.css";
 
 import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
-import { AddSleepLineForm } from './pages/sleep/AddSleepLineForm';
+
 // import './services/parameters/InitializeParameters.js';
 import moment from 'moment';
 import React from 'react';
@@ -90,7 +90,7 @@ const App: React.FC = () => (
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
-        {/* <Route path="/sleep-detail-edit" component={AddSleepLineForm} /> */}
+
         <Route path="/tabs" component={Tabs} />
       </IonRouterOutlet>
     </IonReactRouter>
