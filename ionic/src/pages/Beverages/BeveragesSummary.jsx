@@ -25,7 +25,7 @@ class BeveragesSummary extends Component {
             total: 0,
             unit: "L",
             unitConverter:1,
-            date: [],
+            date: null,
             key: 'beverage/beverageList'
             
         }
@@ -49,45 +49,49 @@ class BeveragesSummary extends Component {
         const instance = new DalImpl();
         let date = await instance.getLastValue('settings/activeDate');
         if (date) {
-            this.setState({date: JSON.parse(date)});
+            let arrayDate = JSON.parse(date);
+            this.setState({date: new Date(arrayDate[2], arrayDate[1], arrayDate[0]).getTime()});
         } else {
             // remove this when impl
-            let todayDate = new Date();
-            this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
+            this.setState({date: new Date().setHours(0,0,0,0)});
         }
 
 
-        let beverages = await instance.getLastValue(this.state.key)
-        if (!beverages) {
+        let beveragesResponse = await instance.getLastValue(this.state.key)
+
+        if (!beveragesResponse) {
             await this.initDefaultBeverages();
             await this.saveBeverage();
         } else {
-            let parsedBeverage = JSON.parse(beverages);
-            let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
-            let lastDate = new Date(parsedBeverage.date[2], parsedBeverage.date[1], parsedBeverage.date[0])
+            let beverage = JSON.parse(beveragesResponse);
+            let activeDate = this.state.date;
+            let lastDate = beverage.date;
 
-            if (activeDate.getTime() > lastDate.getTime()) {
-                this.resetQuantities();
-            } else if (activeDate.getTime() === lastDate.getTime()) {
-                await this.setState({beverages: parsedBeverage.beverageList});
-            } else if (activeDate.getTime() < lastDate.getTime()) {
+            if (activeDate > lastDate) {
+                await this.setState({beverages: beverage.beverageList});
+                await this.resetQuantities();
+            } else if (activeDate === lastDate) {
+                await this.setState({beverages: beverage.beverageList});
+            } else if (activeDate < lastDate) {
                 let activeEndDate = new Date(activeDate)
-                activeEndDate.setDate(activeDate.getDate() + 1)
-                let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
+                activeEndDate.setDate(activeEndDate.getDate() + 1);
+                activeEndDate = new Date(activeEndDate.getTime() - 1);
+
+                let pastBeverages = await instance.getLatestValues(this.state.key, new Date(activeDate), activeEndDate);
                 if (pastBeverages) {
                     this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
                 }
-            }
-            
+            }            
         }
     }
   
     async resetQuantities() {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
-                beverage => beverage ? { ...beverage, quantity: 0 } : beverage
+                el => el.quantity > 0 ? { ...el, quantity: 0 }: el
             )
         }))
+        await this.saveBeverage();
     }
 
     async initDefaultBeverages() {

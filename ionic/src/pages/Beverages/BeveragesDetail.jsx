@@ -88,24 +88,25 @@ class BeveragesDetail extends Component {
     }
 
     async getBeverages() {
+
         const instance = new DalImpl();
         let date = await instance.getLastValue('settings/activeDate');
-
         if (date) {
-            await this.setState({date: JSON.parse(date)});
+            let arrayDate = JSON.parse(date);
+            this.setState({date: new Date(arrayDate[2], arrayDate[1], arrayDate[0])});
         } else {
             // remove this when impl
-            let todayDate = new Date();
-            await this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
+            this.setState({date: new Date().setHours(0,0,0,0)});
         }
 
-        let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
+        let activeDate = this.state.date;
 
         let activeEndDate = new Date(activeDate)
-        activeEndDate.setDate(activeDate.getDate() + 1)
+        activeEndDate.setDate(activeEndDate.getDate() + 1);
+        activeEndDate = new Date(activeEndDate.getTime() - 1);
 
-        let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
-        if (pastBeverages) {
+        let pastBeverages = await instance.getLatestValues(this.state.key, new Date(activeDate), activeEndDate);
+        if (pastBeverages.length > 0) {
             await this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
         }
     }
