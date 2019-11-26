@@ -110,20 +110,6 @@ export default class SleepService{
     }
 
     /**
-     * 
-     * @param {SleepCollection} sleepCollection 
-     * @param {moment} moment 
-     * 
-     * save a collection at a specific date
-     */
-
-    async saveCollectionAtDate(sleepCollection, moment){
-        const json = JSON.stringify(sleepCollection)
-        const dateFormated = Date(moment.toDate())
-        await this.persist.setValueByDate("sleep",json,dateFormated)
-    }
-
-    /**
      * Delete a SleepItem from the sleepArray
      */
     deleteSleep(key, sleepCollection){

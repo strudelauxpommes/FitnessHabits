@@ -329,6 +329,8 @@ class SleepCollection {
         const test = moment.duration(this.calculateTotalSleep() / 60, 'h')
         return moment.utc(test.as('milliseconds')).format('HH:mm')
     }
+
+
 }
 
 export { Sleep, SleepCollection };
