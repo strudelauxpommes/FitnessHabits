@@ -53,11 +53,12 @@ class BeveragesSummary extends Component {
         } else {
             // remove this when impl
             let todayDate = new Date();
-            this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
+            this.setState({date: [todayDate.getUTCDate() - 1, todayDate.getUTCMonth(), todayDate.getFullYear()]})
         }
 
 
         let beverages = await instance.getLastValue(this.state.key)
+
         if (!beverages) {
             await this.initDefaultBeverages();
             await this.saveBeverage();
@@ -67,7 +68,8 @@ class BeveragesSummary extends Component {
             let lastDate = new Date(parsedBeverage.date[2], parsedBeverage.date[1], parsedBeverage.date[0])
 
             if (activeDate.getTime() > lastDate.getTime()) {
-                this.resetQuantities();
+                await this.setState({beverages: parsedBeverage.beverageList});
+                await this.resetQuantities();
             } else if (activeDate.getTime() === lastDate.getTime()) {
                 await this.setState({beverages: parsedBeverage.beverageList});
             } else if (activeDate.getTime() < lastDate.getTime()) {
@@ -77,17 +79,17 @@ class BeveragesSummary extends Component {
                 if (pastBeverages) {
                     this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
                 }
-            }
-            
+            }            
         }
     }
   
     async resetQuantities() {
         await this.setState(prevState => ({
             beverages: prevState.beverages.map(
-                beverage => beverage ? { ...beverage, quantity: 0 } : beverage
+                el => el.quantity > 0 ? { ...el, quantity: 0 }: el
             )
         }))
+        await this.saveBeverage();
     }
 
     async initDefaultBeverages() {

@@ -96,7 +96,7 @@ class BeveragesDetail extends Component {
         } else {
             // remove this when impl
             let todayDate = new Date();
-            await this.setState({date: [todayDate.getUTCDate(), todayDate.getUTCMonth(), todayDate.getFullYear()]})
+            await this.setState({date: [todayDate.getUTCDate() - 1, todayDate.getUTCMonth(), todayDate.getFullYear()]})
         }
 
         let activeDate = new Date(this.state.date[2], this.state.date[1], this.state.date[0]);
@@ -105,7 +105,7 @@ class BeveragesDetail extends Component {
         activeEndDate.setDate(activeDate.getDate() + 1)
 
         let pastBeverages = await instance.getLatestValues(this.state.key, activeDate, activeEndDate);
-        if (pastBeverages) {
+        if (pastBeverages.length > 0) {
             await this.setState({ beverages: JSON.parse(pastBeverages).beverageList })
         }
     }
