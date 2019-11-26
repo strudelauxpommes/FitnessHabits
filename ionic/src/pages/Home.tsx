@@ -2,37 +2,29 @@ import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle,
 import T from "i18n-react";
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
-import { SleepCollection } from "src/entities/sleep/sleep";
 import Calendrier from ".././calandrier/calandrier";
 import Alcool from "../alcool/AlcoolSommaire";
 import Poids from "../entities/poids/Poids";
-import SleepService from "../services/sleep/SleepService";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
 import FoodHome from "./nourriture/FoodHome";
 import SleepSummary from "./sleep/SleepSummary";
 import ActivitiesSummary from "../components/ActivitiesSummary";
 import Tabs from "./tabs";
 
-const sleepService = SleepService();
 
 type State = {
-  sleepCollection: SleepCollection;
   T: any;
 };
 class Home extends Component<RouteComponentProps, State> {
   constructor(props: RouteComponentProps) {
     super(props);
 
-    const sleepCollection = sleepService.fetch();
-
     this.state = {
-      sleepCollection: sleepCollection,
       T: null
     };
   }
 
   render() {
-    const { sleepCollection } = this.state;
 
     return (
       <IonPage>
