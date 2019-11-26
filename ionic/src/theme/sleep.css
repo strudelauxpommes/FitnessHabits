@@ -12,11 +12,11 @@ padding: 0%;
 }
 
 #sleep-card-header {
-background-color: #0040ff;
-color: white;
-margin: auto;
-vertical-align: middle;
-border-radius: 4px;
+    background-color: #0040ff;
+    color: white;
+    margin: auto;
+    vertical-align: middle;
+    border-radius: 4px;
 }
 
 #sleep-card-header-first-col {

@@ -22,6 +22,11 @@ import SleepService from '../../services/sleep/SleepService';
 import { RouteComponentProps } from 'react-router';
 import moment from 'moment'
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
+// import { any } from 'prop-types';
+
+type Prop = {
+    
+}
 
 type State = {
     sleepCollection: SleepCollection;

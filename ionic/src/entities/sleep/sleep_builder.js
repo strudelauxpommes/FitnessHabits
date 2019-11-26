@@ -1,6 +1,9 @@
 import { Sleep } from './sleep';
 import Crypto from 'crypto-js'
 
+/**
+ * Service to build a valid sleep entity
+ */
 class SleepBuilder {
     constructor(activeDate) {
         this.activeDate = activeDate

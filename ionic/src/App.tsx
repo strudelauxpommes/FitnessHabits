@@ -1,5 +1,10 @@
-import { IonApp, IonRouterOutlet } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import Home from './pages/Home';
+
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 import "@ionic/react/css/display.css";
@@ -13,6 +18,8 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
+
+
 /* Beverage import */
 import ActivitiesDetail from "./pages/activities/ActivityDetails";
 import ActivitiesSummary from "./pages/activities/ActivitySummary";
@@ -33,6 +40,7 @@ import FoodAddDiner from "./pages/nourriture/FoodAddDiner";
 import FoodAddDejeuner from "./pages/nourriture/FoodAddDejeuner";
 import FoodAddSouper from "./pages/nourriture/FoodAddSouper";
 
+
 /* Parameters import */
 import Preference from "./pages/parameters/Preference";
 import Profil from "./pages/parameters/Profil";
@@ -49,17 +57,11 @@ import SleepDetail from './pages/sleep/SleepDetail';
 import SleepSummary from './pages/sleep/SleepSummary';
 
 // import './services/parameters/InitializeParameters.js';
-import moment from 'moment';
-import React from 'react';
-import { Route, Redirect } from 'react-router';
-import Home from './pages/Home';
 
 
 // Init language
 init();
 
-/* Temporary activeDate global variable */
-export const activeDate = moment();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -90,7 +92,6 @@ const App: React.FC = () => (
         <Route path="/food-daily-intake" component={FoodDailyIntake} />
         <Route path="/sleep-summary" component={SleepSummary} />
         <Route path="/sleep-detail" component={SleepDetail} />
-
         <Route path="/tabs" component={Tabs} />
       </IonRouterOutlet>
     </IonReactRouter>

@@ -5,8 +5,8 @@ import { RouteComponentProps } from "react-router";
 import Calendrier from ".././calandrier/calandrier";
 import Alcool from "../alcool/AlcoolSommaire";
 import Poids from "../entities/poids/Poids";
-import BeveragesSummary from "./Beverages/BeveragesSummary";
 import FoodHome from "./nourriture/FoodHome";
+import BeveragesSummary from "./Beverages/BeveragesSummary";
 import SleepSummary from "./sleep/SleepSummary";
 import ActivitiesSummary from "../components/ActivitiesSummary";
 import Tabs from "./tabs";
@@ -19,13 +19,13 @@ class Home extends Component<RouteComponentProps, State> {
   constructor(props: RouteComponentProps) {
     super(props);
 
+
     this.state = {
       T: null
     };
   }
 
   render() {
-
     return (
       <IonPage>
         <IonHeader>

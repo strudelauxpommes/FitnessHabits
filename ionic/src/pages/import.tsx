@@ -43,7 +43,7 @@ const Import: React.FC = () => {
                 position="middle"
                 onDidDismiss={() => setShowToast(false)}
                 message="Échec de l'import des données"
-                duration={40000}
+                duration={4000}
               />
             </IonCol>
           </IonRow>
