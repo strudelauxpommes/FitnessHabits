@@ -13,7 +13,6 @@ import {
 
 } from "@ionic/react";
 import { FoodHeader } from "./FoodHeader";
-import { MDBIcon, MDBContainer } from "mdbreact";
 import { Pie } from "react-chartjs-2";
 import PieChart from "react-minimal-pie-chart";
 // import { Ionicons } from '@expo/vector-icons';
