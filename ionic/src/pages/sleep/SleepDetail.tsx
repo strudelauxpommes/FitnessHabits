@@ -20,7 +20,6 @@ import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import { GeneralInformationItemCell } from './GeneralInformationItemCell';
 import SleepService from '../../services/sleep/SleepService';
 import { RouteComponentProps } from 'react-router';
-
 import moment from 'moment'
 import { HeaderToolBarWithImage } from './HeaderToolBarWithImage';
 // import { any } from 'prop-types';

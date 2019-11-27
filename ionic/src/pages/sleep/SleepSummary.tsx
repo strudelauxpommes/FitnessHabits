@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Sleep, SleepCollection } from '../../entities/sleep/sleep';
 import { SleepBuilder } from '../../entities/sleep/sleep_builder';
 import SleepService from '../../services/sleep/SleepService';
-
+import '../../theme/sleep.css';
 
 type Props = {
   activeDate: Date;

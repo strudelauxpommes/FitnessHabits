@@ -1,11 +1,24 @@
 import {
   IonContent,
-  IonList, IonItem, IonLabel, IonRow, IonCol, IonButton, IonToast,
-  IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
-  IonIcon, IonDatetime
-} from '@ionic/react';
-import { calendar } from 'ionicons/icons';
-import React, { useState } from 'react';
+  IonList,
+  IonItem,
+  IonLabel,
+  IonRow,
+  IonCol,
+  IonButton,
+  IonToast,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonIcon,
+  IonDatetime
+} from "@ionic/react";
+import { calendar } from "ionicons/icons";
+import React, { useState } from "react";
+import Tabs from "./tabs";
 
 const Purge: React.FC = () => {
   const [showToast1, setShowToast] = useState(false);
@@ -29,11 +42,21 @@ const Purge: React.FC = () => {
           <IonItem>
             <IonIcon icon={calendar} slot="start"></IonIcon>
             <IonLabel position="stacked">Indiquez une date valide</IonLabel>
-            <IonDatetime displayFormat="MMM DD, YYYY" max={new Date().toISOString()} value={new Date().toISOString()}></IonDatetime>
+            <IonDatetime
+              displayFormat="MMM DD, YYYY"
+              max={new Date().toISOString()}
+              value={new Date().toISOString()}
+            ></IonDatetime>
           </IonItem>
           <IonRow>
             <IonCol>
-              <IonButton color="light" onClick={() => setShowToast2(true)} expand="block">Supprimer</IonButton>
+              <IonButton
+                color="light"
+                onClick={() => setShowToast2(true)}
+                expand="block"
+              >
+                Supprimer
+              </IonButton>
               <IonToast
                 isOpen={showToast2}
                 onDidDismiss={() => setShowToast2(false)}
@@ -44,6 +67,8 @@ const Purge: React.FC = () => {
           </IonRow>
         </IonList>
       </IonContent>
+
+      <Tabs />
     </IonPage>
   );
 };

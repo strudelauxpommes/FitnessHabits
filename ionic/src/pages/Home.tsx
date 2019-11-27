@@ -1,34 +1,14 @@
-import {
-  IonAvatar,
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonPage,
-  IonTabBar,
-  IonTabButton,
-  IonTitle,
-  IonToolbar
-} from "@ionic/react";
+import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import T from "i18n-react";
-import {
-  calendar,
-  download,
-  home,
-  redo,
-  settings,
-  trash
-} from "ionicons/icons";
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
-import { SleepCollection } from "src/entities/sleep/sleep";
+import Calendrier from ".././calandrier/calandrier";
 import Alcool from "../alcool/AlcoolSommaire";
+import Poids from "../entities/poids/Poids";
 import FoodHome from "./nourriture/FoodHome";
 import BeveragesSummary from "./Beverages/BeveragesSummary";
 import SleepSummary from "./sleep/SleepSummary";
-import Poids from "../entities/poids/Poids";
+import ActivitiesSummary from "../components/ActivitiesSummary";
 import Tabs from "./tabs";
 
 
@@ -39,15 +19,13 @@ class Home extends Component<RouteComponentProps, State> {
   constructor(props: RouteComponentProps) {
     super(props);
 
-    
+
     this.state = {
       T: null
     };
   }
 
   render() {
-    
-
     return (
       <IonPage>
         <IonHeader>
@@ -64,16 +42,19 @@ class Home extends Component<RouteComponentProps, State> {
             <IonLabel>
               <h1>Username</h1>
             </IonLabel>
-            <IonButton color="light" slot="end">
+            {/* <IonButton color="light" slot="end">
               <IonIcon slot="start" icon={calendar} />
               11 Novembre 2019
-            </IonButton>
+            </IonButton> */}
+            <Calendrier />
           </IonItem>
 
           <div>
             <br />
           </div>
-
+          <div className="activite-summary-home">
+            <ActivitiesSummary/>
+          </div>
           <SleepSummary activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Alcool activeDate={new Date("2019-10-31T21:00:00-05:00")} />
           <Poids />

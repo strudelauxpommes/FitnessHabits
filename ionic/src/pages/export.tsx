@@ -1,18 +1,34 @@
 import {
-  IonPage,IonSelect, IonSelectOption,
-  IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
-  IonList, IonItem, IonLabel, IonIcon, IonDatetime,
-  IonButton, IonRow, IonCol, IonContent, IonRadioGroup,
-  IonRadio, IonToast
+  IonPage,
+  IonSelect,
+  IonSelectOption,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonDatetime,
+  IonButton,
+  IonRow,
+  IonCol,
+  IonContent,
+  IonRadioGroup,
+  IonRadio,
+  IonToast
+} from "@ionic/react";
 
-} from '@ionic/react';
+import Tabs from "./tabs";
 import { calendar, logIn } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { FilterDumper } from 'src/dal/FitlerDumper';
 
 
 const Export: React.FC = () => {
-const [showToast1, setShowToast] = useState(false);
+  const [showToast1, setShowToast] = useState(false);
 
 async function getAllData() {
   console.log('test');
@@ -34,7 +50,7 @@ function changeColor(id:string){
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle >Exporter les données</IonTitle>
+          <IonTitle>Exporter les données</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -107,7 +123,13 @@ function changeColor(id:string){
           </IonRadioGroup>
           <IonRow>
             <IonCol>
-              <IonButton color="light" onClick={() => setShowToast(true)} expand="block">Exporter</IonButton>
+              <IonButton
+                color="light"
+                onClick={() => setShowToast(true)}
+                expand="block"
+              >
+                Exporter
+              </IonButton>
               <IonToast
                 isOpen={showToast1}
                 position="middle"
@@ -119,6 +141,8 @@ function changeColor(id:string){
           </IonRow>
         </IonList>
       </IonContent>
+
+      <Tabs />
     </IonPage>
   );
 };
